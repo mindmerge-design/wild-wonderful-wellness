@@ -28,6 +28,34 @@ export default defineType({
       name: 'content',
       title: 'Content',
       type: 'portableText',
+      validation: (Rule: any) => Rule.required(),
+    }),
+    defineField({
+      name: 'address',
+      title: 'Address',
+      type: 'portableText',
+      validation: (Rule: any) => Rule.required(),
+    }),
+    defineField({
+      name: 'hours',
+      title: 'Hours',
+      type: 'portableText',
+    }),
+    defineField({
+      name: 'phone',
+      title: 'Phone',
+      type: 'string',
+      validation: (Rule: any) => Rule.required(),
+    }),
+    defineField({
+      name: 'gallery',
+      title: 'Gallery',
+      type: 'imageGallery',
+    }),
+    defineField({
+      name: 'lockboxPhoto',
+      title: 'Lockbox Photo',
+      type: 'imageAlt',
     }),
     defineField({
       name: 'seo',

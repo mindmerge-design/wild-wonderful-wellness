@@ -1,8 +1,8 @@
 import { defineField, defineType } from "sanity";
 
 export default defineType({
-  name: 'event',
-  title: 'Event',
+  name: 'events',
+  title: 'Events',
   type: 'document',
   fields: [
     defineField({
@@ -21,11 +21,6 @@ export default defineType({
         source: 'title',
         maxLength: 200,
       },
-    }),
-    defineField({
-      name: 'eventDate',
-      title: 'Event Date',
-      type: 'date',
     }),
     defineField({
       name: 'content',
