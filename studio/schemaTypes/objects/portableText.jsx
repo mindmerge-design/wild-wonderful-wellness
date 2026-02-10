@@ -25,6 +25,11 @@ export default {
     },
     {
       type: 'imageAlt',
+      name: 'imageAlt',
+      title: 'Image',
+      options: {
+        hotspot: true,
+      },
     },
   ],
 }

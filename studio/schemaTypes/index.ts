@@ -1,7 +1,14 @@
 // Import all schemas from the singletons folder
+import event from './documents/event'
+import events from './documents/events'
 import generic from './documents/generic'
 import home from './documents/home'
+import parksTrails from './documents/parksTrails'
+import parkTrail from './documents/parkTrail'
+import partner from './documents/partner'
+import partners from './documents/partners'
 import siteSettings from './documents/siteSettings'
+
 
 // Import all schemas from the objects folder
 import accordion from './objects/accordion'
@@ -25,6 +32,8 @@ import videoEmbed from './objects/videoEmbed'
 
 export const schemaTypes = [
   accordion,
+  event,
+  events,
   fileDownload,
   generic,
   hero,
@@ -35,6 +44,10 @@ export const schemaTypes = [
   location,
   pageBuilder,
   pageBuilderContent,
+  parksTrails,
+  parkTrail,
+  partner,
+  partners,
   portableText,
   section,
   seo,
