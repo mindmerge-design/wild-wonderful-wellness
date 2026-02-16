@@ -445,19 +445,35 @@ Nature is the Cure.</h2>
 						Our community partners make the Wellness Passport possible. Pick up your passport or collect stamps at any of these participating locations.
 					</p>
 				</div>
+			</Container>
 
-				<div class="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5">
-					{partners.map((partner, i) => (
+			<!-- Edge-to-edge scrolling partners marquee - Two Rows -->
+			<div class="relative overflow-hidden space-y-6 group py-6 px-4">
+				<!-- Row 1 - scrolls left -->
+				<div class="flex animate-marquee group-hover:[animation-play-state:paused]">
+					{[...partners, ...partners].map((partner, i) => (
 						<div
-							class="flex flex-col items-center rounded-xl border border-border bg-background p-4 text-center transition-all duration-300 hover:border-info/50 hover:bg-info/5"
-							style={`animation: scale-in 0.4s ease-out ${0.05 * i}s both;`}
+							class="flex flex-col items-center justify-center rounded-xl border border-border bg-background p-4 text-center mx-3 min-w-[200px] max-w-[200px] transition-all duration-300 hover:shadow-lg hover:scale-105 hover:border-primary/50 hover:bg-primary/5 cursor-pointer"
 						>
 							<p class="text-sm font-semibold leading-tight">{partner.name}</p>
 							<Badge variant="default" class="mt-2 text-xs">{partner.type}</Badge>
 						</div>
 					))}
 				</div>
+				<!-- Row 2 - scrolls right (reverse) -->
+				<div class="flex animate-marquee group-hover:[animation-play-state:paused]" style="animation-direction: reverse;">
+					{[...partners.slice().reverse(), ...partners.slice().reverse()].map((partner, i) => (
+						<div
+							class="flex flex-col items-center justify-center rounded-xl border border-border bg-background p-4 text-center mx-3 min-w-[200px] max-w-[200px] transition-all duration-300 hover:shadow-lg hover:scale-105 hover:border-primary/50 hover:bg-primary/5 cursor-pointer"
+						>
+							<p class="text-sm font-semibold leading-tight">{partner.name}</p>
+							<Badge variant="default" class="mt-2 text-xs">{partner.type}</Badge>
+						</div>
+					))}
+				</div>
+			</div>
 
+			<Container class="relative z-10">
 				<div class="mt-12 text-center">
 					<Button href="/partners" variant="outline" size="lg" class="hover:bg-info hover:text-info-foreground hover:border-info transition-all">
 						View All Partners
@@ -498,7 +514,7 @@ Nature is the Cure.</h2>
 				<div class="grid gap-6 sm:grid-cols-2">
 					{upcomingEvents.map((event, i) => (
 						<div
-							class="group relative overflow-hidden rounded-2xl border border-border bg-card p-6 transition-all duration-300 hover:shadow-xl hover:-translate-y-1"
+							class="group relative overflow-hidden rounded-2xl border border-border bg-card transition-all duration-300 hover:shadow-xl hover:-translate-y-1"
 							style={`animation: fade-in-up 0.5s ease-out ${0.1 * i}s both;`}
 						>
 							<!-- Accent bar -->
@@ -507,7 +523,15 @@ Nature is the Cure.</h2>
 							<!-- Decorative circle -->
 							<div class="absolute -right-4 -top-4 size-20 bg-warning/5 rounded-full blur-xl transition-opacity group-hover:opacity-100 opacity-50"></div>
 							
-							<div class="relative">
+							<!-- Image placeholder -->
+							<div class="bg-muted h-64 flex items-center justify-center relative overflow-hidden">
+								<div class="absolute inset-0 bg-warning/5"></div>
+								<div class="relative z-10 flex size-14 items-center justify-center rounded-full bg-background shadow-md">
+									<Camera class="text-warning size-6" />
+								</div>
+							</div>
+							
+							<div class="relative p-6">
 								<div class="mb-4 flex flex-wrap items-center gap-3">
 									<div class="flex items-center gap-2 rounded-lg bg-warning/10 px-3 py-1.5">
 										<Calendar class="text-warning size-4" />
