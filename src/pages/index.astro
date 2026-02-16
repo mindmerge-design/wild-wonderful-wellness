@@ -22,6 +22,7 @@ import Badge from '@/components/elements/content/Badge.astro'
 import Card from '@/components/elements/content/Card.astro'
 import Container from '@/components/layout/Container.astro'
 import Section from '@/components/layout/Section.astro'
+import ParkCard from '@/components/ParkCard.astro'
 import ParkMap from '@/components/ParkMap.tsx'
 import { Button } from '@/components/starwind/button'
 import Layout from '@/layouts/Layout.astro'
@@ -56,16 +57,76 @@ const howItWorks = [
 ]
 
 const parks = [
-	{ name: "Dorsey's Knob Park", description: 'Scenic overlook with hiking trails and panoramic views of Morgantown and the surrounding hills.' },
-	{ name: 'Coopers Rock State Forest', description: 'Over 12,000 acres of forest with stunning overlooks, rock climbing, and miles of trails.' },
-	{ name: "Decker's Creek Trail", description: 'Paved rail-trail following the creek through wooded terrain, perfect for walking and biking.' },
-	{ name: 'White Park', description: 'Community park with walking paths, playgrounds, and open green spaces for recreation.' },
-	{ name: 'Marilla Park', description: 'Quiet neighborhood park with wooded trails and a peaceful creekside setting.' },
-	{ name: 'Krepps Park', description: 'Family-friendly park featuring sports fields, a walking loop, and picnic areas.' },
-	{ name: 'Mason Dixon Historical Park', description: 'Historic site with interpretive trails and markers along the famous survey line.' },
-	{ name: 'Caperton Trail', description: 'Scenic waterfront trail along the Monongahela River connecting to the rail-trail network.' },
-	{ name: 'Chestnut Ridge Park', description: 'County park with hiking trails, a lake, picnic shelters, and seasonal activities.' },
-	{ name: 'Core Arboretum', description: 'WVU-managed 91-acre forest with 3.5 miles of trails showcasing native Appalachian flora.' }
+	{ 
+		name: "Dorsey's Knob Park", 
+		description: 'Scenic overlook with hiking trails and panoramic views of Morgantown and the surrounding hills.',
+		type: 'park',
+		amenities: ['hiking', 'views', 'picnic'],
+		difficulty: 'moderate'
+	},
+	{ 
+		name: 'Coopers Rock State Forest', 
+		description: 'Over 12,000 acres of forest with stunning overlooks, rock climbing, and miles of trails.',
+		type: 'state-forest',
+		amenities: ['hiking', 'climbing', 'camping', 'views'],
+		difficulty: 'moderate'
+	},
+	{ 
+		name: "Decker's Creek Trail", 
+		description: 'Paved rail-trail following the creek through wooded terrain, perfect for walking and biking.',
+		type: 'trail',
+		amenities: ['biking', 'walking', 'wheelchair-accessible'],
+		difficulty: 'easy'
+	},
+	{ 
+		name: 'White Park', 
+		description: 'Community park with walking paths, playgrounds, and open green spaces for recreation.',
+		type: 'park',
+		amenities: ['playground', 'sports', 'picnic'],
+		difficulty: 'easy'
+	},
+	{ 
+		name: 'Marilla Park', 
+		description: 'Quiet neighborhood park with wooded trails and a peaceful creekside setting.',
+		type: 'park',
+		amenities: ['hiking', 'nature', 'quiet'],
+		difficulty: 'easy'
+	},
+	{ 
+		name: 'Krepps Park', 
+		description: 'Family-friendly park featuring sports fields, a walking loop, and picnic areas.',
+		type: 'park',
+		amenities: ['sports', 'walking', 'playground'],
+		difficulty: 'easy'
+	},
+	{ 
+		name: 'Mason Dixon Historical Park', 
+		description: 'Historic site with interpretive trails and markers along the famous survey line.',
+		type: 'historic',
+		amenities: ['history', 'hiking', 'education'],
+		difficulty: 'easy'
+	},
+	{ 
+		name: 'Caperton Trail', 
+		description: 'Scenic waterfront trail along the Monongahela River connecting to the rail-trail network.',
+		type: 'trail',
+		amenities: ['biking', 'walking', 'river-views'],
+		difficulty: 'easy'
+	},
+	{ 
+		name: 'Chestnut Ridge Park', 
+		description: 'County park with hiking trails, a lake, picnic shelters, and seasonal activities.',
+		type: 'park',
+		amenities: ['hiking', 'lake', 'camping', 'fishing'],
+		difficulty: 'moderate'
+	},
+	{ 
+		name: 'Core Arboretum', 
+		description: 'WVU-managed 91-acre forest with 3.5 miles of trails showcasing native Appalachian flora.',
+		type: 'park',
+		amenities: ['nature', 'hiking', 'education', 'wildflowers'],
+		difficulty: 'easy'
+	}
 ]
 
 const partners = [
@@ -407,36 +468,7 @@ Nature is the Cure.</h2>
 					<div class="order-2 lg:order-1">
 						<div class="h-[500px] overflow-y-auto pr-2 space-y-4 rounded-xl border border-border bg-background p-4 shadow-inner">
 							{parks.map((park, i) => (
-								<div
-									id={`park-${i}`}
-									class="group relative rounded-xl border border-border bg-card overflow-hidden transition-all duration-300 hover:shadow-lg hover:border-success/30 cursor-pointer"
-									style={`animation: fade-in-up 0.4s ease-out ${0.05 * i}s both;`}
-								>
-									<div class="flex">
-										<!-- Park Image Placeholder (Left) -->
-										<div class="w-24 shrink-0 bg-muted flex items-center justify-center relative overflow-hidden">
-											<div class="absolute inset-0 bg-success/5"></div>
-											<div class="relative z-10 flex size-8 items-center justify-center rounded-full bg-background shadow-sm">
-												<TreePine class="text-success size-4" />
-											</div>
-											<div class="absolute top-1 left-1 size-5 rounded-full bg-success flex items-center justify-center text-white! text-[10px] font-bold">
-												{i + 1}
-											</div>
-										</div>
-										<!-- Park Info (Right) -->
-										<div class="flex-1 p-3 min-w-0">
-											<h4 class="font-bold text-foreground group-hover:text-success transition-colors text-sm truncate">{park.name}</h4>
-											<p class="text-muted-foreground text-xs leading-relaxed mt-1 line-clamp-2">{park.description}</p>
-											<a 
-												href={`/parks-and-trails/${park.name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')}`}
-												class="mt-2 inline-flex items-center gap-1 text-xs font-medium text-success hover:underline"
-											>
-												Learn More
-												<ArrowRight class="size-3" />
-											</a>
-										</div>
-									</div>
-								</div>
+								<ParkCard park={park} index={i} size="md" />
 							))}
 						</div>
 					</div>
