@@ -40,9 +40,10 @@ export default function ParkMap({ parks, mapboxToken }: ParkMapProps) {
 
 		map.current = new mapboxgl.Map({
 			container: mapContainer.current,
-			style: 'mapbox://styles/mapbox/outdoors-v12',
-			center: [-79.91, 39.63], // Monongalia County center
-			zoom: 11
+			style: 'mapbox://styles/mapbox/light-v11',
+			center: [-79.91, 39.63],
+			zoom: 11,
+			attributionControl: false
 		})
 
 		map.current.on('load', () => {
@@ -99,7 +100,7 @@ export default function ParkMap({ parks, mapboxToken }: ParkMapProps) {
 				markerEl.className = 'custom-marker'
 				markerEl.innerHTML = `
 					<div class="flex items-center gap-1.5 bg-white rounded-full px-2.5 py-1.5 shadow-lg border border-emerald-200 cursor-pointer hover:shadow-xl transition-all hover:scale-105">
-						<div class="w-5 h-5 rounded-full bg-emerald-500 flex items-center justify-center text-white text-xs font-bold">
+						<div class="w-5 h-5 rounded-full bg-emerald-500 flex items-center justify-center text-white! text-xs font-bold">
 							${index + 1}
 						</div>
 						<span class="text-xs font-medium text-gray-800 max-w-[80px] truncate">${park.name}</span>

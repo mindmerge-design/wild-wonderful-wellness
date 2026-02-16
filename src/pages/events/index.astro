@@ -88,16 +88,27 @@ function formatShortDate(dateStr: string) {
 		</div>
 		<div class="absolute inset-0 bg-linear-to-b from-black/30 via-black/10 to-black/50"></div>
 
+		<!-- Floating icons -->
+		<div class="absolute top-12 right-[10%] animate-pulse-soft opacity-30" aria-hidden="true">
+			<Calendar class="text-white! size-10" />
+		</div>
+		<div class="absolute bottom-24 left-[8%] animate-pulse-soft opacity-25" style="animation-delay: 0.5s" aria-hidden="true">
+			<Star class="text-white! size-9" />
+		</div>
+		<div class="absolute top-1/3 right-[18%] animate-pulse-soft opacity-20" style="animation-delay: 1s" aria-hidden="true">
+			<MapPin class="text-white! size-9" />
+		</div>
+
 		<Container class="relative z-10 flex min-h-[40vh] flex-col justify-center py-16">
 			<div class="max-w-3xl" style="animation: fade-in-up 0.8s ease-out both;">
-				<div class="mb-4 inline-flex items-center gap-2 rounded-full border border-white/30 bg-white/10 px-4 py-2 text-sm font-medium text-white/95 backdrop-blur-md">
+				<div class="mb-4 inline-flex items-center gap-2 rounded-full border border-white/30 bg-white/10 px-4 py-2 text-sm font-medium text-white!/95 backdrop-blur-md">
 					<Star class="size-4 text-accent" />
 					<span>Join the Community</span>
 				</div>
-				<h1 class="text-4xl font-extrabold tracking-tight text-white md:text-5xl lg:text-6xl">
+				<h1 class="text-4xl font-extrabold tracking-tight text-white! md:text-5xl lg:text-6xl">
 					Upcoming <span class="text-accent">Events</span>
 				</h1>
-				<p class="mt-4 text-xl text-white/90 max-w-2xl">
+				<p class="mt-4 text-xl text-white!/90 max-w-2xl">
 					{settings?.eventsIntroText || 'Join us for wellness events, workshops, and community gatherings across Monongalia County.'}
 				</p>
 			</div>

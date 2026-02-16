@@ -11,7 +11,9 @@ Gift,
 Heart,
 Map as MapIcon,
 MapPin,
+Mountain,
 Stamp,
+Sun,
 TreePine
 } from 'lucide-astro'
 
@@ -127,21 +129,40 @@ const upcomingEvents = [
 	<!-- 1. HERO                                      -->
 	<!-- ============================================ -->
 	<div class="relative min-h-[90vh] overflow-hidden bg-primary">
-		<!-- Decorative topo pattern overlay -->
-		<div class="absolute inset-0 opacity-[0.08]">
+		<!-- Organic nature pattern - trees, mountains, leaves -->
+		<div class="absolute inset-0 opacity-[0.06]">
 			<svg class="h-full w-full" xmlns="http://www.w3.org/2000/svg">
 				<defs>
-					<pattern id="topo-hero" x="0" y="0" width="200" height="200" patternUnits="userSpaceOnUse">
-						<path d="M 0 80 Q 50 60 100 80 T 200 80" fill="none" stroke="white" stroke-width="1"/>
-						<path d="M 0 100 Q 50 75 100 100 T 200 100" fill="none" stroke="white" stroke-width="0.8"/>
-						<path d="M 0 120 Q 50 95 100 120 T 200 120" fill="none" stroke="white" stroke-width="0.6"/>
-						<path d="M 0 50 Q 60 30 120 50 T 200 50" fill="none" stroke="white" stroke-width="0.5"/>
-						<path d="M 0 150 Q 40 130 100 150 T 200 150" fill="none" stroke="white" stroke-width="0.7"/>
-						<circle cx="160" cy="40" r="20" fill="none" stroke="white" stroke-width="0.5"/>
-						<circle cx="160" cy="40" r="30" fill="none" stroke="white" stroke-width="0.4"/>
+					<pattern id="nature-hero" x="0" y="0" width="300" height="300" patternUnits="userSpaceOnUse">
+						<!-- Stylized pine trees -->
+						<path d="M50 80 L65 50 L80 80" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+						<path d="M65 50 L65 35" fill="none" stroke="white" stroke-width="1"/>
+						
+						<!-- Mountains/hills -->
+						<path d="M120 100 Q150 60 180 100" fill="none" stroke="white" stroke-width="1" opacity="0.7"/>
+						<path d="M140 100 Q170 70 200 100" fill="none" stroke="white" stroke-width="0.8" opacity="0.5"/>
+						
+						<!-- Leaf shapes -->
+						<ellipse cx="250" cy="80" rx="8" ry="15" fill="none" stroke="white" stroke-width="1" transform="rotate(-30 250 80)"/>
+						<ellipse cx="260" cy="90" rx="6" ry="12" fill="none" stroke="white" stroke-width="0.8" transform="rotate(20 260 90)"/>
+						
+						<!-- Sun/circle -->
+						<circle cx="80" cy="200" r="25" fill="none" stroke="white" stroke-width="0.8" opacity="0.4"/>
+						<circle cx="80" cy="200" r="18" fill="none" stroke="white" stroke-width="0.6" opacity="0.3"/>
+						
+						<!-- More trees -->
+						<path d="M200 220 L215 190 L230 220" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+						<path d="M215 190 L215 175" fill="none" stroke="white" stroke-width="1"/>
+						
+						<!-- Trail path -->
+						<path d="M30 250 Q60 240 90 255 T150 245" fill="none" stroke="white" stroke-width="0.8" stroke-dasharray="4,4" opacity="0.6"/>
+						
+						<!-- Additional leaves scattered -->
+						<ellipse cx="280" cy="250" rx="5" ry="10" fill="none" stroke="white" stroke-width="0.7" transform="rotate(-45 280 250)"/>
+						<ellipse cx="100" cy="150" rx="4" ry="8" fill="none" stroke="white" stroke-width="0.6" transform="rotate(15 100 150)"/>
 					</pattern>
 				</defs>
-				<rect width="100%" height="100%" fill="url(#topo-hero)"/>
+				<rect width="100%" height="100%" fill="url(#nature-hero)"/>
 			</svg>
 		</div>
 
@@ -149,23 +170,29 @@ const upcomingEvents = [
 		<div class="absolute inset-0 bg-linear-to-b from-black/40 via-black/10 to-black/60"></div>
 
 		<!-- Floating trail markers decoration -->
-		<div class="absolute top-20 right-[10%] animate-pulse-soft opacity-30" aria-hidden="true">
-			<MapPin class="text-white size-8" />
+		<div class="absolute top-16 right-[8%] animate-pulse-soft opacity-40" aria-hidden="true">
+			<MapPin class="text-white! size-12" />
 		</div>
-		<div class="absolute bottom-40 left-[15%] animate-pulse-soft opacity-25" style="animation-delay: 0.5s" aria-hidden="true">
-			<TreePine class="text-white size-6" />
+		<div class="absolute bottom-32 left-[12%] animate-pulse-soft opacity-35" style="animation-delay: 0.5s" aria-hidden="true">
+			<TreePine class="text-white! size-10" />
 		</div>
-		<div class="absolute top-1/3 left-[8%] animate-pulse-soft opacity-20" style="animation-delay: 1s" aria-hidden="true">
-			<Compass class="text-white size-10" />
+		<div class="absolute top-1/3 left-[6%] animate-pulse-soft opacity-30" style="animation-delay: 1s" aria-hidden="true">
+			<Compass class="text-white! size-14" />
+		</div>
+		<div class="absolute bottom-1/4 right-[15%] animate-pulse-soft opacity-25" style="animation-delay: 1.5s" aria-hidden="true">
+			<Mountain class="text-white! size-11" />
+		</div>
+		<div class="absolute top-1/4 right-[20%] animate-pulse-soft opacity-20" style="animation-delay: 0.8s" aria-hidden="true">
+			<Sun class="text-white! size-9" />
 		</div>
 
 		<Container class="relative z-10 flex min-h-[90vh] flex-col justify-center py-20">
 			<div class="grid items-center gap-8 lg:grid-cols-6 lg:gap-12">
 				<!-- Left: Text Content -->
 				<div class="col-span-4" style="animation: fade-in-up 0.8s ease-out both;">
-					<div class="mb-6 inline-flex items-center gap-2 rounded-full border border-white/30 bg-white/10 px-5 py-2.5 text-sm font-medium text-white/95 backdrop-blur-md shadow-lg">
+					<div class="mb-6 inline-flex items-center gap-2 rounded-full border border-white/30 bg-white/10 px-5 py-2.5 text-sm font-medium text-white!/95 backdrop-blur-md shadow-lg">
 						<Heart class="size-4 text-red-400 animate-pulse" />
-						<span>Monongalia County Health Department</span>
+						<span class="text-white!">Monongalia County Health Department</span>
 					</div>
 
 					<h1 class="mb-0 text-5xl font-extrabold leading-[1.05] tracking-tight text-white! md:text-6xl lg:text-7xl">
@@ -192,19 +219,21 @@ const upcomingEvents = [
 						<div class="absolute -inset-4 bg-accent/20 rounded-full blur-3xl"></div>
 						<!-- Image placeholder -->
 						<div class="relative w-80 aspect-[3/4] rounded-2xl border-2 border-dashed border-white/30 bg-white/10 backdrop-blur-sm flex flex-col items-center justify-center p-8">
-							<Camera class="text-white/60 size-16 mb-4" />
-							<p class="text-white/80 text-center font-medium">Passport Booklet Image</p>
-							<p class="text-white/50 text-sm text-center mt-2">Placeholder for hands holding passport photo</p>
+							<Camera class="text-white!/60 size-16 mb-4" />
+							<p class="text-white!/80 text-center font-medium">Passport Booklet Image</p>
+							<p class="text-white!/50 text-sm text-center mt-2">Placeholder for hands holding passport photo</p>
 						</div>
 					</div>
 				</div>
 			</div>
 		</Container>
 
-		<!-- Wave divider -->
-		<div class="absolute -bottom-2 left-0 right-0">
-			<svg viewBox="0 0 1440 120" class="w-full text-background" preserveAspectRatio="none">
-				<path fill="currentColor" d="M0,64L60,69.3C120,75,240,85,360,80C480,75,600,53,720,48C840,43,960,53,1080,64C1200,75,1320,85,1380,90L1440,96L1440,120L1380,120C1320,120,1200,120,1080,120C960,120,840,120,720,120C600,120,480,120,360,120C240,120,120,120,60,120L0,120Z"/>
+		<!-- Organic nature divider - rolling hills silhouette -->
+		<div class="absolute -bottom-1 left-0 right-0">
+			<svg viewBox="0 0 1440 200" class="w-full text-background" preserveAspectRatio="none">
+				<path fill="currentColor" d="M0,160 Q180,100 360,140 T720,120 T1080,140 T1440,100 L1440,200 L0,200Z"/>
+				<path fill="currentColor" opacity="0.6" d="M0,180 Q240,120 480,160 T960,140 T1440,160 L1440,200 L0,200Z"/>
+				<path fill="currentColor" opacity="0.3" d="M0,190 Q360,150 720,170 T1440,150 L1440,200 L0,200Z"/>
 			</svg>
 		</div>
 	</div>
@@ -345,7 +374,7 @@ Nature is the Cure.</h2>
 		<!-- ============================================ -->
 		<!-- 4. PARKS & TRAILS                            -->
 		<!-- ============================================ -->
-		<Section id="parks-trails" class="relative overflow-hidden">
+		<Section id="parks-trails" class="relative overflow-hidden  py-16">
 			<!-- Decorative topo pattern -->
 			<div class="absolute inset-0 text-success/4 pointer-events-none">
 				<svg class="h-full w-full" xmlns="http://www.w3.org/2000/svg">
@@ -379,6 +408,7 @@ Nature is the Cure.</h2>
 						<div class="h-[500px] overflow-y-auto pr-2 space-y-4 rounded-xl border border-border bg-background p-4 shadow-inner">
 							{parks.map((park, i) => (
 								<div
+									id={`park-${i}`}
 									class="group relative rounded-xl border border-border bg-card overflow-hidden transition-all duration-300 hover:shadow-lg hover:border-success/30 cursor-pointer"
 									style={`animation: fade-in-up 0.4s ease-out ${0.05 * i}s both;`}
 								>
@@ -389,7 +419,7 @@ Nature is the Cure.</h2>
 											<div class="relative z-10 flex size-8 items-center justify-center rounded-full bg-background shadow-sm">
 												<TreePine class="text-success size-4" />
 											</div>
-											<div class="absolute top-1 left-1 size-5 rounded-full bg-success flex items-center justify-center text-white text-[10px] font-bold">
+											<div class="absolute top-1 left-1 size-5 rounded-full bg-success flex items-center justify-center text-white! text-[10px] font-bold">
 												{i + 1}
 											</div>
 										</div>
@@ -397,10 +427,13 @@ Nature is the Cure.</h2>
 										<div class="flex-1 p-3 min-w-0">
 											<h4 class="font-bold text-foreground group-hover:text-success transition-colors text-sm truncate">{park.name}</h4>
 											<p class="text-muted-foreground text-xs leading-relaxed mt-1 line-clamp-2">{park.description}</p>
-											<div class="mt-2 flex items-center gap-1 text-xs font-medium text-success">
-												<MapPin class="size-3" />
-												<span>View on map</span>
-											</div>
+											<a 
+												href={`/parks-and-trails/${park.name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')}`}
+												class="mt-2 inline-flex items-center gap-1 text-xs font-medium text-success hover:underline"
+											>
+												Learn More
+												<ArrowRight class="size-3" />
+											</a>
 										</div>
 									</div>
 								</div>
@@ -440,6 +473,10 @@ Nature is the Cure.</h2>
 			</Container>
 		</Section>
 
+		<!-- ============================================ -->
+		<!-- 5. PARTNERS                                  -->
+		<!-- ============================================ -->
+		<Section id="partners" class="relative overflow-hidden bg-success/10">
 			<Container class="relative z-10">
 				<div class="mx-auto mb-16 max-w-2xl text-center">
 					<Badge variant="info" class="mb-4">Community</Badge>
@@ -489,7 +526,7 @@ Nature is the Cure.</h2>
 		<!-- ============================================ -->
 		<!-- 6. EVENTS                                    -->
 		<!-- ============================================ -->
-		<Section id="events" class="relative overflow-hidden">
+		<Section id="events" class="relative overflow-hidden bg-warning/5 py-16">
 			<!-- Decorative topo pattern -->
 			<div class="absolute inset-0 text-warning/4 pointer-events-none">
 				<svg class="h-full w-full" xmlns="http://www.w3.org/2000/svg">

@@ -12,7 +12,7 @@ export const navigationConfig: NavigationItem[] = [
 	},
 	{
 		label: 'Parks & Trails',
-		href: '/parks-trails'
+		href: '/parks-and-trails'
 	},
 	{
 		label: 'Events',

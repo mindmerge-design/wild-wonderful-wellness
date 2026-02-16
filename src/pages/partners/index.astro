@@ -1,54 +1,100 @@
 ---
 // Packages
 import { SEO } from 'astro-seo'
+import { Award, Building2, Heart, MapPin, Users } from 'lucide-astro'
 
 // Components
-import SectionHeader from '@/components/elements/content/SectionHeader.astro'
-import PartnersFilter from '@/components/elements/interactive/PartnersFilter'
+import Badge from '@/components/elements/content/Badge.astro'
 import Container from '@/components/layout/Container.astro'
-import Hero from '@/components/layout/Hero.astro'
 import Section from '@/components/layout/Section.astro'
+import { Button } from '@/components/starwind/button'
 import Layout from '@/layouts/Layout.astro'
 
-// Sanity
-import { loadQuery } from '@/sanity/lib/load-query'
-import { allPartnersQuery, settingsQuery } from '@/sanity/lib/queries'
-import { urlForImage } from '@/sanity/lib/urlForImage'
+// Partner data
+const partners = [
+	{
+		name: 'Monongalia County Health Department',
+		type: 'health',
+		description: 'The primary sponsor of the Wellness Passport program. Pick up your passport here and learn about health initiatives in the community.',
+		services: ['passport-pickup', 'health-screenings'],
+		featured: true
+	},
+	{
+		name: 'Mon Health System',
+		type: 'healthcare',
+		description: 'Comprehensive healthcare provider supporting wellness initiatives and preventive care programs.',
+		services: ['health-screenings', 'wellness-programs'],
+		featured: true
+	},
+	{
+		name: 'WVU Medicine',
+		type: 'healthcare',
+		description: 'West Virginia University\'s healthcare system promoting community wellness and active living.',
+		services: ['health-screenings', 'education'],
+		featured: false
+	},
+	{
+		name: 'Morgantown Running Club',
+		type: 'fitness',
+		description: 'Local running community organizing group runs, races, and fitness events for all skill levels.',
+		services: ['group-runs', 'races', 'community'],
+		featured: false
+	},
+	{
+		name: 'Mountaineer Yoga Studio',
+		type: 'wellness',
+		description: 'Yoga classes and wellness workshops for practitioners of all levels.',
+		services: ['yoga-classes', 'workshops'],
+		featured: false
+	},
+	{
+		name: 'Mon County Parks & Recreation',
+		type: 'parks',
+		description: 'Manages parks, trails, and recreational facilities throughout Monongalia County.',
+		services: ['facilities', 'programs', 'events'],
+		featured: true
+	},
+	{
+		name: 'Mylan Park',
+		type: 'recreation',
+		description: 'Multi-use recreational complex with aquatic center, sports facilities, and community programs.',
+		services: ['sports', 'aquatics', 'fitness'],
+		featured: false
+	},
+	{
+		name: 'Morgantown Farmers Market',
+		type: 'nutrition',
+		description: 'Weekly farmers market providing fresh, local produce and supporting healthy eating.',
+		services: ['fresh-produce', 'local-food'],
+		featured: false
+	},
+	{
+		name: 'YMCA of Morgantown',
+		type: 'fitness',
+		description: 'Community fitness center with pools, gym, classes, and family programs.',
+		services: ['fitness-classes', 'swimming', 'childcare'],
+		featured: false
+	},
+	{
+		name: 'WV Division of Natural Resources',
+		type: 'state',
+		description: 'State agency managing natural resources and outdoor recreation areas.',
+		services: ['parks', 'wildlife', 'education'],
+		featured: false
+	}
+]
 
-// Types
-import type { Partner } from '@/sanity/schemaTypes/partner'
-import type { SiteSettings } from '@/sanity/schemaTypes/siteSettings'
+const siteName = 'Wild & Wonderful Wellness'
 
-// Data
-const { data: settings } = await loadQuery<SiteSettings>({ query: settingsQuery })
-const { data: partners } = await loadQuery<Partner[]>({ query: allPartnersQuery })
-
-const siteName = settings?.siteName || 'Wild & Wonderful Wellness'
-
-// Serialize partners for React component (pre-resolve image URLs)
-const serializedPartners = (partners || []).map((partner) => ({
-	_id: partner._id,
-	title: partner.title,
-	slug: partner.slug?.current || '',
-	shortDescription: partner.shortDescription || '',
-	logo: partner.logo ? urlForImage(partner.logo).width(200).height(200).url() : '',
-	logoAlt: partner.logo?.alt || partner.title,
-	mainImage: partner.mainImage
-		? urlForImage(partner.mainImage).width(600).height(400).url()
-		: '',
-	mainImageAlt: partner.mainImage?.alt || partner.title,
-	partnerType: partner.partnerType || '',
-	hasPassportPickup: partner.hasPassportPickup || false,
-	hasStampStation: partner.hasStampStation || false
-}))
+// Stats
+const healthPartners = partners.filter(p => ['health', 'healthcare'].includes(p.type)).length
+const fitnessPartners = partners.filter(p => ['fitness', 'recreation'].includes(p.type)).length
+const communityPartners = partners.filter(p => ['parks', 'nutrition', 'state'].includes(p.type)).length
+const pickupLocations = partners.filter(p => p.services.includes('passport-pickup')).length
 
 // SEO
 const seoTitle = `Partners | ${siteName}`
-const seoDescription =
-	settings?.siteDescription || 'View our community wellness partners.'
-const seoImage = settings?.sharingImage
-	? urlForImage(settings.sharingImage).width(1200).height(630).url()
-	: ''
+const seoDescription = 'Community businesses and organizations supporting the Wellness Passport program. Pick up passports and collect stamps at participating locations.'
 ---
 
 <Layout>
@@ -59,26 +105,239 @@ const seoImage = settings?.sharingImage
 			basic: {
 				title: seoTitle,
 				type: 'website',
-				image: seoImage
+				image: ''
 			}
 		}}
 		slot="head"
 	/>
 
-	<Hero>
-		<h1>Partners</h1>
-		<p>Community businesses and organizations supporting the wellness passport program.</p>
-	</Hero>
+	<!-- Hero Section -->
+	<div class="relative min-h-[40vh] overflow-hidden bg-primary">
+		<!-- Decorative topo pattern overlay -->
+		<div class="absolute inset-0 opacity-[0.08]">
+			<svg class="h-full w-full" xmlns="http://www.w3.org/2000/svg">
+				<defs>
+					<pattern id="topo-partners-hero" x="0" y="0" width="200" height="200" patternUnits="userSpaceOnUse">
+						<path d="M 0 80 Q 50 60 100 80 T 200 80" fill="none" stroke="white" stroke-width="1"/>
+						<path d="M 0 100 Q 50 75 100 100 T 200 100" fill="none" stroke="white" stroke-width="0.8"/>
+						<circle cx="160" cy="40" r="20" fill="none" stroke="white" stroke-width="0.5"/>
+					</pattern>
+				</defs>
+				<rect width="100%" height="100%" fill="url(#topo-partners-hero)"/>
+			</svg>
+		</div>
+		<div class="absolute inset-0 bg-linear-to-b from-black/20 via-black/10 to-black/40"></div>
+
+		<!-- Floating icons -->
+		<div class="absolute top-12 right-[10%] animate-pulse-soft opacity-30" aria-hidden="true">
+			<Users class="text-white! size-10" />
+		</div>
+		<div class="absolute bottom-24 left-[8%] animate-pulse-soft opacity-25" style="animation-delay: 0.5s" aria-hidden="true">
+			<Heart class="text-white! size-8" />
+		</div>
+		<div class="absolute top-1/3 right-[20%] animate-pulse-soft opacity-20" style="animation-delay: 1s" aria-hidden="true">
+			<MapPin class="text-white! size-9" />
+		</div>
+
+		<Container class="relative z-10 flex min-h-[40vh] flex-col justify-center py-16">
+			<div class="max-w-3xl" style="animation: fade-in-up 0.8s ease-out both;">
+				<div class="mb-4 inline-flex items-center gap-2 rounded-full border border-white/30 bg-white/10 px-4 py-2 text-sm font-medium text-white!/95 backdrop-blur-md">
+					<Users class="size-4 text-white!" />
+					<span>Our Community</span>
+				</div>
+				<h1 class="text-4xl font-extrabold tracking-tight text-white! md:text-5xl lg:text-6xl">
+					Community <span class="text-accent">Partners</span>
+				</h1>
+				<p class="mt-4 text-xl text-white!/90 max-w-2xl">
+					Local businesses and organizations making wellness accessible for everyone. Pick up passports and collect stamps at these locations.
+				</p>
+			</div>
+		</Container>
+
+		<!-- Wave divider -->
+		<div class="absolute -bottom-2 left-0 right-0">
+			<svg viewBox="0 0 1440 120" class="w-full text-background" preserveAspectRatio="none">
+				<path fill="currentColor" d="M0,64L60,69.3C120,75,240,85,360,80C480,75,600,53,720,48C840,43,960,53,1080,64C1200,75,1320,85,1380,90L1440,96L1440,120L1380,120C1320,120,1200,120,1080,120C960,120,840,120,720,120C600,120,480,120,360,120C240,120,120,120,60,120L0,120Z"/>
+			</svg>
+		</div>
+	</div>
 
 	<main id="main-content">
-		<Section id="partners-listing">
-			<Container>
-				<SectionHeader
-					title="Our Partners"
-					description={settings?.partnersIntroText}
-				/>
+		<!-- Stats Section -->
+		<Section id="partner-stats" class="relative overflow-hidden py-8">
+			<!-- Decorative topo pattern -->
+			<div class="absolute inset-0 text-info/3 pointer-events-none">
+				<svg class="h-full w-full" xmlns="http://www.w3.org/2000/svg">
+					<defs>
+						<pattern id="topo-stats" x="0" y="0" width="200" height="200" patternUnits="userSpaceOnUse">
+							<path d="M 0 100 Q 50 80 100 100 T 200 100" fill="none" stroke="currentColor" stroke-width="0.8" opacity="0.2"/>
+							<circle cx="150" cy="100" r="35" fill="none" stroke="currentColor" stroke-width="0.5" opacity="0.1"/>
+						</pattern>
+					</defs>
+					<rect width="100%" height="100%" fill="url(#topo-stats)"/>
+				</svg>
+			</div>
 
-				<PartnersFilter partners={serializedPartners} client:load />
+			<Container class="relative z-10">
+				<div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+					<div class="rounded-xl border border-border bg-card p-4 text-center shadow-sm">
+						<div class="mx-auto mb-2 flex size-10 items-center justify-center rounded-full bg-info/10">
+							<Users class="size-5 text-info" />
+						</div>
+						<p class="text-2xl font-bold text-foreground">{partners.length}</p>
+						<p class="text-xs text-muted-foreground">Total Partners</p>
+					</div>
+					<div class="rounded-xl border border-border bg-card p-4 text-center shadow-sm">
+						<div class="mx-auto mb-2 flex size-10 items-center justify-center rounded-full bg-success/10">
+							<Heart class="size-5 text-success" />
+						</div>
+						<p class="text-2xl font-bold text-foreground">{healthPartners}</p>
+						<p class="text-xs text-muted-foreground">Health Partners</p>
+					</div>
+					<div class="rounded-xl border border-border bg-card p-4 text-center shadow-sm">
+						<div class="mx-auto mb-2 flex size-10 items-center justify-center rounded-full bg-warning/10">
+							<Award class="size-5 text-warning" />
+						</div>
+						<p class="text-2xl font-bold text-foreground">{fitnessPartners}</p>
+						<p class="text-xs text-muted-foreground">Fitness & Rec</p>
+					</div>
+					<div class="rounded-xl border border-border bg-card p-4 text-center shadow-sm">
+						<div class="mx-auto mb-2 flex size-10 items-center justify-center rounded-full bg-primary/10">
+							<MapPin class="size-5 text-primary" />
+						</div>
+						<p class="text-2xl font-bold text-foreground">{pickupLocations}</p>
+						<p class="text-xs text-muted-foreground">Pickup Locations</p>
+					</div>
+				</div>
+			</Container>
+		</Section>
+
+		<!-- Partners Grid Section -->
+		<Section id="partners-listing" class="relative overflow-hidden">
+			<!-- Decorative topo pattern -->
+			<div class="absolute inset-0 text-info/2 pointer-events-none">
+				<svg class="h-full w-full" xmlns="http://www.w3.org/2000/svg">
+					<defs>
+						<pattern id="topo-partners-grid" x="0" y="0" width="200" height="200" patternUnits="userSpaceOnUse">
+							<path d="M 0 100 Q 50 80 100 100 T 200 100" fill="none" stroke="currentColor" stroke-width="0.8" opacity="0.2"/>
+							<circle cx="150" cy="100" r="35" fill="none" stroke="currentColor" stroke-width="0.5" opacity="0.1"/>
+						</pattern>
+					</defs>
+					<rect width="100%" height="100%" fill="url(#topo-partners-grid)"/>
+				</svg>
+			</div>
+
+			<Container class="relative z-10">
+				<div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-8">
+					<div>
+						<Badge variant="info" class="mb-2">Partners</Badge>
+						<h2 class="text-2xl font-bold text-foreground">Our Community Partners</h2>
+						<p class="text-muted-foreground mt-1">Organizations making wellness accessible</p>
+					</div>
+
+					<!-- Filter Tags -->
+					<div class="flex flex-wrap gap-2">
+						<button class="px-3 py-1.5 rounded-full bg-info text-info-foreground text-sm font-medium">All</button>
+						<button class="px-3 py-1.5 rounded-full bg-muted text-muted-foreground text-sm font-medium hover:bg-muted/80">Health</button>
+						<button class="px-3 py-1.5 rounded-full bg-muted text-muted-foreground text-sm font-medium hover:bg-muted/80">Fitness</button>
+						<button class="px-3 py-1.5 rounded-full bg-muted text-muted-foreground text-sm font-medium hover:bg-muted/80">Community</button>
+					</div>
+				</div>
+
+				<!-- Featured Partners (first 3) -->
+				<div class="mb-8">
+					<h3 class="text-sm font-semibold text-muted-foreground uppercase tracking-wider mb-4">Featured Partners</h3>
+					<div class="grid md:grid-cols-3 gap-4">
+						{partners.filter(p => p.featured).map((partner, i) => (
+							<div
+								class="group relative rounded-xl border border-border bg-card overflow-hidden transition-all duration-300 hover:shadow-lg hover:border-info/30"
+								style={`animation: fade-in-up 0.4s ease-out ${0.1 * i}s both;`}
+							>
+								<div class="flex flex-col h-full">
+									<!-- Header with icon -->
+									<div class="p-4 pb-2">
+										<div class="flex items-start gap-3">
+											<div class="flex size-12 shrink-0 items-center justify-center rounded-xl bg-info/10">
+												<Building2 class="text-info size-6" />
+											</div>
+											<div class="flex-1 min-w-0">
+												<h4 class="font-bold text-foreground group-hover:text-info transition-colors">{partner.name}</h4>
+												<span class="inline-flex items-center rounded-full bg-info/10 px-2 py-0.5 text-xs font-medium text-info capitalize mt-1">
+													{partner.type}
+												</span>
+											</div>
+										</div>
+									</div>
+									
+									<!-- Content -->
+									<div class="flex-1 p-4 pt-2">
+										<p class="text-muted-foreground text-sm leading-relaxed">{partner.description}</p>
+									</div>
+									
+									<!-- Services -->
+									<div class="p-4 pt-0">
+										<div class="flex flex-wrap gap-1.5">
+											{partner.services.slice(0, 3).map((service) => (
+												<span class="inline-flex items-center rounded-md border border-border px-2 py-1 text-xs text-muted-foreground capitalize">
+													{service.replace('-', ' ')}
+												</span>
+											))}
+										</div>
+									</div>
+								</div>
+							</div>
+						))}
+					</div>
+				</div>
+
+				<!-- All Partners -->
+				<div>
+					<h3 class="text-sm font-semibold text-muted-foreground uppercase tracking-wider mb-4">All Partners</h3>
+					<div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+						{partners.filter(p => !p.featured).map((partner, i) => (
+							<div
+								class="group relative rounded-xl border border-border bg-card p-4 transition-all duration-300 hover:shadow-md hover:border-info/20"
+								style={`animation: fade-in-up 0.4s ease-out ${0.05 * i}s both;`}
+							>
+								<div class="flex items-start gap-3">
+									<div class="flex size-10 shrink-0 items-center justify-center rounded-lg bg-muted">
+										<Building2 class="text-muted-foreground size-4" />
+									</div>
+									<div class="flex-1 min-w-0">
+										<h4 class="font-bold text-foreground text-sm group-hover:text-info transition-colors truncate">{partner.name}</h4>
+										<p class="text-muted-foreground text-xs mt-1 line-clamp-2">{partner.description}</p>
+										<div class="flex flex-wrap gap-1 mt-2">
+											<span class="inline-flex items-center rounded-full bg-info/10 px-2 py-0.5 text-[10px] font-medium text-info capitalize">
+												{partner.type}
+											</span>
+											{partner.services.includes('passport-pickup') && (
+												<span class="inline-flex items-center rounded-full bg-success/10 px-2 py-0.5 text-[10px] font-medium text-success">
+													Pickup
+												</span>
+											)}
+										</div>
+									</div>
+								</div>
+							</div>
+						))}
+					</div>
+				</div>
+
+				<!-- CTA -->
+				<div class="mt-12 text-center">
+					<div class="inline-flex flex-col sm:flex-row items-center gap-4 rounded-2xl border border-border bg-card p-6 shadow-sm">
+						<div class="flex size-12 items-center justify-center rounded-full bg-info/10">
+							<Award class="text-info size-6" />
+						</div>
+						<div class="text-center sm:text-left">
+							<h3 class="font-bold text-foreground">Want to become a partner?</h3>
+							<p class="text-sm text-muted-foreground mt-1">Join our community of wellness advocates</p>
+						</div>
+						<Button href="/contact" variant="outline" class="hover:bg-info hover:text-info-foreground hover:border-info transition-all whitespace-nowrap">
+							Get in Touch
+						</Button>
+					</div>
+				</div>
 			</Container>
 		</Section>
 	</main>

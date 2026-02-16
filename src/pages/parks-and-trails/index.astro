@@ -1,49 +1,94 @@
 ---
 // Packages
 import { SEO } from 'astro-seo'
+import { Compass, Map as MapIcon, Star, TreePine } from 'lucide-astro'
 
 // Components
-import SectionHeader from '@/components/elements/content/SectionHeader.astro'
-import ParksFilter from '@/components/elements/interactive/ParksFilter'
 import Container from '@/components/layout/Container.astro'
-import Hero from '@/components/layout/Hero.astro'
 import Section from '@/components/layout/Section.astro'
+import ParkMap from '@/components/ParkMap.tsx'
 import Layout from '@/layouts/Layout.astro'
 
-// Sanity
-import { loadQuery } from '@/sanity/lib/load-query'
-import { allParksQuery, settingsQuery } from '@/sanity/lib/queries'
-import { urlForImage } from '@/sanity/lib/urlForImage'
+// Data (using same parks from homepage)
+const parks = [
+	{ 
+		name: "Dorsey's Knob Park", 
+		description: 'Scenic overlook with hiking trails and panoramic views of Morgantown and the surrounding hills.',
+		type: 'park',
+		amenities: ['hiking', 'views', 'picnic'],
+		difficulty: 'moderate'
+	},
+	{ 
+		name: 'Coopers Rock State Forest', 
+		description: 'Over 12,000 acres of forest with stunning overlooks, rock climbing, and miles of trails.',
+		type: 'state-forest',
+		amenities: ['hiking', 'climbing', 'camping', 'views'],
+		difficulty: 'moderate'
+	},
+	{ 
+		name: "Decker's Creek Trail", 
+		description: 'Paved rail-trail following the creek through wooded terrain, perfect for walking and biking.',
+		type: 'trail',
+		amenities: ['biking', 'walking', 'wheelchair-accessible'],
+		difficulty: 'easy'
+	},
+	{ 
+		name: 'White Park', 
+		description: 'Community park with walking paths, playgrounds, and open green spaces for recreation.',
+		type: 'park',
+		amenities: ['playground', 'sports', 'picnic'],
+		difficulty: 'easy'
+	},
+	{ 
+		name: 'Marilla Park', 
+		description: 'Quiet neighborhood park with wooded trails and a peaceful creekside setting.',
+		type: 'park',
+		amenities: ['hiking', 'nature', 'quiet'],
+		difficulty: 'easy'
+	},
+	{ 
+		name: 'Krepps Park', 
+		description: 'Family-friendly park featuring sports fields, a walking loop, and picnic areas.',
+		type: 'park',
+		amenities: ['sports', 'walking', 'playground'],
+		difficulty: 'easy'
+	},
+	{ 
+		name: 'Mason Dixon Historical Park', 
+		description: 'Historic site with interpretive trails and markers along the famous survey line.',
+		type: 'historic',
+		amenities: ['history', 'hiking', 'education'],
+		difficulty: 'easy'
+	},
+	{ 
+		name: 'Caperton Trail', 
+		description: 'Scenic waterfront trail along the Monongahela River connecting to the rail-trail network.',
+		type: 'trail',
+		amenities: ['biking', 'walking', 'river-views'],
+		difficulty: 'easy'
+	},
+	{ 
+		name: 'Chestnut Ridge Park', 
+		description: 'County park with hiking trails, a lake, picnic shelters, and seasonal activities.',
+		type: 'park',
+		amenities: ['hiking', 'lake', 'camping', 'fishing'],
+		difficulty: 'moderate'
+	},
+	{ 
+		name: 'Core Arboretum', 
+		description: 'WVU-managed 91-acre forest with 3.5 miles of trails showcasing native Appalachian flora.',
+		type: 'park',
+		amenities: ['nature', 'hiking', 'education', 'wildflowers'],
+		difficulty: 'easy'
+	}
+]
 
-// Types
-import type { ParkTrail } from '@/sanity/schemaTypes/parkTrail'
-import type { SiteSettings } from '@/sanity/schemaTypes/siteSettings'
-
-// Data
-const { data: settings } = await loadQuery<SiteSettings>({ query: settingsQuery })
-const { data: parks } = await loadQuery<ParkTrail[]>({ query: allParksQuery })
-
-const siteName = settings?.siteName || 'Wild & Wonderful Wellness'
-
-// Serialize parks for React component (pre-resolve image URLs)
-const serializedParks = (parks || []).map((park) => ({
-	_id: park._id,
-	title: park.title,
-	slug: park.slug?.current || '',
-	shortDescription: park.shortDescription || '',
-	mainImage: park.mainImage ? urlForImage(park.mainImage).width(600).height(400).url() : '',
-	mainImageAlt: park.mainImage?.alt || park.title,
-	parkType: park.parkType || '',
-	amenities: park.amenities || []
-}))
+const siteName = 'Wild & Wonderful Wellness'
+const mapboxToken = import.meta.env.PUBLIC_MAPBOX_TOKEN || ''
 
 // SEO
 const seoTitle = `Parks & Trails | ${siteName}`
-const seoDescription =
-	settings?.siteDescription || 'Explore parks and trails in the wellness passport program.'
-const seoImage = settings?.sharingImage
-	? urlForImage(settings.sharingImage).width(1200).height(630).url()
-	: ''
+const seoDescription = 'Explore over 30 parks and trails in Monongalia County. Find stamp locations for your Wellness Passport.'
 ---
 
 <Layout>
@@ -54,26 +99,192 @@ const seoImage = settings?.sharingImage
 			basic: {
 				title: seoTitle,
 				type: 'website',
-				image: seoImage
+				image: ''
 			}
 		}}
 		slot="head"
 	/>
 
-	<Hero>
-		<h1>Parks & Trails</h1>
-		<p>Discover outdoor spaces in the wellness passport program.</p>
-	</Hero>
+	<!-- Hero Section -->
+	<div class="relative min-h-[40vh] overflow-hidden bg-primary">
+		<!-- Decorative topo pattern overlay -->
+		<div class="absolute inset-0 opacity-[0.08]">
+			<svg class="h-full w-full" xmlns="http://www.w3.org/2000/svg">
+				<defs>
+					<pattern id="topo-parks-hero" x="0" y="0" width="200" height="200" patternUnits="userSpaceOnUse">
+						<path d="M 0 80 Q 50 60 100 80 T 200 80" fill="none" stroke="white" stroke-width="1"/>
+						<path d="M 0 100 Q 50 75 100 100 T 200 100" fill="none" stroke="white" stroke-width="0.8"/>
+						<circle cx="160" cy="40" r="20" fill="none" stroke="white" stroke-width="0.5"/>
+					</pattern>
+				</defs>
+				<rect width="100%" height="100%" fill="url(#topo-parks-hero)"/>
+			</svg>
+		</div>
+		<div class="absolute inset-0 bg-linear-to-b from-black/30 via-black/10 to-black/50"></div>
+
+		<!-- Floating icons -->
+		<div class="absolute top-12 right-[10%] animate-pulse-soft opacity-30" aria-hidden="true">
+			<TreePine class="text-white! size-11" />
+		</div>
+		<div class="absolute bottom-24 left-[8%] animate-pulse-soft opacity-25" style="animation-delay: 0.5s" aria-hidden="true">
+			<MapIcon class="text-white! size-9" />
+		</div>
+		<div class="absolute top-1/3 right-[18%] animate-pulse-soft opacity-20" style="animation-delay: 1s" aria-hidden="true">
+			<Compass class="text-white! size-10" />
+		</div>
+
+		<Container class="relative z-10 flex min-h-[40vh] flex-col justify-center py-16">
+			<div class="max-w-3xl" style="animation: fade-in-up 0.8s ease-out both;">
+				<div class="mb-4 inline-flex items-center gap-2 rounded-full border border-white/30 bg-white/10 px-4 py-2 text-sm font-medium text-white!/95 backdrop-blur-md">
+					<TreePine class="size-4 text-white!" />
+					<span>Explore Monongalia County</span>
+				</div>
+				<h1 class="text-4xl font-extrabold tracking-tight text-white! md:text-5xl lg:text-6xl">
+					Parks & <span class="text-accent">Trails</span>
+				</h1>
+				<p class="mt-4 text-xl text-white!/90 max-w-2xl">
+					Discover over 30 outdoor destinations in the Wellness Passport program. Each location features a custom stamp for your passport.
+				</p>
+			</div>
+		</Container>
+
+		<!-- Wave divider -->
+		<div class="absolute -bottom-2 left-0 right-0">
+			<svg viewBox="0 0 1440 120" class="w-full text-background" preserveAspectRatio="none">
+				<path fill="currentColor" d="M0,64L60,69.3C120,75,240,85,360,80C480,75,600,53,720,48C840,43,960,53,1080,64C1200,75,1320,85,1380,90L1440,96L1440,120L1380,120C1320,120,1200,120,1080,120C960,120,840,120,720,120C600,120,480,120,360,120C240,120,120,120,60,120L0,120Z"/>
+			</svg>
+		</div>
+	</div>
 
 	<main id="main-content">
-		<Section id="parks-listing">
-			<Container>
-				<SectionHeader
-					title="Explore Parks & Trails"
-					description={settings?.parksIntroText}
-				/>
+		<!-- Map + Cards Split Section -->
+		<Section id="parks-explorer" class="relative overflow-hidden py-8">
+			<!-- Decorative topo pattern -->
+			<div class="absolute inset-0 text-success/3 pointer-events-none">
+				<svg class="h-full w-full" xmlns="http://www.w3.org/2000/svg">
+					<defs>
+						<pattern id="topo-explorer" x="0" y="0" width="200" height="200" patternUnits="userSpaceOnUse">
+							<path d="M 0 100 Q 50 80 100 100 T 200 100" fill="none" stroke="currentColor" stroke-width="0.8" opacity="0.2"/>
+							<circle cx="150" cy="100" r="35" fill="none" stroke="currentColor" stroke-width="0.5" opacity="0.1"/>
+						</pattern>
+					</defs>
+					<rect width="100%" height="100%" fill="url(#topo-explorer)"/>
+				</svg>
+			</div>
 
-				<ParksFilter parks={serializedParks} client:load />
+			<Container class="relative z-10">
+				<!-- Stats Bar -->
+				<div class="mb-8 flex flex-wrap items-center justify-between gap-4 rounded-xl border border-border bg-card p-4 shadow-sm">
+					<div class="flex items-center gap-6">
+						<div class="flex items-center gap-2">
+							<div class="flex size-10 items-center justify-center rounded-full bg-success/10">
+								<MapIcon class="size-5 text-success" />
+							</div>
+							<div>
+								<p class="text-2xl font-bold text-foreground">{parks.length}</p>
+								<p class="text-xs text-muted-foreground">Locations</p>
+							</div>
+						</div>
+						<div class="hidden h-8 w-px bg-border sm:block"></div>
+						<div class="hidden sm:flex items-center gap-2">
+							<div class="flex size-10 items-center justify-center rounded-full bg-warning/10">
+								<Star class="size-5 text-warning" />
+							</div>
+							<div>
+								<p class="text-2xl font-bold text-foreground">30+</p>
+								<p class="text-xs text-muted-foreground">Total Stamps</p>
+							</div>
+						</div>
+					</div>
+					<div class="flex items-center gap-2 text-sm text-muted-foreground">
+						<Compass class="size-4" />
+						<span>Click markers to explore</span>
+					</div>
+				</div>
+
+				<!-- Split Layout: Map + Cards -->
+				<div class="grid lg:grid-cols-5 gap-6 items-start">
+					<!-- Left: Expanded Location Cards (3 cols) -->
+					<div class="lg:col-span-3 space-y-4 order-2 lg:order-1">
+						<h2 class="text-xl font-bold text-foreground mb-4 flex items-center gap-2">
+							<TreePine class="size-5 text-success" />
+							All Locations
+						</h2>
+						<div class="space-y-4 max-h-[600px] overflow-y-auto pr-2">
+							{parks.map((park, i) => (
+								<div
+									id={`park-${i}`}
+									class="group relative rounded-xl border border-border bg-card overflow-hidden transition-all duration-300 hover:shadow-lg hover:border-success/30"
+									style={`animation: fade-in-up 0.4s ease-out ${0.05 * i}s both;`}
+								>
+									<div class="flex flex-col sm:flex-row">
+										<!-- Image Placeholder -->
+										<div class="sm:w-32 shrink-0 bg-muted flex items-center justify-center relative overflow-hidden h-24 sm:h-auto">
+											<div class="absolute inset-0 bg-success/5"></div>
+											<div class="relative z-10 flex size-10 items-center justify-center rounded-full bg-background shadow-sm">
+												<TreePine class="text-success size-5" />
+											</div>
+											<div class="absolute top-2 left-2 size-6 rounded-full bg-success flex items-center justify-center text-white! text-xs font-bold">
+												{i + 1}
+											</div>
+										</div>
+										<!-- Content -->
+										<div class="flex-1 p-4">
+											<div class="flex items-start justify-between gap-2 mb-2">
+												<h3 class="font-bold text-foreground group-hover:text-success transition-colors">{park.name}</h3>
+												<span class="shrink-0 inline-flex items-center rounded-full bg-success/10 px-2 py-0.5 text-xs font-medium text-success capitalize">
+													{park.type.replace('-', ' ')}
+												</span>
+											</div>
+											<p class="text-muted-foreground text-sm leading-relaxed mb-3">{park.description}</p>
+											
+											<div class="flex flex-wrap items-center gap-2">
+												<span class="inline-flex items-center gap-1 rounded-md bg-muted px-2 py-1 text-xs text-muted-foreground">
+													<Compass class="size-3" />
+													{park.difficulty}
+												</span>
+												{park.amenities.slice(0, 3).map((amenity) => (
+													<span class="inline-flex items-center rounded-md border border-border px-2 py-1 text-xs text-muted-foreground capitalize">
+														{amenity.replace('-', ' ')}
+													</span>
+												))}
+												{park.amenities.length > 3 && (
+													<span class="text-xs text-muted-foreground">+{park.amenities.length - 3} more</span>
+												)}
+											</div>
+										</div>
+									</div>
+								</div>
+							))}
+						</div>
+					</div>
+
+					<!-- Right: Full Interactive Map (2 cols) -->
+					<div class="lg:col-span-2 order-1 lg:order-2">
+						<div class="sticky top-24">
+							<h2 class="text-xl font-bold text-foreground mb-4 flex items-center gap-2">
+								<MapIcon class="size-5 text-success" />
+								Interactive Map
+							</h2>
+							<div class="h-[600px] rounded-xl border-2 border-border overflow-hidden shadow-lg">
+								{mapboxToken ? (
+									<ParkMap parks={parks} mapboxToken={mapboxToken} client:only="react" />
+								) : (
+									<div class="h-full flex flex-col items-center justify-center bg-muted p-8 text-center">
+										<div class="mb-4 flex size-16 items-center justify-center rounded-full bg-background shadow-md">
+											<MapIcon class="text-success size-8" />
+										</div>
+										<p class="text-muted-foreground font-medium">Mapbox token required</p>
+										<p class="text-sm text-muted-foreground/70 mt-1">Add PUBLIC_MAPBOX_TOKEN to your .env file</p>
+									</div>
+								)}
+							</div>
+							<p class="mt-3 text-xs text-muted-foreground text-center">
+								Hover over markers to preview • Click to zoom to location
+							</p>
+						</div>
+					</div>
+				</div>
 			</Container>
 		</Section>
 	</main>
