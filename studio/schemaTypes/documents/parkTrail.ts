@@ -5,7 +5,14 @@ export default defineType({
   name: 'parkTrail',
   title: 'Park/Trail',
   type: 'document',
-  orderings: [orderRankOrdering], 
+  orderings: [orderRankOrdering],
+  preview: {
+    select: {
+      title: 'title',
+      subtitle: 'parkType',
+      media: 'mainImage',
+    },
+  },
   fields: [
     defineField({
       name: 'title',
@@ -22,6 +29,51 @@ export default defineType({
       options: {
         source: 'title',
         maxLength: 200,
+      },
+    }),
+    defineField({
+      name: 'shortDescription',
+      title: 'Short Description',
+      type: 'text',
+      rows: 3,
+      validation: (Rule: any) => Rule.max(200),
+    }),
+    defineField({
+      name: 'mainImage',
+      title: 'Main Image',
+      type: 'imageAlt',
+    }),
+    defineField({
+      name: 'parkType',
+      title: 'Park Type',
+      type: 'string',
+      options: {
+        list: [
+          { title: 'Park', value: 'park' },
+          { title: 'Trail', value: 'trail' },
+          { title: 'State Forest', value: 'state-forest' },
+          { title: 'Recreation Area', value: 'recreation-area' },
+        ],
+      },
+    }),
+    defineField({
+      name: 'amenities',
+      title: 'Amenities',
+      type: 'array',
+      of: [{ type: 'string' }],
+      options: {
+        list: [
+          { title: 'Restrooms', value: 'restrooms' },
+          { title: 'Parking', value: 'parking' },
+          { title: 'Dog Friendly', value: 'dog-friendly' },
+          { title: 'Accessible', value: 'accessible' },
+          { title: 'Picnic Area', value: 'picnic-area' },
+          { title: 'Camping', value: 'camping' },
+          { title: 'Swimming', value: 'swimming' },
+          { title: 'Fishing', value: 'fishing' },
+          { title: 'Biking', value: 'biking' },
+          { title: 'Hiking', value: 'hiking' },
+        ],
       },
     }),
     defineField({
@@ -48,6 +100,23 @@ export default defineType({
       validation: (Rule: any) => Rule.required(),
     }),
     defineField({
+      name: 'lockboxLocation',
+      title: 'Lockbox Location',
+      type: 'text',
+      rows: 3,
+      description: 'Directions to find stamp lockbox',
+    }),
+    defineField({
+      name: 'coordinates',
+      title: 'Coordinates',
+      type: 'geopoint',
+    }),
+    defineField({
+      name: 'websiteUrl',
+      title: 'Website URL',
+      type: 'url',
+    }),
+    defineField({
       name: 'gallery',
       title: 'Gallery',
       type: 'imageGallery',
@@ -58,10 +127,21 @@ export default defineType({
       type: 'imageAlt',
     }),
     defineField({
+      name: 'featured',
+      title: 'Featured',
+      type: 'boolean',
+      initialValue: false,
+    }),
+    defineField({
+      name: 'order',
+      title: 'Order',
+      type: 'number',
+    }),
+    defineField({
       name: 'seo',
       title: 'SEO',
       type: 'seo',
     }),
-    orderRankField({type: 'title'}),
+    orderRankField({ type: 'title' }),
   ],
 })

@@ -1,0 +1,274 @@
+---
+// Packages
+import { Image } from 'astro:assets'
+import { SEO } from 'astro-seo'
+import { ArrowLeft, Calendar, Clock, Globe, MapPin, Phone } from 'lucide-astro'
+
+// Components
+import Badge from '@/components/elements/content/Badge.astro'
+import Card from '@/components/elements/content/Card.astro'
+import PortableText from '@/components/elements/content/PortableText.astro'
+import Container from '@/components/layout/Container.astro'
+import Hero from '@/components/layout/Hero.astro'
+import Section from '@/components/layout/Section.astro'
+import { Button } from '@/components/starwind/button'
+import Layout from '@/layouts/Layout.astro'
+
+// Sanity
+import { loadQuery } from '@/sanity/lib/load-query'
+import {
+	eventsByPartnerQuery,
+	partnerBySlugQuery,
+	settingsQuery
+} from '@/sanity/lib/queries'
+import { urlForImage } from '@/sanity/lib/urlForImage'
+
+// Types
+import type { Event } from '@/sanity/schemaTypes/event'
+import type { Partner } from '@/sanity/schemaTypes/partner'
+import type { SiteSettings } from '@/sanity/schemaTypes/siteSettings'
+
+// Data
+const { slug } = Astro.params
+const { data: settings } = await loadQuery<SiteSettings>({ query: settingsQuery })
+const { data: partner } = await loadQuery<Partner>({
+	query: partnerBySlugQuery,
+	params: { slug }
+})
+
+if (!partner) {
+	return Astro.redirect('/404')
+}
+
+// Fetch related events
+const { data: relatedEvents } = await loadQuery<Event[]>({
+	query: eventsByPartnerQuery,
+	params: { partnerId: partner._id }
+})
+
+const siteName = settings?.siteName || 'Wild & Wonderful Wellness'
+
+// SEO
+const seoTitle = partner.seo?.metaTitle || partner.title
+const seoDescription = partner.seo?.metaDescription || partner.shortDescription || ''
+const seoImage = partner.seo?.sharingImage
+	? urlForImage(partner.seo.sharingImage).width(1200).height(630).url()
+	: partner.mainImage
+		? urlForImage(partner.mainImage).width(1200).height(630).url()
+		: settings?.sharingImage
+			? urlForImage(settings.sharingImage).width(1200).height(630).url()
+			: ''
+
+// Helper to format date
+function formatDate(dateStr: string) {
+	return new Date(dateStr).toLocaleDateString('en-US', {
+		month: 'long',
+		day: 'numeric',
+		year: 'numeric'
+	})
+}
+
+// Helper to format partner type
+function formatPartnerType(type: string) {
+	return type.replace(/-/g, ' ').replace(/\b\w/g, (c) => c.toUpperCase())
+}
+---
+
+<Layout>
+	<SEO
+		title={`${seoTitle} | ${siteName}`}
+		description={seoDescription}
+		openGraph={{
+			basic: {
+				title: `${seoTitle} | ${siteName}`,
+				type: 'website',
+				image: seoImage
+			}
+		}}
+		slot="head"
+	/>
+
+	<!-- Hero with background image -->
+	<Hero class="min-h-[50vh] flex items-center" textColor="text-primary-foreground">
+		{
+			partner.mainImage && (
+				<Image
+					src={urlForImage(partner.mainImage).width(1920).height(1080).url()}
+					alt={partner.mainImage.alt || partner.title}
+					width={1920}
+					height={1080}
+					class="absolute inset-0 z-0 h-full w-full object-cover"
+				/>
+			)
+		}
+		<div class="bg-foreground/50 absolute inset-0 z-10"></div>
+		<div class="relative z-20">
+			<h1 class="text-primary-foreground">{partner.title}</h1>
+			{partner.shortDescription && <p class="text-primary-foreground/90 mt-2 text-lg">{partner.shortDescription}</p>}
+		</div>
+	</Hero>
+
+	<main id="main-content">
+		<Section>
+			<Container>
+				<div class="grid gap-12 lg:grid-cols-3">
+					<!-- Main Content (2/3) -->
+					<div class="lg:col-span-2">
+						<!-- Logo Display -->
+						{
+							partner.logo && (
+								<div class="mb-8">
+									<Image
+										src={urlForImage(partner.logo).width(300).height(200).url()}
+										alt={partner.logo.alt || partner.title}
+										width={300}
+										height={200}
+										class="h-24 w-auto object-contain"
+									/>
+								</div>
+							)
+						}
+
+						<!-- Badges -->
+						<div class="mb-6 flex flex-wrap gap-2">
+							{
+								partner.partnerType && (
+									<Badge variant="primary">{formatPartnerType(partner.partnerType)}</Badge>
+								)
+							}
+							{partner.hasPassportPickup && <Badge variant="success">Passport Pickup</Badge>}
+							{partner.hasStampStation && <Badge variant="info">Stamp Station</Badge>}
+						</div>
+
+						<!-- Content -->
+						{
+							partner.content && (
+								<div class="prose max-w-none">
+									<PortableText portableText={partner.content} />
+								</div>
+							)
+						}
+
+						<!-- Related Events -->
+						{
+							relatedEvents && relatedEvents.length > 0 && (
+								<div class="mt-12">
+									<h2 class="mb-6 text-xl font-bold">Related Events</h2>
+									<div class="space-y-4">
+										{relatedEvents.map((event) => (
+											<a
+												href={`/events/${event.slug?.current}`}
+												class="group block no-underline"
+											>
+												<Card class="bg-card border border-border transition-shadow hover:shadow-md">
+													<div class="flex items-center gap-3">
+														<Calendar class="text-primary size-5 shrink-0" />
+														<div>
+															<h3 class="text-base font-semibold group-hover:underline">
+																{event.title}
+															</h3>
+															<p class="text-muted-foreground text-sm">
+																{formatDate(event.eventDate)}
+																{event.location && ` - ${event.location}`}
+															</p>
+														</div>
+														{event.isFree && <Badge variant="success" class="ml-auto">Free</Badge>}
+													</div>
+												</Card>
+											</a>
+										))}
+									</div>
+								</div>
+							)
+						}
+					</div>
+
+					<!-- Sidebar (1/3) -->
+					<div class="lg:col-span-1">
+						<div class="sticky top-8">
+							<Card class="bg-card border border-border">
+								<h3 class="mb-4 text-lg font-bold">Contact Information</h3>
+
+								{/* Address */}
+								{
+									partner.address && (
+										<div class="mb-4">
+											<div class="mb-1 flex items-center gap-2">
+												<MapPin class="text-primary size-4" />
+												<span class="text-sm font-medium">Address</span>
+											</div>
+											<div class="text-muted-foreground ml-6 text-sm">
+												<PortableText portableText={partner.address} />
+											</div>
+										</div>
+									)
+								}
+
+								{/* Hours */}
+								{
+									partner.hours && (
+										<div class="mb-4">
+											<div class="mb-1 flex items-center gap-2">
+												<Clock class="text-primary size-4" />
+												<span class="text-sm font-medium">Hours</span>
+											</div>
+											<div class="text-muted-foreground ml-6 text-sm">
+												<PortableText portableText={partner.hours} />
+											</div>
+										</div>
+									)
+								}
+
+								{/* Phone */}
+								{
+									partner.phone && (
+										<div class="mb-4">
+											<div class="mb-1 flex items-center gap-2">
+												<Phone class="text-primary size-4" />
+												<span class="text-sm font-medium">Phone</span>
+											</div>
+											<a
+												href={`tel:${partner.phone}`}
+												class="text-primary ml-6 text-sm hover:underline"
+											>
+												{partner.phone}
+											</a>
+										</div>
+									)
+								}
+
+								{/* Website */}
+								{
+									partner.websiteUrl && (
+										<div class="mb-4">
+											<div class="mb-1 flex items-center gap-2">
+												<Globe class="text-primary size-4" />
+												<span class="text-sm font-medium">Website</span>
+											</div>
+											<a
+												href={partner.websiteUrl}
+												target="_blank"
+												rel="noopener noreferrer"
+												class="text-primary ml-6 text-sm hover:underline"
+											>
+												Visit Website
+												<span class="sr-only">(opens in new tab)</span>
+											</a>
+										</div>
+									)
+								}
+
+								<div class="mt-6 border-t border-border pt-4">
+									<Button href="/partners" variant="ghost" size="sm" class="w-full">
+										<ArrowLeft class="size-4" />
+										Back to Partners
+									</Button>
+								</div>
+							</Card>
+						</div>
+					</div>
+				</div>
+			</Container>
+		</Section>
+	</main>
+</Layout>

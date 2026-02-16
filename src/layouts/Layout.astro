@@ -9,7 +9,6 @@ import Header from '@/components/layout/Header.astro'
 import PreviewBanner from '@/components/elements/interactive/PreviewBanner.astro'
 
 // Misc
-import { settings } from '@/sanity/lib/queries'
 const { class: className, ...rest } = Astro.props
 
 // Check if preview mode is enabled via cookie
@@ -34,6 +33,14 @@ if (import.meta.env.DEV) {
 
 		<link rel="sitemap" href="/sitemap-index.xml" />
 
+		<!-- Google Fonts: Outfit for headings (friendly, bold), Inter for body (clean, readable) -->
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@500;600;700;800&display=swap"
+			rel="stylesheet"
+		/>
+
 		<ClientRouter />
 
 		<!-- Prevent flash of unstyled content for dark mode -->
@@ -47,6 +54,21 @@ if (import.meta.env.DEV) {
 				}
 			})()
 		</script>
+
+		<style is:global>
+			/* Font overrides */
+			h1,
+			h2,
+			h3,
+			h4,
+			h5,
+			h6 {
+				font-family: 'Outfit', system-ui, sans-serif;
+			}
+			body {
+				font-family: 'Inter', system-ui, sans-serif;
+			}
+		</style>
 
 		<slot name="head" />
 	</head>
@@ -69,7 +91,7 @@ if (import.meta.env.DEV) {
 				<slot />
 			</div>
 
-			<Footer settings={settings}>
+			<Footer>
 				<slot name="footer" />
 			</Footer>
 		</div>

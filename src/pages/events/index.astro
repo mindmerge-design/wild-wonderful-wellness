@@ -1,0 +1,208 @@
+---
+// Packages
+import { Image } from 'astro:assets'
+import { SEO } from 'astro-seo'
+import { Calendar, MapPin } from 'lucide-astro'
+
+// Components
+import Badge from '@/components/elements/content/Badge.astro'
+import Card from '@/components/elements/content/Card.astro'
+import SectionHeader from '@/components/elements/content/SectionHeader.astro'
+import Container from '@/components/layout/Container.astro'
+import Hero from '@/components/layout/Hero.astro'
+import Section from '@/components/layout/Section.astro'
+import Layout from '@/layouts/Layout.astro'
+
+// Sanity
+import { loadQuery } from '@/sanity/lib/load-query'
+import { allEventsQuery, settingsQuery } from '@/sanity/lib/queries'
+import { urlForImage } from '@/sanity/lib/urlForImage'
+
+// Types
+import type { Event } from '@/sanity/schemaTypes/event'
+import type { SiteSettings } from '@/sanity/schemaTypes/siteSettings'
+
+// Data
+const { data: settings } = await loadQuery<SiteSettings>({ query: settingsQuery })
+const { data: allEvents } = await loadQuery<Event[]>({ query: allEventsQuery })
+
+const siteName = settings?.siteName || 'Wild & Wonderful Wellness'
+
+// Separate upcoming vs past events
+const now = new Date().toISOString()
+const upcomingEvents = (allEvents || []).filter((e) => e.eventDate >= now)
+const pastEvents = (allEvents || []).filter((e) => e.eventDate < now).reverse()
+
+// SEO
+const seoTitle = `Events | ${siteName}`
+const seoDescription =
+	settings?.siteDescription || 'Browse upcoming and past wellness events.'
+const seoImage = settings?.sharingImage
+	? urlForImage(settings.sharingImage).width(1200).height(630).url()
+	: ''
+
+// Helper to format date
+function formatDate(dateStr: string) {
+	return new Date(dateStr).toLocaleDateString('en-US', {
+		weekday: 'long',
+		month: 'long',
+		day: 'numeric',
+		year: 'numeric'
+	})
+}
+
+function formatShortDate(dateStr: string) {
+	return new Date(dateStr).toLocaleDateString('en-US', {
+		month: 'short',
+		day: 'numeric'
+	})
+}
+---
+
+<Layout>
+	<SEO
+		title={seoTitle}
+		description={seoDescription}
+		openGraph={{
+			basic: {
+				title: seoTitle,
+				type: 'website',
+				image: seoImage
+			}
+		}}
+		slot="head"
+	/>
+
+	<Hero>
+		<h1>Events</h1>
+		<p>Join us for wellness events, workshops, and community gatherings.</p>
+	</Hero>
+
+	<main id="main-content">
+		<!-- Upcoming Events -->
+		<Section id="upcoming-events">
+			<Container>
+				<SectionHeader
+					title="Upcoming Events"
+					subtitle="Mark Your Calendar"
+					description={settings?.eventsIntroText}
+				/>
+
+				{
+					upcomingEvents.length > 0 ? (
+						<div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+							{upcomingEvents.map((event) => (
+								<a
+									href={`/events/${event.slug?.current}`}
+									class="group block no-underline"
+								>
+									<Card class="bg-card border border-border transition-shadow hover:shadow-lg h-full">
+										{event.mainImage && (
+											<div class="relative -mx-3 -mt-3 mb-4 overflow-hidden rounded-t-lg md:-mx-6 md:-mt-6 lg:-mx-9 lg:-mt-9">
+												<Image
+													src={urlForImage(event.mainImage).width(600).height(400).url()}
+													alt={event.mainImage.alt || event.title}
+													width={600}
+													height={400}
+													class="aspect-[3/2] w-full object-cover transition-transform duration-300 group-hover:scale-105"
+												/>
+												<div class="bg-primary text-primary-foreground absolute top-3 left-3 rounded-lg px-3 py-1.5 text-center text-xs font-bold leading-tight">
+													{formatShortDate(event.eventDate)}
+												</div>
+											</div>
+										)}
+
+										<div class="mb-2 flex flex-wrap items-center gap-2">
+											<Calendar class="text-primary size-4" />
+											<span class="text-muted-foreground text-sm">
+												{formatDate(event.eventDate)}
+											</span>
+										</div>
+
+										<h3 class="text-lg font-semibold">{event.title}</h3>
+
+										{event.location && (
+											<p class="text-muted-foreground mt-1 flex items-center gap-1 text-sm">
+												<MapPin class="size-3 shrink-0" />
+												{event.location}
+											</p>
+										)}
+
+										<div class="mt-3 flex flex-wrap gap-2">
+											{event.isFree && <Badge variant="success">Free</Badge>}
+											{!event.isFree && event.cost && (
+												<Badge variant="warning">{event.cost}</Badge>
+											)}
+										</div>
+
+										{event.shortDescription && (
+											<p class="text-muted-foreground mt-3 line-clamp-2 text-sm">
+												{event.shortDescription}
+											</p>
+										)}
+									</Card>
+								</a>
+							))}
+						</div>
+					) : (
+						<div class="py-12 text-center">
+							<p class="text-muted-foreground text-lg">
+								No upcoming events at this time. Check back soon!
+							</p>
+						</div>
+					)
+				}
+			</Container>
+		</Section>
+
+		<!-- Past Events -->
+		{
+			pastEvents.length > 0 && (
+				<Section id="past-events" class="bg-muted">
+					<Container>
+						<SectionHeader title="Past Events" subtitle="Looking Back" />
+
+						<div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+							{pastEvents.map((event) => (
+								<a
+									href={`/events/${event.slug?.current}`}
+									class="group block no-underline"
+								>
+									<Card class="bg-card border border-border opacity-80 transition-all hover:opacity-100 hover:shadow-lg">
+										{event.mainImage && (
+											<div class="relative -mx-3 -mt-3 mb-4 overflow-hidden rounded-t-lg md:-mx-6 md:-mt-6 lg:-mx-9 lg:-mt-9">
+												<Image
+													src={urlForImage(event.mainImage).width(600).height(400).url()}
+													alt={event.mainImage.alt || event.title}
+													width={600}
+													height={400}
+													class="aspect-[3/2] w-full object-cover grayscale transition-all duration-300 group-hover:grayscale-0"
+												/>
+											</div>
+										)}
+
+										<div class="mb-2 flex flex-wrap items-center gap-2">
+											<Calendar class="text-muted-foreground size-4" />
+											<span class="text-muted-foreground text-sm">
+												{formatDate(event.eventDate)}
+											</span>
+										</div>
+
+										<h3 class="text-lg font-semibold">{event.title}</h3>
+
+										{event.location && (
+											<p class="text-muted-foreground mt-1 flex items-center gap-1 text-sm">
+												<MapPin class="size-3 shrink-0" />
+												{event.location}
+											</p>
+										)}
+									</Card>
+								</a>
+							))}
+						</div>
+					</Container>
+				</Section>
+			)
+		}
+	</main>
+</Layout>

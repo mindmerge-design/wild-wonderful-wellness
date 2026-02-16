@@ -1,0 +1,260 @@
+---
+// Packages
+import { Image } from 'astro:assets'
+import { SEO } from 'astro-seo'
+import {
+	ArrowLeft,
+	Calendar,
+	Clock,
+	DollarSign,
+	ExternalLink,
+	MapPin,
+	User
+} from 'lucide-astro'
+
+// Components
+import Badge from '@/components/elements/content/Badge.astro'
+import Card from '@/components/elements/content/Card.astro'
+import PortableText from '@/components/elements/content/PortableText.astro'
+import Container from '@/components/layout/Container.astro'
+import Hero from '@/components/layout/Hero.astro'
+import Section from '@/components/layout/Section.astro'
+import { Button } from '@/components/starwind/button'
+import Layout from '@/layouts/Layout.astro'
+
+// Sanity
+import { loadQuery } from '@/sanity/lib/load-query'
+import { eventBySlugQuery, settingsQuery } from '@/sanity/lib/queries'
+import { urlForImage } from '@/sanity/lib/urlForImage'
+
+// Types
+import type { Event } from '@/sanity/schemaTypes/event'
+import type { SiteSettings } from '@/sanity/schemaTypes/siteSettings'
+
+// Data
+const { slug } = Astro.params
+const { data: settings } = await loadQuery<SiteSettings>({ query: settingsQuery })
+const { data: event } = await loadQuery<Event>({
+	query: eventBySlugQuery,
+	params: { slug }
+})
+
+if (!event) {
+	return Astro.redirect('/404')
+}
+
+const siteName = settings?.siteName || 'Wild & Wonderful Wellness'
+
+// SEO
+const seoTitle = event.seo?.metaTitle || event.title
+const seoDescription = event.seo?.metaDescription || event.shortDescription || ''
+const seoImage = event.seo?.sharingImage
+	? urlForImage(event.seo.sharingImage).width(1200).height(630).url()
+	: event.mainImage
+		? urlForImage(event.mainImage).width(1200).height(630).url()
+		: settings?.sharingImage
+			? urlForImage(settings.sharingImage).width(1200).height(630).url()
+			: ''
+
+// Helpers
+function formatDate(dateStr: string) {
+	return new Date(dateStr).toLocaleDateString('en-US', {
+		weekday: 'long',
+		month: 'long',
+		day: 'numeric',
+		year: 'numeric'
+	})
+}
+
+function formatTime(dateStr: string) {
+	return new Date(dateStr).toLocaleTimeString('en-US', {
+		hour: 'numeric',
+		minute: '2-digit'
+	})
+}
+
+const isPast = new Date(event.eventDate) < new Date()
+---
+
+<Layout>
+	<SEO
+		title={`${seoTitle} | ${siteName}`}
+		description={seoDescription}
+		openGraph={{
+			basic: {
+				title: `${seoTitle} | ${siteName}`,
+				type: 'website',
+				image: seoImage
+			}
+		}}
+		slot="head"
+	/>
+
+	<!-- Hero with background image -->
+	<Hero class="min-h-[50vh] flex items-center" textColor="text-primary-foreground">
+		{
+			event.mainImage && (
+				<Image
+					src={urlForImage(event.mainImage).width(1920).height(1080).url()}
+					alt={event.mainImage.alt || event.title}
+					width={1920}
+					height={1080}
+					class="absolute inset-0 z-0 h-full w-full object-cover"
+				/>
+			)
+		}
+		<div class="bg-foreground/50 absolute inset-0 z-10"></div>
+		<div class="relative z-20">
+			{isPast && <Badge variant="default" class="mb-3">Past Event</Badge>}
+			<h1 class="text-primary-foreground">{event.title}</h1>
+			{event.shortDescription && <p class="text-primary-foreground/90 mt-2 text-lg">{event.shortDescription}</p>}
+		</div>
+	</Hero>
+
+	<main id="main-content">
+		<Section>
+			<Container>
+				<div class="grid gap-12 lg:grid-cols-3">
+					<!-- Main Content (2/3) -->
+					<div class="lg:col-span-2">
+						<!-- Badges -->
+						<div class="mb-6 flex flex-wrap gap-2">
+							{event.isFree && <Badge variant="success">Free Event</Badge>}
+							{!event.isFree && event.cost && <Badge variant="warning">{event.cost}</Badge>}
+							{isPast && <Badge variant="default">Past Event</Badge>}
+						</div>
+
+						<!-- Content -->
+						{
+							event.content && (
+								<div class="prose max-w-none">
+									<PortableText portableText={event.content} />
+								</div>
+							)
+						}
+
+						<!-- Related Partner -->
+						{
+							event.relatedPartner && event.relatedPartner.title && (
+								<div class="mt-8 rounded-lg border border-border p-6">
+									<h3 class="mb-2 text-base font-semibold">Hosted by</h3>
+									<a
+										href={`/partners/${event.relatedPartner.slug?.current}`}
+										class="text-primary hover:underline"
+									>
+										{event.relatedPartner.title}
+									</a>
+								</div>
+							)
+						}
+					</div>
+
+					<!-- Sidebar (1/3) -->
+					<div class="lg:col-span-1">
+						<div class="sticky top-8">
+							<Card class="bg-card border border-border">
+								<h3 class="mb-4 text-lg font-bold">Event Details</h3>
+
+								{/* Date */}
+								<div class="mb-4">
+									<div class="mb-1 flex items-center gap-2">
+										<Calendar class="text-primary size-4" />
+										<span class="text-sm font-medium">Date</span>
+									</div>
+									<p class="text-muted-foreground ml-6 text-sm">
+										{formatDate(event.eventDate)}
+									</p>
+									{
+										event.endDate && (
+											<p class="text-muted-foreground ml-6 text-sm">
+												to {formatDate(event.endDate)}
+											</p>
+										)
+									}
+								</div>
+
+								{/* Time */}
+								<div class="mb-4">
+									<div class="mb-1 flex items-center gap-2">
+										<Clock class="text-primary size-4" />
+										<span class="text-sm font-medium">Time</span>
+									</div>
+									<p class="text-muted-foreground ml-6 text-sm">
+										{formatTime(event.eventDate)}
+										{event.endDate && ` - ${formatTime(event.endDate)}`}
+									</p>
+								</div>
+
+								{/* Location */}
+								{
+									event.location && (
+										<div class="mb-4">
+											<div class="mb-1 flex items-center gap-2">
+												<MapPin class="text-primary size-4" />
+												<span class="text-sm font-medium">Location</span>
+											</div>
+											<p class="text-muted-foreground ml-6 text-sm">{event.location}</p>
+											{event.address && (
+												<p class="text-muted-foreground ml-6 text-sm">{event.address}</p>
+											)}
+										</div>
+									)
+								}
+
+								{/* Organizer */}
+								{
+									event.organizer && (
+										<div class="mb-4">
+											<div class="mb-1 flex items-center gap-2">
+												<User class="text-primary size-4" />
+												<span class="text-sm font-medium">Organizer</span>
+											</div>
+											<p class="text-muted-foreground ml-6 text-sm">{event.organizer}</p>
+										</div>
+									)
+								}
+
+								{/* Cost */}
+								<div class="mb-4">
+									<div class="mb-1 flex items-center gap-2">
+										<DollarSign class="text-primary size-4" />
+										<span class="text-sm font-medium">Cost</span>
+									</div>
+									<p class="text-muted-foreground ml-6 text-sm">
+										{event.isFree ? 'Free' : event.cost || 'Contact organizer for details'}
+									</p>
+								</div>
+
+								{/* Registration Button */}
+								{
+									event.registrationUrl && !isPast && (
+										<div class="mt-6">
+											<Button
+												href={event.registrationUrl}
+												variant="primary"
+												size="lg"
+												class="w-full"
+												target="_blank"
+												rel="noopener noreferrer"
+											>
+												Register Now
+												<ExternalLink class="size-4" />
+											</Button>
+										</div>
+									)
+								}
+
+								<div class="mt-6 border-t border-border pt-4">
+									<Button href="/events" variant="ghost" size="sm" class="w-full">
+										<ArrowLeft class="size-4" />
+										Back to Events
+									</Button>
+								</div>
+							</Card>
+						</div>
+					</div>
+				</div>
+			</Container>
+		</Section>
+	</main>
+</Layout>

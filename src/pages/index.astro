@@ -1,27 +1,529 @@
 ---
 // Packages
-import PortableText from '@/components/elements/content/PortableText.astro'
+import { SEO } from 'astro-seo'
+import {
+ArrowRight,
+Award,
+Calendar,
+Camera,
+Compass,
+Gift,
+Heart,
+Map,
+MapPin,
+Stamp,
+TreePine
+} from 'lucide-astro'
 
 // Components
+import Badge from '@/components/elements/content/Badge.astro'
+import Card from '@/components/elements/content/Card.astro'
 import Container from '@/components/layout/Container.astro'
 import Section from '@/components/layout/Section.astro'
+import { Button } from '@/components/starwind/button'
 import Layout from '@/layouts/Layout.astro'
 
-// Types
-import type { Home } from '@/sanity/schemaTypes/home'
+const siteName = 'Wild & Wonderful Wellness'
+const pageTitle = 'Wellness Passport'
+const pageDescription =
+	"Explore Monongalia County's parks, trails, and wellness activities. Collect stamps, earn rewards, and build healthier habits — one adventure at a time."
 
-// Misc
-import { home } from '@/sanity/lib/queries'
+const howItWorks = [
+	{
+		step: 1,
+		title: 'Pick Up Your Passport',
+		description:
+			'Free at the Monongalia County Health Department or any participating partner location.',
+		icon: 'stamp'
+	},
+	{
+		step: 2,
+		title: 'Collect Stamps',
+		description:
+			'Visit parks, trails, and partner sites to stamp your book. Each location has a mounted lockbox with a custom self-inking stamp inside.',
+		icon: 'compass'
+	},
+	{
+		step: 3,
+		title: 'Earn Prizes',
+		description:
+			'Turn in your completed passport at MCHD to redeem rewards. The more stamps you collect, the bigger the prizes!',
+		icon: 'gift'
+	}
+]
 
-// Type the page variable with the Home interface to enable TypeScript completion
-const page = home as Home
+const parks = [
+	{ name: "Dorsey's Knob Park", description: 'Scenic overlook with hiking trails and panoramic views of Morgantown and the surrounding hills.' },
+	{ name: 'Coopers Rock State Forest', description: 'Over 12,000 acres of forest with stunning overlooks, rock climbing, and miles of trails.' },
+	{ name: "Decker's Creek Trail", description: 'Paved rail-trail following the creek through wooded terrain, perfect for walking and biking.' },
+	{ name: 'White Park', description: 'Community park with walking paths, playgrounds, and open green spaces for recreation.' },
+	{ name: 'Marilla Park', description: 'Quiet neighborhood park with wooded trails and a peaceful creekside setting.' },
+	{ name: 'Krepps Park', description: 'Family-friendly park featuring sports fields, a walking loop, and picnic areas.' },
+	{ name: 'Mason Dixon Historical Park', description: 'Historic site with interpretive trails and markers along the famous survey line.' },
+	{ name: 'Caperton Trail', description: 'Scenic waterfront trail along the Monongahela River connecting to the rail-trail network.' },
+	{ name: 'Chestnut Ridge Park', description: 'County park with hiking trails, a lake, picnic shelters, and seasonal activities.' },
+	{ name: 'Core Arboretum', description: 'WVU-managed 91-acre forest with 3.5 miles of trails showcasing native Appalachian flora.' }
+]
+
+const partners = [
+	{ name: 'Monongalia County Health Department', type: 'Health' },
+	{ name: 'Mon Health System', type: 'Healthcare' },
+	{ name: 'WVU Medicine', type: 'Healthcare' },
+	{ name: 'Morgantown Running Club', type: 'Fitness' },
+	{ name: 'Mountaineer Yoga Studio', type: 'Wellness' },
+	{ name: 'Mon County Parks & Recreation', type: 'Parks' },
+	{ name: 'Mylan Park', type: 'Recreation' },
+	{ name: 'Morgantown Farmers Market', type: 'Nutrition' },
+	{ name: 'YMCA of Morgantown', type: 'Fitness' },
+	{ name: 'WV Division of Natural Resources', type: 'State' }
+]
+
+const upcomingEvents = [
+	{
+		title: 'Spring Kickoff Hike',
+		date: 'March 22, 2026',
+		location: 'Coopers Rock State Forest',
+		description: 'Guided 3-mile hike to celebrate the start of the spring passport season. All skill levels welcome.'
+	},
+	{
+		title: 'Yoga in the Park',
+		date: 'April 5, 2026',
+		location: 'Dorsey Knob Park',
+		description: 'Sunrise yoga session led by certified instructors. Bring a mat and earn a wellness stamp.'
+	},
+	{
+		title: 'Community Health Fair',
+		date: 'April 19, 2026',
+		location: 'Mountaineer Mall',
+		description: 'Free health screenings, nutrition workshops, and passport stamp stations. Pick up your passport here!'
+	},
+	{
+		title: 'Trail Run 5K',
+		date: 'May 10, 2026',
+		location: 'Rail Trail, Morgantown',
+		description: 'Timed 5K along the scenic rail trail. Finishers earn two passport stamps and a commemorative bib.'
+	}
+]
 ---
 
 <Layout>
+	<SEO
+		title={`${pageTitle} | ${siteName}`}
+		description={pageDescription}
+		openGraph={{
+			basic: {
+				title: `${pageTitle} | ${siteName}`,
+				type: 'website',
+				image: ''
+			}
+		}}
+		slot="head"
+	/>
+
+	<!-- ============================================ -->
+	<!-- 1. HERO                                      -->
+	<!-- ============================================ -->
+	<div class="relative min-h-[90vh] overflow-hidden bg-[hsl(152,35%,18%)]">
+		<!-- Decorative topo pattern overlay -->
+		<div class="absolute inset-0 opacity-[0.08]">
+			<svg class="h-full w-full" xmlns="http://www.w3.org/2000/svg">
+				<defs>
+					<pattern id="topo-hero" x="0" y="0" width="200" height="200" patternUnits="userSpaceOnUse">
+						<path d="M 0 80 Q 50 60 100 80 T 200 80" fill="none" stroke="white" stroke-width="1"/>
+						<path d="M 0 100 Q 50 75 100 100 T 200 100" fill="none" stroke="white" stroke-width="0.8"/>
+						<path d="M 0 120 Q 50 95 100 120 T 200 120" fill="none" stroke="white" stroke-width="0.6"/>
+						<path d="M 0 50 Q 60 30 120 50 T 200 50" fill="none" stroke="white" stroke-width="0.5"/>
+						<path d="M 0 150 Q 40 130 100 150 T 200 150" fill="none" stroke="white" stroke-width="0.7"/>
+						<circle cx="160" cy="40" r="20" fill="none" stroke="white" stroke-width="0.5"/>
+						<circle cx="160" cy="40" r="30" fill="none" stroke="white" stroke-width="0.4"/>
+					</pattern>
+				</defs>
+				<rect width="100%" height="100%" fill="url(#topo-hero)"/>
+			</svg>
+		</div>
+
+		<!-- Gradient overlays -->
+		<div class="absolute inset-0 bg-linear-to-b from-black/40 via-black/10 to-black/60"></div>
+
+		<!-- Floating trail markers decoration -->
+		<div class="absolute top-20 right-[10%] animate-pulse-soft opacity-30" aria-hidden="true">
+			<MapPin class="text-white size-8" />
+		</div>
+		<div class="absolute bottom-40 left-[15%] animate-pulse-soft opacity-25" style="animation-delay: 0.5s" aria-hidden="true">
+			<TreePine class="text-white size-6" />
+		</div>
+		<div class="absolute top-1/3 left-[8%] animate-pulse-soft opacity-20" style="animation-delay: 1s" aria-hidden="true">
+			<Compass class="text-white size-10" />
+		</div>
+
+		<Container class="relative z-10 flex min-h-[90vh] flex-col justify-center py-20">
+			<div class="max-w-2xl" style="animation: fade-in-up 0.8s ease-out both;">
+				<div class="mb-6 inline-flex items-center gap-2 rounded-full border border-white/30 bg-white/10 px-5 py-2.5 text-sm font-medium text-white/95 backdrop-blur-md shadow-lg">
+					<Heart class="size-4 text-red-400 animate-pulse" />
+					<span>Monongalia County Health Department</span>
+				</div>
+
+				<h1 class="mb-0 text-5xl font-extrabold leading-[1.05] tracking-tight text-white md:text-6xl lg:text-7xl">
+					Wild and Wonderful
+					<span class="block text-[hsl(65,85%,65%)]">Wellness Passport</span>
+				</h1>
+
+				<p class="mt-6 text-2xl font-semibold tracking-wide text-white/90">
+					Explore. Move. Earn Rewards.
+				</p>
+
+				<div class="mt-10 flex flex-wrap gap-4">
+					<Button href="#partners" variant="primary" size="lg" class="bg-[hsl(65,85%,55%)] text-[hsl(152,35%,12%)] hover:bg-[hsl(65,85%,62%)] shadow-lg hover:shadow-xl transition-all">
+						Find a Passport Location
+						<ArrowRight class="size-5" />
+					</Button>
+				</div>
+			</div>
+		</Container>
+
+		<!-- Wave divider -->
+		<div class="absolute bottom-0 left-0 right-0">
+			<svg viewBox="0 0 1440 120" class="w-full text-background" preserveAspectRatio="none">
+				<path fill="currentColor" d="M0,64L60,69.3C120,75,240,85,360,80C480,75,600,53,720,48C840,43,960,53,1080,64C1200,75,1320,85,1380,90L1440,96L1440,120L1380,120C1320,120,1200,120,1080,120C960,120,840,120,720,120C600,120,480,120,360,120C240,120,120,120,60,120L0,120Z"/>
+			</svg>
+		</div>
+	</div>
+
 	<main id="main-content">
-		<Section id="intro">
-			<Container>
-				<PortableText portableText={page?.content} />
+		<!-- ============================================ -->
+		<!-- 2. INTRODUCTION                              -->
+		<!-- ============================================ -->
+		<Section id="introduction" class="relative overflow-hidden">
+			<!-- Decorative topo pattern -->
+			<div class="absolute inset-0 text-primary/5 pointer-events-none">
+				<svg class="h-full w-full" xmlns="http://www.w3.org/2000/svg">
+					<defs>
+						<pattern id="topo-intro" x="0" y="0" width="300" height="300" patternUnits="userSpaceOnUse">
+							<path d="M 0 150 Q 75 120 150 150 T 300 150" fill="none" stroke="currentColor" stroke-width="1" opacity="0.3"/>
+							<path d="M 0 200 Q 100 170 200 200 T 300 200" fill="none" stroke="currentColor" stroke-width="0.8" opacity="0.2"/>
+							<circle cx="250" cy="80" r="40" fill="none" stroke="currentColor" stroke-width="0.5" opacity="0.15"/>
+						</pattern>
+					</defs>
+					<rect width="100%" height="100%" fill="url(#topo-intro)"/>
+				</svg>
+			</div>
+
+			<Container class="relative z-10">
+				<div class="grid items-center gap-12 md:grid-cols-3">
+					<div class="prose md:col-span-2">
+						<p class="text-lg leading-relaxed md:text-xl text-foreground/90">
+							Did you know that almost a quarter of residents in Monongalia County do not engage in any physical activity outside of work? With so many opportunities to get active in our community, there's no reason not to take advantage of everything Monongalia County has to offer. The Wild and Wonderful Wellness Passport is a way to explore dozens of parks, trails, and organizations focused on providing opportunities for exercise or wellness.
+						</p>
+					</div>
+					<div class="flex justify-center">
+						<div class="relative rounded-2xl border-2 border-dashed border-primary/40 bg-primary/10 p-8 text-center shadow-lg">
+							<p class="text-primary text-6xl font-extrabold leading-none">1 in 4</p>
+							<p class="text-muted-foreground mt-3 text-sm font-medium uppercase tracking-wider">
+								Mon County residents<br />are physically inactive<br />outside of work
+							</p>
+							<div class="bg-primary/20 absolute -right-3 -top-3 flex size-12 items-center justify-center rounded-full shadow-md">
+								<Heart class="text-primary size-6" />
+							</div>
+							<!-- Decorative circles -->
+							<div class="absolute -bottom-2 -left-2 size-8 rounded-full bg-primary/20" aria-hidden="true"></div>
+							<div class="absolute -bottom-3 -right-3 size-5 rounded-full bg-accent/30" aria-hidden="true"></div>
+						</div>
+					</div>
+				</div>
+			</Container>
+		</Section>
+
+		<!-- ============================================ -->
+		<!-- 3. HOW IT WORKS                              -->
+		<!-- ============================================ -->
+		<Section id="how-it-works" class="bg-muted relative overflow-hidden">
+			<!-- Decorative topo pattern -->
+			<div class="absolute inset-0 text-success/3 pointer-events-none">
+				<svg class="h-full w-full" xmlns="http://www.w3.org/2000/svg">
+					<defs>
+						<pattern id="topo-how" x="0" y="0" width="250" height="250" patternUnits="userSpaceOnUse">
+							<path d="M 0 125 Q 62.5 100 125 125 T 250 125" fill="none" stroke="currentColor" stroke-width="0.8" opacity="0.2"/>
+							<path d="M 0 62.5 Q 125 25 250 62.5" fill="none" stroke="currentColor" stroke-width="0.6" opacity="0.15"/>
+							<circle cx="200" cy="200" r="30" fill="none" stroke="currentColor" stroke-width="0.5" opacity="0.1"/>
+						</pattern>
+					</defs>
+					<rect width="100%" height="100%" fill="url(#topo-how)"/>
+				</svg>
+			</div>
+
+			<Container class="relative z-10">
+				<div class="mx-auto mb-16 max-w-2xl text-center">
+					<Badge variant="primary" class="mb-4">Get Started</Badge>
+					<h2 class="text-3xl font-extrabold uppercase md:text-4xl">How It Works</h2>
+				</div>
+
+				<!-- Three-step triptych -->
+				<div class="relative">
+					<!-- Connecting line (desktop) -->
+					<div class="absolute left-0 right-0 top-16 hidden h-1 bg-linear-to-r from-primary/20 via-primary to-primary/20 lg:block" aria-hidden="true"></div>
+
+					<div class="grid gap-8 md:grid-cols-3">
+						{howItWorks.map((step, i) => (
+							<div class="relative" style={`animation: fade-in-up 0.6s ease-out ${0.15 * i}s both;`}>
+								<!-- Step number circle with gradient -->
+								<div class="relative z-10 mx-auto mb-6 flex size-16 items-center justify-center rounded-full bg-primary text-primary-foreground text-xl font-extrabold shadow-lg">
+									{step.step}
+									<!-- Decorative ring -->
+									<div class="absolute inset-0 rounded-full border-2 border-primary/30 animate-pulse-soft" style="animation-duration: 3s;"></div>
+								</div>
+
+								<Card class="bg-background border border-border text-center transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
+									<div class="mb-4 flex justify-center">
+										{step.icon === 'stamp' && <div class="rounded-full bg-primary/10 p-3"><Stamp class="text-primary size-8" /></div>}
+										{step.icon === 'compass' && <div class="rounded-full bg-info/10 p-3"><Compass class="text-info size-8" /></div>}
+										{step.icon === 'gift' && <div class="rounded-full bg-success/10 p-3"><Gift class="text-success size-8" /></div>}
+									</div>
+									<h3 class="mb-3 text-xl font-bold">{step.title}</h3>
+									<p class="text-muted-foreground text-base leading-relaxed">{step.description}</p>
+								</Card>
+							</div>
+						))}
+					</div>
+				</div>
+
+				<!-- Prizes teaser -->
+				<div class="mt-16 relative overflow-hidden rounded-2xl border border-border bg-background p-8 text-center shadow-lg">
+					<div class="absolute inset-0 bg-linear-to-br from-warning/5 to-success/5 pointer-events-none"></div>
+					<div class="absolute -right-10 -top-10 size-40 bg-warning/10 rounded-full blur-3xl pointer-events-none"></div>
+					<div class="absolute -left-10 -bottom-10 size-40 bg-success/10 rounded-full blur-3xl pointer-events-none"></div>
+					<div class="relative z-10">
+						<div class="mx-auto mb-4 flex size-14 items-center justify-center rounded-full bg-warning/10">
+							<Award class="text-warning size-7" />
+						</div>
+						<p class="text-xl font-semibold text-foreground">
+							Prizes include gift cards, outdoor gear, and more — the more stamps you collect, the bigger the rewards!
+						</p>
+					</div>
+				</div>
+
+				<!-- Passport booklet placeholder -->
+				<div class="mt-12 flex justify-center">
+					<div class="w-full max-w-md overflow-hidden rounded-xl border-2 border-dashed border-border bg-background shadow-lg">
+						<div class="bg-muted flex aspect-[3/2] items-center justify-center relative overflow-hidden">
+							<!-- Decorative background -->
+							<div class="absolute inset-0 opacity-20">
+								<svg class="h-full w-full" xmlns="http://www.w3.org/2000/svg">
+									<defs>
+										<pattern id="passport-pattern" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse">
+											<circle cx="20" cy="20" r="2" fill="currentColor"/>
+										</pattern>
+									</defs>
+									<rect width="100%" height="100%" fill="url(#passport-pattern)"/>
+								</svg>
+							</div>
+							<div class="relative z-10 text-center">
+								<div class="mx-auto mb-3 flex size-16 items-center justify-center rounded-full bg-background shadow-md">
+									<Camera class="text-muted-foreground size-8" />
+								</div>
+								<p class="text-muted-foreground font-medium">Passport booklet photo</p>
+							</div>
+						</div>
+						<div class="p-5 text-center bg-background">
+							<p class="text-lg font-bold">Your Wellness Passport</p>
+							<p class="text-muted-foreground mt-2 text-sm">Pick one up for free at MCHD or any partner location</p>
+						</div>
+					</div>
+				</div>
+			</Container>
+		</Section>
+
+		<!-- ============================================ -->
+		<!-- 4. PARKS & TRAILS                            -->
+		<!-- ============================================ -->
+		<Section id="parks-trails" class="relative overflow-hidden">
+			<!-- Decorative topo pattern -->
+			<div class="absolute inset-0 text-success/4 pointer-events-none">
+				<svg class="h-full w-full" xmlns="http://www.w3.org/2000/svg">
+					<defs>
+						<pattern id="topo-parks" x="0" y="0" width="200" height="200" patternUnits="userSpaceOnUse">
+							<path d="M 0 100 Q 50 80 100 100 T 200 100" fill="none" stroke="currentColor" stroke-width="0.8" opacity="0.2"/>
+							<path d="M 0 50 Q 100 20 200 50" fill="none" stroke="currentColor" stroke-width="0.6" opacity="0.15"/>
+							<path d="M 0 150 Q 100 180 200 150" fill="none" stroke="currentColor" stroke-width="0.6" opacity="0.15"/>
+							<circle cx="150" cy="100" r="35" fill="none" stroke="currentColor" stroke-width="0.5" opacity="0.1"/>
+						</pattern>
+					</defs>
+					<rect width="100%" height="100%" fill="url(#topo-parks)"/>
+				</svg>
+			</div>
+
+			<Container class="relative z-10">
+				<div class="mx-auto mb-8 max-w-3xl text-center">
+					<Badge variant="success" class="mb-4">Explore</Badge>
+					<h2 class="text-3xl font-extrabold uppercase md:text-4xl">Parks & Trails</h2>
+				</div>
+				<div class="mx-auto mb-16 max-w-3xl">
+					<p class="text-muted-foreground text-center text-lg leading-relaxed">
+						There are over 30 parks and trails in Monongalia County waiting for you to explore. In each participating location, you will find a mounted lockbox with a custom self-inking stamp inside, which you can use to track your progress and earn credit in your passport. Your passport includes brief descriptions of how to find the locations of the lockboxes within the parks, but check out the list below for additional information about each park's lockboxes.
+					</p>
+				</div>
+
+				<!-- Park cards — horizontal scroll on mobile, grid on desktop -->
+				<div class="-mx-4 flex gap-6 overflow-x-auto px-4 pb-6 sm:mx-0 sm:grid sm:grid-cols-2 sm:overflow-visible sm:px-0 sm:pb-0 lg:grid-cols-3">
+					{parks.map((park, i) => (
+						<div
+							class="w-80 shrink-0 sm:w-auto"
+							style={`animation: fade-in-up 0.5s ease-out ${0.08 * i}s both;`}
+						>
+							<Card class="h-full border border-border bg-card transition-all duration-300 hover:shadow-xl hover:-translate-y-1 group">
+								<!-- Image placeholder with icon -->
+								<div class="bg-muted -mx-3 -mt-3 mb-4 flex aspect-[3/2] items-center justify-center rounded-t-lg relative overflow-hidden md:-mx-6 md:-mt-6 lg:-mx-9 lg:-mt-9">
+									<div class="absolute inset-0 bg-success/5"></div>
+									<div class="relative z-10 flex size-14 items-center justify-center rounded-full bg-background shadow-md group-hover:scale-110 transition-transform duration-300">
+										<TreePine class="text-success size-7" />
+									</div>
+								</div>
+								<h3 class="mb-3 text-lg font-bold group-hover:text-success transition-colors">{park.name}</h3>
+								<p class="text-muted-foreground mb-4 text-sm leading-relaxed">{park.description}</p>
+								<span class="text-primary inline-flex items-center gap-1.5 text-sm font-medium group-hover:gap-2 transition-all">
+									Learn More <ArrowRight class="size-4" />
+								</span>
+							</Card>
+						</div>
+					))}
+				</div>
+
+				<!-- Interactive map placeholder -->
+				<div class="mt-16 relative overflow-hidden rounded-2xl border-2 border-dashed border-border bg-muted">
+					<div class="absolute inset-0 bg-success/5"></div>
+					<div class="relative flex aspect-[16/7] items-center justify-center p-8">
+						<div class="text-center">
+							<div class="mx-auto mb-4 flex size-16 items-center justify-center rounded-full bg-background shadow-lg">
+								<Map class="text-success size-8" />
+							</div>
+							<p class="text-xl font-semibold">Interactive Map Coming Soon</p>
+							<p class="text-muted-foreground mt-2 text-base">
+								Explore all 30+ parks and trails across Monongalia County
+							</p>
+						</div>
+					</div>
+				</div>
+
+				<div class="mt-10 text-center">
+					<Button href="/parks-and-trails" variant="outline" size="lg" class="hover:bg-success hover:text-success-foreground hover:border-success transition-all">
+						View All Parks & Trails
+						<ArrowRight class="size-4" />
+					</Button>
+				</div>
+			</Container>
+		</Section>
+
+		<!-- ============================================ -->
+		<!-- 5. PARTNERS                                  -->
+		<!-- ============================================ -->
+		<Section id="partners" class="bg-muted relative overflow-hidden">
+			<!-- Decorative topo pattern -->
+			<div class="absolute inset-0 text-info/4 pointer-events-none">
+				<svg class="h-full w-full" xmlns="http://www.w3.org/2000/svg">
+					<defs>
+						<pattern id="topo-partners" x="0" y="0" width="180" height="180" patternUnits="userSpaceOnUse">
+							<path d="M 0 90 Q 45 70 90 90 T 180 90" fill="none" stroke="currentColor" stroke-width="0.7" opacity="0.2"/>
+							<path d="M 0 45 Q 90 15 180 45" fill="none" stroke="currentColor" stroke-width="0.5" opacity="0.15"/>
+							<circle cx="90" cy="90" r="45" fill="none" stroke="currentColor" stroke-width="0.4" opacity="0.1"/>
+						</pattern>
+					</defs>
+					<rect width="100%" height="100%" fill="url(#topo-partners)"/>
+				</svg>
+			</div>
+
+			<Container class="relative z-10">
+				<div class="mx-auto mb-16 max-w-2xl text-center">
+					<Badge variant="info" class="mb-4">Community</Badge>
+					<h2 class="text-3xl font-extrabold uppercase md:text-4xl">Our Partners</h2>
+					<p class="text-muted-foreground mt-4 text-lg">
+						Our community partners make the Wellness Passport possible. Pick up your passport or collect stamps at any of these participating locations.
+					</p>
+				</div>
+
+				<div class="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5">
+					{partners.map((partner, i) => (
+						<div
+							class="flex flex-col items-center rounded-xl border border-border bg-background p-4 text-center transition-all duration-300 hover:border-info/50 hover:bg-info/5"
+							style={`animation: scale-in 0.4s ease-out ${0.05 * i}s both;`}
+						>
+							<p class="text-sm font-semibold leading-tight">{partner.name}</p>
+							<Badge variant="default" class="mt-2 text-xs">{partner.type}</Badge>
+						</div>
+					))}
+				</div>
+
+				<div class="mt-12 text-center">
+					<Button href="/partners" variant="outline" size="lg" class="hover:bg-info hover:text-info-foreground hover:border-info transition-all">
+						View All Partners
+						<ArrowRight class="size-4" />
+					</Button>
+				</div>
+			</Container>
+		</Section>
+
+		<!-- ============================================ -->
+		<!-- 6. EVENTS                                    -->
+		<!-- ============================================ -->
+		<Section id="events" class="relative overflow-hidden">
+			<!-- Decorative topo pattern -->
+			<div class="absolute inset-0 text-warning/4 pointer-events-none">
+				<svg class="h-full w-full" xmlns="http://www.w3.org/2000/svg">
+					<defs>
+						<pattern id="topo-events" x="0" y="0" width="220" height="220" patternUnits="userSpaceOnUse">
+							<path d="M 0 110 Q 55 90 110 110 T 220 110" fill="none" stroke="currentColor" stroke-width="0.8" opacity="0.2"/>
+							<path d="M 0 55 Q 110 25 220 55" fill="none" stroke="currentColor" stroke-width="0.6" opacity="0.15"/>
+							<path d="M 0 165 Q 110 195 220 165" fill="none" stroke="currentColor" stroke-width="0.6" opacity="0.15"/>
+							<circle cx="180" cy="110" r="30" fill="none" stroke="currentColor" stroke-width="0.5" opacity="0.1"/>
+						</pattern>
+					</defs>
+					<rect width="100%" height="100%" fill="url(#topo-events)"/>
+				</svg>
+			</div>
+
+			<Container class="relative z-10">
+				<div class="mx-auto mb-16 max-w-2xl text-center">
+					<Badge variant="warning" class="mb-4">Join Us</Badge>
+					<h2 class="text-3xl font-extrabold uppercase md:text-4xl">Upcoming Events</h2>
+					<p class="text-muted-foreground mt-4 text-lg">
+						Monongalia County constantly has exciting, active events happening all around Morgantown and beyond.
+					</p>
+				</div>
+
+				<div class="grid gap-6 sm:grid-cols-2">
+					{upcomingEvents.map((event, i) => (
+						<div
+							class="group relative overflow-hidden rounded-2xl border border-border bg-card p-6 transition-all duration-300 hover:shadow-xl hover:-translate-y-1"
+							style={`animation: fade-in-up 0.5s ease-out ${0.1 * i}s both;`}
+						>
+							<!-- Accent bar -->
+							<div class="absolute left-0 top-0 bottom-0 w-1 bg-warning/0 transition-all duration-300 group-hover:bg-warning"></div>
+							
+							<!-- Decorative circle -->
+							<div class="absolute -right-4 -top-4 size-20 bg-warning/5 rounded-full blur-xl transition-opacity group-hover:opacity-100 opacity-50"></div>
+							
+							<div class="relative">
+								<div class="mb-4 flex flex-wrap items-center gap-3">
+									<div class="flex items-center gap-2 rounded-lg bg-warning/10 px-3 py-1.5">
+										<Calendar class="text-warning size-4" />
+										<span class="text-sm font-semibold text-warning">{event.date}</span>
+									</div>
+								</div>
+								<h3 class="mb-2 text-xl font-bold group-hover:text-warning transition-colors">{event.title}</h3>
+								<p class="text-muted-foreground mb-3 flex items-center gap-2 text-sm">
+									<MapPin class="size-4 shrink-0 text-warning" />
+									{event.location}
+								</p>
+								<p class="text-muted-foreground text-sm leading-relaxed">{event.description}</p>
+							</div>
+						</div>
+					))}
+				</div>
+
+				<div class="mt-12 text-center">
+					<Button href="/events" variant="outline" size="lg" class="hover:bg-warning hover:text-warning-foreground hover:border-warning transition-all">
+						View Full Calendar
+						<ArrowRight class="size-4" />
+					</Button>
+				</div>
 			</Container>
 		</Section>
 	</main>

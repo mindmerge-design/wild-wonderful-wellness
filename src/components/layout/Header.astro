@@ -1,19 +1,92 @@
 ---
 // Components
-import NavBar from '@/components/elements/navigation/NavBar.astro'
 import Container from '@/components/layout/Container.astro'
+import { Award, Calendar, Compass, MapPin, Users } from 'lucide-astro'
 
 // Misc
 const { class: className, ...rest } = Astro.props
 const pathname = Astro.url.pathname
+
+const navItems = [
+	{ href: '#how-it-works', label: 'How It Works', icon: Compass },
+	{ href: '#parks-trails', label: 'Parks & Trails', icon: MapPin },
+	{ href: '#partners', label: 'Partners', icon: Users },
+	{ href: '#events', label: 'Events', icon: Calendar }
+]
 ---
 
-<header>
+<header class="sticky top-0 z-40 w-full">
 	<div
-		class={`bg-background mx-auto flex justify-between border-b transition-all duration-300 ease-in-out ${className}`}
+		class="bg-background/95 supports-[backdrop-filter]:bg-background/80 border-border border-b backdrop-blur transition-all duration-300"
 	>
 		<Container>
-			<NavBar pathname={pathname} />
+			<div class="flex h-16 items-center justify-between">
+				<!-- Logo -->
+				<a href="/" class="flex items-center gap-2 no-underline">
+					<Compass class="text-primary size-6" />
+					<span class="text-lg font-bold tracking-tight">Wellness Passport</span>
+				</a>
+
+				<!-- Desktop Navigation -->
+				<nav class="hidden items-center gap-1 md:flex">
+					{
+						navItems.map((item) => (
+							<a
+								href={item.href}
+								class="text-muted-foreground hover:text-foreground hover:bg-muted flex items-center gap-1.5 rounded-md px-3 py-2 text-sm font-medium no-underline transition-colors"
+							>
+								<item.icon class="size-4" />
+								{item.label}
+							</a>
+						))
+					}
+					<a
+						href="#partners"
+						class="bg-primary text-primary-foreground hover:bg-primary/90 ml-2 inline-flex items-center gap-1.5 rounded-full px-4 py-2 text-sm font-semibold no-underline transition-colors"
+					>
+						Get Passport
+					</a>
+				</nav>
+
+				<!-- Mobile Menu Button -->
+				<button
+					type="button"
+					class="text-muted-foreground hover:bg-muted inline-flex items-center justify-center rounded-md p-2 md:hidden"
+					aria-label="Toggle menu"
+				>
+					<svg class="size-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+						<path
+							stroke-linecap="round"
+							stroke-linejoin="round"
+							stroke-width="2"
+							d="M4 6h16M4 12h16M4 18h16"></path>
+					</svg>
+				</button>
+			</div>
+
+			<!-- Mobile Navigation (hidden by default) -->
+			<nav class="hidden pb-4 md:hidden">
+				<div class="flex flex-col gap-1">
+					{
+						navItems.map((item) => (
+							<a
+								href={item.href}
+								class="text-muted-foreground hover:text-foreground hover:bg-muted flex items-center gap-2 rounded-md px-3 py-2.5 text-sm font-medium no-underline"
+							>
+								<item.icon class="size-4" />
+								{item.label}
+							</a>
+						))
+					}
+					<a
+						href="#partners"
+						class="bg-primary text-primary-foreground mt-2 flex items-center justify-center gap-1.5 rounded-full px-4 py-2.5 text-sm font-semibold no-underline"
+					>
+						<Award class="size-4" />
+						Get Passport
+					</a>
+				</div>
+			</nav>
 		</Container>
 	</div>
 </header>

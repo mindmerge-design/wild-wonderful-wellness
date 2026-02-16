@@ -1,0 +1,266 @@
+---
+// Packages
+import { Image } from 'astro:assets'
+import { SEO } from 'astro-seo'
+import { ArrowLeft, Clock, Globe, Info, MapPin, Phone } from 'lucide-astro'
+
+// Components
+import Badge from '@/components/elements/content/Badge.astro'
+import Card from '@/components/elements/content/Card.astro'
+import PortableText from '@/components/elements/content/PortableText.astro'
+import Container from '@/components/layout/Container.astro'
+import Hero from '@/components/layout/Hero.astro'
+import Section from '@/components/layout/Section.astro'
+import { Button } from '@/components/starwind/button'
+import Layout from '@/layouts/Layout.astro'
+
+// Sanity
+import { loadQuery } from '@/sanity/lib/load-query'
+import { parkBySlugQuery, settingsQuery } from '@/sanity/lib/queries'
+import { urlForImage } from '@/sanity/lib/urlForImage'
+
+// Types
+import type { ParkTrail } from '@/sanity/schemaTypes/parkTrail'
+import type { SiteSettings } from '@/sanity/schemaTypes/siteSettings'
+
+// Data
+const { slug } = Astro.params
+const { data: settings } = await loadQuery<SiteSettings>({ query: settingsQuery })
+const { data: park } = await loadQuery<ParkTrail>({
+	query: parkBySlugQuery,
+	params: { slug }
+})
+
+if (!park) {
+	return Astro.redirect('/404')
+}
+
+const siteName = settings?.siteName || 'Wild & Wonderful Wellness'
+
+// SEO
+const seoTitle = park.seo?.metaTitle || park.title
+const seoDescription = park.seo?.metaDescription || park.shortDescription || ''
+const seoImage = park.seo?.sharingImage
+	? urlForImage(park.seo.sharingImage).width(1200).height(630).url()
+	: park.mainImage
+		? urlForImage(park.mainImage).width(1200).height(630).url()
+		: settings?.sharingImage
+			? urlForImage(settings.sharingImage).width(1200).height(630).url()
+			: ''
+
+// Helper to format amenity name
+function formatAmenity(amenity: string) {
+	return amenity.replace(/-/g, ' ').replace(/\b\w/g, (c) => c.toUpperCase())
+}
+---
+
+<Layout>
+	<SEO
+		title={`${seoTitle} | ${siteName}`}
+		description={seoDescription}
+		openGraph={{
+			basic: {
+				title: `${seoTitle} | ${siteName}`,
+				type: 'website',
+				image: seoImage
+			}
+		}}
+		slot="head"
+	/>
+
+	<!-- Hero with background image -->
+	<Hero class="min-h-[50vh] flex items-center" textColor="text-primary-foreground">
+		{
+			park.mainImage && (
+				<Image
+					src={urlForImage(park.mainImage).width(1920).height(1080).url()}
+					alt={park.mainImage.alt || park.title}
+					width={1920}
+					height={1080}
+					class="absolute inset-0 z-0 h-full w-full object-cover"
+				/>
+			)
+		}
+		<div class="bg-foreground/50 absolute inset-0 z-10"></div>
+		<div class="relative z-20">
+			<h1 class="text-primary-foreground">{park.title}</h1>
+			{park.shortDescription && <p class="text-primary-foreground/90 mt-2 text-lg">{park.shortDescription}</p>}
+		</div>
+	</Hero>
+
+	<main id="main-content">
+		<Section>
+			<Container>
+				<div class="grid gap-12 lg:grid-cols-3">
+					<!-- Main Content (2/3) -->
+					<div class="lg:col-span-2">
+						<!-- Park Type Badge -->
+						{
+							park.parkType && (
+								<div class="mb-6">
+									<Badge variant="primary">
+										{park.parkType.replace(/-/g, ' ').replace(/\b\w/g, (c) => c.toUpperCase())}
+									</Badge>
+								</div>
+							)
+						}
+
+						<!-- Content -->
+						{
+							park.content && (
+								<div class="prose max-w-none">
+									<PortableText portableText={park.content} />
+								</div>
+							)
+						}
+
+						<!-- Lockbox Info -->
+						{
+							park.lockboxLocation && (
+								<Card class="bg-info/10 border border-info/20 mt-8">
+									<div class="flex items-start gap-3">
+										<Info class="text-info mt-1 size-5 shrink-0" />
+										<div>
+											<h3 class="mb-1 text-base font-semibold">Passport Lockbox Location</h3>
+											<p class="text-muted-foreground text-sm">{park.lockboxLocation}</p>
+										</div>
+									</div>
+									{park.lockboxPhoto && (
+										<Image
+											src={urlForImage(park.lockboxPhoto).width(400).height(300).url()}
+											alt={park.lockboxPhoto.alt || 'Lockbox location'}
+											width={400}
+											height={300}
+											class="mt-4 rounded-lg"
+										/>
+									)}
+								</Card>
+							)
+						}
+
+						<!-- Amenities -->
+						{
+							park.amenities && park.amenities.length > 0 && (
+								<div class="mt-8">
+									<h2 class="mb-4 text-xl font-bold">Amenities</h2>
+									<div class="flex flex-wrap gap-2">
+										{park.amenities.map((amenity) => (
+											<Badge variant="outline">{formatAmenity(amenity)}</Badge>
+										))}
+									</div>
+								</div>
+							)
+						}
+
+						<!-- Gallery -->
+						{
+							park.gallery?.images && park.gallery.images.length > 0 && (
+								<div class="mt-12">
+									<h2 class="mb-6 text-xl font-bold">Gallery</h2>
+									<div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+										{park.gallery.images.map((image) => (
+											<div class="overflow-hidden rounded-lg">
+												<Image
+													src={urlForImage(image).width(400).height(300).url()}
+													alt={image.alt || park.title}
+													width={400}
+													height={300}
+													class="aspect-[4/3] w-full object-cover transition-transform duration-300 hover:scale-105"
+												/>
+											</div>
+										))}
+									</div>
+								</div>
+							)
+						}
+					</div>
+
+					<!-- Sidebar (1/3) -->
+					<div class="lg:col-span-1">
+						<div class="sticky top-8">
+							<Card class="bg-card border border-border">
+								<h3 class="mb-4 text-lg font-bold">Park Information</h3>
+
+								{/* Address */}
+								{
+									park.address && (
+										<div class="mb-4">
+											<div class="mb-1 flex items-center gap-2">
+												<MapPin class="text-primary size-4" />
+												<span class="text-sm font-medium">Address</span>
+											</div>
+											<div class="text-muted-foreground ml-6 text-sm">
+												<PortableText portableText={park.address} />
+											</div>
+										</div>
+									)
+								}
+
+								{/* Hours */}
+								{
+									park.hours && (
+										<div class="mb-4">
+											<div class="mb-1 flex items-center gap-2">
+												<Clock class="text-primary size-4" />
+												<span class="text-sm font-medium">Hours</span>
+											</div>
+											<div class="text-muted-foreground ml-6 text-sm">
+												<PortableText portableText={park.hours} />
+											</div>
+										</div>
+									)
+								}
+
+								{/* Phone */}
+								{
+									park.phone && (
+										<div class="mb-4">
+											<div class="mb-1 flex items-center gap-2">
+												<Phone class="text-primary size-4" />
+												<span class="text-sm font-medium">Phone</span>
+											</div>
+											<a
+												href={`tel:${park.phone}`}
+												class="text-primary ml-6 text-sm hover:underline"
+											>
+												{park.phone}
+											</a>
+										</div>
+									)
+								}
+
+								{/* Website */}
+								{
+									park.websiteUrl && (
+										<div class="mb-4">
+											<div class="mb-1 flex items-center gap-2">
+												<Globe class="text-primary size-4" />
+												<span class="text-sm font-medium">Website</span>
+											</div>
+											<a
+												href={park.websiteUrl}
+												target="_blank"
+												rel="noopener noreferrer"
+												class="text-primary ml-6 text-sm hover:underline"
+											>
+												Visit Website
+												<span class="sr-only">(opens in new tab)</span>
+											</a>
+										</div>
+									)
+								}
+
+								<div class="mt-6 border-t border-border pt-4">
+									<Button href="/parks-and-trails" variant="ghost" size="sm" class="w-full">
+										<ArrowLeft class="size-4" />
+										Back to Parks & Trails
+									</Button>
+								</div>
+							</Card>
+						</div>
+					</div>
+				</div>
+			</Container>
+		</Section>
+	</main>
+</Layout>

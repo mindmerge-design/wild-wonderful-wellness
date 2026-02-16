@@ -1,0 +1,85 @@
+---
+// Packages
+import { SEO } from 'astro-seo'
+
+// Components
+import SectionHeader from '@/components/elements/content/SectionHeader.astro'
+import PartnersFilter from '@/components/elements/interactive/PartnersFilter'
+import Container from '@/components/layout/Container.astro'
+import Hero from '@/components/layout/Hero.astro'
+import Section from '@/components/layout/Section.astro'
+import Layout from '@/layouts/Layout.astro'
+
+// Sanity
+import { loadQuery } from '@/sanity/lib/load-query'
+import { allPartnersQuery, settingsQuery } from '@/sanity/lib/queries'
+import { urlForImage } from '@/sanity/lib/urlForImage'
+
+// Types
+import type { Partner } from '@/sanity/schemaTypes/partner'
+import type { SiteSettings } from '@/sanity/schemaTypes/siteSettings'
+
+// Data
+const { data: settings } = await loadQuery<SiteSettings>({ query: settingsQuery })
+const { data: partners } = await loadQuery<Partner[]>({ query: allPartnersQuery })
+
+const siteName = settings?.siteName || 'Wild & Wonderful Wellness'
+
+// Serialize partners for React component (pre-resolve image URLs)
+const serializedPartners = (partners || []).map((partner) => ({
+	_id: partner._id,
+	title: partner.title,
+	slug: partner.slug?.current || '',
+	shortDescription: partner.shortDescription || '',
+	logo: partner.logo ? urlForImage(partner.logo).width(200).height(200).url() : '',
+	logoAlt: partner.logo?.alt || partner.title,
+	mainImage: partner.mainImage
+		? urlForImage(partner.mainImage).width(600).height(400).url()
+		: '',
+	mainImageAlt: partner.mainImage?.alt || partner.title,
+	partnerType: partner.partnerType || '',
+	hasPassportPickup: partner.hasPassportPickup || false,
+	hasStampStation: partner.hasStampStation || false
+}))
+
+// SEO
+const seoTitle = `Partners | ${siteName}`
+const seoDescription =
+	settings?.siteDescription || 'View our community wellness partners.'
+const seoImage = settings?.sharingImage
+	? urlForImage(settings.sharingImage).width(1200).height(630).url()
+	: ''
+---
+
+<Layout>
+	<SEO
+		title={seoTitle}
+		description={seoDescription}
+		openGraph={{
+			basic: {
+				title: seoTitle,
+				type: 'website',
+				image: seoImage
+			}
+		}}
+		slot="head"
+	/>
+
+	<Hero>
+		<h1>Partners</h1>
+		<p>Community businesses and organizations supporting the wellness passport program.</p>
+	</Hero>
+
+	<main id="main-content">
+		<Section id="partners-listing">
+			<Container>
+				<SectionHeader
+					title="Our Partners"
+					description={settings?.partnersIntroText}
+				/>
+
+				<PartnersFilter partners={serializedPartners} client:load />
+			</Container>
+		</Section>
+	</main>
+</Layout>

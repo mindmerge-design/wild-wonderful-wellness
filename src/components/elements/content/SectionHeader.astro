@@ -1,0 +1,22 @@
+---
+import PortableText from '@/components/elements/content/PortableText.astro'
+
+interface Props {
+	title: string
+	subtitle?: string
+	description?: unknown[]
+	align?: 'left' | 'center'
+	class?: string
+}
+
+const { title, subtitle, description, align = 'center', class: className } = Astro.props
+
+const alignClass = align === 'center' ? 'text-center mx-auto' : 'text-left'
+---
+
+<div class={`prose max-w-2xl mb-12 ${alignClass} ${className ?? ''}`}>
+	{subtitle && <p class="text-primary mb-2 text-sm font-semibold uppercase tracking-wider">{subtitle}</p>}
+	<h2>{title}</h2>
+	{description && <div class="mt-4"><PortableText portableText={description} /></div>}
+	<slot />
+</div>

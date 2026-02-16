@@ -1,0 +1,80 @@
+---
+// Packages
+import { SEO } from 'astro-seo'
+
+// Components
+import SectionHeader from '@/components/elements/content/SectionHeader.astro'
+import ParksFilter from '@/components/elements/interactive/ParksFilter'
+import Container from '@/components/layout/Container.astro'
+import Hero from '@/components/layout/Hero.astro'
+import Section from '@/components/layout/Section.astro'
+import Layout from '@/layouts/Layout.astro'
+
+// Sanity
+import { loadQuery } from '@/sanity/lib/load-query'
+import { allParksQuery, settingsQuery } from '@/sanity/lib/queries'
+import { urlForImage } from '@/sanity/lib/urlForImage'
+
+// Types
+import type { ParkTrail } from '@/sanity/schemaTypes/parkTrail'
+import type { SiteSettings } from '@/sanity/schemaTypes/siteSettings'
+
+// Data
+const { data: settings } = await loadQuery<SiteSettings>({ query: settingsQuery })
+const { data: parks } = await loadQuery<ParkTrail[]>({ query: allParksQuery })
+
+const siteName = settings?.siteName || 'Wild & Wonderful Wellness'
+
+// Serialize parks for React component (pre-resolve image URLs)
+const serializedParks = (parks || []).map((park) => ({
+	_id: park._id,
+	title: park.title,
+	slug: park.slug?.current || '',
+	shortDescription: park.shortDescription || '',
+	mainImage: park.mainImage ? urlForImage(park.mainImage).width(600).height(400).url() : '',
+	mainImageAlt: park.mainImage?.alt || park.title,
+	parkType: park.parkType || '',
+	amenities: park.amenities || []
+}))
+
+// SEO
+const seoTitle = `Parks & Trails | ${siteName}`
+const seoDescription =
+	settings?.siteDescription || 'Explore parks and trails in the wellness passport program.'
+const seoImage = settings?.sharingImage
+	? urlForImage(settings.sharingImage).width(1200).height(630).url()
+	: ''
+---
+
+<Layout>
+	<SEO
+		title={seoTitle}
+		description={seoDescription}
+		openGraph={{
+			basic: {
+				title: seoTitle,
+				type: 'website',
+				image: seoImage
+			}
+		}}
+		slot="head"
+	/>
+
+	<Hero>
+		<h1>Parks & Trails</h1>
+		<p>Discover outdoor spaces in the wellness passport program.</p>
+	</Hero>
+
+	<main id="main-content">
+		<Section id="parks-listing">
+			<Container>
+				<SectionHeader
+					title="Explore Parks & Trails"
+					description={settings?.parksIntroText}
+				/>
+
+				<ParksFilter parks={serializedParks} client:load />
+			</Container>
+		</Section>
+	</main>
+</Layout>

@@ -14,6 +14,7 @@ import siteSettings from './documents/siteSettings'
 import accordion from './objects/accordion'
 import fileDownload from './objects/fileDownload'
 import hero from './objects/hero'
+import howItWorksStep from './objects/howItWorksStep'
 import imageAlt from './objects/imageAlt'
 import imageAndText from './objects/imageAndText'
 import imageGallery from './objects/imageGallery'
@@ -38,6 +39,7 @@ export const schemaTypes = [
   generic,
   hero,
   home,
+  howItWorksStep,
   imageAlt,
   imageAndText,
   imageGallery,

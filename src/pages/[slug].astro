@@ -1,7 +1,6 @@
 ---
 // Packages
 import { loadQuery } from '@/sanity/lib/load-query'
-import { settings } from '@/sanity/lib/queries'
 import { urlForImage } from '@/sanity/lib/urlForImage'
 import type { SanityDocument } from '@sanity/client'
 import { SEO } from 'astro-seo'
@@ -35,6 +34,10 @@ const { data: page } = await loadQuery<{ title: string; body: any[] }>({
 	query: `*[_type == "generic" && slug.current == $slug][0]`,
 	params,
 	preview: isPreview
+})
+
+const { data: settings } = await loadQuery<{ siteName: string; sharingImage?: any }>({
+	query: `*[_type == "siteSettings"][0]{ siteName, sharingImage{..., asset->} }`
 })
 ---
 

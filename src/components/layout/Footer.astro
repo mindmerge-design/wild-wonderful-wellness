@@ -2,11 +2,14 @@
 // Components
 import Container from '@/components/layout/Container.astro'
 import { footerConfig } from '@/components/config/navigation'
+import { loadQuery } from '@/sanity/lib/load-query'
+import { settingsQuery } from '@/sanity/lib/queries'
+import type { SiteSettings } from '@/sanity/schemaTypes/siteSettings'
 
 // Misc
 const d = new Date()
 const n = d.getFullYear()
-const { settings } = Astro.props
+const { data: settings } = await loadQuery<SiteSettings>({ query: settingsQuery })
 ---
 
 <footer
