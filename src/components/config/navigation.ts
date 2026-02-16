@@ -9,6 +9,18 @@ export const navigationConfig: NavigationItem[] = [
 	{
 		label: 'Home',
 		href: '/'
+	},
+	{
+		label: 'Parks & Trails',
+		href: '/parks-trails'
+	},
+	{
+		label: 'Events',
+		href: '/events'
+	},
+	{
+		label: 'Partners',
+		href: '/partners'
 	}
 	// Add more navigation items as needed
 	// Example:

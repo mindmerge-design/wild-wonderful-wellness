@@ -9,7 +9,7 @@ Camera,
 Compass,
 Gift,
 Heart,
-Map,
+Map as MapIcon,
 MapPin,
 Stamp,
 TreePine
@@ -20,6 +20,7 @@ import Badge from '@/components/elements/content/Badge.astro'
 import Card from '@/components/elements/content/Card.astro'
 import Container from '@/components/layout/Container.astro'
 import Section from '@/components/layout/Section.astro'
+import ParkMap from '@/components/ParkMap.tsx'
 import { Button } from '@/components/starwind/button'
 import Layout from '@/layouts/Layout.astro'
 
@@ -77,6 +78,8 @@ const partners = [
 	{ name: 'YMCA of Morgantown', type: 'Fitness' },
 	{ name: 'WV Division of Natural Resources', type: 'State' }
 ]
+
+const mapboxToken = import.meta.env.PUBLIC_MAPBOX_TOKEN || ''
 
 const upcomingEvents = [
 	{
@@ -363,53 +366,71 @@ Nature is the Cure.</h2>
 					<Badge variant="success" class="mb-4">Explore</Badge>
 					<h2 class="text-3xl font-extrabold uppercase md:text-4xl">Parks & Trails</h2>
 				</div>
-				<div class="mx-auto mb-16 max-w-3xl">
+				<div class="mx-auto mb-12 max-w-3xl">
 					<p class="text-muted-foreground text-center text-lg leading-relaxed">
-						There are over 30 parks and trails in Monongalia County waiting for you to explore. In each participating location, you will find a mounted lockbox with a custom self-inking stamp inside, which you can use to track your progress and earn credit in your passport. Your passport includes brief descriptions of how to find the locations of the lockboxes within the parks, but check out the list below for additional information about each park's lockboxes.
+						There are over 30 parks and trails in Monongalia County waiting for you to explore. In each participating location, you will find a mounted lockbox with a custom self-inking stamp inside, which you can use to track your progress and earn credit in your passport.
 					</p>
 				</div>
 
-				<!-- Park cards — horizontal scroll on mobile, grid on desktop -->
-				<div class="-mx-4 flex gap-6 overflow-x-auto px-4 pb-6 sm:mx-0 sm:grid sm:grid-cols-2 sm:overflow-visible sm:px-0 sm:pb-0 lg:grid-cols-3">
-					{parks.map((park, i) => (
-						<div
-							class="w-80 shrink-0 sm:w-auto"
-							style={`animation: fade-in-up 0.5s ease-out ${0.08 * i}s both;`}
-						>
-							<Card class="h-full border border-border bg-card transition-all duration-300 hover:shadow-xl hover:-translate-y-1 group">
-								<!-- Image placeholder with icon -->
-								<div class="bg-muted -mx-3 -mt-3 mb-4 flex aspect-[3/2] items-center justify-center rounded-t-lg relative overflow-hidden md:-mx-6 md:-mt-6 lg:-mx-9 lg:-mt-9">
-									<div class="absolute inset-0 bg-success/5"></div>
-									<div class="relative z-10 flex size-14 items-center justify-center rounded-full bg-background shadow-md group-hover:scale-110 transition-transform duration-300">
-										<TreePine class="text-success size-7" />
+				<!-- Split Layout: Scrollable Cards + Interactive Map -->
+				<div class="grid lg:grid-cols-2 gap-8 items-stretch">
+					<!-- Left: Scrollable Park Cards -->
+					<div class="order-2 lg:order-1">
+						<div class="h-[500px] overflow-y-auto pr-2 space-y-4 rounded-xl border border-border bg-background p-4 shadow-inner">
+							{parks.map((park, i) => (
+								<div
+									class="group relative rounded-xl border border-border bg-card overflow-hidden transition-all duration-300 hover:shadow-lg hover:border-success/30 cursor-pointer"
+									style={`animation: fade-in-up 0.4s ease-out ${0.05 * i}s both;`}
+								>
+									<div class="flex">
+										<!-- Park Image Placeholder (Left) -->
+										<div class="w-24 shrink-0 bg-muted flex items-center justify-center relative overflow-hidden">
+											<div class="absolute inset-0 bg-success/5"></div>
+											<div class="relative z-10 flex size-8 items-center justify-center rounded-full bg-background shadow-sm">
+												<TreePine class="text-success size-4" />
+											</div>
+											<div class="absolute top-1 left-1 size-5 rounded-full bg-success flex items-center justify-center text-white text-[10px] font-bold">
+												{i + 1}
+											</div>
+										</div>
+										<!-- Park Info (Right) -->
+										<div class="flex-1 p-3 min-w-0">
+											<h4 class="font-bold text-foreground group-hover:text-success transition-colors text-sm truncate">{park.name}</h4>
+											<p class="text-muted-foreground text-xs leading-relaxed mt-1 line-clamp-2">{park.description}</p>
+											<div class="mt-2 flex items-center gap-1 text-xs font-medium text-success">
+												<MapPin class="size-3" />
+												<span>View on map</span>
+											</div>
+										</div>
 									</div>
 								</div>
-								<h3 class="mb-3 text-lg font-bold group-hover:text-success transition-colors">{park.name}</h3>
-								<p class="text-muted-foreground mb-4 text-sm leading-relaxed">{park.description}</p>
-								<span class="text-primary inline-flex items-center gap-1.5 text-sm font-medium group-hover:gap-2 transition-all">
-									Learn More <ArrowRight class="size-4" />
-								</span>
-							</Card>
+							))}
 						</div>
-					))}
-				</div>
+					</div>
 
-				<!-- Interactive map placeholder -->
-				<div class="mt-16 relative overflow-hidden rounded-2xl border-2 border-dashed border-border bg-muted">
-					<div class="absolute inset-0 bg-success/5"></div>
-					<div class="relative flex aspect-[16/7] items-center justify-center p-8">
-						<div class="text-center">
-							<div class="mx-auto mb-4 flex size-16 items-center justify-center rounded-full bg-background shadow-lg">
-								<Map class="text-success size-8" />
-							</div>
-							<p class="text-xl font-semibold">Interactive Map Coming Soon</p>
-							<p class="text-muted-foreground mt-2 text-base">
-								Explore all 30+ parks and trails across Monongalia County
-							</p>
+					<!-- Right: Interactive Map -->
+					<div class="order-1 lg:order-2">
+						<div class="sticky top-24 h-[500px]">
+							{mapboxToken ? (
+								<ParkMap parks={parks} mapboxToken={mapboxToken} client:only="react" />
+							) : (
+								<div class="relative overflow-hidden rounded-2xl border-2 border-border bg-muted shadow-xl h-full">
+									<div class="absolute inset-0 bg-success/5"></div>
+									<div class="absolute inset-0 flex items-center justify-center">
+										<div class="text-center">
+											<div class="mx-auto mb-2 flex size-16 items-center justify-center rounded-full bg-background shadow-lg">
+												<MapIcon class="text-success size-8" />
+											</div>
+											<p class="text-sm font-medium text-muted-foreground">Mapbox token required</p>
+											<p class="text-xs text-muted-foreground/70 mt-1">Add PUBLIC_MAPBOX_TOKEN to your .env file</p>
+										</div>
+									</div>
+								</div>
+							)}
 						</div>
 					</div>
 				</div>
-
+				
 				<div class="mt-10 text-center">
 					<Button href="/parks-and-trails" variant="outline" size="lg" class="hover:bg-success hover:text-success-foreground hover:border-success transition-all">
 						View All Parks & Trails
@@ -418,24 +439,6 @@ Nature is the Cure.</h2>
 				</div>
 			</Container>
 		</Section>
-
-		<!-- ============================================ -->
-		<!-- 5. PARTNERS                                  -->
-		<!-- ============================================ -->
-		<Section id="partners" class="bg-muted relative overflow-hidden">
-			<!-- Decorative topo pattern -->
-			<div class="absolute inset-0 text-info/4 pointer-events-none">
-				<svg class="h-full w-full" xmlns="http://www.w3.org/2000/svg">
-					<defs>
-						<pattern id="topo-partners" x="0" y="0" width="180" height="180" patternUnits="userSpaceOnUse">
-							<path d="M 0 90 Q 45 70 90 90 T 180 90" fill="none" stroke="currentColor" stroke-width="0.7" opacity="0.2"/>
-							<path d="M 0 45 Q 90 15 180 45" fill="none" stroke="currentColor" stroke-width="0.5" opacity="0.15"/>
-							<circle cx="90" cy="90" r="45" fill="none" stroke="currentColor" stroke-width="0.4" opacity="0.1"/>
-						</pattern>
-					</defs>
-					<rect width="100%" height="100%" fill="url(#topo-partners)"/>
-				</svg>
-			</div>
 
 			<Container class="relative z-10">
 				<div class="mx-auto mb-16 max-w-2xl text-center">

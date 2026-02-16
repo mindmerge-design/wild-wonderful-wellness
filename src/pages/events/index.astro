@@ -1,15 +1,13 @@
 ---
 // Packages
-import { Image } from 'astro:assets'
 import { SEO } from 'astro-seo'
-import { Calendar, MapPin } from 'lucide-astro'
+import { Image } from 'astro:assets'
+import { Calendar, MapPin, Camera, ArrowRight, Star } from 'lucide-astro'
 
 // Components
 import Badge from '@/components/elements/content/Badge.astro'
 import Card from '@/components/elements/content/Card.astro'
-import SectionHeader from '@/components/elements/content/SectionHeader.astro'
 import Container from '@/components/layout/Container.astro'
-import Hero from '@/components/layout/Hero.astro'
 import Section from '@/components/layout/Section.astro'
 import Layout from '@/layouts/Layout.astro'
 
@@ -35,8 +33,7 @@ const pastEvents = (allEvents || []).filter((e) => e.eventDate < now).reverse()
 
 // SEO
 const seoTitle = `Events | ${siteName}`
-const seoDescription =
-	settings?.siteDescription || 'Browse upcoming and past wellness events.'
+const seoDescription = settings?.siteDescription || 'Browse upcoming and past wellness events.'
 const seoImage = settings?.sharingImage
 	? urlForImage(settings.sharingImage).width(1200).height(630).url()
 	: ''
@@ -73,79 +70,147 @@ function formatShortDate(dateStr: string) {
 		slot="head"
 	/>
 
-	<Hero>
-		<h1>Events</h1>
-		<p>Join us for wellness events, workshops, and community gatherings.</p>
-	</Hero>
+	<!-- Hero Section -->
+	<div class="relative min-h-[40vh] overflow-hidden bg-primary">
+		<!-- Decorative topo pattern overlay -->
+		<div class="absolute inset-0 opacity-[0.08]">
+			<svg class="h-full w-full" xmlns="http://www.w3.org/2000/svg">
+				<defs>
+					<pattern id="topo-events-hero" x="0" y="0" width="200" height="200" patternUnits="userSpaceOnUse">
+						<path d="M 0 80 Q 50 60 100 80 T 200 80" fill="none" stroke="white" stroke-width="1"/>
+						<path d="M 0 100 Q 50 75 100 100 T 200 100" fill="none" stroke="white" stroke-width="0.8"/>
+						<path d="M 0 120 Q 50 95 100 120 T 200 120" fill="none" stroke="white" stroke-width="0.6"/>
+						<circle cx="160" cy="40" r="20" fill="none" stroke="white" stroke-width="0.5"/>
+					</pattern>
+				</defs>
+				<rect width="100%" height="100%" fill="url(#topo-events-hero)"/>
+			</svg>
+		</div>
+		<div class="absolute inset-0 bg-linear-to-b from-black/30 via-black/10 to-black/50"></div>
+
+		<Container class="relative z-10 flex min-h-[40vh] flex-col justify-center py-16">
+			<div class="max-w-3xl" style="animation: fade-in-up 0.8s ease-out both;">
+				<div class="mb-4 inline-flex items-center gap-2 rounded-full border border-white/30 bg-white/10 px-4 py-2 text-sm font-medium text-white/95 backdrop-blur-md">
+					<Star class="size-4 text-accent" />
+					<span>Join the Community</span>
+				</div>
+				<h1 class="text-4xl font-extrabold tracking-tight text-white md:text-5xl lg:text-6xl">
+					Upcoming <span class="text-accent">Events</span>
+				</h1>
+				<p class="mt-4 text-xl text-white/90 max-w-2xl">
+					{settings?.eventsIntroText || 'Join us for wellness events, workshops, and community gatherings across Monongalia County.'}
+				</p>
+			</div>
+		</Container>
+
+		<!-- Wave divider -->
+		<div class="absolute -bottom-2 left-0 right-0">
+			<svg viewBox="0 0 1440 120" class="w-full text-background" preserveAspectRatio="none">
+				<path fill="currentColor" d="M0,64L60,69.3C120,75,240,85,360,80C480,75,600,53,720,48C840,43,960,53,1080,64C1200,75,1320,85,1380,90L1440,96L1440,120L1380,120C1320,120,1200,120,1080,120C960,120,840,120,720,120C600,120,480,120,360,120C240,120,120,120,60,120L0,120Z"/>
+			</svg>
+		</div>
+	</div>
 
 	<main id="main-content">
 		<!-- Upcoming Events -->
-		<Section id="upcoming-events">
-			<Container>
-				<SectionHeader
-					title="Upcoming Events"
-					subtitle="Mark Your Calendar"
-					description={settings?.eventsIntroText}
-				/>
+		<Section id="upcoming-events" class="relative overflow-hidden">
+			<!-- Decorative topo pattern -->
+			<div class="absolute inset-0 text-warning/4 pointer-events-none">
+				<svg class="h-full w-full" xmlns="http://www.w3.org/2000/svg">
+					<defs>
+						<pattern id="topo-upcoming" x="0" y="0" width="220" height="220" patternUnits="userSpaceOnUse">
+							<path d="M 0 110 Q 55 90 110 110 T 220 110" fill="none" stroke="currentColor" stroke-width="0.8" opacity="0.2"/>
+							<path d="M 0 55 Q 110 25 220 55" fill="none" stroke="currentColor" stroke-width="0.6" opacity="0.15"/>
+							<circle cx="180" cy="110" r="30" fill="none" stroke="currentColor" stroke-width="0.5" opacity="0.1"/>
+						</pattern>
+					</defs>
+					<rect width="100%" height="100%" fill="url(#topo-upcoming)"/>
+				</svg>
+			</div>
+
+			<Container class="relative z-10">
+				<div class="mx-auto mb-12 max-w-2xl text-center">
+					<Badge variant="warning" class="mb-4">Mark Your Calendar</Badge>
+					<h2 class="text-3xl font-extrabold uppercase md:text-4xl">Upcoming Events</h2>
+					<p class="text-muted-foreground mt-4 text-lg">
+						Discover wellness activities and community gatherings happening near you.
+					</p>
+				</div>
 
 				{
 					upcomingEvents.length > 0 ? (
 						<div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-							{upcomingEvents.map((event) => (
-								<a
-									href={`/events/${event.slug?.current}`}
-									class="group block no-underline"
+							{upcomingEvents.map((event, i) => (
+								<div
+									class="group relative overflow-hidden rounded-2xl border border-border bg-card transition-all duration-300 hover:shadow-xl hover:-translate-y-1"
+									style={`animation: fade-in-up 0.5s ease-out ${0.1 * i}s both;`}
 								>
-									<Card class="bg-card border border-border transition-shadow hover:shadow-lg h-full">
-										{event.mainImage && (
-											<div class="relative -mx-3 -mt-3 mb-4 overflow-hidden rounded-t-lg md:-mx-6 md:-mt-6 lg:-mx-9 lg:-mt-9">
+									<!-- Accent bar -->
+									<div class="absolute left-0 top-0 bottom-0 w-1 bg-warning/0 transition-all duration-300 group-hover:bg-warning"></div>
+									
+									<!-- Decorative circle -->
+									<div class="absolute -right-4 -top-4 size-20 bg-warning/5 rounded-full blur-xl transition-opacity group-hover:opacity-100 opacity-50"></div>
+									
+									<a href={`/events/${event.slug?.current}`} class="block no-underline">
+										<!-- Image placeholder or actual image -->
+										<div class="bg-muted h-64 flex items-center justify-center relative overflow-hidden">
+											{event.mainImage ? (
 												<Image
 													src={urlForImage(event.mainImage).width(600).height(400).url()}
 													alt={event.mainImage.alt || event.title}
 													width={600}
 													height={400}
-													class="aspect-[3/2] w-full object-cover transition-transform duration-300 group-hover:scale-105"
+													class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
 												/>
-												<div class="bg-primary text-primary-foreground absolute top-3 left-3 rounded-lg px-3 py-1.5 text-center text-xs font-bold leading-tight">
-													{formatShortDate(event.eventDate)}
+											) : (
+												<div class="absolute inset-0 bg-warning/5"></div>
+												<div class="relative z-10 flex size-14 items-center justify-center rounded-full bg-background shadow-md">
+													<Camera class="text-warning size-6" />
 												</div>
-											</div>
-										)}
-
-										<div class="mb-2 flex flex-wrap items-center gap-2">
-											<Calendar class="text-primary size-4" />
-											<span class="text-muted-foreground text-sm">
-												{formatDate(event.eventDate)}
-											</span>
-										</div>
-
-										<h3 class="text-lg font-semibold">{event.title}</h3>
-
-										{event.location && (
-											<p class="text-muted-foreground mt-1 flex items-center gap-1 text-sm">
-												<MapPin class="size-3 shrink-0" />
-												{event.location}
-											</p>
-										)}
-
-										<div class="mt-3 flex flex-wrap gap-2">
-											{event.isFree && <Badge variant="success">Free</Badge>}
-											{!event.isFree && event.cost && (
-												<Badge variant="warning">{event.cost}</Badge>
 											)}
+											<div class="absolute top-3 left-3 flex items-center gap-2 rounded-lg bg-background/95 backdrop-blur px-3 py-1.5 text-xs font-bold shadow-md">
+												<Calendar class="text-warning size-3.5" />
+												{formatShortDate(event.eventDate)}
+											</div>
 										</div>
-
-										{event.shortDescription && (
-											<p class="text-muted-foreground mt-3 line-clamp-2 text-sm">
-												{event.shortDescription}
-											</p>
-										)}
-									</Card>
-								</a>
+										
+										<div class="relative p-6">
+											<div class="mb-3 flex flex-wrap items-center gap-2">
+												{event.isFree && <Badge variant="success">Free</Badge>}
+												{!event.isFree && event.cost && (
+													<Badge variant="warning">{event.cost}</Badge>
+												)}
+											</div>
+											
+											<h3 class="mb-2 text-xl font-bold group-hover:text-warning transition-colors">{event.title}</h3>
+											
+											{event.location && (
+												<p class="text-muted-foreground mb-3 flex items-center gap-2 text-sm">
+													<MapPin class="size-4 shrink-0 text-warning" />
+													{event.location}
+												</p>
+											)}
+											
+											{event.shortDescription && (
+												<p class="text-muted-foreground text-sm leading-relaxed line-clamp-2">
+													{event.shortDescription}
+												</p>
+											)}
+											
+											<div class="mt-4 flex items-center gap-1 text-sm font-medium text-primary">
+												<span>Learn More</span>
+												<ArrowRight class="size-4 transition-transform group-hover:translate-x-1" />
+											</div>
+										</div>
+									</a>
+								</div>
 							))}
 						</div>
 					) : (
-						<div class="py-12 text-center">
+						<div class="py-16 text-center">
+							<div class="mx-auto mb-4 flex size-16 items-center justify-center rounded-full bg-muted">
+								<Calendar class="text-muted-foreground size-8" />
+							</div>
 							<p class="text-muted-foreground text-lg">
 								No upcoming events at this time. Check back soon!
 							</p>
@@ -158,46 +223,69 @@ function formatShortDate(dateStr: string) {
 		<!-- Past Events -->
 		{
 			pastEvents.length > 0 && (
-				<Section id="past-events" class="bg-muted">
-					<Container>
-						<SectionHeader title="Past Events" subtitle="Looking Back" />
+				<Section id="past-events" class="bg-muted relative overflow-hidden">
+					<!-- Decorative topo pattern -->
+					<div class="absolute inset-0 text-primary/3 pointer-events-none">
+						<svg class="h-full w-full" xmlns="http://www.w3.org/2000/svg">
+							<defs>
+								<pattern id="topo-past" x="0" y="0" width="200" height="200" patternUnits="userSpaceOnUse">
+									<path d="M 0 100 Q 50 80 100 100 T 200 100" fill="none" stroke="currentColor" stroke-width="0.8" opacity="0.2"/>
+									<path d="M 0 50 Q 100 20 200 50" fill="none" stroke="currentColor" stroke-width="0.6" opacity="0.15"/>
+									<circle cx="150" cy="100" r="35" fill="none" stroke="currentColor" stroke-width="0.5" opacity="0.1"/>
+								</pattern>
+							</defs>
+							<rect width="100%" height="100%" fill="url(#topo-past)"/>
+						</svg>
+					</div>
+
+					<Container class="relative z-10">
+						<div class="mx-auto mb-12 max-w-2xl text-center">
+							<Badge variant="primary" class="mb-4">Looking Back</Badge>
+							<h2 class="text-3xl font-extrabold uppercase md:text-4xl">Past Events</h2>
+							<p class="text-muted-foreground mt-4 text-lg">
+								Relive the moments from our previous wellness gatherings.
+							</p>
+						</div>
 
 						<div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-							{pastEvents.map((event) => (
-								<a
-									href={`/events/${event.slug?.current}`}
-									class="group block no-underline"
+							{pastEvents.map((event, i) => (
+								<div
+									class="group relative overflow-hidden rounded-2xl border border-border bg-card opacity-80 transition-all duration-300 hover:opacity-100 hover:shadow-xl hover:-translate-y-1"
+									style={`animation: fade-in-up 0.5s ease-out ${0.1 * i}s both;`}
 								>
-									<Card class="bg-card border border-border opacity-80 transition-all hover:opacity-100 hover:shadow-lg">
-										{event.mainImage && (
-											<div class="relative -mx-3 -mt-3 mb-4 overflow-hidden rounded-t-lg md:-mx-6 md:-mt-6 lg:-mx-9 lg:-mt-9">
+									<a href={`/events/${event.slug?.current}`} class="block no-underline">
+										<div class="bg-muted h-48 flex items-center justify-center relative overflow-hidden">
+											{event.mainImage ? (
 												<Image
 													src={urlForImage(event.mainImage).width(600).height(400).url()}
 													alt={event.mainImage.alt || event.title}
 													width={600}
 													height={400}
-													class="aspect-[3/2] w-full object-cover grayscale transition-all duration-300 group-hover:grayscale-0"
+													class="h-full w-full object-cover grayscale transition-all duration-300 group-hover:grayscale-0 group-hover:scale-105"
 												/>
+											) : (
+												<div class="absolute inset-0 bg-muted"></div>
+												<div class="relative z-10 flex size-12 items-center justify-center rounded-full bg-background shadow-md">
+													<Camera class="text-muted-foreground size-5" />
+												</div>
+											)}
+											<div class="absolute top-3 left-3 flex items-center gap-2 rounded-lg bg-background/95 backdrop-blur px-3 py-1.5 text-xs font-bold shadow-md text-muted-foreground">
+												<Calendar class="size-3.5" />
+												{formatShortDate(event.eventDate)}
 											</div>
-										)}
-
-										<div class="mb-2 flex flex-wrap items-center gap-2">
-											<Calendar class="text-muted-foreground size-4" />
-											<span class="text-muted-foreground text-sm">
-												{formatDate(event.eventDate)}
-											</span>
 										</div>
-
-										<h3 class="text-lg font-semibold">{event.title}</h3>
-
-										{event.location && (
-											<p class="text-muted-foreground mt-1 flex items-center gap-1 text-sm">
-												<MapPin class="size-3 shrink-0" />
-												{event.location}
-											</p>
-										)}
-									</Card>
-								</a>
+										
+										<div class="relative p-5">
+											<h3 class="text-lg font-semibold group-hover:text-primary transition-colors">{event.title}</h3>
+											{event.location && (
+												<p class="text-muted-foreground mt-1 flex items-center gap-1 text-sm">
+													<MapPin class="size-3.5 shrink-0" />
+													{event.location}
+												</p>
+											)}
+										</div>
+									</a>
+								</div>
 							))}
 						</div>
 					</Container>

@@ -1,18 +1,12 @@
 ---
 // Components
+import { navigationConfig } from '@/components/config/navigation.ts'
 import Container from '@/components/layout/Container.astro'
 import { Award, Compass } from 'lucide-astro'
 
 // Misc
 const { class: className, ...rest } = Astro.props
 const pathname = Astro.url.pathname
-
-const navItems = [
-	{ href: '#about', label: 'About' },
-	{ href: '#how-it-works', label: 'How It Works' },
-	{ href: '#parks-trails', label: 'Parks & Trails' },
-	{ href: '#events', label: 'Events' }
-]
 ---
 
 <header class="sticky top-0 z-40 w-full">
@@ -30,7 +24,7 @@ const navItems = [
 				<!-- Desktop Navigation -->
 				<nav class="hidden items-center gap-1 md:flex">
 					{
-						navItems.map((item) => (
+						navigationConfig.map((item) => (
 							<a
 								href={item.href}
 								class="text-muted-foreground hover:text-foreground hover:bg-muted flex items-center rounded-md px-3 py-2 text-sm font-medium no-underline transition-colors"
@@ -67,7 +61,7 @@ const navItems = [
 			<nav class="hidden pb-4 md:hidden">
 				<div class="flex flex-col gap-1">
 					{
-						navItems.map((item) => (
+						navigationConfig.map((item) => (
 							<a
 								href={item.href}
 								class="text-muted-foreground hover:text-foreground hover:bg-muted flex items-center rounded-md px-3 py-2.5 text-sm font-medium no-underline"
