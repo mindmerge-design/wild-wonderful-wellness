@@ -1,17 +1,17 @@
 ---
 // Components
 import Container from '@/components/layout/Container.astro'
-import { Award, Calendar, Compass, MapPin, Users } from 'lucide-astro'
+import { Award, Compass } from 'lucide-astro'
 
 // Misc
 const { class: className, ...rest } = Astro.props
 const pathname = Astro.url.pathname
 
 const navItems = [
-	{ href: '#how-it-works', label: 'How It Works', icon: Compass },
-	{ href: '#parks-trails', label: 'Parks & Trails', icon: MapPin },
-	{ href: '#partners', label: 'Partners', icon: Users },
-	{ href: '#events', label: 'Events', icon: Calendar }
+	{ href: '#about', label: 'About' },
+	{ href: '#how-it-works', label: 'How It Works' },
+	{ href: '#parks-trails', label: 'Parks & Trails' },
+	{ href: '#events', label: 'Events' }
 ]
 ---
 
@@ -33,9 +33,8 @@ const navItems = [
 						navItems.map((item) => (
 							<a
 								href={item.href}
-								class="text-muted-foreground hover:text-foreground hover:bg-muted flex items-center gap-1.5 rounded-md px-3 py-2 text-sm font-medium no-underline transition-colors"
+								class="text-muted-foreground hover:text-foreground hover:bg-muted flex items-center rounded-md px-3 py-2 text-sm font-medium no-underline transition-colors"
 							>
-								<item.icon class="size-4" />
 								{item.label}
 							</a>
 						))
@@ -71,9 +70,8 @@ const navItems = [
 						navItems.map((item) => (
 							<a
 								href={item.href}
-								class="text-muted-foreground hover:text-foreground hover:bg-muted flex items-center gap-2 rounded-md px-3 py-2.5 text-sm font-medium no-underline"
+								class="text-muted-foreground hover:text-foreground hover:bg-muted flex items-center rounded-md px-3 py-2.5 text-sm font-medium no-underline"
 							>
-								<item.icon class="size-4" />
 								{item.label}
 							</a>
 						))

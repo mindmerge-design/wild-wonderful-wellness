@@ -123,7 +123,7 @@ const upcomingEvents = [
 	<!-- ============================================ -->
 	<!-- 1. HERO                                      -->
 	<!-- ============================================ -->
-	<div class="relative min-h-[90vh] overflow-hidden bg-[hsl(152,35%,18%)]">
+	<div class="relative min-h-[90vh] overflow-hidden bg-primary">
 		<!-- Decorative topo pattern overlay -->
 		<div class="absolute inset-0 opacity-[0.08]">
 			<svg class="h-full w-full" xmlns="http://www.w3.org/2000/svg">
@@ -157,32 +157,49 @@ const upcomingEvents = [
 		</div>
 
 		<Container class="relative z-10 flex min-h-[90vh] flex-col justify-center py-20">
-			<div class="max-w-2xl" style="animation: fade-in-up 0.8s ease-out both;">
-				<div class="mb-6 inline-flex items-center gap-2 rounded-full border border-white/30 bg-white/10 px-5 py-2.5 text-sm font-medium text-white/95 backdrop-blur-md shadow-lg">
-					<Heart class="size-4 text-red-400 animate-pulse" />
-					<span>Monongalia County Health Department</span>
+			<div class="grid items-center gap-8 lg:grid-cols-6 lg:gap-12">
+				<!-- Left: Text Content -->
+				<div class="col-span-4" style="animation: fade-in-up 0.8s ease-out both;">
+					<div class="mb-6 inline-flex items-center gap-2 rounded-full border border-white/30 bg-white/10 px-5 py-2.5 text-sm font-medium text-white/95 backdrop-blur-md shadow-lg">
+						<Heart class="size-4 text-red-400 animate-pulse" />
+						<span>Monongalia County Health Department</span>
+					</div>
+
+					<h1 class="mb-0 text-5xl font-extrabold leading-[1.05] tracking-tight text-white! md:text-6xl lg:text-7xl">
+						Wild and Wonderful
+						<span class="block text-accent">Wellness Passport</span>
+					</h1>
+
+					<p class="mt-6 text-2xl font-semibold tracking-wide text-white/90!">
+						Explore. Move. Earn Rewards.
+					</p>
+
+					<div class="mt-10 flex flex-wrap gap-4">
+						<Button href="#introduction" variant="primary" size="lg" class="bg-accent text-accent-foreground hover:bg-accent/90 shadow-lg hover:shadow-xl transition-all no-underline">
+							Learn More
+							<ArrowRight class="size-5" />
+						</Button>
+					</div>
 				</div>
 
-				<h1 class="mb-0 text-5xl font-extrabold leading-[1.05] tracking-tight text-white md:text-6xl lg:text-7xl">
-					Wild and Wonderful
-					<span class="block text-[hsl(65,85%,65%)]">Wellness Passport</span>
-				</h1>
-
-				<p class="mt-6 text-2xl font-semibold tracking-wide text-white/90">
-					Explore. Move. Earn Rewards.
-				</p>
-
-				<div class="mt-10 flex flex-wrap gap-4">
-					<Button href="#partners" variant="primary" size="lg" class="bg-[hsl(65,85%,55%)] text-[hsl(152,35%,12%)] hover:bg-[hsl(65,85%,62%)] shadow-lg hover:shadow-xl transition-all">
-						Find a Passport Location
-						<ArrowRight class="size-5" />
-					</Button>
+				<!-- Right: Passport Image Placeholder -->
+				<div class="col-span-2 hidden lg:flex lg:justify-center" style="animation: fade-in-left 0.8s ease-out 0.3s both;">
+					<div class="relative">
+						<!-- Decorative glow -->
+						<div class="absolute -inset-4 bg-accent/20 rounded-full blur-3xl"></div>
+						<!-- Image placeholder -->
+						<div class="relative w-80 aspect-[3/4] rounded-2xl border-2 border-dashed border-white/30 bg-white/10 backdrop-blur-sm flex flex-col items-center justify-center p-8">
+							<Camera class="text-white/60 size-16 mb-4" />
+							<p class="text-white/80 text-center font-medium">Passport Booklet Image</p>
+							<p class="text-white/50 text-sm text-center mt-2">Placeholder for hands holding passport photo</p>
+						</div>
+					</div>
 				</div>
 			</div>
 		</Container>
 
 		<!-- Wave divider -->
-		<div class="absolute bottom-0 left-0 right-0">
+		<div class="absolute -bottom-2 left-0 right-0">
 			<svg viewBox="0 0 1440 120" class="w-full text-background" preserveAspectRatio="none">
 				<path fill="currentColor" d="M0,64L60,69.3C120,75,240,85,360,80C480,75,600,53,720,48C840,43,960,53,1080,64C1200,75,1320,85,1380,90L1440,96L1440,120L1380,120C1320,120,1200,120,1080,120C960,120,840,120,720,120C600,120,480,120,360,120C240,120,120,120,60,120L0,120Z"/>
 			</svg>
@@ -211,6 +228,8 @@ const upcomingEvents = [
 			<Container class="relative z-10">
 				<div class="grid items-center gap-12 md:grid-cols-3">
 					<div class="prose md:col-span-2">
+						<h2>Movement is Medicine.
+Nature is the Cure.</h2>
 						<p class="text-lg leading-relaxed md:text-xl text-foreground/90">
 							Did you know that almost a quarter of residents in Monongalia County do not engage in any physical activity outside of work? With so many opportunities to get active in our community, there's no reason not to take advantage of everything Monongalia County has to offer. The Wild and Wonderful Wellness Passport is a way to explore dozens of parks, trails, and organizations focused on providing opportunities for exercise or wellness.
 						</p>
@@ -257,37 +276,25 @@ const upcomingEvents = [
 					<h2 class="text-3xl font-extrabold uppercase md:text-4xl">How It Works</h2>
 				</div>
 
-				<!-- Three-step triptych -->
-				<div class="relative">
-					<!-- Connecting line (desktop) -->
-					<div class="absolute left-0 right-0 top-16 hidden h-1 bg-linear-to-r from-primary/20 via-primary to-primary/20 lg:block" aria-hidden="true"></div>
-
-					<div class="grid gap-8 md:grid-cols-3">
-						{howItWorks.map((step, i) => (
-							<div class="relative" style={`animation: fade-in-up 0.6s ease-out ${0.15 * i}s both;`}>
-								<!-- Step number circle with gradient -->
-								<div class="relative z-10 mx-auto mb-6 flex size-16 items-center justify-center rounded-full bg-primary text-primary-foreground text-xl font-extrabold shadow-lg">
-									{step.step}
-									<!-- Decorative ring -->
-									<div class="absolute inset-0 rounded-full border-2 border-primary/30 animate-pulse-soft" style="animation-duration: 3s;"></div>
+				<!-- Three-step cards -->
+				<div class="grid gap-8 md:grid-cols-3">
+					{howItWorks.map((step, i) => (
+						<div class="relative" style={`animation: fade-in-up 0.6s ease-out ${0.15 * i}s both;`}>
+							<Card class="bg-background border border-border text-center transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
+								<div class="mb-4 flex justify-center">
+									{step.icon === 'stamp' && <div class="rounded-full bg-primary/10 p-3"><Stamp class="text-primary size-8" /></div>}
+									{step.icon === 'compass' && <div class="rounded-full bg-info/10 p-3"><Compass class="text-info size-8" /></div>}
+									{step.icon === 'gift' && <div class="rounded-full bg-success/10 p-3"><Gift class="text-success size-8" /></div>}
 								</div>
-
-								<Card class="bg-background border border-border text-center transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
-									<div class="mb-4 flex justify-center">
-										{step.icon === 'stamp' && <div class="rounded-full bg-primary/10 p-3"><Stamp class="text-primary size-8" /></div>}
-										{step.icon === 'compass' && <div class="rounded-full bg-info/10 p-3"><Compass class="text-info size-8" /></div>}
-										{step.icon === 'gift' && <div class="rounded-full bg-success/10 p-3"><Gift class="text-success size-8" /></div>}
-									</div>
-									<h3 class="mb-3 text-xl font-bold">{step.title}</h3>
-									<p class="text-muted-foreground text-base leading-relaxed">{step.description}</p>
-								</Card>
-							</div>
-						))}
-					</div>
+								<h3 class="mb-3 text-xl font-bold">{step.title}</h3>
+								<p class="text-muted-foreground text-base leading-relaxed">{step.description}</p>
+							</Card>
+						</div>
+					))}
 				</div>
 
 				<!-- Prizes teaser -->
-				<div class="mt-16 relative overflow-hidden rounded-2xl border border-border bg-background p-8 text-center shadow-lg">
+				<div class="mt-9 relative overflow-hidden rounded-2xl border border-border bg-background p-8 text-center shadow-lg">
 					<div class="absolute inset-0 bg-linear-to-br from-warning/5 to-success/5 pointer-events-none"></div>
 					<div class="absolute -right-10 -top-10 size-40 bg-warning/10 rounded-full blur-3xl pointer-events-none"></div>
 					<div class="absolute -left-10 -bottom-10 size-40 bg-success/10 rounded-full blur-3xl pointer-events-none"></div>
