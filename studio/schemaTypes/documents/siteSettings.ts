@@ -30,29 +30,9 @@ export default defineType({
       fieldset: 'general',
     }),
     defineField({
-      name: 'siteDescription',
-      title: 'Site Description',
-      type: 'text',
-      fieldset: 'general',
-    }),
-    defineField({
-      name: 'siteEmail',
-      title: 'Email',
-      type: 'string',
-      description: 'Site Email',
-      fieldset: 'general',
-    }),
-    defineField({
-      name: 'sitePhone',
-      title: 'Phone',
-      type: 'string',
-      fieldset: 'general',
-    }),
-    defineField({
-      name: 'locations',
-      title: 'Locations',
-      type: 'array',
-      of: [{ type: 'location' }],
+      name: 'location',
+      title: 'Location',
+      type: 'location',
       fieldset: 'general',
     }),
     defineField({
