@@ -10,6 +10,7 @@ export const settingsQuery = `*[_type == "siteSettings"][0]{
 export const homeQuery = `*[_type == "home"][0]{
   title,
   slug,
+  hero{heroImage{..., asset->}},
   seo{..., sharingImage{..., asset->}}
 }`
 

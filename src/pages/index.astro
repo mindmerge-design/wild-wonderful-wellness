@@ -26,6 +26,15 @@ import ParkMap from '@/components/ParkMap.tsx'
 import { Button } from '@/components/starwind/button'
 import Layout from '@/layouts/Layout.astro'
 
+// Sanity
+import { loadQuery } from '@/sanity/lib/load-query'
+import { homeQuery } from '@/sanity/lib/queries'
+import { urlForImage } from '@/sanity/lib/urlForImage'
+import type { Home } from '@/sanity/schemaTypes/home'
+
+// Load home page data
+const { data: home } = await loadQuery<Home>({ query: homeQuery })
+
 const siteName = 'Wild & Wonderful Wellness'
 const pageTitle = 'Wellness Passport'
 const pageDescription =
@@ -212,7 +221,7 @@ const upcomingEvents = [
 		</div>
 
 		<Container class="relative z-10 flex min-h-[90vh] flex-col justify-center py-20">
-			<div class="grid items-center gap-8 lg:grid-cols-6 lg:gap-12">
+			<div class="grid items-center gap-6 lg:grid-cols-6 ">
 				<!-- Left: Text Content -->
 				<div class="col-span-4" style="animation: fade-in-up 0.8s ease-out both;">
 					<div class="mb-6 inline-flex items-center gap-2 rounded-full border border-white/30 bg-white/10 px-5 py-2.5 text-sm font-medium text-white!/95 backdrop-blur-md shadow-lg">
@@ -237,19 +246,23 @@ const upcomingEvents = [
 					</div>
 				</div>
 
-				<!-- Right: Passport Image Placeholder -->
-				<div class="col-span-2 hidden lg:flex lg:justify-center" style="animation: fade-in-left 0.8s ease-out 0.3s both;">
-					<div class="relative">
-						<!-- Decorative glow -->
-						<div class="absolute -inset-4 bg-accent/20 rounded-full blur-3xl"></div>
-						<!-- Image placeholder -->
-						<div class="relative w-80 aspect-[3/4] rounded-2xl border-2 border-dashed border-white/30 bg-white/10 backdrop-blur-sm flex flex-col items-center justify-center p-8">
-							<Camera class="text-white!/60 size-16 mb-4" />
-							<p class="text-white!/80 text-center font-medium">Passport Booklet Image</p>
-							<p class="text-white!/50 text-sm text-center mt-2">Placeholder for hands holding passport photo</p>
+				<!-- Right: Hero Image from Sanity -->
+				{home?.hero?.heroImage && (
+					<div class="lg:col-span-2 lg:flex lg:justify-center col-span-6" style="animation: fade-in-left 0.8s ease-out 0.3s both;">
+						<div class="relative aspect-square w-full rounded-xl shadow-2xl overflow-hidden">
+							<!-- Decorative glow -->
+							<div class="absolute -inset-4 bg-accent/20 rounded-full blur-3xl"></div>
+							<!-- Hero Image -->
+							<img
+								src={urlForImage(home.hero.heroImage).width(600).height(800).url()}
+								alt={home.hero.heroImage.alt || 'Wellness Passport'}
+								width={400}
+								height={533}
+								class="absolute inset-0 w-full h-full object-cover my-0!"
+							/>
 						</div>
 					</div>
-				</div>
+				)}
 			</div>
 		</Container>
 
