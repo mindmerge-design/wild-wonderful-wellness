@@ -132,11 +132,7 @@ export default defineType({
       type: 'boolean',
       initialValue: false,
     }),
-    defineField({
-      name: 'order',
-      title: 'Order',
-      type: 'number',
-    }),
+   
     defineField({
       name: 'seo',
       title: 'SEO',
