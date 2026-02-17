@@ -7,11 +7,9 @@ Award,
 Calendar,
 Camera,
 Compass,
-Gift,
 Map as MapIcon,
 MapPin,
 Mountain,
-Stamp,
 Sun,
 TreePine
 } from 'lucide-astro'
@@ -19,6 +17,7 @@ TreePine
 // Components
 import Badge from '@/components/elements/content/Badge.astro'
 import Card from '@/components/elements/content/Card.astro'
+import PortableText from '@/components/elements/content/PortableText.astro'
 import Container from '@/components/layout/Container.astro'
 import Section from '@/components/layout/Section.astro'
 import ParkCard from '@/components/ParkCard.astro'
@@ -197,7 +196,7 @@ const upcomingEvents = [
 	<!-- ============================================ -->
 	<!-- 1. HERO                                      -->
 	<!-- ============================================ -->
-	<div class="relative min-h-[90vh] overflow-hidden bg-primary">
+	<div class="relative min-h-[75vh] overflow-hidden bg-primary">
 		
 
 		<!-- Gradient overlays -->
@@ -220,7 +219,7 @@ const upcomingEvents = [
 			<Sun class="text-white! size-9" />
 		</div>
 
-		<Container class="relative z-10 flex min-h-[90vh] flex-col justify-center py-20">
+		<Container class="relative z-10 flex min-h-[75vh] flex-col justify-center py-20">
 			<div class="grid items-center gap-6 lg:grid-cols-6 ">
 				<!-- Left: Text Content -->
 				<div class="col-span-4" style="animation: fade-in-up 0.8s ease-out both;">
@@ -298,11 +297,7 @@ const upcomingEvents = [
 			<Container class="relative z-10">
 				<div class="grid items-center gap-12 md:grid-cols-3">
 					<div class="prose md:col-span-2">
-						<h2>Movement is Medicine.
-Nature is the Cure.</h2>
-						<p class="text-lg leading-relaxed md:text-xl text-foreground/90">
-							Did you know that almost a quarter of residents in Monongalia County do not engage in any physical activity outside of work? With so many opportunities to get active in our community, there's no reason not to take advantage of everything Monongalia County has to offer. The Wild and Wonderful Wellness Passport is a way to explore dozens of parks, trails, and organizations focused on providing opportunities for exercise or wellness.
-						</p>
+						<PortableText portableText={home?.content} />
 					</div>
 					<div class="flex justify-center">
 						<div class="relative w-full max-w-xs overflow-hidden rounded-2xl bg-gradient-to-br from-info to-info/80 p-6 text-center shadow-2xl">
@@ -372,16 +367,18 @@ Nature is the Cure.</h2>
 
 				<!-- Three-step cards -->
 				<div class="grid gap-8 md:grid-cols-3">
-					{howItWorks.map((step, i) => (
+					{(home?.howItWorks || []).map((step, i) => (
 						<div class="relative" style={`animation: fade-in-up 0.6s ease-out ${0.15 * i}s both;`}>
 							<Card class="bg-background border border-border text-center transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
 								<div class="mb-4 flex justify-center">
-									{step.icon === 'stamp' && <div class="rounded-full bg-primary/10 p-3"><Stamp class="text-primary size-8" /></div>}
-									{step.icon === 'compass' && <div class="rounded-full bg-info/10 p-3"><Compass class="text-info size-8" /></div>}
-									{step.icon === 'gift' && <div class="rounded-full bg-success/10 p-3"><Gift class="text-success size-8" /></div>}
+									{step.hasIcon && step?.icon && (
+										<div class="rounded-full bg-primary/10 p-3 " set:html={step.icon} />
+									)}
 								</div>
 								<h3 class="mb-3 text-xl font-bold">{step.title}</h3>
-								<p class="text-muted-foreground text-base leading-relaxed">{step.description}</p>
+								<div class="text-muted-foreground text-base leading-relaxed">
+									<PortableText portableText={step.description} />
+								</div>
 							</Card>
 						</div>
 					))}
@@ -396,9 +393,9 @@ Nature is the Cure.</h2>
 						<div class="mx-auto mb-4 flex size-14 items-center justify-center rounded-full bg-warning/10">
 							<Award class="text-warning size-7" />
 						</div>
-						<p class="text-xl font-semibold text-foreground">
-							Prizes include gift cards, outdoor gear, and more — the more stamps you collect, the bigger the rewards!
-						</p>
+						<div class="text-xl font-semibold text-foreground">
+							<PortableText portableText={home?.pricesContent} />
+						</div>
 					</div>
 				</div>
 

@@ -14,6 +14,14 @@ export interface Hero {
 	heroImage?: ImageAlt
 }
 
+export interface TitleAndDescription {
+	_type: 'titleAndDescription'
+	title: string
+	description: BlockContent
+	hasIcon?: boolean
+	icon?: string
+}
+
 /**
  * Interface for Home document type
  */
@@ -23,5 +31,7 @@ export interface Home extends SanityDocument {
 	slug: Slug
 	hero?: Hero
 	content?: BlockContent
+	howItWorks?: TitleAndDescription[]
+	pricesContent?: BlockContent
 	seo?: SEO
 }

@@ -11,6 +11,9 @@ export const homeQuery = `*[_type == "home"][0]{
   title,
   slug,
   hero{heroImage{..., asset->}},
+  content,
+  howItWorks[]{..., icon},
+  pricesContent,
   seo{..., sharingImage{..., asset->}}
 }`
 
