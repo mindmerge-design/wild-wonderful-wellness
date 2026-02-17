@@ -324,18 +324,25 @@ const seoDescription = 'Community businesses and organizations supporting the We
 				</div>
 
 				<!-- CTA -->
-				<div class="mt-12 text-center">
-					<div class="inline-flex flex-col sm:flex-row items-center gap-4 rounded-2xl border border-border bg-card p-6 shadow-sm">
-						<div class="flex size-12 items-center justify-center rounded-full bg-info/10">
-							<Award class="text-info size-6" />
+				<div class="mt-16">
+					<div class="relative overflow-hidden rounded-2xl bg-gradient-to-br from-info to-info/80 p-8 md:p-12 text-center md:text-left shadow-xl">
+						<div class="relative z-10 flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+							<div class="flex flex-col md:flex-row md:items-center gap-4 md:gap-6">
+								<div class="mx-auto md:mx-0 flex size-16 items-center justify-center rounded-full bg-white/20">
+									<Award class="text-white size-8" />
+								</div>
+								<div>
+									<h3 class="font-bold text-white text-xl md:text-2xl">Want to become a partner?</h3>
+									<p class="text-white/80 mt-1">Join our community of wellness advocates and help make a difference</p>
+								</div>
+							</div>
+							<Button href="/contact" variant="outline" class="bg-white text-info border-white hover:bg-white/90 hover:text-info whitespace-nowrap text-base px-8 py-3 h-auto">
+								Get in Touch
+							</Button>
 						</div>
-						<div class="text-center sm:text-left">
-							<h3 class="font-bold text-foreground">Want to become a partner?</h3>
-							<p class="text-sm text-muted-foreground mt-1">Join our community of wellness advocates</p>
-						</div>
-						<Button href="/contact" variant="outline" class="hover:bg-info hover:text-info-foreground hover:border-info transition-all whitespace-nowrap">
-							Get in Touch
-						</Button>
+						<!-- Decorative elements -->
+						<div class="absolute -right-10 -top-10 size-40 rounded-full bg-white/10" aria-hidden="true"></div>
+						<div class="absolute -bottom-10 -left-10 size-32 rounded-full bg-white/5" aria-hidden="true"></div>
 					</div>
 				</div>
 			</Container>

@@ -2,7 +2,10 @@
 // Components
 import { navigationConfig } from '@/components/config/navigation.ts'
 import Container from '@/components/layout/Container.astro'
-import { Award, Compass } from 'lucide-astro'
+import { Image } from 'astro:assets'
+import { Award } from 'lucide-astro'
+
+// Assets
 
 // Misc
 const { class: className, ...rest } = Astro.props
@@ -17,8 +20,13 @@ const pathname = Astro.url.pathname
 			<div class="flex h-16 items-center justify-between">
 				<!-- Logo -->
 				<a href="/" class="flex items-center gap-2 no-underline">
-					<Compass class="text-primary size-6" />
-					<span class="text-lg font-bold tracking-tight">Wellness Passport</span>
+					<Image
+						src="/images/logo.png"
+						alt="Wellness Passport"
+						width={140}
+						height={140}
+						class="mt-24 h-36 w-auto md:h-44"
+					/>
 				</a>
 
 				<!-- Desktop Navigation -->
@@ -44,21 +52,40 @@ const pathname = Astro.url.pathname
 				<!-- Mobile Menu Button -->
 				<button
 					type="button"
+					id="mobile-menu-btn"
 					class="text-muted-foreground hover:bg-muted inline-flex items-center justify-center rounded-md p-2 md:hidden"
 					aria-label="Toggle menu"
+					aria-expanded="false"
+					aria-controls="mobile-nav"
 				>
-					<svg class="size-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+					<svg id="menu-icon" class="size-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
 						<path
 							stroke-linecap="round"
 							stroke-linejoin="round"
 							stroke-width="2"
 							d="M4 6h16M4 12h16M4 18h16"></path>
 					</svg>
+					<svg
+						id="close-icon"
+						class="hidden size-6"
+						fill="none"
+						stroke="currentColor"
+						viewBox="0 0 24 24"
+					>
+						<path
+							stroke-linecap="round"
+							stroke-linejoin="round"
+							stroke-width="2"
+							d="M6 18L18 6M6 6l12 12"></path>
+					</svg>
 				</button>
 			</div>
 
 			<!-- Mobile Navigation (hidden by default) -->
-			<nav class="hidden pb-4 md:hidden">
+			<nav
+				id="mobile-nav"
+				class="bg-background relative z-50 mt-24 hidden rounded-lg p-4 shadow-lg md:hidden"
+			>
 				<div class="flex flex-col gap-1">
 					{
 						navigationConfig.map((item) => (
@@ -82,3 +109,20 @@ const pathname = Astro.url.pathname
 		</Container>
 	</div>
 </header>
+
+<script is:inline>
+	const btn = document.getElementById('mobile-menu-btn')
+	const nav = document.getElementById('mobile-nav')
+	const menuIcon = document.getElementById('menu-icon')
+	const closeIcon = document.getElementById('close-icon')
+
+	if (btn && nav) {
+		btn.addEventListener('click', () => {
+			const isExpanded = btn.getAttribute('aria-expanded') === 'true'
+			btn.setAttribute('aria-expanded', String(!isExpanded))
+			nav.classList.toggle('hidden')
+			menuIcon?.classList.toggle('hidden')
+			closeIcon?.classList.toggle('hidden')
+		})
+	}
+</script>
