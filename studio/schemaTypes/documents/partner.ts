@@ -44,11 +44,6 @@ export default defineType({
       type: 'imageAlt',
     }),
     defineField({
-      name: 'mainImage',
-      title: 'Main Image',
-      type: 'imageAlt',
-    }),
-    defineField({
       name: 'partnerType',
       title: 'Partner Type',
       type: 'string',
@@ -70,8 +65,8 @@ export default defineType({
       initialValue: false,
     }),
     defineField({
-      name: 'hasStampStation',
-      title: 'Has Stamp Station',
+      name: 'offersDiscounts',
+      title: 'Offers Discounts',
       type: 'boolean',
       initialValue: false,
     }),
@@ -109,7 +104,6 @@ export default defineType({
       type: 'boolean',
       initialValue: false,
     }),
-   
     defineField({
       name: 'seo',
       title: 'SEO',

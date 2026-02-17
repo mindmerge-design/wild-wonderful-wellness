@@ -131,8 +131,7 @@ export default defineType({
       title: 'Featured',
       type: 'boolean',
       initialValue: false,
-    }),
-   
+    }),  
     defineField({
       name: 'seo',
       title: 'SEO',
