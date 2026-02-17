@@ -114,7 +114,7 @@ export default function ParkMap({ parks, mapboxToken }: ParkMapProps) {
 					closeOnClick: true
 				}).setHTML(`
 					<div class="p-2">
-						<h3 class="font-bold text-emerald-700">${park.name}</h3>
+						<h3 class="font-bold text-emerald-700 mt-0!">${park.name}</h3>
 						<p class="text-xs text-gray-600 mt-1 line-clamp-2">${park.description}</p>
 						<div class="flex items-center gap-1 mt-2 text-xs text-emerald-600">
 							<span>Stamp Location #${index + 1}</span>

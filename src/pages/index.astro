@@ -328,17 +328,41 @@ Nature is the Cure.</h2>
 						</p>
 					</div>
 					<div class="flex justify-center">
-						<div class="relative rounded-2xl border-2 border-dashed border-primary/40 bg-primary/10 p-8 text-center shadow-lg">
-							<p class="text-primary text-6xl font-extrabold leading-none">1 in 4</p>
-							<p class="text-muted-foreground mt-3 text-sm font-medium uppercase tracking-wider">
-								Mon County residents<br />are physically inactive<br />outside of work
-							</p>
-							<div class="bg-primary/20 absolute -right-3 -top-3 flex size-12 items-center justify-center rounded-full shadow-md">
-								<Heart class="text-primary size-6" />
+						<div class="relative w-full max-w-xs overflow-hidden rounded-2xl bg-gradient-to-br from-info to-info/80 p-6 text-center shadow-2xl">
+							<!-- Quarter pie visualization -->
+							<div class="mb-5 flex justify-center">
+								<div class="relative size-28">
+									<!-- Full circle background -->
+									<div class="absolute inset-0 rounded-full bg-white/20"></div>
+									<!-- 25% slice (1 in 4) - using warning yellow -->
+									<div
+										class="absolute inset-0 rounded-full"
+										style="background: conic-gradient(#f1ce53 0deg 90deg, transparent 90deg 360deg);"
+									>
+									</div>
+									<!-- Inner circle -->
+									<div class="absolute inset-3 flex items-center justify-center rounded-full bg-white/95">
+										<span class="text-info font-black text-4xl">25%</span>
+									</div>
+								</div>
 							</div>
-							<!-- Decorative circles -->
-							<div class="absolute -bottom-2 -left-2 size-8 rounded-full bg-primary/20" aria-hidden="true"></div>
-							<div class="absolute -bottom-3 -right-3 size-5 rounded-full bg-accent/30" aria-hidden="true"></div>
+
+							<!-- Stat text -->
+							<div class="mb-3 flex items-center justify-center gap-3">
+								<span class="text-warning font-black text-5xl drop-shadow-sm">1</span>
+								<span class="text-white/70 text-2xl">/</span>
+								<span class="text-white! font-black text-5xl">4</span>
+							</div>
+
+							<p class="text-white! text-xs font-bold uppercase tracking-widest">
+								Mon County Residents
+							
+								are physically inactive
+							outside of work</p>
+
+							<!-- Decorative elements -->
+							<div class="absolute -right-6 -top-6 size-24 rounded-full bg-warning/30 blur-xl" aria-hidden="true"></div>
+							<div class="absolute -bottom-8 -left-8 size-32 rounded-full bg-white/10 blur-xl" aria-hidden="true"></div>
 						</div>
 					</div>
 				</div>
@@ -463,10 +487,10 @@ Nature is the Cure.</h2>
 				</div>
 
 				<!-- Split Layout: Scrollable Cards + Interactive Map -->
-				<div class="grid lg:grid-cols-2 gap-8 items-stretch">
+				<div class="grid lg:grid-cols-2  gap-2 items-stretch">
 					<!-- Left: Scrollable Park Cards -->
 					<div class="order-2 lg:order-1">
-						<div class="h-[500px] overflow-y-auto pr-2 space-y-4 rounded-xl border border-border bg-background p-4 shadow-inner">
+						<div class="h-[540px] overflow-y-auto pr-2 space-y-4  ">
 							{parks.map((park, i) => (
 								<ParkCard park={park} index={i} size="md" />
 							))}
@@ -475,11 +499,11 @@ Nature is the Cure.</h2>
 
 					<!-- Right: Interactive Map -->
 					<div class="order-1 lg:order-2">
-						<div class="sticky top-24 h-[500px]">
+						<div class="sticky top-24 h-[540px]">
 							{mapboxToken ? (
 								<ParkMap parks={parks} mapboxToken={mapboxToken} client:only="react" />
 							) : (
-								<div class="relative overflow-hidden rounded-2xl border-2 border-border bg-muted shadow-xl h-full">
+								<div class="relative overflow-hidden   h-full">
 									<div class="absolute inset-0 bg-success/5"></div>
 									<div class="absolute inset-0 flex items-center justify-center">
 										<div class="text-center">
@@ -497,7 +521,7 @@ Nature is the Cure.</h2>
 				</div>
 				
 				<div class="mt-10 text-center">
-					<Button href="/parks-and-trails" variant="outline" size="lg" class="hover:bg-success hover:text-success-foreground hover:border-success transition-all">
+					<Button href="/parks-and-trails" variant="outline" size="lg" class="hover:bg-success hover:text-success-foreground hover:border-success transition-all no-underline">
 						View All Parks & Trails
 						<ArrowRight class="size-4" />
 					</Button>

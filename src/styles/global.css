@@ -203,16 +203,16 @@
 		--accent: 65 85% 50%;
 		--accent-foreground: 152 35% 12%;
 
-		--info: 160 40% 35%;
+		--info: 165 50% 37%;
 		--info-foreground: 60 20% 97%;
 
 		--success: 142 60% 32%;
 		--success-foreground: 60 20% 97%;
 
-		--warning: 38 70% 45%;
-		--warning-foreground: 60 20% 97%;
+		--warning: 47 85% 63%;
+		--warning-foreground: 152 35% 8%;
 
-		--error: 0 60% 45%;
+		--error: 8 60% 58%;
 		--error-foreground: 60 20% 97%;
 
 		--border: 100 10% 85%;
@@ -243,16 +243,16 @@
 		--accent: 65 85% 60%;
 		--accent-foreground: 152 35% 8%;
 
-		--info: 160 40% 50%;
+		--info: 165 50% 50%;
 		--info-foreground: 60 20% 97%;
 
 		--success: 142 50% 50%;
 		--success-foreground: 152 35% 8%;
 
-		--warning: 38 70% 55%;
+		--warning: 47 85% 68%;
 		--warning-foreground: 152 35% 8%;
 
-		--error: 0 60% 55%;
+		--error: 8 60% 65%;
 		--error-foreground: 60 20% 97%;
 
 		--border: 100 10% 22%;

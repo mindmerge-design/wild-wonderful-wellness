@@ -23,9 +23,30 @@ export default defineType({
       },
     }),
     defineField({
+      name: 'hero',
+      title: 'Hero',
+      type: 'hero',
+    }),
+    defineField({
       name: 'content',
       title: 'Content',
       type: 'portableText',
+    }),
+    defineField({
+      name: 'howItWorks',
+      title: 'How It Works',
+      type: 'array',
+      of: [{ type: 'titleAndDescription' }],
+    }),
+    defineField({
+      name: 'pricesContent',
+      title: 'Prices',
+      type: 'portableText',
+    }),
+    defineField({
+      name: 'bookletImage',
+      title: 'Booklet Image',
+      type: 'imageAlt',
     }),
     defineField({
       name: 'seo',

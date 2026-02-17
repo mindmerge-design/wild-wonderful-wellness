@@ -28,6 +28,11 @@ export default defineType({
       type: 'portableText',
     }),
     defineField({
+      name: 'getStamps',
+      title: 'Getting Your Stamps',
+      type: 'portableText',
+    }),
+    defineField({
       name: 'seo',
       title: 'SEO',
       type: 'seo',
