@@ -25,25 +25,22 @@ const href = `/parks-and-trails/${slug}`
 // Size variants (for non-layout properties)
 const sizeClasses = {
 	sm: {
-		treeIcon: 'size-3',
-		number: 'size-4 text-[9px]',
-		title: 'text-sm',
-		desc: 'text-xs line-clamp-2',
-		padding: 'p-2'
-	},
-	md: {
-		treeIcon: 'size-4',
 		number: 'size-5 text-[10px]',
 		title: 'text-sm',
 		desc: 'text-xs line-clamp-2',
 		padding: 'p-3'
 	},
-	lg: {
-		treeIcon: 'size-5',
+	md: {
 		number: 'size-6 text-xs',
 		title: 'text-base',
-		desc: 'text-sm leading-relaxed mb-3',
+		desc: 'text-sm line-clamp-2',
 		padding: 'p-4'
+	},
+	lg: {
+		number: 'size-7 text-sm',
+		title: 'text-lg',
+		desc: 'text-base leading-relaxed mb-3',
+		padding: 'p-5'
 	}
 }
 
@@ -52,65 +49,36 @@ const s = sizeClasses[size]
 
 <div
 	id={`park-${index}`}
-	class="group border-border bg-card hover:border-success/30 relative cursor-pointer overflow-hidden rounded-xl border transition-all duration-300 hover:shadow-lg"
+	class="group border-border bg-card hover:border-success/30 relative flex h-full cursor-pointer flex-col overflow-hidden rounded-xl border transition-all duration-300 hover:shadow-lg"
 	style={`animation: fade-in-up 0.4s ease-out ${0.05 * index}s both;`}
 >
-	<div class="flex h-full flex-col sm:flex-row sm:items-stretch">
-		<!-- Park Image Container (1/3 width) -->
-		<div class="h-full w-1/3 shrink-0">
-			<div class="bg-muted relative h-full overflow-hidden">
-				<!-- Background overlay -->
-				<div class="bg-success/5 absolute inset-0"></div>
-
-				<!-- Placeholder content (replace with <img class="object-cover"> when ready) -->
-				<div class="absolute inset-0 z-10 flex items-center justify-center">
-					<div
-						class="bg-background flex size-12 items-center justify-center rounded-full shadow-sm"
-					>
-						<svg
-							class={`${s.treeIcon} text-success`}
-							xmlns="http://www.w3.org/2000/svg"
-							viewBox="0 0 24 24"
-							fill="none"
-							stroke="currentColor"
-							stroke-width="2"
-							stroke-linecap="round"
-							stroke-linejoin="round"
-						>
-							<path d="m8 18 4-8 4 8"></path>
-							<path d="M12 10v10"></path>
-							<path d="m21 12-5-8-5 8"></path>
-							<path d="m3 12 5-8 5 8"></path>
-						</svg>
-					</div>
-				</div>
-
-				<!-- Number badge -->
+	<!-- Park Info (Full width) -->
+	<div class={`flex h-full flex-col ${s.padding}`}>
+		<div class="mb-2 flex items-start justify-between gap-2">
+			<div class="flex items-center gap-2">
 				<div
-					class={`absolute top-1 left-1 z-20 ${s.number} rounded-full bg-success flex items-center justify-center text-white! font-bold`}
+					class={`${s.number} flex shrink-0 items-center justify-center rounded-full bg-success font-bold text-white!`}
 				>
 					{index + 1}
 				</div>
-			</div>
-		</div>
-
-		<!-- Park Info (Right - 2/3 width) -->
-		<div class={`w-2/3 ${s.padding}`}>
-			<div class="mb-1 flex items-start justify-between gap-2">
 				<h4
-					class={`font-bold text-foreground group-hover:text-success transition-colors mt-3! ${s.title}`}
+					class={`font-bold text-foreground group-hover:text-success mt-0! transition-colors ${s.title}`}
 				>
 					{park.title}
 				</h4>
-				<span
-					class="bg-success/10 text-success inline-flex shrink-0 items-center rounded-full px-2 py-0.5 text-xs font-medium capitalize"
-				>
-					{park.parkType?.replace('-', ' ') || 'Park'}
-				</span>
 			</div>
-			<p class={`text-muted-foreground ${s.desc}`}>{park.shortDescription || ''}</p>
+		</div>
 
-			<div class="flex flex-wrap items-center gap-2">
+		<span
+			class="bg-success/10 text-success mb-2 inline-flex w-fit shrink-0 items-center rounded-full px-2 py-0.5 text-xs font-medium capitalize"
+		>
+			{park.parkType?.replace('-', ' ') || 'Park'}
+		</span>
+
+		<p class={`text-muted-foreground grow ${s.desc}`}>{park.shortDescription || ''}</p>
+
+		<div class="mt-auto pt-3">
+			<div class="mb-3 flex flex-wrap items-center gap-2">
 				{
 					park.amenities && park.amenities.length > 0 && (
 						<>
@@ -126,7 +94,7 @@ const s = sizeClasses[size]
 					)
 				}
 			</div>
-			<Button href={href} variant="primary" class="mt-3 no-underline" size="sm">
+			<Button href={href} variant="primary" class="w-full no-underline" size="sm">
 				Learn More
 				<svg
 					class="size-3"

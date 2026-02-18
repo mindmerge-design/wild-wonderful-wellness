@@ -77,6 +77,9 @@ export default function ParkMap({ parks, mapboxToken }: ParkMapProps) {
 					: null
 				if (!coordinates) return
 
+				// Generate slug for park detail page link
+				const slug = park.slug?.current || (park.title || 'park').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')
+
 				// Extend bounds to include this park
 				bounds.extend(coordinates)
 
@@ -96,14 +99,21 @@ export default function ParkMap({ parks, mapboxToken }: ParkMapProps) {
 				const popup = new mapboxgl.Popup({
 					offset: 25,
 					closeButton: false,
-					closeOnClick: true
+					closeOnClick: false
 				}).setHTML(`
 					<div class="p-2">
 						<h3 class="font-bold text-emerald-700 mt-0!">${park.title}</h3>
 						<p class="text-xs text-gray-600 mt-1 line-clamp-2">${park.shortDescription || ''}</p>
-						<div class="flex items-center gap-1 mt-2 text-xs text-emerald-600">
-							<span>Stamp Location #${index + 1}</span>
-						</div>
+						<a 
+							href="/parks-and-trails/${slug}" 
+							class="inline-flex items-center gap-1 mt-2 text-xs font-semibold text-emerald-600 hover:text-emerald-800 hover:underline"
+							onclick="event.stopPropagation()"
+						>
+							Learn More
+							<svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+							</svg>
+						</a>
 					</div>
 				`)
 
@@ -112,16 +122,30 @@ export default function ParkMap({ parks, mapboxToken }: ParkMapProps) {
 					.setPopup(popup)
 					.addTo(map.current!)
 
+				// Track currently open popup
+				let currentPopup: mapboxgl.Popup | null = null
+
 				markerEl.addEventListener('mouseenter', () => {
 					setActivePark(park.title || '')
-					marker.togglePopup()
+					// Close previous popup if exists
+					if (currentPopup && currentPopup !== popup) {
+						currentPopup.remove()
+					}
+					marker.setPopup(popup)
+					popup.addTo(map.current!)
+					currentPopup = popup
 				})
-				markerEl.addEventListener('mouseleave', () => {
-					setActivePark(null)
-					marker.togglePopup()
-				})
+
 				markerEl.addEventListener('click', (e) => {
 					e.stopPropagation()
+					// Close previous popup if exists
+					if (currentPopup && currentPopup !== popup) {
+						currentPopup.remove()
+					}
+					marker.setPopup(popup)
+					popup.addTo(map.current!)
+					currentPopup = popup
+					
 					// Fly to park location
 					map.current?.flyTo({
 						center: coordinates,
@@ -137,6 +161,12 @@ export default function ParkMap({ parks, mapboxToken }: ParkMapProps) {
 						parkCard.classList.add('ring-2', 'ring-emerald-400')
 						setTimeout(() => parkCard.classList.remove('ring-2', 'ring-emerald-400'), 2000)
 					}
+				})
+
+				// Close popup when clicking on map
+				map.current?.on('click', () => {
+					popup.remove()
+					currentPopup = null
 				})
 			})
 
