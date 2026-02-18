@@ -68,6 +68,7 @@ export default defineType({
           { title: 'Dog Friendly', value: 'dog-friendly' },
           { title: 'Accessible', value: 'accessible' },
           { title: 'Picnic Area', value: 'picnic-area' },
+          { title: 'Playground', value: 'playground' },
           { title: 'Camping', value: 'camping' },
           { title: 'Swimming', value: 'swimming' },
           { title: 'Fishing', value: 'fishing' },

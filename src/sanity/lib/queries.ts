@@ -17,12 +17,12 @@ export const homeQuery = `*[_type == "home"][0]{
   seo{..., sharingImage{..., asset->}}
 }`
 
-export const featuredParksQuery = `*[_type == "parkTrail" && featured == true] | order(order asc) [0...6] {
-  _id, title, slug, shortDescription, mainImage{..., asset->}, parkType, amenities
+export const featuredParksQuery = `*[_type == "parkTrail"] | order(order asc) {
+  _id, title, slug, shortDescription, mainImage{..., asset->}, parkType, amenities, coordinates
 }`
 
 export const allParksQuery = `*[_type == "parkTrail"] | order(order asc) {
-  _id, title, slug, shortDescription, mainImage{..., asset->}, parkType, amenities
+  _id, title, slug, shortDescription, mainImage{..., asset->}, parkType, amenities, coordinates
 }`
 
 export const parkBySlugQuery = `*[_type == "parkTrail" && slug.current == $slug][0]{

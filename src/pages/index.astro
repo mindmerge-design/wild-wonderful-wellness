@@ -20,19 +20,23 @@ import Card from '@/components/elements/content/Card.astro'
 import PortableText from '@/components/elements/content/PortableText.astro'
 import Container from '@/components/layout/Container.astro'
 import Section from '@/components/layout/Section.astro'
-import ParkCard from '@/components/ParkCard.astro'
 import ParkMap from '@/components/ParkMap.tsx'
 import { Button } from '@/components/starwind/button'
 import Layout from '@/layouts/Layout.astro'
 
 // Sanity
 import { loadQuery } from '@/sanity/lib/load-query'
-import { homeQuery } from '@/sanity/lib/queries'
+import { featuredParksQuery, homeQuery } from '@/sanity/lib/queries'
 import { urlForImage } from '@/sanity/lib/urlForImage'
 import type { Home } from '@/sanity/schemaTypes/home'
+import type { ParkTrail } from '@/sanity/schemaTypes/parkTrail'
 
 // Load home page data
 const { data: home } = await loadQuery<Home>({ query: homeQuery })
+
+// Load featured parks from Sanity
+const { data: featuredParks } = await loadQuery<ParkTrail[]>({ query: featuredParksQuery })
+const parks = featuredParks || []
 
 const siteName = 'Wild & Wonderful Wellness'
 const pageTitle = 'Wellness Passport'
@@ -60,79 +64,6 @@ const howItWorks = [
 		description:
 			'Turn in your completed passport at MCHD to redeem rewards. The more stamps you collect, the bigger the prizes!',
 		icon: 'gift'
-	}
-]
-
-const parks = [
-	{ 
-		name: "Dorsey's Knob Park", 
-		description: 'Scenic overlook with hiking trails and panoramic views of Morgantown and the surrounding hills.',
-		type: 'park',
-		amenities: ['hiking', 'views', 'picnic'],
-		difficulty: 'moderate'
-	},
-	{ 
-		name: 'Coopers Rock State Forest', 
-		description: 'Over 12,000 acres of forest with stunning overlooks, rock climbing, and miles of trails.',
-		type: 'state-forest',
-		amenities: ['hiking', 'climbing', 'camping', 'views'],
-		difficulty: 'moderate'
-	},
-	{ 
-		name: "Decker's Creek Trail", 
-		description: 'Paved rail-trail following the creek through wooded terrain, perfect for walking and biking.',
-		type: 'trail',
-		amenities: ['biking', 'walking', 'wheelchair-accessible'],
-		difficulty: 'easy'
-	},
-	{ 
-		name: 'White Park', 
-		description: 'Community park with walking paths, playgrounds, and open green spaces for recreation.',
-		type: 'park',
-		amenities: ['playground', 'sports', 'picnic'],
-		difficulty: 'easy'
-	},
-	{ 
-		name: 'Marilla Park', 
-		description: 'Quiet neighborhood park with wooded trails and a peaceful creekside setting.',
-		type: 'park',
-		amenities: ['hiking', 'nature', 'quiet'],
-		difficulty: 'easy'
-	},
-	{ 
-		name: 'Krepps Park', 
-		description: 'Family-friendly park featuring sports fields, a walking loop, and picnic areas.',
-		type: 'park',
-		amenities: ['sports', 'walking', 'playground'],
-		difficulty: 'easy'
-	},
-	{ 
-		name: 'Mason Dixon Historical Park', 
-		description: 'Historic site with interpretive trails and markers along the famous survey line.',
-		type: 'historic',
-		amenities: ['history', 'hiking', 'education'],
-		difficulty: 'easy'
-	},
-	{ 
-		name: 'Caperton Trail', 
-		description: 'Scenic waterfront trail along the Monongahela River connecting to the rail-trail network.',
-		type: 'trail',
-		amenities: ['biking', 'walking', 'river-views'],
-		difficulty: 'easy'
-	},
-	{ 
-		name: 'Chestnut Ridge Park', 
-		description: 'County park with hiking trails, a lake, picnic shelters, and seasonal activities.',
-		type: 'park',
-		amenities: ['hiking', 'lake', 'camping', 'fishing'],
-		difficulty: 'moderate'
-	},
-	{ 
-		name: 'Core Arboretum', 
-		description: 'WVU-managed 91-acre forest with 3.5 miles of trails showcasing native Appalachian flora.',
-		type: 'park',
-		amenities: ['nature', 'hiking', 'education', 'wildflowers'],
-		difficulty: 'easy'
 	}
 ]
 
@@ -460,38 +391,39 @@ const upcomingEvents = [
 					</p>
 				</div>
 
-				<!-- Split Layout: Scrollable Cards + Interactive Map -->
-				<div class="grid lg:grid-cols-2  gap-2 items-stretch">
-					<!-- Left: Scrollable Park Cards -->
-					<div class="order-2 lg:order-1">
-						<div class="h-[540px] overflow-y-auto pr-2 space-y-4  ">
-							{parks.map((park, i) => (
-								<ParkCard park={park} index={i} size="md" />
-							))}
-						</div>
-					</div>
-
-					<!-- Right: Interactive Map -->
-					<div class="order-1 lg:order-2">
-						<div class="sticky top-24 h-[540px]">
-							{mapboxToken ? (
-								<ParkMap parks={parks} mapboxToken={mapboxToken} client:only="react" />
-							) : (
-								<div class="relative overflow-hidden   h-full">
-									<div class="absolute inset-0 bg-success/5"></div>
-									<div class="absolute inset-0 flex items-center justify-center">
-										<div class="text-center">
-											<div class="mx-auto mb-2 flex size-16 items-center justify-center rounded-full bg-background shadow-lg">
-												<MapIcon class="text-success size-8" />
-											</div>
-											<p class="text-sm font-medium text-muted-foreground">Mapbox token required</p>
-											<p class="text-xs text-muted-foreground/70 mt-1">Add PUBLIC_MAPBOX_TOKEN to your .env file</p>
+				<!-- Full-width Interactive Map -->
+				<div class="h-[540px] w-full">
+					{mapboxToken ? (
+						parks.length > 0 ? (
+							<ParkMap parks={parks} mapboxToken={mapboxToken} client:only="react" />
+						) : (
+							<div class="relative overflow-hidden h-full rounded-2xl">
+								<div class="absolute inset-0 bg-success/5"></div>
+								<div class="absolute inset-0 flex items-center justify-center">
+									<div class="text-center">
+										<div class="mx-auto mb-2 flex size-16 items-center justify-center rounded-full bg-background shadow-lg">
+											<MapIcon class="text-success size-8" />
 										</div>
+										<p class="text-sm font-medium text-muted-foreground">No parks to display</p>
+										<p class="text-xs text-muted-foreground/70 mt-1">Add parks with coordinates in Sanity</p>
 									</div>
 								</div>
-							)}
+							</div>
+						)
+					) : (
+						<div class="relative overflow-hidden h-full rounded-2xl">
+							<div class="absolute inset-0 bg-success/5"></div>
+							<div class="absolute inset-0 flex items-center justify-center">
+								<div class="text-center">
+									<div class="mx-auto mb-2 flex size-16 items-center justify-center rounded-full bg-background shadow-lg">
+										<MapIcon class="text-success size-8" />
+									</div>
+									<p class="text-sm font-medium text-muted-foreground">Mapbox token required</p>
+									<p class="text-xs text-muted-foreground/70 mt-1">Add PUBLIC_MAPBOX_TOKEN to your .env file</p>
+								</div>
+							</div>
 						</div>
-					</div>
+					)}
 				</div>
 				
 				<div class="mt-10 text-center">

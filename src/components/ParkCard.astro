@@ -1,28 +1,25 @@
 ---
+import type { ParkTrail } from '@/sanity/schemaTypes/parkTrail'
 import Button from './starwind/button'
 
 // Reusable Park Card Component
 // Used on homepage and parks-and-trails page
 
 interface Props {
-	park: {
-		name: string
-		description: string
-		type: string
-		amenities: string[]
-		difficulty: string
-	}
+	park: ParkTrail
 	index: number
 	size?: 'sm' | 'md' | 'lg'
 }
 
 const { park, index, size = 'md' } = Astro.props
 
-// Generate URL-friendly slug
-const slug = park.name
-	.toLowerCase()
-	.replace(/[^a-z0-9]+/g, '-')
-	.replace(/^-|-$/g, '')
+// Generate URL-friendly slug from title
+const slug =
+	park.slug?.current ||
+	(park.title || 'park')
+		.toLowerCase()
+		.replace(/[^a-z0-9]+/g, '-')
+		.replace(/^-|-$/g, '')
 const href = `/parks-and-trails/${slug}`
 
 // Size variants (for non-layout properties)
@@ -103,48 +100,29 @@ const s = sizeClasses[size]
 				<h4
 					class={`font-bold text-foreground group-hover:text-success transition-colors mt-3! ${s.title}`}
 				>
-					{park.name}
+					{park.title}
 				</h4>
 				<span
 					class="bg-success/10 text-success inline-flex shrink-0 items-center rounded-full px-2 py-0.5 text-xs font-medium capitalize"
 				>
-					{park.type.replace('-', ' ')}
+					{park.parkType?.replace('-', ' ') || 'Park'}
 				</span>
 			</div>
-			<p class={`text-muted-foreground ${s.desc}`}>{park.description}</p>
+			<p class={`text-muted-foreground ${s.desc}`}>{park.shortDescription || ''}</p>
 
 			<div class="flex flex-wrap items-center gap-2">
-				<span
-					class="bg-muted text-muted-foreground inline-flex items-center gap-1 rounded-md px-2 py-1 text-xs"
-				>
-					<svg
-						class="size-3"
-						xmlns="http://www.w3.org/2000/svg"
-						viewBox="0 0 24 24"
-						fill="none"
-						stroke="currentColor"
-						stroke-width="2"
-						stroke-linecap="round"
-						stroke-linejoin="round"
-					>
-						<polygon points="12 2 2 22 22 22 12 2"></polygon>
-						<path d="m12 22 4-8"></path>
-						<path d="m8 14 4 8"></path>
-					</svg>
-					{park.difficulty}
-				</span>
 				{
-					park.amenities
-						.slice(0, 3)
-						.map((amenity) => (
-							<span class="border-border text-muted-foreground inline-flex items-center rounded-md border px-2 py-1 text-xs capitalize">
-								{amenity.replace('-', ' ')}
-							</span>
-						))
-				}
-				{
-					park.amenities.length > 3 && (
-						<span class="text-muted-foreground text-xs">+{park.amenities.length - 3} more</span>
+					park.amenities && park.amenities.length > 0 && (
+						<>
+							{park.amenities.slice(0, 3).map((amenity) => (
+								<span class="border-border text-muted-foreground inline-flex items-center rounded-md border px-2 py-1 text-xs capitalize">
+									{amenity.replace('-', ' ')}
+								</span>
+							))}
+							{park.amenities.length > 3 && (
+								<span class="text-muted-foreground text-xs">+{park.amenities.length - 3} more</span>
+							)}
+						</>
 					)
 				}
 			</div>

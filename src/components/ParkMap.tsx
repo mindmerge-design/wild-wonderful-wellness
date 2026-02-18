@@ -1,30 +1,11 @@
+import type { ParkTrail } from '@/sanity/schemaTypes/parkTrail'
 import mapboxgl from 'mapbox-gl'
 import 'mapbox-gl/dist/mapbox-gl.css'
 import { useEffect, useRef, useState } from 'react'
 
-interface Park {
-	name: string
-	description: string
-	coordinates?: [number, number]
-}
-
 interface ParkMapProps {
-	parks: Park[]
+	parks: ParkTrail[]
 	mapboxToken: string
-}
-
-// Coordinates for Monongalia County parks (approximate)
-const parkCoordinates: Record<string, [number, number]> = {
-	"Dorsey's Knob Park": [-79.9314, 39.6489],
-	'Coopers Rock State Forest': [-79.7988, 39.6403],
-	"Decker's Creek Trail": [-79.9531, 39.6295],
-	'White Park': [-79.9664, 39.6528],
-	'Marilla Park': [-79.9753, 39.6456],
-	'Krepps Park': [-79.9047, 39.6603],
-	'Mason Dixon Historical Park': [-79.8789, 39.5428],
-	'Caperton Trail': [-79.9578, 39.6267],
-	'Chestnut Ridge Park': [-79.8136, 39.5936],
-	'Core Arboretum': [-79.9708, 39.6456]
 }
 
 export default function ParkMap({ parks, mapboxToken }: ParkMapProps) {
@@ -43,7 +24,8 @@ export default function ParkMap({ parks, mapboxToken }: ParkMapProps) {
 			style: 'mapbox://styles/mapbox/light-v11',
 			center: [-79.91, 39.63],
 			zoom: 11,
-			attributionControl: false
+			attributionControl: false,
+			scrollZoom: false
 		})
 
 		map.current.on('load', () => {
@@ -89,7 +71,10 @@ export default function ParkMap({ parks, mapboxToken }: ParkMapProps) {
 
 			// Add markers for each park
 			parks.forEach((park, index) => {
-				const coordinates = park.coordinates || parkCoordinates[park.name]
+				// Convert Sanity coordinates {lat, lng} to Mapbox [lng, lat]
+				const coordinates: [number, number] | null = park.coordinates 
+					? [park.coordinates.lng, park.coordinates.lat] 
+					: null
 				if (!coordinates) return
 
 				// Extend bounds to include this park
@@ -103,7 +88,7 @@ export default function ParkMap({ parks, mapboxToken }: ParkMapProps) {
 						<div class="w-5 h-5 rounded-full bg-emerald-500 flex items-center justify-center text-white! text-xs font-bold">
 							${index + 1}
 						</div>
-						<span class="text-xs font-medium text-gray-800 max-w-[80px] truncate">${park.name}</span>
+						<span class="text-xs font-medium text-gray-800 max-w-[80px] truncate">${park.title}</span>
 					</div>
 				`
 
@@ -114,8 +99,8 @@ export default function ParkMap({ parks, mapboxToken }: ParkMapProps) {
 					closeOnClick: true
 				}).setHTML(`
 					<div class="p-2">
-						<h3 class="font-bold text-emerald-700 mt-0!">${park.name}</h3>
-						<p class="text-xs text-gray-600 mt-1 line-clamp-2">${park.description}</p>
+						<h3 class="font-bold text-emerald-700 mt-0!">${park.title}</h3>
+						<p class="text-xs text-gray-600 mt-1 line-clamp-2">${park.shortDescription || ''}</p>
 						<div class="flex items-center gap-1 mt-2 text-xs text-emerald-600">
 							<span>Stamp Location #${index + 1}</span>
 						</div>
@@ -128,7 +113,7 @@ export default function ParkMap({ parks, mapboxToken }: ParkMapProps) {
 					.addTo(map.current!)
 
 				markerEl.addEventListener('mouseenter', () => {
-					setActivePark(park.name)
+					setActivePark(park.title || '')
 					marker.togglePopup()
 				})
 				markerEl.addEventListener('mouseleave', () => {

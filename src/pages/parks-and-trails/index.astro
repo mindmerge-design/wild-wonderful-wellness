@@ -10,86 +10,14 @@ import ParkCard from '@/components/ParkCard.astro'
 import ParkMap from '@/components/ParkMap.tsx'
 import Layout from '@/layouts/Layout.astro'
 
-// Data (using same parks from homepage)
-const parks = [
-	{
-		name: "Dorsey's Knob Park",
-		description:
-			'Scenic overlook with hiking trails and panoramic views of Morgantown and the surrounding hills.',
-		type: 'park',
-		amenities: ['hiking', 'views', 'picnic'],
-		difficulty: 'moderate'
-	},
-	{
-		name: 'Coopers Rock State Forest',
-		description:
-			'Over 12,000 acres of forest with stunning overlooks, rock climbing, and miles of trails.',
-		type: 'state-forest',
-		amenities: ['hiking', 'climbing', 'camping', 'views'],
-		difficulty: 'moderate'
-	},
-	{
-		name: "Decker's Creek Trail",
-		description:
-			'Paved rail-trail following the creek through wooded terrain, perfect for walking and biking.',
-		type: 'trail',
-		amenities: ['biking', 'walking', 'wheelchair-accessible'],
-		difficulty: 'easy'
-	},
-	{
-		name: 'White Park',
-		description:
-			'Community park with walking paths, playgrounds, and open green spaces for recreation.',
-		type: 'park',
-		amenities: ['playground', 'sports', 'picnic'],
-		difficulty: 'easy'
-	},
-	{
-		name: 'Marilla Park',
-		description: 'Quiet neighborhood park with wooded trails and a peaceful creekside setting.',
-		type: 'park',
-		amenities: ['hiking', 'nature', 'quiet'],
-		difficulty: 'easy'
-	},
-	{
-		name: 'Krepps Park',
-		description: 'Family-friendly park featuring sports fields, a walking loop, and picnic areas.',
-		type: 'park',
-		amenities: ['sports', 'walking', 'playground'],
-		difficulty: 'easy'
-	},
-	{
-		name: 'Mason Dixon Historical Park',
-		description: 'Historic site with interpretive trails and markers along the famous survey line.',
-		type: 'historic',
-		amenities: ['history', 'hiking', 'education'],
-		difficulty: 'easy'
-	},
-	{
-		name: 'Caperton Trail',
-		description:
-			'Scenic waterfront trail along the Monongahela River connecting to the rail-trail network.',
-		type: 'trail',
-		amenities: ['biking', 'walking', 'river-views'],
-		difficulty: 'easy'
-	},
-	{
-		name: 'Chestnut Ridge Park',
-		description:
-			'County park with hiking trails, a lake, picnic shelters, and seasonal activities.',
-		type: 'park',
-		amenities: ['hiking', 'lake', 'camping', 'fishing'],
-		difficulty: 'moderate'
-	},
-	{
-		name: 'Core Arboretum',
-		description:
-			'WVU-managed 91-acre forest with 3.5 miles of trails showcasing native Appalachian flora.',
-		type: 'park',
-		amenities: ['nature', 'hiking', 'education', 'wildflowers'],
-		difficulty: 'easy'
-	}
-]
+// Sanity
+import { loadQuery } from '@/sanity/lib/load-query'
+import { allParksQuery } from '@/sanity/lib/queries'
+import type { ParkTrail } from '@/sanity/schemaTypes/parkTrail'
+
+// Load all parks from Sanity
+const { data: allParks } = await loadQuery<ParkTrail[]>({ query: allParksQuery })
+const parks = allParks || []
 
 const siteName = 'Wild & Wonderful Wellness'
 const mapboxToken = import.meta.env.PUBLIC_MAPBOX_TOKEN || ''
@@ -232,7 +160,17 @@ const seoDescription =
 					<!-- Left: Expanded Location Cards (3 cols) -->
 					<div class="order-2 space-y-4 pt-4 lg:order-1 lg:col-span-3">
 						<div class="-mx-3 max-h-[600px] space-y-4 overflow-y-auto px-3">
-							{parks.map((park, i) => <ParkCard park={park} index={i} size="lg" />)}
+							{
+								parks.length > 0 ? (
+									parks.map((park, i) => <ParkCard park={park} index={i} size="lg" />)
+								) : (
+									<div class="flex h-full items-center justify-center">
+										<p class="text-muted-foreground text-center">
+											No parks found. Add some parks in Sanity to see them here.
+										</p>
+									</div>
+								)
+							}
 						</div>
 					</div>
 
@@ -242,7 +180,19 @@ const seoDescription =
 							<div class="border-border h-[600px] overflow-hidden rounded-xl border-2 shadow-lg">
 								{
 									mapboxToken ? (
-										<ParkMap parks={parks} mapboxToken={mapboxToken} client:only="react" />
+										parks.length > 0 ? (
+											<ParkMap parks={parks} mapboxToken={mapboxToken} client:only="react" />
+										) : (
+											<div class="bg-muted flex h-full flex-col items-center justify-center p-8 text-center">
+												<div class="bg-background mb-4 flex size-16 items-center justify-center rounded-full shadow-md">
+													<MapIcon class="text-success size-8" />
+												</div>
+												<p class="text-muted-foreground font-medium">No parks to display</p>
+												<p class="text-muted-foreground/70 mt-1 text-sm">
+													Add parks with coordinates in Sanity
+												</p>
+											</div>
+										)
 									) : (
 										<div class="bg-muted flex h-full flex-col items-center justify-center p-8 text-center">
 											<div class="bg-background mb-4 flex size-16 items-center justify-center rounded-full shadow-md">
@@ -254,7 +204,7 @@ const seoDescription =
 											</p>
 										</div>
 									)
-								}
+								} }
 							</div>
 							<p class="text-muted-foreground mt-3 text-center text-xs">
 								Hover over markers to preview • Click to zoom to location
