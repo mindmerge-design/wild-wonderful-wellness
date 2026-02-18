@@ -74,13 +74,13 @@ export default defineType({
       name: 'content',
       title: 'Content',
       type: 'portableText',
-      validation: (Rule: any) => Rule.required(),
+      
     }),
     defineField({
       name: 'address',
       title: 'Address',
       type: 'portableText',
-      validation: (Rule: any) => Rule.required(),
+      
     }),
     defineField({
       name: 'hours',
@@ -96,7 +96,7 @@ export default defineType({
       name: 'phone',
       title: 'Phone',
       type: 'string',
-      validation: (Rule: any) => Rule.required(),
+      
     }),
     defineField({
       name: 'featured',

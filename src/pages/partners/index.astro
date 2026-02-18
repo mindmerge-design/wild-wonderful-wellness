@@ -9,88 +9,22 @@ import Container from '@/components/layout/Container.astro'
 import Section from '@/components/layout/Section.astro'
 import { Button } from '@/components/starwind/button'
 import Layout from '@/layouts/Layout.astro'
+import { loadQuery } from '@/sanity/lib/load-query'
+import { allPartnersQuery } from '@/sanity/lib/queries'
+import type { Partner } from '@/sanity/schemaTypes/partner'
 
-// Partner data
-const partners = [
-	{
-		name: 'Monongalia County Health Department',
-		type: 'health',
-		description: 'The primary sponsor of the Wellness Passport program. Pick up your passport here and learn about health initiatives in the community.',
-		services: ['passport-pickup', 'health-screenings'],
-		featured: true
-	},
-	{
-		name: 'Mon Health System',
-		type: 'healthcare',
-		description: 'Comprehensive healthcare provider supporting wellness initiatives and preventive care programs.',
-		services: ['health-screenings', 'wellness-programs'],
-		featured: true
-	},
-	{
-		name: 'WVU Medicine',
-		type: 'healthcare',
-		description: 'West Virginia University\'s healthcare system promoting community wellness and active living.',
-		services: ['health-screenings', 'education'],
-		featured: false
-	},
-	{
-		name: 'Morgantown Running Club',
-		type: 'fitness',
-		description: 'Local running community organizing group runs, races, and fitness events for all skill levels.',
-		services: ['group-runs', 'races', 'community'],
-		featured: false
-	},
-	{
-		name: 'Mountaineer Yoga Studio',
-		type: 'wellness',
-		description: 'Yoga classes and wellness workshops for practitioners of all levels.',
-		services: ['yoga-classes', 'workshops'],
-		featured: false
-	},
-	{
-		name: 'Mon County Parks & Recreation',
-		type: 'parks',
-		description: 'Manages parks, trails, and recreational facilities throughout Monongalia County.',
-		services: ['facilities', 'programs', 'events'],
-		featured: true
-	},
-	{
-		name: 'Mylan Park',
-		type: 'recreation',
-		description: 'Multi-use recreational complex with aquatic center, sports facilities, and community programs.',
-		services: ['sports', 'aquatics', 'fitness'],
-		featured: false
-	},
-	{
-		name: 'Morgantown Farmers Market',
-		type: 'nutrition',
-		description: 'Weekly farmers market providing fresh, local produce and supporting healthy eating.',
-		services: ['fresh-produce', 'local-food'],
-		featured: false
-	},
-	{
-		name: 'YMCA of Morgantown',
-		type: 'fitness',
-		description: 'Community fitness center with pools, gym, classes, and family programs.',
-		services: ['fitness-classes', 'swimming', 'childcare'],
-		featured: false
-	},
-	{
-		name: 'WV Division of Natural Resources',
-		type: 'state',
-		description: 'State agency managing natural resources and outdoor recreation areas.',
-		services: ['parks', 'wildlife', 'education'],
-		featured: false
-	}
-]
+// Fetch partners from Sanity
+const { data: partners } = await loadQuery<Partner[]>({
+	query: allPartnersQuery
+})
 
 const siteName = 'Wild & Wonderful Wellness'
 
 // Stats
-const healthPartners = partners.filter(p => ['health', 'healthcare'].includes(p.type)).length
-const fitnessPartners = partners.filter(p => ['fitness', 'recreation'].includes(p.type)).length
-const communityPartners = partners.filter(p => ['parks', 'nutrition', 'state'].includes(p.type)).length
-const pickupLocations = partners.filter(p => p.services.includes('passport-pickup')).length
+const healthPartners = partners.filter(p => ['healthcare', 'wellness'].includes(p.partnerType || '')).length
+const fitnessPartners = partners.filter(p => ['fitness', 'recreation'].includes(p.partnerType || '')).length
+const communityPartners = partners.filter(p => ['retail', 'other'].includes(p.partnerType || '')).length
+const pickupLocations = partners.filter(p => p.hasPassportPickup).length
 
 // SEO
 const seoTitle = `Partners | ${siteName}`
@@ -248,45 +182,59 @@ const seoDescription = 'Community businesses and organizations supporting the We
 				<div class="mb-8">
 					<h3 class="text-sm font-semibold text-muted-foreground uppercase tracking-wider mb-4">Featured Partners</h3>
 					<div class="grid md:grid-cols-3 gap-4">
-						{partners.filter(p => p.featured).map((partner, i) => (
-							<div
-								class="group relative rounded-xl border border-border bg-card overflow-hidden transition-all duration-300 hover:shadow-lg hover:border-info/30"
-								style={`animation: fade-in-up 0.4s ease-out ${0.1 * i}s both;`}
-							>
-								<div class="flex flex-col h-full">
-									<!-- Header with icon -->
-									<div class="p-4 pb-2">
-										<div class="flex items-start gap-3">
-											<div class="flex size-12 shrink-0 items-center justify-center rounded-xl bg-info/10">
-												<Building2 class="text-info size-6" />
+						{partners.filter(p => p.featured).map((partner, i) => {
+							const slug = partner.slug?.current || (partner.title || 'partner').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')
+							return (
+								<a
+									href={`/partners/${slug}`}
+									class="group relative rounded-xl border border-border bg-card overflow-hidden transition-all duration-300 hover:shadow-lg hover:border-info/30"
+									style={`animation: fade-in-up 0.4s ease-out ${0.1 * i}s both;`}
+								>
+									<div class="flex flex-col h-full">
+										<!-- Header with icon -->
+										<div class="p-4 pb-2">
+											<div class="flex items-start gap-3">
+												<div class="flex size-12 shrink-0 items-center justify-center rounded-xl bg-info/10">
+													<Building2 class="text-info size-6" />
+												</div>
+												<div class="flex-1 min-w-0">
+													<h4 class="font-bold text-foreground group-hover:text-info transition-colors">{partner.title}</h4>
+													<span class="inline-flex items-center rounded-full bg-info/10 px-2 py-0.5 text-xs font-medium text-info capitalize mt-1">
+														{partner.partnerType || 'Partner'}
+													</span>
+												</div>
 											</div>
-											<div class="flex-1 min-w-0">
-												<h4 class="font-bold text-foreground group-hover:text-info transition-colors">{partner.name}</h4>
-												<span class="inline-flex items-center rounded-full bg-info/10 px-2 py-0.5 text-xs font-medium text-info capitalize mt-1">
-													{partner.type}
-												</span>
+										</div>
+										
+										<!-- Content -->
+										<div class="flex-1 p-4 pt-2">
+											<p class="text-muted-foreground text-sm leading-relaxed">{partner.shortDescription || ''}</p>
+										</div>
+										
+										<!-- Services -->
+										<div class="p-4 pt-0">
+											<div class="flex flex-wrap gap-1.5">
+												{partner.hasPassportPickup && (
+													<span class="inline-flex items-center rounded-md border border-border px-2 py-1 text-xs text-muted-foreground">
+														Passport Pickup
+													</span>
+												)}
+												{partner.offersDiscounts && (
+													<span class="inline-flex items-center rounded-md border border-border px-2 py-1 text-xs text-muted-foreground">
+														Discounts
+													</span>
+												)}
+												{partner.hasStampStation && (
+													<span class="inline-flex items-center rounded-md border border-border px-2 py-1 text-xs text-muted-foreground">
+														Stamp Station
+													</span>
+												)}
 											</div>
 										</div>
 									</div>
-									
-									<!-- Content -->
-									<div class="flex-1 p-4 pt-2">
-										<p class="text-muted-foreground text-sm leading-relaxed">{partner.description}</p>
-									</div>
-									
-									<!-- Services -->
-									<div class="p-4 pt-0">
-										<div class="flex flex-wrap gap-1.5">
-											{partner.services.slice(0, 3).map((service) => (
-												<span class="inline-flex items-center rounded-md border border-border px-2 py-1 text-xs text-muted-foreground capitalize">
-													{service.replace('-', ' ')}
-												</span>
-											))}
-										</div>
-									</div>
-								</div>
-							</div>
-						))}
+								</a>
+							)
+						})}
 					</div>
 				</div>
 
@@ -294,32 +242,36 @@ const seoDescription = 'Community businesses and organizations supporting the We
 				<div>
 					<h3 class="text-sm font-semibold text-muted-foreground uppercase tracking-wider mb-4">All Partners</h3>
 					<div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-						{partners.filter(p => !p.featured).map((partner, i) => (
-							<div
-								class="group relative rounded-xl border border-border bg-card p-4 transition-all duration-300 hover:shadow-md hover:border-info/20"
-								style={`animation: fade-in-up 0.4s ease-out ${0.05 * i}s both;`}
-							>
-								<div class="flex items-start gap-3">
-									<div class="flex size-10 shrink-0 items-center justify-center rounded-lg bg-muted">
-										<Building2 class="text-muted-foreground size-4" />
-									</div>
-									<div class="flex-1 min-w-0">
-										<h4 class="font-bold text-foreground text-sm group-hover:text-info transition-colors truncate">{partner.name}</h4>
-										<p class="text-muted-foreground text-xs mt-1 line-clamp-2">{partner.description}</p>
-										<div class="flex flex-wrap gap-1 mt-2">
-											<span class="inline-flex items-center rounded-full bg-info/10 px-2 py-0.5 text-[10px] font-medium text-info capitalize">
-												{partner.type}
-											</span>
-											{partner.services.includes('passport-pickup') && (
-												<span class="inline-flex items-center rounded-full bg-success/10 px-2 py-0.5 text-[10px] font-medium text-success">
-													Pickup
+						{partners.filter(p => !p.featured).map((partner, i) => {
+							const slug = partner.slug?.current || (partner.title || 'partner').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')
+							return (
+								<a
+									href={`/partners/${slug}`}
+									class="group relative rounded-xl border border-border bg-card p-4 transition-all duration-300 hover:shadow-md hover:border-info/20"
+									style={`animation: fade-in-up 0.4s ease-out ${0.05 * i}s both;`}
+								>
+									<div class="flex items-start gap-3">
+										<div class="flex size-10 shrink-0 items-center justify-center rounded-lg bg-muted">
+											<Building2 class="text-muted-foreground size-4" />
+										</div>
+										<div class="flex-1 min-w-0">
+											<h4 class="font-bold text-foreground text-sm group-hover:text-info transition-colors truncate">{partner.title}</h4>
+											<p class="text-muted-foreground text-xs mt-1 line-clamp-2">{partner.shortDescription || ''}</p>
+											<div class="flex flex-wrap gap-1 mt-2">
+												<span class="inline-flex items-center rounded-full bg-info/10 px-2 py-0.5 text-[10px] font-medium text-info capitalize">
+													{partner.partnerType || 'Partner'}
 												</span>
-											)}
+												{partner.hasPassportPickup && (
+													<span class="inline-flex items-center rounded-full bg-success/10 px-2 py-0.5 text-[10px] font-medium text-success">
+														Pickup
+													</span>
+												)}
+											</div>
 										</div>
 									</div>
-								</div>
-							</div>
-						))}
+								</a>
+							)
+						})}
 					</div>
 				</div>
 

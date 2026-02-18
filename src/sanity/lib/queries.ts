@@ -30,9 +30,9 @@ export const parkBySlugQuery = `*[_type == "parkTrail" && slug.current == $slug]
   seo{..., sharingImage{..., asset->}}
 }`
 
-export const featuredPartnersQuery = `*[_type == "partner" && featured == true] | order(order asc) [0...8] {
+export const featuredPartnersQuery = `*[_type == "partner"] | order(order asc) [0...8] {
   _id, title, slug, shortDescription, logo{..., asset->}, mainImage{..., asset->},
-  partnerType, hasPassportPickup, hasStampStation
+  partnerType, hasPassportPickup
 }`
 
 export const allPartnersQuery = `*[_type == "partner"] | order(order asc) {

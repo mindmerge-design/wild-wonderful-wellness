@@ -26,10 +26,11 @@ import Layout from '@/layouts/Layout.astro'
 
 // Sanity
 import { loadQuery } from '@/sanity/lib/load-query'
-import { featuredParksQuery, homeQuery } from '@/sanity/lib/queries'
+import { featuredParksQuery, featuredPartnersQuery, homeQuery } from '@/sanity/lib/queries'
 import { urlForImage } from '@/sanity/lib/urlForImage'
 import type { Home } from '@/sanity/schemaTypes/home'
 import type { ParkTrail } from '@/sanity/schemaTypes/parkTrail'
+import type { Partner } from '@/sanity/schemaTypes/partner'
 
 // Load home page data
 const { data: home } = await loadQuery<Home>({ query: homeQuery })
@@ -37,6 +38,10 @@ const { data: home } = await loadQuery<Home>({ query: homeQuery })
 // Load featured parks from Sanity
 const { data: featuredParks } = await loadQuery<ParkTrail[]>({ query: featuredParksQuery })
 const parks = featuredParks || []
+
+// Load featured partners from Sanity
+const { data: featuredPartners } = await loadQuery<Partner[]>({ query: featuredPartnersQuery })
+const partners = featuredPartners || []
 
 const siteName = 'Wild & Wonderful Wellness'
 const pageTitle = 'Wellness Passport'
@@ -65,19 +70,6 @@ const howItWorks = [
 			'Turn in your completed passport at MCHD to redeem rewards. The more stamps you collect, the bigger the prizes!',
 		icon: 'gift'
 	}
-]
-
-const partners = [
-	{ name: 'Monongalia County Health Department', type: 'Health' },
-	{ name: 'Mon Health System', type: 'Healthcare' },
-	{ name: 'WVU Medicine', type: 'Healthcare' },
-	{ name: 'Morgantown Running Club', type: 'Fitness' },
-	{ name: 'Mountaineer Yoga Studio', type: 'Wellness' },
-	{ name: 'Mon County Parks & Recreation', type: 'Parks' },
-	{ name: 'Mylan Park', type: 'Recreation' },
-	{ name: 'Morgantown Farmers Market', type: 'Nutrition' },
-	{ name: 'YMCA of Morgantown', type: 'Fitness' },
-	{ name: 'WV Division of Natural Resources', type: 'State' }
 ]
 
 const mapboxToken = import.meta.env.PUBLIC_MAPBOX_TOKEN || ''
@@ -452,26 +444,34 @@ const upcomingEvents = [
 			<!-- Edge-to-edge scrolling partners marquee - Two Rows -->
 			<div class="relative overflow-hidden space-y-6 group py-6 px-4">
 				<!-- Row 1 - scrolls left -->
-				<div class="flex animate-marquee group-hover:[animation-play-state:paused]">
-					{[...partners, ...partners].map((partner, i) => (
-						<div
-							class="flex flex-col items-center justify-center rounded-xl border border-border bg-background p-4 text-center mx-3 min-w-[200px] max-w-[200px] transition-all duration-300 hover:shadow-lg hover:scale-105 hover:border-primary/50 hover:bg-primary/5 cursor-pointer"
-						>
-							<p class="text-sm font-semibold leading-tight">{partner.name}</p>
-							<Badge variant="default" class="mt-2 text-xs">{partner.type}</Badge>
-						</div>
-					))}
+				<div class="flex animate-marquee group-hover:paused">
+					{[...partners, ...partners].map((partner, i) => {
+						const slug = partner.slug?.current || (partner.title || 'partner').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')
+						return (
+							<a
+								href={`/partners/${slug}`}
+								class="flex flex-col items-center justify-center rounded-xl border border-border bg-background p-4 text-center mx-3 min-w-[200px] max-w-[200px] transition-all duration-300 hover:shadow-lg hover:scale-105 hover:border-primary/50 hover:bg-primary/5"
+							>
+								<p class="text-sm font-semibold leading-tight">{partner.title}</p>
+								<Badge variant="default" class="mt-2 text-xs">{partner.partnerType || 'Partner'}</Badge>
+							</a>
+						)
+					})}
 				</div>
 				<!-- Row 2 - scrolls right (reverse) -->
-				<div class="flex animate-marquee group-hover:[animation-play-state:paused]" style="animation-direction: reverse;">
-					{[...partners.slice().reverse(), ...partners.slice().reverse()].map((partner, i) => (
-						<div
-							class="flex flex-col items-center justify-center rounded-xl border border-border bg-background p-4 text-center mx-3 min-w-[200px] max-w-[200px] transition-all duration-300 hover:shadow-lg hover:scale-105 hover:border-primary/50 hover:bg-primary/5 cursor-pointer"
-						>
-							<p class="text-sm font-semibold leading-tight">{partner.name}</p>
-							<Badge variant="default" class="mt-2 text-xs">{partner.type}</Badge>
-						</div>
-					))}
+				<div class="flex animate-marquee group-hover:paused" style="animation-direction: reverse;">
+					{[...partners.slice().reverse(), ...partners.slice().reverse()].map((partner, i) => {
+						const slug = partner.slug?.current || (partner.title || 'partner').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')
+						return (
+							<a
+								href={`/partners/${slug}`}
+								class="flex flex-col items-center justify-center rounded-xl border border-border bg-background p-4 text-center mx-3 min-w-[200px] max-w-[200px] transition-all duration-300 hover:shadow-lg hover:scale-105 hover:border-primary/50 hover:bg-primary/5"
+							>
+								<p class="text-sm font-semibold leading-tight">{partner.title}</p>
+								<Badge variant="default" class="mt-2 text-xs">{partner.partnerType || 'Partner'}</Badge>
+							</a>
+						)
+					})}
 				</div>
 			</div>
 

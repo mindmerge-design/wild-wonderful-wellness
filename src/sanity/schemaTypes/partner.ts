@@ -21,6 +21,7 @@ export interface Partner {
 	websiteUrl?: string
 	hasPassportPickup?: boolean
 	hasStampStation?: boolean
+	offersDiscounts?: boolean
 	featured?: boolean
 	order?: number
 	seo?: SEO
