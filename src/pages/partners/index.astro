@@ -46,9 +46,16 @@ const seoDescription = 'Community businesses and organizations supporting the We
 	/>
 
 	<!-- Hero Section -->
-	<div class="relative min-h-[40vh] overflow-hidden bg-primary">
+	<div class="relative min-h-[45vh] overflow-hidden bg-primary">
+		<!-- Dot texture overlay -->
+		<div
+			class="absolute inset-0 opacity-40"
+			style="background-image: radial-gradient(circle, rgba(255,255,255,0.08) 1px, transparent 1px); background-size: 24px 24px;"
+			aria-hidden="true"
+		></div>
+
 		<!-- Decorative topo pattern overlay -->
-		<div class="absolute inset-0 opacity-[0.08]">
+		<div class="absolute inset-0 opacity-[0.07]" aria-hidden="true">
 			<svg class="h-full w-full" xmlns="http://www.w3.org/2000/svg">
 				<defs>
 					<pattern id="topo-partners-hero" x="0" y="0" width="200" height="200" patternUnits="userSpaceOnUse">
@@ -60,36 +67,54 @@ const seoDescription = 'Community businesses and organizations supporting the We
 				<rect width="100%" height="100%" fill="url(#topo-partners-hero)"/>
 			</svg>
 		</div>
-		<div class="absolute inset-0 bg-linear-to-b from-black/20 via-black/10 to-black/40"></div>
 
-		<!-- Floating icons -->
-		<div class="absolute top-12 right-[10%] animate-pulse-soft opacity-30" aria-hidden="true">
-			<Users class="text-white! size-10" />
-		</div>
-		<div class="absolute bottom-24 left-[8%] animate-pulse-soft opacity-25" style="animation-delay: 0.5s" aria-hidden="true">
-			<Heart class="text-white! size-8" />
-		</div>
-		<div class="absolute top-1/3 right-[20%] animate-pulse-soft opacity-20" style="animation-delay: 1s" aria-hidden="true">
-			<MapPin class="text-white! size-9" />
+		<div class="absolute inset-0 bg-linear-to-b from-black/20 via-black/10 to-black/40" aria-hidden="true"></div>
+
+		<!-- Concentric stamp rings -->
+		<div class="pointer-events-none absolute -right-24 top-1/2 -translate-y-1/2" aria-hidden="true">
+			<div class="relative flex items-center justify-center size-[520px] rounded-full border border-dashed border-white/20">
+				<div class="relative flex items-center justify-center size-[380px] rounded-full border border-dashed border-white/20">
+					<div class="size-[240px] rounded-full border border-dashed border-white/20"></div>
+				</div>
+			</div>
 		</div>
 
-		<Container class="relative z-10 flex min-h-[40vh] flex-col justify-center py-16">
+		<!-- Floating icons — right side only, clear of text -->
+		<div class="absolute top-12 right-[4%] animate-pulse-soft opacity-15" aria-hidden="true">
+			<Users class="text-white! size-9" />
+		</div>
+		<div class="absolute top-[45%] right-[18%] animate-pulse-soft opacity-10" style="animation-delay: 0.5s" aria-hidden="true">
+			<Heart class="text-white! size-7" />
+		</div>
+		<div class="absolute bottom-24 right-[8%] animate-pulse-soft opacity-10" style="animation-delay: 1s" aria-hidden="true">
+			<MapPin class="text-white! size-8" />
+		</div>
+
+		<Container class="relative z-10 flex min-h-[45vh] flex-col justify-center py-16">
 			<div class="max-w-3xl" style="animation: fade-in-up 0.8s ease-out both;">
-				<div class="mb-4 inline-flex items-center gap-2 rounded-full border border-white/30 bg-white/10 px-4 py-2 text-sm font-medium text-white!/95 backdrop-blur-md">
-					<Users class="size-4 text-white!" />
+				<!-- Warning badge with pulsing dot -->
+				<div class="mb-5 inline-flex items-center gap-2.5 rounded-full border border-warning/40 bg-warning/15 px-5 py-2.5 text-sm font-semibold text-warning backdrop-blur-md shadow-lg">
+					<span class="size-2 rounded-full bg-warning animate-pulse-soft shrink-0" aria-hidden="true"></span>
 					<span>Our Community</span>
 				</div>
+
 				<h1 class="text-4xl font-extrabold tracking-tight text-white! md:text-5xl lg:text-6xl">
-					Community <span class="text-accent">Partners</span>
+					Community
+					<span class="relative inline-block pb-2 text-accent">
+						Partners
+						<svg class="absolute -bottom-0.5 left-0 w-full overflow-visible pointer-events-none" viewBox="0 0 260 10" preserveAspectRatio="none" aria-hidden="true">
+							<path d="M0,5 Q32.5,0 65,5 T130,5 T195,5 T260,5" fill="none" stroke-width="3" stroke-linecap="round" style="stroke: hsl(var(--accent))"/>
+						</svg>
+					</span>
 				</h1>
-				<p class="mt-4 text-xl text-white/90! max-w-2xl">
+				<p class="mt-5 text-xl text-white/90! max-w-2xl">
 					Local businesses and organizations making wellness accessible for everyone. Pick up passports and collect stamps at these locations.
 				</p>
 			</div>
 		</Container>
 
 		<!-- Wave divider -->
-		<div class="absolute -bottom-2 left-0 right-0">
+		<div class="absolute -bottom-2 left-0 right-0" aria-hidden="true">
 			<svg viewBox="0 0 1440 120" class="w-full text-background" preserveAspectRatio="none">
 				<path fill="currentColor" d="M0,64L60,69.3C120,75,240,85,360,80C480,75,600,53,720,48C840,43,960,53,1080,64C1200,75,1320,85,1380,90L1440,96L1440,120L1380,120C1320,120,1200,120,1080,120C960,120,840,120,720,120C600,120,480,120,360,120C240,120,120,120,60,120L0,120Z"/>
 			</svg>
@@ -100,7 +125,7 @@ const seoDescription = 'Community businesses and organizations supporting the We
 		<!-- Stats Section -->
 		<Section id="partner-stats" class="relative overflow-hidden py-8">
 			<!-- Decorative topo pattern -->
-			<div class="absolute inset-0 text-info/3 pointer-events-none">
+			<div class="absolute inset-0 text-info/3 pointer-events-none" aria-hidden="true">
 				<svg class="h-full w-full" xmlns="http://www.w3.org/2000/svg">
 					<defs>
 						<pattern id="topo-stats" x="0" y="0" width="200" height="200" patternUnits="userSpaceOnUse">
@@ -114,33 +139,40 @@ const seoDescription = 'Community businesses and organizations supporting the We
 
 			<Container class="relative z-10">
 				<div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-					<div class="rounded-xl border border-border bg-card p-4 text-center shadow-sm">
-						<div class="mx-auto mb-2 flex size-10 items-center justify-center rounded-full bg-info/10">
-							<Users class="size-5 text-info" />
+					<!-- Total Partners -->
+					<div class="rounded-xl border border-border border-t-4 border-t-info bg-card p-5 text-center shadow-sm transition-shadow hover:shadow-md">
+						<div class="mx-auto mb-3 flex size-12 items-center justify-center rounded-full bg-info/10">
+							<Users class="size-6 text-info" />
 						</div>
-						<p class="text-2xl font-bold text-foreground">{partners.length}</p>
-						<p class="text-xs text-muted-foreground">Total Partners</p>
+						<p class="text-4xl font-black text-foreground leading-none mb-1">{partners.length}</p>
+						<p class="text-xs font-medium text-muted-foreground uppercase tracking-wide">Total Partners</p>
 					</div>
-					<div class="rounded-xl border border-border bg-card p-4 text-center shadow-sm">
-						<div class="mx-auto mb-2 flex size-10 items-center justify-center rounded-full bg-success/10">
-							<Heart class="size-5 text-success" />
+
+					<!-- Health Partners -->
+					<div class="rounded-xl border border-border border-t-4 border-t-success bg-card p-5 text-center shadow-sm transition-shadow hover:shadow-md">
+						<div class="mx-auto mb-3 flex size-12 items-center justify-center rounded-full bg-success/10">
+							<Heart class="size-6 text-success" />
 						</div>
-						<p class="text-2xl font-bold text-foreground">{healthPartners}</p>
-						<p class="text-xs text-muted-foreground">Health Partners</p>
+						<p class="text-4xl font-black text-foreground leading-none mb-1">{healthPartners}</p>
+						<p class="text-xs font-medium text-muted-foreground uppercase tracking-wide">Health Partners</p>
 					</div>
-					<div class="rounded-xl border border-border bg-card p-4 text-center shadow-sm">
-						<div class="mx-auto mb-2 flex size-10 items-center justify-center rounded-full bg-warning/10">
-							<Award class="size-5 text-warning" />
+
+					<!-- Fitness & Rec -->
+					<div class="rounded-xl border border-border border-t-4 border-t-warning bg-card p-5 text-center shadow-sm transition-shadow hover:shadow-md">
+						<div class="mx-auto mb-3 flex size-12 items-center justify-center rounded-full bg-warning/10">
+							<Award class="size-6 text-warning" />
 						</div>
-						<p class="text-2xl font-bold text-foreground">{fitnessPartners}</p>
-						<p class="text-xs text-muted-foreground">Fitness & Rec</p>
+						<p class="text-4xl font-black text-foreground leading-none mb-1">{fitnessPartners}</p>
+						<p class="text-xs font-medium text-muted-foreground uppercase tracking-wide">Fitness &amp; Rec</p>
 					</div>
-					<div class="rounded-xl border border-border bg-card p-4 text-center shadow-sm">
-						<div class="mx-auto mb-2 flex size-10 items-center justify-center rounded-full bg-primary/10">
-							<MapPin class="size-5 text-primary" />
+
+					<!-- Pickup Locations -->
+					<div class="rounded-xl border border-border border-t-4 border-t-primary bg-card p-5 text-center shadow-sm transition-shadow hover:shadow-md">
+						<div class="mx-auto mb-3 flex size-12 items-center justify-center rounded-full bg-primary/10">
+							<MapPin class="size-6 text-primary" />
 						</div>
-						<p class="text-2xl font-bold text-foreground">{pickupLocations}</p>
-						<p class="text-xs text-muted-foreground">Pickup Locations</p>
+						<p class="text-4xl font-black text-foreground leading-none mb-1">{pickupLocations}</p>
+						<p class="text-xs font-medium text-muted-foreground uppercase tracking-wide">Pickup Locations</p>
 					</div>
 				</div>
 			</Container>
@@ -149,7 +181,7 @@ const seoDescription = 'Community businesses and organizations supporting the We
 		<!-- Partners Grid Section -->
 		<Section id="partners-listing" class="relative overflow-hidden">
 			<!-- Decorative topo pattern -->
-			<div class="absolute inset-0 text-info/2 pointer-events-none">
+			<div class="absolute inset-0 text-info/2 pointer-events-none" aria-hidden="true">
 				<svg class="h-full w-full" xmlns="http://www.w3.org/2000/svg">
 					<defs>
 						<pattern id="topo-partners-grid" x="0" y="0" width="200" height="200" patternUnits="userSpaceOnUse">
@@ -172,9 +204,9 @@ const seoDescription = 'Community businesses and organizations supporting the We
 					<!-- Filter Tags -->
 					<div class="flex flex-wrap gap-2">
 						<button class="px-3 py-1.5 rounded-full bg-info text-info-foreground text-sm font-medium">All</button>
-						<button class="px-3 py-1.5 rounded-full bg-muted text-muted-foreground text-sm font-medium hover:bg-muted/80">Health</button>
-						<button class="px-3 py-1.5 rounded-full bg-muted text-muted-foreground text-sm font-medium hover:bg-muted/80">Fitness</button>
-						<button class="px-3 py-1.5 rounded-full bg-muted text-muted-foreground text-sm font-medium hover:bg-muted/80">Community</button>
+						<button class="px-3 py-1.5 rounded-full bg-muted text-muted-foreground text-sm font-medium hover:bg-muted/80 transition-colors">Health</button>
+						<button class="px-3 py-1.5 rounded-full bg-muted text-muted-foreground text-sm font-medium hover:bg-muted/80 transition-colors">Fitness</button>
+						<button class="px-3 py-1.5 rounded-full bg-muted text-muted-foreground text-sm font-medium hover:bg-muted/80 transition-colors">Community</button>
 					</div>
 				</div>
 
@@ -187,12 +219,15 @@ const seoDescription = 'Community businesses and organizations supporting the We
 							return (
 								<a
 									href={`/partners/${slug}`}
-									class="group relative rounded-xl border border-border bg-card overflow-hidden transition-all duration-300 hover:shadow-lg hover:border-info/30"
+									class="group relative rounded-xl border border-border bg-card overflow-hidden transition-all duration-300 hover:shadow-lg hover:border-info/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-info"
 									style={`animation: fade-in-up 0.4s ease-out ${0.1 * i}s both;`}
 								>
+									<!-- Colored left accent bar, appears on hover -->
+									<div class="absolute left-0 top-0 bottom-0 w-1.5 bg-info rounded-l-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" aria-hidden="true"></div>
+
 									<div class="flex flex-col h-full">
 										<!-- Header with icon -->
-										<div class="p-4 pb-2">
+										<div class="p-4 pb-2 pl-6">
 											<div class="flex items-start gap-3">
 												<div class="flex size-12 shrink-0 items-center justify-center rounded-xl bg-info/10">
 													<Building2 class="text-info size-6" />
@@ -205,14 +240,14 @@ const seoDescription = 'Community businesses and organizations supporting the We
 												</div>
 											</div>
 										</div>
-										
+
 										<!-- Content -->
-										<div class="flex-1 p-4 pt-2">
+										<div class="flex-1 p-4 pt-2 pl-6">
 											<p class="text-muted-foreground text-sm leading-relaxed">{partner.shortDescription || ''}</p>
 										</div>
-										
+
 										<!-- Services -->
-										<div class="p-4 pt-0">
+										<div class="p-4 pt-0 pl-6">
 											<div class="flex flex-wrap gap-1.5">
 												{partner.hasPassportPickup && (
 													<span class="inline-flex items-center rounded-md border border-border px-2 py-1 text-xs text-muted-foreground">
@@ -247,12 +282,15 @@ const seoDescription = 'Community businesses and organizations supporting the We
 							return (
 								<a
 									href={`/partners/${slug}`}
-									class="group relative rounded-xl border border-border bg-card p-4 transition-all duration-300 hover:shadow-md hover:border-info/20"
+									class="group relative rounded-xl border border-border bg-card p-4 pl-5 transition-all duration-300 hover:shadow-md hover:border-info/30 overflow-hidden focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-info"
 									style={`animation: fade-in-up 0.4s ease-out ${0.05 * i}s both;`}
 								>
+									<!-- Subtle colored left border on hover -->
+									<div class="absolute left-0 top-0 bottom-0 w-1 bg-info rounded-l-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" aria-hidden="true"></div>
+
 									<div class="flex items-start gap-3">
-										<div class="flex size-10 shrink-0 items-center justify-center rounded-lg bg-muted">
-											<Building2 class="text-muted-foreground size-4" />
+										<div class="flex size-10 shrink-0 items-center justify-center rounded-lg bg-muted group-hover:bg-info/10 transition-colors duration-300">
+											<Building2 class="text-muted-foreground group-hover:text-info size-4 transition-colors duration-300" />
 										</div>
 										<div class="flex-1 min-w-0">
 											<h4 class="font-bold text-foreground text-sm group-hover:text-info transition-colors truncate">{partner.title}</h4>
@@ -278,6 +316,13 @@ const seoDescription = 'Community businesses and organizations supporting the We
 				<!-- CTA -->
 				<div class="mt-16">
 					<div class="relative overflow-hidden rounded-2xl bg-gradient-to-br from-info to-info/80 p-8 md:p-12 text-center md:text-left shadow-xl">
+						<!-- Dot texture overlay -->
+						<div
+							class="absolute inset-0 opacity-30"
+							style="background-image: radial-gradient(circle, rgba(255,255,255,0.08) 1px, transparent 1px); background-size: 24px 24px;"
+							aria-hidden="true"
+						></div>
+
 						<div class="relative z-10 flex flex-col md:flex-row md:items-center md:justify-between gap-6">
 							<div class="flex flex-col md:flex-row md:items-center gap-4 md:gap-6">
 								<div class="mx-auto md:mx-0 flex size-16 items-center justify-center rounded-full bg-white/20">
@@ -292,6 +337,7 @@ const seoDescription = 'Community businesses and organizations supporting the We
 								Get in Touch
 							</Button>
 						</div>
+
 						<!-- Decorative elements -->
 						<div class="absolute -right-10 -top-10 size-40 rounded-full bg-white/10" aria-hidden="true"></div>
 						<div class="absolute -bottom-10 -left-10 size-32 rounded-full bg-white/5" aria-hidden="true"></div>

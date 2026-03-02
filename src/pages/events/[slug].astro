@@ -9,15 +9,15 @@ import {
 	DollarSign,
 	ExternalLink,
 	MapPin,
-	User
+	User,
+	Building2,
+	Sparkles
 } from 'lucide-astro'
 
 // Components
 import Badge from '@/components/elements/content/Badge.astro'
-import Card from '@/components/elements/content/Card.astro'
 import PortableText from '@/components/elements/content/PortableText.astro'
 import Container from '@/components/layout/Container.astro'
-import Hero from '@/components/layout/Hero.astro'
 import Section from '@/components/layout/Section.astro'
 import { Button } from '@/components/starwind/button'
 import Layout from '@/layouts/Layout.astro'
@@ -48,8 +48,8 @@ const siteName = settings?.siteName || 'Wild & Wonderful Wellness'
 // SEO
 const seoTitle = event.seo?.metaTitle || event.title
 const seoDescription = event.seo?.metaDescription || event.shortDescription || ''
-const seoImage = event.seo?.sharingImage
-	? urlForImage(event.seo.sharingImage).width(1200).height(630).url()
+const seoImage = event.seo?.shareImage
+	? urlForImage(event.seo.shareImage).width(1200).height(630).url()
 	: event.mainImage
 		? urlForImage(event.mainImage).width(1200).height(630).url()
 		: settings?.sharingImage
@@ -73,6 +73,14 @@ function formatTime(dateStr: string) {
 	})
 }
 
+function getEventMonth(dateStr: string) {
+	return new Date(dateStr).toLocaleDateString('en-US', { month: 'short' })
+}
+
+function getEventDay(dateStr: string) {
+	return new Date(dateStr).getDate().toString()
+}
+
 const isPast = new Date(event.eventDate) < new Date()
 ---
 
@@ -90,8 +98,9 @@ const isPast = new Date(event.eventDate) < new Date()
 		slot="head"
 	/>
 
-	<!-- Hero with background image -->
-	<Hero class="min-h-[50vh] flex items-center" textColor="text-primary-foreground">
+	<!-- Custom Hero -->
+	<div class="relative min-h-[52vh] overflow-hidden bg-primary">
+		<!-- Background image (if available) -->
 		{
 			event.mainImage && (
 				<Image
@@ -103,13 +112,89 @@ const isPast = new Date(event.eventDate) < new Date()
 				/>
 			)
 		}
-		<div class="bg-foreground/50 absolute inset-0 z-10"></div>
-		<div class="relative z-20">
-			{isPast && <Badge variant="default" class="mb-3">Past Event</Badge>}
-			<h1 class="text-primary-foreground">{event.title}</h1>
-			{event.shortDescription && <p class="text-primary-foreground/90 mt-2 text-lg">{event.shortDescription}</p>}
+
+		<!-- Overlays -->
+		<div class="absolute inset-0 z-10 bg-linear-to-b from-black/60 via-black/40 to-black/75" aria-hidden="true"></div>
+
+		<!-- Dot texture (when no image) -->
+		{
+			!event.mainImage && (
+				<div
+					class="absolute inset-0 z-[5] opacity-30"
+					style="background-image: radial-gradient(circle, rgba(255,255,255,0.08) 1px, transparent 1px); background-size: 24px 24px;"
+					aria-hidden="true"
+				></div>
+			)
+		}
+
+		<!-- Concentric stamp rings (right side) -->
+		<div class="absolute -right-20 top-1/2 z-[5] -translate-y-1/2 opacity-[0.10]" aria-hidden="true">
+			<svg width="360" height="360" viewBox="0 0 360 360" fill="none" xmlns="http://www.w3.org/2000/svg">
+				<circle cx="180" cy="180" r="175" stroke="white" stroke-width="1.5"/>
+				<circle cx="180" cy="180" r="148" stroke="white" stroke-width="1.5"/>
+				<circle cx="180" cy="180" r="121" stroke="white" stroke-width="1.5"/>
+				<circle cx="180" cy="180" r="94" stroke="white" stroke-width="1.5"/>
+				<circle cx="180" cy="180" r="67" stroke="white" stroke-width="1.5"/>
+				<circle cx="180" cy="180" r="40" stroke="white" stroke-width="1.5"/>
+			</svg>
 		</div>
-	</Hero>
+
+		<!-- Floating decorative icon -->
+		<div class="absolute top-10 left-[12%] z-[5] animate-pulse-soft opacity-20" aria-hidden="true">
+			<Sparkles class="text-white! size-8" />
+		</div>
+
+		<Container class="relative z-20 flex min-h-[52vh] flex-col justify-center py-20">
+			<div class="max-w-3xl" style="animation: fade-in-up 0.8s ease-out both;">
+				<!-- Back link -->
+				<a
+					href="/events"
+					class="mb-6 inline-flex items-center gap-2 text-sm font-medium text-white/70 transition-colors hover:text-white no-underline"
+					aria-label="Back to all events"
+				>
+					<ArrowLeft class="size-4" aria-hidden="true" />
+					All Events
+				</a>
+
+				<!-- Warning badge with pulsing dot -->
+				<div class="mb-5 inline-flex items-center gap-2.5 rounded-full border border-warning/40 bg-warning/15 px-5 py-2.5 text-sm font-semibold text-warning backdrop-blur-md shadow-lg">
+					<span class="size-2 rounded-full bg-warning animate-pulse-soft shrink-0" aria-hidden="true"></span>
+					{isPast ? 'Past Event' : 'Upcoming Event'}
+				</div>
+
+				<h1 class="text-4xl font-extrabold tracking-tight text-white! md:text-5xl">
+					{event.title}
+				</h1>
+
+				{event.shortDescription && (
+					<p class="mt-4 max-w-2xl text-lg text-white/85!">
+						{event.shortDescription}
+					</p>
+				)}
+
+				<!-- Quick date + location pills -->
+				<div class="mt-6 flex flex-wrap gap-3">
+					<div class="inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-2 text-sm font-medium text-white backdrop-blur-sm border border-white/20">
+						<Calendar class="size-4 text-warning" aria-hidden="true" />
+						{formatDate(event.eventDate)}
+					</div>
+					{event.location && (
+						<div class="inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-2 text-sm font-medium text-white backdrop-blur-sm border border-white/20">
+							<MapPin class="size-4 text-warning" aria-hidden="true" />
+							{event.location}
+						</div>
+					)}
+				</div>
+			</div>
+		</Container>
+
+		<!-- Wave divider -->
+		<div class="absolute -bottom-2 left-0 right-0 z-20" aria-hidden="true">
+			<svg viewBox="0 0 1440 100" class="w-full text-background" preserveAspectRatio="none">
+				<path fill="currentColor" d="M0,50L60,55.3C120,61,240,71,360,66C480,61,600,39,720,34C840,29,960,39,1080,50C1200,61,1320,71,1380,76L1440,82L1440,100L1380,100C1320,100,1200,100,1080,100C960,100,840,100,720,100C600,100,480,100,360,100C240,100,120,100,60,100L0,100Z"/>
+			</svg>
+		</div>
+	</div>
 
 	<main id="main-content">
 		<Section>
@@ -124,7 +209,7 @@ const isPast = new Date(event.eventDate) < new Date()
 							{isPast && <Badge variant="default">Past Event</Badge>}
 						</div>
 
-						<!-- Content -->
+						<!-- Portable Text Content -->
 						{
 							event.content && (
 								<div class="prose max-w-none">
@@ -133,17 +218,30 @@ const isPast = new Date(event.eventDate) < new Date()
 							)
 						}
 
-						<!-- Related Partner -->
+						<!-- Hosted by Partner -->
 						{
 							event.relatedPartner && event.relatedPartner.title && (
-								<div class="mt-8 rounded-lg border border-border p-6">
-									<h3 class="mb-2 text-base font-semibold">Hosted by</h3>
-									<a
-										href={`/partners/${event.relatedPartner.slug?.current}`}
-										class="text-primary hover:underline"
-									>
-										{event.relatedPartner.title}
-									</a>
+								<div class="mt-10 overflow-hidden rounded-2xl border border-border bg-card">
+									<!-- Colored top bar -->
+									<div class="h-1 w-full bg-warning/70"></div>
+									<div class="p-6">
+										<div class="flex items-start gap-4">
+											<div class="flex size-10 shrink-0 items-center justify-center rounded-xl border border-warning/20 bg-warning/10">
+												<Building2 class="size-5 text-warning" aria-hidden="true" />
+											</div>
+											<div>
+												<p class="text-xs font-bold uppercase tracking-widest text-muted-foreground mb-1">
+													Hosted by
+												</p>
+												<a
+													href={`/partners/${event.relatedPartner.slug?.current}`}
+													class="text-base font-semibold text-foreground underline-offset-4 hover:text-warning hover:underline transition-colors"
+												>
+													{event.relatedPartner.title}
+												</a>
+											</div>
+										</div>
+									</div>
 								</div>
 							)
 						}
@@ -152,105 +250,131 @@ const isPast = new Date(event.eventDate) < new Date()
 					<!-- Sidebar (1/3) -->
 					<div class="lg:col-span-1">
 						<div class="sticky top-8">
-							<Card class="bg-card border border-border">
-								<h3 class="mb-4 text-lg font-bold">Event Details</h3>
+							<!-- Event Details Card -->
+							<div class="overflow-hidden rounded-2xl border border-border bg-card shadow-sm">
+								<!-- Colored top border -->
+								<div class="h-1 w-full bg-warning"></div>
 
-								{/* Date */}
-								<div class="mb-4">
-									<div class="mb-1 flex items-center gap-2">
-										<Calendar class="text-primary size-4" />
-										<span class="text-sm font-medium">Date</span>
+								<div class="p-6">
+									<h2 class="mb-5 text-lg font-bold">Event Details</h2>
+
+									<div class="space-y-0 divide-y divide-border">
+										{/* Date */}
+										<div class="flex items-start gap-4 py-4 first:pt-0">
+											<div class="flex size-9 shrink-0 items-center justify-center rounded-lg bg-warning/10">
+												<Calendar class="size-4 text-warning" aria-hidden="true" />
+											</div>
+											<div class="min-w-0 flex-1">
+												<p class="text-xs font-bold uppercase tracking-widest text-muted-foreground mb-1">Date</p>
+												<p class="text-sm font-medium text-foreground">
+													{formatDate(event.eventDate)}
+												</p>
+												{
+													event.endDate && (
+														<p class="text-muted-foreground text-sm">
+															to {formatDate(event.endDate)}
+														</p>
+													)
+												}
+											</div>
+										</div>
+
+										{/* Time */}
+										<div class="flex items-start gap-4 py-4">
+											<div class="flex size-9 shrink-0 items-center justify-center rounded-lg bg-warning/10">
+												<Clock class="size-4 text-warning" aria-hidden="true" />
+											</div>
+											<div class="min-w-0 flex-1">
+												<p class="text-xs font-bold uppercase tracking-widest text-muted-foreground mb-1">Time</p>
+												<p class="text-sm font-medium text-foreground">
+													{formatTime(event.eventDate)}
+													{event.endDate && ` – ${formatTime(event.endDate)}`}
+												</p>
+											</div>
+										</div>
+
+										{/* Location */}
+										{
+											event.location && (
+												<div class="flex items-start gap-4 py-4">
+													<div class="flex size-9 shrink-0 items-center justify-center rounded-lg bg-warning/10">
+														<MapPin class="size-4 text-warning" aria-hidden="true" />
+													</div>
+													<div class="min-w-0 flex-1">
+														<p class="text-xs font-bold uppercase tracking-widest text-muted-foreground mb-1">Location</p>
+														<p class="text-sm font-medium text-foreground">{event.location}</p>
+														{event.address && (
+															<p class="text-muted-foreground text-sm">{event.address}</p>
+														)}
+													</div>
+												</div>
+											)
+										}
+
+										{/* Organizer */}
+										{
+											event.organizer && (
+												<div class="flex items-start gap-4 py-4">
+													<div class="flex size-9 shrink-0 items-center justify-center rounded-lg bg-warning/10">
+														<User class="size-4 text-warning" aria-hidden="true" />
+													</div>
+													<div class="min-w-0 flex-1">
+														<p class="text-xs font-bold uppercase tracking-widest text-muted-foreground mb-1">Organizer</p>
+														<p class="text-sm font-medium text-foreground">{event.organizer}</p>
+													</div>
+												</div>
+											)
+										}
+
+										{/* Cost */}
+										<div class="flex items-start gap-4 py-4">
+											<div class="flex size-9 shrink-0 items-center justify-center rounded-lg bg-warning/10">
+												<DollarSign class="size-4 text-warning" aria-hidden="true" />
+											</div>
+											<div class="min-w-0 flex-1">
+												<p class="text-xs font-bold uppercase tracking-widest text-muted-foreground mb-1">Cost</p>
+												<p class="text-sm font-medium text-foreground">
+													{event.isFree ? 'Free' : event.cost || 'Contact organizer for details'}
+												</p>
+											</div>
+										</div>
 									</div>
-									<p class="text-muted-foreground ml-6 text-sm">
-										{formatDate(event.eventDate)}
-									</p>
+
+									{/* Registration CTA */}
 									{
-										event.endDate && (
-											<p class="text-muted-foreground ml-6 text-sm">
-												to {formatDate(event.endDate)}
-											</p>
+										event.registrationUrl && !isPast && (
+											<div class="mt-6">
+												<a
+													href={event.registrationUrl}
+													target="_blank"
+													rel="noopener noreferrer"
+													class="group relative flex w-full items-center justify-center gap-2.5 overflow-hidden rounded-xl bg-warning px-6 py-4 text-base font-bold text-warning-foreground shadow-lg transition-all duration-300 hover:shadow-warning/30 hover:shadow-xl hover:-translate-y-0.5 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-warning no-underline"
+													aria-label="Register for this event (opens in new tab)"
+												>
+													<!-- Shimmer effect -->
+													<span class="absolute inset-0 -translate-x-full skew-x-12 bg-white/20 transition-transform duration-500 group-hover:translate-x-full" aria-hidden="true"></span>
+													<span class="relative">Register Now</span>
+													<ExternalLink class="relative size-4 transition-transform group-hover:scale-110" aria-hidden="true" />
+												</a>
+												<p class="mt-2 text-center text-xs text-muted-foreground">
+													Opens registration in a new tab
+												</p>
+											</div>
 										)
 									}
-								</div>
 
-								{/* Time */}
-								<div class="mb-4">
-									<div class="mb-1 flex items-center gap-2">
-										<Clock class="text-primary size-4" />
-										<span class="text-sm font-medium">Time</span>
+									{/* Back link */}
+									<div class="mt-5 border-t border-border pt-5">
+										<a
+											href="/events"
+											class="flex w-full items-center justify-center gap-2 rounded-xl border border-border bg-background px-4 py-3 text-sm font-medium text-foreground transition-colors hover:bg-muted no-underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+										>
+											<ArrowLeft class="size-4" aria-hidden="true" />
+											Back to Events
+										</a>
 									</div>
-									<p class="text-muted-foreground ml-6 text-sm">
-										{formatTime(event.eventDate)}
-										{event.endDate && ` - ${formatTime(event.endDate)}`}
-									</p>
 								</div>
-
-								{/* Location */}
-								{
-									event.location && (
-										<div class="mb-4">
-											<div class="mb-1 flex items-center gap-2">
-												<MapPin class="text-primary size-4" />
-												<span class="text-sm font-medium">Location</span>
-											</div>
-											<p class="text-muted-foreground ml-6 text-sm">{event.location}</p>
-											{event.address && (
-												<p class="text-muted-foreground ml-6 text-sm">{event.address}</p>
-											)}
-										</div>
-									)
-								}
-
-								{/* Organizer */}
-								{
-									event.organizer && (
-										<div class="mb-4">
-											<div class="mb-1 flex items-center gap-2">
-												<User class="text-primary size-4" />
-												<span class="text-sm font-medium">Organizer</span>
-											</div>
-											<p class="text-muted-foreground ml-6 text-sm">{event.organizer}</p>
-										</div>
-									)
-								}
-
-								{/* Cost */}
-								<div class="mb-4">
-									<div class="mb-1 flex items-center gap-2">
-										<DollarSign class="text-primary size-4" />
-										<span class="text-sm font-medium">Cost</span>
-									</div>
-									<p class="text-muted-foreground ml-6 text-sm">
-										{event.isFree ? 'Free' : event.cost || 'Contact organizer for details'}
-									</p>
-								</div>
-
-								{/* Registration Button */}
-								{
-									event.registrationUrl && !isPast && (
-										<div class="mt-6">
-											<Button
-												href={event.registrationUrl}
-												variant="primary"
-												size="lg"
-												class="w-full"
-												target="_blank"
-												rel="noopener noreferrer"
-											>
-												Register Now
-												<ExternalLink class="size-4" />
-											</Button>
-										</div>
-									)
-								}
-
-								<div class="mt-6 border-t border-border pt-4">
-									<Button href="/events" variant="ghost" size="sm" class="w-full">
-										<ArrowLeft class="size-4" />
-										Back to Events
-									</Button>
-								</div>
-							</Card>
+							</div>
 						</div>
 					</div>
 				</div>

@@ -2,16 +2,15 @@
 // Packages
 import { SEO } from 'astro-seo'
 import {
-ArrowRight,
-Award,
-Calendar,
-Camera,
-Compass,
-Map as MapIcon,
-MapPin,
-Mountain,
-Sun,
-TreePine
+	ArrowRight,
+	Award,
+	Calendar,
+	Compass,
+	Map as MapIcon,
+	MapPin,
+	Mountain,
+	Sun,
+	TreePine
 } from 'lucide-astro'
 
 // Components
@@ -48,58 +47,67 @@ const pageTitle = 'Wellness Passport'
 const pageDescription =
 	"Explore Monongalia County's parks, trails, and wellness activities. Collect stamps, earn rewards, and build healthier habits — one adventure at a time."
 
-const howItWorks = [
-	{
-		step: 1,
-		title: 'Pick Up Your Passport',
-		description:
-			'Free at the Monongalia County Health Department or any participating partner location.',
-		icon: 'stamp'
-	},
-	{
-		step: 2,
-		title: 'Collect Stamps',
-		description:
-			'Visit parks, trails, and partner sites to stamp your book. Each location has a mounted lockbox with a custom self-inking stamp inside.',
-		icon: 'compass'
-	},
-	{
-		step: 3,
-		title: 'Earn Prizes',
-		description:
-			'Turn in your completed passport at MCHD to redeem rewards. The more stamps you collect, the bigger the prizes!',
-		icon: 'gift'
-	}
-]
-
 const mapboxToken = import.meta.env.PUBLIC_MAPBOX_TOKEN || ''
 
 const upcomingEvents = [
 	{
 		title: 'Spring Kickoff Hike',
 		date: 'March 22, 2026',
+		month: 'Mar',
+		day: '22',
 		location: 'Coopers Rock State Forest',
 		description: 'Guided 3-mile hike to celebrate the start of the spring passport season. All skill levels welcome.'
 	},
 	{
 		title: 'Yoga in the Park',
 		date: 'April 5, 2026',
+		month: 'Apr',
+		day: '5',
 		location: 'Dorsey Knob Park',
 		description: 'Sunrise yoga session led by certified instructors. Bring a mat and earn a wellness stamp.'
 	},
 	{
 		title: 'Community Health Fair',
 		date: 'April 19, 2026',
+		month: 'Apr',
+		day: '19',
 		location: 'Mountaineer Mall',
 		description: 'Free health screenings, nutrition workshops, and passport stamp stations. Pick up your passport here!'
 	},
 	{
 		title: 'Trail Run 5K',
 		date: 'May 10, 2026',
+		month: 'May',
+		day: '10',
 		location: 'Rail Trail, Morgantown',
 		description: 'Timed 5K along the scenic rail trail. Finishers earn two passport stamps and a commemorative bib.'
 	}
 ]
+
+// Per-step color accents for "How It Works" — defined as full static strings for Tailwind scanning
+const stepAccents = [
+	{
+		topBorder: 'border-t-primary',
+		iconBg: 'bg-primary/10',
+		numColor: 'text-primary/[0.07]',
+		stepLabel: 'text-primary bg-primary/10'
+	},
+	{
+		topBorder: 'border-t-info',
+		iconBg: 'bg-info/10',
+		numColor: 'text-info/[0.07]',
+		stepLabel: 'text-info bg-info/10'
+	},
+	{
+		topBorder: 'border-t-warning',
+		iconBg: 'bg-warning/15',
+		numColor: 'text-warning/[0.08]',
+		stepLabel: 'text-warning bg-warning/10'
+	}
+]
+
+// Per-event top accent bars — full static class strings
+const eventBarColors = ['bg-warning', 'bg-success', 'bg-info', 'bg-primary']
 ---
 
 <Layout>
@@ -120,43 +128,65 @@ const upcomingEvents = [
 	<!-- 1. HERO                                      -->
 	<!-- ============================================ -->
 	<div class="relative min-h-[75vh] overflow-hidden bg-primary">
-		
+
+		<!-- Dot texture overlay -->
+		<div class="absolute inset-0 pointer-events-none" aria-hidden="true" style="background-image: radial-gradient(circle, rgba(255,255,255,0.08) 1px, transparent 1px); background-size: 24px 24px;"></div>
 
 		<!-- Gradient overlays -->
-		<div class="absolute inset-0 bg-linear-to-b from-black/40 via-black/10 to-black/60"></div>
+		<div class="absolute inset-0 bg-linear-to-b from-black/40 via-black/10 to-black/65"></div>
 
-		<!-- Floating trail markers decoration -->
-		<div class="absolute top-16 right-[8%] animate-pulse-soft opacity-40" aria-hidden="true">
-			<MapPin class="text-white! size-12" />
+		<!-- Decorative concentric stamp rings (right side) -->
+		<div class="absolute -right-24 top-1/2 -translate-y-1/2 pointer-events-none" aria-hidden="true">
+			<div class="absolute size-[520px] -translate-x-1/2 -translate-y-1/2 rounded-full border-2 border-dashed border-white/20 opacity-30"></div>
+			<div class="absolute size-[380px] -translate-x-1/2 -translate-y-1/2 rounded-full border border-white/15 opacity-25"></div>
+			<div class="absolute size-[240px] -translate-x-1/2 -translate-y-1/2 rounded-full border border-white/10 opacity-20"></div>
 		</div>
-		<div class="absolute bottom-32 left-[12%] animate-pulse-soft opacity-35" style="animation-delay: 0.5s" aria-hidden="true">
-			<TreePine class="text-white! size-10" />
+
+		<!-- Floating trail markers — all clustered right, well clear of text -->
+		<div class="absolute top-14 right-[3%] animate-pulse-soft opacity-15" aria-hidden="true">
+			<MapPin class="text-white! size-11" />
 		</div>
-		<div class="absolute top-1/3 left-[6%] animate-pulse-soft opacity-30" style="animation-delay: 1s" aria-hidden="true">
-			<Compass class="text-white! size-14" />
+		<div class="absolute top-[42%] right-[14%] animate-pulse-soft opacity-10" style="animation-delay: 0.5s" aria-hidden="true">
+			<TreePine class="text-white! size-9" />
 		</div>
-		<div class="absolute bottom-1/4 right-[15%] animate-pulse-soft opacity-25" style="animation-delay: 1.5s" aria-hidden="true">
-			<Mountain class="text-white! size-11" />
+		<div class="absolute bottom-28 right-[22%] animate-pulse-soft opacity-10" style="animation-delay: 1s" aria-hidden="true">
+			<Compass class="text-white! size-10" />
 		</div>
-		<div class="absolute top-1/4 right-[20%] animate-pulse-soft opacity-20" style="animation-delay: 0.8s" aria-hidden="true">
-			<Sun class="text-white! size-9" />
+		<div class="absolute bottom-1/4 right-[6%] animate-pulse-soft opacity-12" style="animation-delay: 1.5s" aria-hidden="true">
+			<Mountain class="text-white! size-9" />
+		</div>
+		<div class="absolute top-1/4 right-[20%] animate-pulse-soft opacity-10" style="animation-delay: 0.8s" aria-hidden="true">
+			<Sun class="text-white! size-8" />
 		</div>
 
 		<Container class="relative z-10 flex min-h-[75vh] flex-col justify-center py-20">
-			<div class="grid items-center gap-6 lg:grid-cols-6 ">
+			<div class="grid items-center gap-6 lg:grid-cols-6">
 				<!-- Left: Text Content -->
 				<div class="col-span-4" style="animation: fade-in-up 0.8s ease-out both;">
-					<div class="mb-6 inline-flex items-center gap-2 rounded-full border border-white/30 bg-white/10 px-5 py-2.5 text-sm font-medium text-white!/95 backdrop-blur-md shadow-lg">
-						
-						<span class="text-white!">Monongalia County Health Department</span>
+
+					<!-- Badge with pulsing dot -->
+					<div class="mb-6 inline-flex items-center gap-2.5 rounded-full border border-warning/40 bg-warning/15 px-5 py-2.5 text-sm font-semibold text-warning backdrop-blur-md shadow-lg">
+						<span class="size-2 rounded-full bg-warning animate-pulse-soft shrink-0" aria-hidden="true"></span>
+						<span>Monongalia County Health Department</span>
 					</div>
 
 					<h1 class="mb-0 text-5xl font-extrabold leading-[1.05] tracking-tight text-white! md:text-6xl lg:text-7xl">
-						Wild and Wonderful
-						<span class="block text-orange-500">Wellness Passport</span>
+						Wild &amp;
+						<!-- "Wonderful" with squiggly underline -->
+						<span class="relative inline-block pb-2">
+							Wonderful
+							<svg class="absolute -bottom-0.5 left-0 w-full overflow-visible pointer-events-none" viewBox="0 0 260 10" preserveAspectRatio="none" aria-hidden="true">
+								<path d="M0,5 Q32.5,0 65,5 T130,5 T195,5 T260,5" fill="none" stroke-width="3" stroke-linecap="round" style="stroke: hsl(var(--warning))"/>
+							</svg>
+						</span>
+						<br/>
+						<!-- "Wellness Passport" as a tilted highlight badge -->
+						<span class="mt-2 inline-block -rotate-1 rounded-xl bg-warning px-4 py-1.5 text-warning-foreground shadow-lg">
+							Wellness Passport
+						</span>
 					</h1>
 
-					<p class="mt-6 text-2xl font-semibold tracking-wide text-white/90!">
+					<p class="mt-8 text-xl font-semibold tracking-wide text-white/90!">
 						Explore. Move. Earn Rewards.
 					</p>
 
@@ -172,9 +202,7 @@ const upcomingEvents = [
 				{home?.hero?.heroImage && (
 					<div class="lg:col-span-2 lg:flex lg:justify-center col-span-6" style="animation: fade-in-left 0.8s ease-out 0.3s both;">
 						<div class="relative aspect-square w-full rounded-xl shadow-2xl overflow-hidden">
-							<!-- Decorative glow -->
 							<div class="absolute -inset-4 bg-accent/20 rounded-full blur-3xl"></div>
-							<!-- Hero Image -->
 							<img
 								src={urlForImage(home.hero.heroImage).width(600).height(800).url()}
 								alt={home.hero.heroImage.alt || 'Wellness Passport'}
@@ -188,7 +216,7 @@ const upcomingEvents = [
 			</div>
 		</Container>
 
-		<!-- Organic nature divider - rolling hills silhouette -->
+		<!-- Organic nature wave divider -->
 		<div class="absolute -bottom-1 left-0 right-0">
 			<svg viewBox="0 0 1440 200" class="w-full text-background" preserveAspectRatio="none">
 				<path fill="currentColor" d="M0,160 Q180,100 360,140 T720,120 T1080,140 T1440,100 L1440,200 L0,200Z"/>
@@ -222,53 +250,60 @@ const upcomingEvents = [
 					<div class="prose md:col-span-2">
 						<PortableText portableText={home?.content} />
 					</div>
+
+					<!-- Stat Card — redesigned with more impact -->
 					<div class="flex justify-center">
-						<div class="relative w-full max-w-xs overflow-hidden rounded-2xl bg-gradient-to-br from-info to-info/80 p-6 text-center shadow-2xl">
+						<div class="relative w-full max-w-xs overflow-hidden rounded-3xl bg-gradient-to-br from-info to-info/80 p-7 text-center shadow-2xl">
+							<!-- Large decorative ring -->
+							<div class="absolute -top-12 -right-12 size-48 rounded-full border-2 border-dashed border-white/20 pointer-events-none" aria-hidden="true"></div>
+							<div class="absolute -bottom-10 -left-10 size-36 rounded-full border border-white/15 pointer-events-none" aria-hidden="true"></div>
+
 							<!-- Quarter pie visualization -->
 							<div class="mb-5 flex justify-center">
 								<div class="relative size-28">
-									<!-- Full circle background -->
 									<div class="absolute inset-0 rounded-full bg-white/20"></div>
-									<!-- 25% slice (1 in 4) - using warning yellow -->
 									<div
 										class="absolute inset-0 rounded-full"
-										style="background: conic-gradient(#f1ce53 0deg 90deg, transparent 90deg 360deg);"
-									>
-									</div>
-									<!-- Inner circle -->
+										style="background: conic-gradient(hsl(var(--warning)) 0deg 90deg, transparent 90deg 360deg);"
+									></div>
 									<div class="absolute inset-3 flex items-center justify-center rounded-full bg-white/95">
 										<span class="text-info font-black text-4xl">25%</span>
 									</div>
 								</div>
 							</div>
 
-							<!-- Stat text -->
-							<div class="mb-3 flex items-center justify-center gap-3">
-								<span class="text-warning font-black text-5xl drop-shadow-sm">1</span>
-								<span class="text-white/70 text-2xl">/</span>
-								<span class="text-white! font-black text-5xl">4</span>
+							<!-- Stat numbers -->
+							<div class="mb-3 flex items-baseline justify-center gap-2">
+								<span class="text-warning font-black text-6xl drop-shadow-sm leading-none">1</span>
+								<span class="text-white/60 text-3xl font-light">in</span>
+								<span class="text-white! font-black text-6xl leading-none">4</span>
 							</div>
 
-							<p class="text-white! text-xs font-bold uppercase tracking-widest">
-								Mon County Residents
-							
-								are physically inactive
-							outside of work</p>
+							<p class="text-white! text-xs font-bold uppercase tracking-widest leading-relaxed">
+								Mon County Residents<br/>are physically inactive<br/>outside of work
+							</p>
 
-							<!-- Decorative elements -->
-							<div class="absolute -right-6 -top-6 size-24 rounded-full bg-warning/30 blur-xl" aria-hidden="true"></div>
-							<div class="absolute -bottom-8 -left-8 size-32 rounded-full bg-white/10 blur-xl" aria-hidden="true"></div>
+							<!-- Decorative blobs -->
+							<div class="absolute -right-6 -top-6 size-24 rounded-full bg-warning/30 blur-xl pointer-events-none" aria-hidden="true"></div>
+							<div class="absolute -bottom-8 -left-8 size-32 rounded-full bg-white/10 blur-xl pointer-events-none" aria-hidden="true"></div>
 						</div>
 					</div>
 				</div>
 			</Container>
 		</Section>
 
+		<!-- Wave transition into "How It Works" -->
+		<div class="relative -mb-1 overflow-hidden bg-background h-16 pointer-events-none" aria-hidden="true">
+			<svg viewBox="0 0 1440 60" class="absolute bottom-0 w-full text-muted" preserveAspectRatio="none">
+				<path fill="currentColor" d="M0,30 Q360,60 720,30 T1440,30 L1440,60 L0,60Z"/>
+			</svg>
+		</div>
+
 		<!-- ============================================ -->
 		<!-- 3. HOW IT WORKS                              -->
 		<!-- ============================================ -->
 		<Section id="how-it-works" class="bg-muted relative overflow-hidden">
-			<!-- Decorative topo pattern -->
+			<!-- Topo pattern -->
 			<div class="absolute inset-0 text-success/3 pointer-events-none">
 				<svg class="h-full w-full" xmlns="http://www.w3.org/2000/svg">
 					<defs>
@@ -286,29 +321,58 @@ const upcomingEvents = [
 				<div class="mx-auto mb-16 max-w-2xl text-center">
 					<Badge variant="primary" class="mb-4">Get Started</Badge>
 					<h2 class="text-3xl font-extrabold uppercase md:text-4xl">How It Works</h2>
+					<p class="text-muted-foreground mt-3 text-base leading-relaxed">Three easy steps to start your wellness adventure</p>
 				</div>
 
-				<!-- Three-step cards -->
-				<div class="grid gap-8 md:grid-cols-3">
-					{(home?.howItWorks || []).map((step, i) => (
-						<div class="relative" style={`animation: fade-in-up 0.6s ease-out ${0.15 * i}s both;`}>
-							<Card class="bg-background border border-border text-center transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
-								<div class="mb-4 flex justify-center">
-									{step.hasIcon && step?.icon && (
-										<div class="rounded-full bg-primary/10 p-3 " set:html={step.icon} />
-									)}
-								</div>
-								<h3 class="mb-3 text-xl font-bold">{step.title}</h3>
-								<div class="text-muted-foreground text-base leading-relaxed">
-									<PortableText portableText={step.description} />
-								</div>
-							</Card>
+				<!-- Three-step cards with per-step color coding + watermark numbers -->
+				<div class="relative grid gap-8 md:grid-cols-3">
+
+					<!-- Desktop connecting dashed path between steps -->
+					<div class="absolute inset-x-0 top-12 hidden md:block pointer-events-none" aria-hidden="true">
+						<div class="flex items-center px-[calc(16.66%+1rem)]">
+							<div class="h-0 flex-1 border-t-2 border-dashed border-border/60"></div>
+							<div class="mx-2 size-2 rounded-full bg-border/60"></div>
+							<div class="h-0 flex-1 border-t-2 border-dashed border-border/60"></div>
 						</div>
-					))}
+					</div>
+
+					{(home?.howItWorks || []).map((step, i) => {
+						const accent = stepAccents[i] || stepAccents[0]
+						return (
+							<div class="relative z-10" style={`animation: fade-in-up 0.6s ease-out ${0.15 * i}s both;`}>
+								<div class={`relative overflow-hidden rounded-2xl border border-border border-t-4 ${accent.topBorder} bg-background text-center transition-all duration-300 hover:shadow-xl hover:-translate-y-1 shadow-md h-full`}>
+
+									<!-- Watermark step number -->
+									<span class={`absolute -right-2 -bottom-4 text-[8rem] font-black select-none pointer-events-none leading-none tabular-nums ${accent.numColor}`} aria-hidden="true">
+										{String(i + 1).padStart(2, '0')}
+									</span>
+
+									<div class="relative p-6 md:p-8">
+										<!-- Step pill label -->
+										<div class="mb-4 flex justify-center">
+											<span class={`inline-flex items-center rounded-full px-3 py-1 text-xs font-bold uppercase tracking-wider ${accent.stepLabel}`}>
+												Step {i + 1}
+											</span>
+										</div>
+
+										{step.hasIcon && step?.icon && (
+											<div class={`mb-4 flex justify-center`}>
+												<div class={`rounded-full ${accent.iconBg} p-3`} set:html={step.icon} />
+											</div>
+										)}
+										<h3 class="mb-3 text-xl font-bold">{step.title}</h3>
+										<div class="text-muted-foreground text-base leading-relaxed">
+											<PortableText portableText={step.description} />
+										</div>
+									</div>
+								</div>
+							</div>
+						)
+					})}
 				</div>
 
 				<!-- Prizes teaser -->
-				<div class="mt-9 relative overflow-hidden rounded-2xl border border-border bg-background p-8 text-center shadow-lg">
+				<div class="mt-10 relative overflow-hidden rounded-2xl border border-border bg-background p-8 text-center shadow-lg">
 					<div class="absolute inset-0 bg-linear-to-br from-warning/5 to-success/5 pointer-events-none"></div>
 					<div class="absolute -right-10 -top-10 size-40 bg-warning/10 rounded-full blur-3xl pointer-events-none"></div>
 					<div class="absolute -left-10 -bottom-10 size-40 bg-success/10 rounded-full blur-3xl pointer-events-none"></div>
@@ -326,7 +390,6 @@ const upcomingEvents = [
 				<div class="mt-12 flex justify-center">
 					<div class="w-full max-w-md overflow-hidden rounded-xl border-2 border-dashed border-border bg-background shadow-lg">
 						<div class="bg-muted flex aspect-[3/2] items-center justify-center relative overflow-hidden">
-							<!-- Decorative background -->
 							<div class="absolute inset-0 opacity-20">
 								<svg class="h-full w-full" xmlns="http://www.w3.org/2000/svg">
 									<defs>
@@ -339,9 +402,9 @@ const upcomingEvents = [
 							</div>
 							<div class="relative z-10 text-center">
 								<div class="mx-auto mb-3 flex size-16 items-center justify-center rounded-full bg-background shadow-md">
-									<Camera class="text-muted-foreground size-8" />
+									<Mountain class="text-muted-foreground size-8" />
 								</div>
-								<p class="text-muted-foreground font-medium">Passport booklet photo</p>
+								<p class="text-muted-foreground font-medium">Passport booklet photo coming soon</p>
 							</div>
 						</div>
 						<div class="p-5 text-center bg-background">
@@ -356,8 +419,8 @@ const upcomingEvents = [
 		<!-- ============================================ -->
 		<!-- 4. PARKS & TRAILS                            -->
 		<!-- ============================================ -->
-		<Section id="parks-trails" class="relative overflow-hidden  py-16">
-			<!-- Decorative topo pattern -->
+		<Section id="parks-trails" class="relative overflow-hidden py-16">
+			<!-- Topo pattern -->
 			<div class="absolute inset-0 text-success/4 pointer-events-none">
 				<svg class="h-full w-full" xmlns="http://www.w3.org/2000/svg">
 					<defs>
@@ -375,7 +438,7 @@ const upcomingEvents = [
 			<Container class="relative z-10">
 				<div class="mx-auto mb-8 max-w-3xl text-center">
 					<Badge variant="success" class="mb-4">Explore</Badge>
-					<h2 class="text-3xl font-extrabold uppercase md:text-4xl">Parks & Trails</h2>
+					<h2 class="text-3xl font-extrabold uppercase md:text-4xl">Parks &amp; Trails</h2>
 				</div>
 				<div class="mx-auto mb-12 max-w-3xl">
 					<p class="text-muted-foreground text-center text-lg leading-relaxed">
@@ -417,10 +480,10 @@ const upcomingEvents = [
 						</div>
 					)}
 				</div>
-				
+
 				<div class="mt-10 text-center">
 					<Button href="/parks-and-trails" variant="outline" size="lg" class="hover:bg-success hover:text-success-foreground hover:border-success transition-all no-underline">
-						View All Parks & Trails
+						View All Parks &amp; Trails
 						<ArrowRight class="size-4" />
 					</Button>
 				</div>
@@ -441,16 +504,16 @@ const upcomingEvents = [
 				</div>
 			</Container>
 
-			<!-- Edge-to-edge scrolling partners marquee - Two Rows -->
+			<!-- Edge-to-edge scrolling partners marquee — Two Rows -->
 			<div class="relative overflow-hidden space-y-6 group py-6 px-4">
 				<!-- Row 1 - scrolls left -->
 				<div class="flex animate-marquee group-hover:paused">
-					{[...partners, ...partners].map((partner, i) => {
+					{[...partners, ...partners].map((partner) => {
 						const slug = partner.slug?.current || (partner.title || 'partner').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')
 						return (
 							<a
 								href={`/partners/${slug}`}
-								class="flex flex-col items-center justify-center rounded-xl border border-border bg-background p-4 text-center mx-3 min-w-[200px] max-w-[200px] transition-all duration-300 hover:shadow-lg hover:scale-105 hover:border-primary/50 hover:bg-primary/5"
+								class="flex flex-col items-center justify-center rounded-xl border border-border bg-background p-4 text-center mx-3 min-w-[200px] max-w-[200px] transition-all duration-300 hover:shadow-lg hover:scale-105 hover:border-primary/50 hover:bg-primary/5 no-underline"
 							>
 								<p class="text-sm font-semibold leading-tight">{partner.title}</p>
 								<Badge variant="default" class="mt-2 text-xs">{partner.partnerType || 'Partner'}</Badge>
@@ -458,14 +521,14 @@ const upcomingEvents = [
 						)
 					})}
 				</div>
-				<!-- Row 2 - scrolls right (reverse) -->
+				<!-- Row 2 - scrolls right -->
 				<div class="flex animate-marquee group-hover:paused" style="animation-direction: reverse;">
-					{[...partners.slice().reverse(), ...partners.slice().reverse()].map((partner, i) => {
+					{[...partners.slice().reverse(), ...partners.slice().reverse()].map((partner) => {
 						const slug = partner.slug?.current || (partner.title || 'partner').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')
 						return (
 							<a
 								href={`/partners/${slug}`}
-								class="flex flex-col items-center justify-center rounded-xl border border-border bg-background p-4 text-center mx-3 min-w-[200px] max-w-[200px] transition-all duration-300 hover:shadow-lg hover:scale-105 hover:border-primary/50 hover:bg-primary/5"
+								class="flex flex-col items-center justify-center rounded-xl border border-border bg-background p-4 text-center mx-3 min-w-[200px] max-w-[200px] transition-all duration-300 hover:shadow-lg hover:scale-105 hover:border-primary/50 hover:bg-primary/5 no-underline"
 							>
 								<p class="text-sm font-semibold leading-tight">{partner.title}</p>
 								<Badge variant="default" class="mt-2 text-xs">{partner.partnerType || 'Partner'}</Badge>
@@ -477,7 +540,7 @@ const upcomingEvents = [
 
 			<Container class="relative z-10">
 				<div class="mt-12 text-center">
-					<Button href="/partners" variant="outline" size="lg" class="hover:bg-info hover:text-info-foreground hover:border-info transition-all">
+					<Button href="/partners" variant="outline" size="lg" class="hover:bg-info hover:text-info-foreground hover:border-info transition-all no-underline">
 						View All Partners
 						<ArrowRight class="size-4" />
 					</Button>
@@ -488,8 +551,8 @@ const upcomingEvents = [
 		<!-- ============================================ -->
 		<!-- 6. EVENTS                                    -->
 		<!-- ============================================ -->
-		<Section id="events" class="relative overflow-hidden bg-warning/5 py-16">
-			<!-- Decorative topo pattern -->
+		<Section id="events" class="relative overflow-hidden py-16">
+			<!-- Topo pattern -->
 			<div class="absolute inset-0 text-warning/4 pointer-events-none">
 				<svg class="h-full w-full" xmlns="http://www.w3.org/2000/svg">
 					<defs>
@@ -497,7 +560,6 @@ const upcomingEvents = [
 							<path d="M 0 110 Q 55 90 110 110 T 220 110" fill="none" stroke="currentColor" stroke-width="0.8" opacity="0.2"/>
 							<path d="M 0 55 Q 110 25 220 55" fill="none" stroke="currentColor" stroke-width="0.6" opacity="0.15"/>
 							<path d="M 0 165 Q 110 195 220 165" fill="none" stroke="currentColor" stroke-width="0.6" opacity="0.15"/>
-							<circle cx="180" cy="110" r="30" fill="none" stroke="currentColor" stroke-width="0.5" opacity="0.1"/>
 						</pattern>
 					</defs>
 					<rect width="100%" height="100%" fill="url(#topo-events)"/>
@@ -513,38 +575,34 @@ const upcomingEvents = [
 					</p>
 				</div>
 
+				<!-- Ticket-style event cards -->
 				<div class="grid gap-6 sm:grid-cols-2">
 					{upcomingEvents.map((event, i) => (
 						<div
-							class="group relative overflow-hidden rounded-2xl border border-border bg-card transition-all duration-300 hover:shadow-xl hover:-translate-y-1"
+							class="group relative overflow-hidden rounded-2xl border border-border bg-card shadow-sm transition-all duration-300 hover:shadow-xl hover:-translate-y-1"
 							style={`animation: fade-in-up 0.5s ease-out ${0.1 * i}s both;`}
 						>
-							<!-- Accent bar -->
-							<div class="absolute left-0 top-0 bottom-0 w-1 bg-warning/0 transition-all duration-300 group-hover:bg-warning"></div>
-							
-							<!-- Decorative circle -->
-							<div class="absolute -right-4 -top-4 size-20 bg-warning/5 rounded-full blur-xl transition-opacity group-hover:opacity-100 opacity-50"></div>
-							
-							<!-- Image placeholder -->
-							<div class="bg-muted h-64 flex items-center justify-center relative overflow-hidden">
-								<div class="absolute inset-0 bg-warning/5"></div>
-								<div class="relative z-10 flex size-14 items-center justify-center rounded-full bg-background shadow-md">
-									<Camera class="text-warning size-6" />
-								</div>
-							</div>
-							
-							<div class="relative p-6">
-								<div class="mb-4 flex flex-wrap items-center gap-3">
-									<div class="flex items-center gap-2 rounded-lg bg-warning/10 px-3 py-1.5">
-										<Calendar class="text-warning size-4" />
-										<span class="text-sm font-semibold text-warning">{event.date}</span>
+							<!-- Thin color bar at top -->
+							<div class={`h-1.5 w-full ${eventBarColors[i % eventBarColors.length]}/80`}></div>
+
+							<div class="p-6">
+								<!-- Date badge + title row -->
+								<div class="flex items-start gap-4 mb-4">
+									<!-- Calendar-style date badge -->
+									<div class="shrink-0 min-w-[52px] rounded-xl border border-warning/25 bg-warning/10 px-2 py-2.5 text-center" aria-label={event.date}>
+										<span class="block text-[0.6rem] font-bold uppercase tracking-widest text-warning/80 leading-none mb-1">{event.month}</span>
+										<span class="block text-2xl font-black leading-none text-warning">{event.day}</span>
+									</div>
+									<!-- Title & location -->
+									<div class="flex-1 min-w-0">
+										<h3 class="text-lg font-bold group-hover:text-warning transition-colors leading-snug mb-1">{event.title}</h3>
+										<p class="text-muted-foreground flex items-center gap-1.5 text-sm">
+											<MapPin class="size-3.5 shrink-0 text-warning/70" aria-hidden="true" />
+											{event.location}
+										</p>
 									</div>
 								</div>
-								<h3 class="mb-2 text-xl font-bold group-hover:text-warning transition-colors">{event.title}</h3>
-								<p class="text-muted-foreground mb-3 flex items-center gap-2 text-sm">
-									<MapPin class="size-4 shrink-0 text-warning" />
-									{event.location}
-								</p>
+
 								<p class="text-muted-foreground text-sm leading-relaxed">{event.description}</p>
 							</div>
 						</div>
@@ -552,7 +610,7 @@ const upcomingEvents = [
 				</div>
 
 				<div class="mt-12 text-center">
-					<Button href="/events" variant="outline" size="lg" class="hover:bg-warning hover:text-warning-foreground hover:border-warning transition-all">
+					<Button href="/events" variant="outline" size="lg" class="hover:bg-warning hover:text-warning-foreground hover:border-warning transition-all no-underline">
 						View Full Calendar
 						<ArrowRight class="size-4" />
 					</Button>

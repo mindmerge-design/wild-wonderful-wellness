@@ -3,15 +3,16 @@
 import { SEO } from 'astro-seo'
 import { Image } from 'astro:assets'
 import {
-ArrowLeft,
-Clock,
-Compass,
-Globe,
-Info,
-MapPin,
-Mountain,
-Phone,
-TreePine
+	ArrowLeft,
+	Clock,
+	Compass,
+	Globe,
+	Info,
+	MapPin,
+	Mountain,
+	Phone,
+	Stamp,
+	TreePine
 } from 'lucide-astro'
 
 // Components
@@ -89,7 +90,11 @@ function formatAmenity(amenity: string) {
 	/>
 
 	<!-- Hero Section -->
-	<div class="bg-success relative min-h-[55vh] overflow-hidden">
+	<div class="bg-primary relative min-h-[55vh] overflow-hidden">
+
+		<!-- Dot texture overlay -->
+		<div class="pointer-events-none absolute inset-0" aria-hidden="true" style="background-image: radial-gradient(circle, rgba(255,255,255,0.08) 1px, transparent 1px); background-size: 24px 24px;"></div>
+
 		<!-- Background Image with Overlay -->
 		{
 			park.mainImage && (
@@ -102,39 +107,50 @@ function formatAmenity(amenity: string) {
 				/>
 			)
 		}
-		<div class="absolute inset-0 z-10 bg-linear-to-b from-black/50 via-black/30 to-black/60"></div>
+		<div class="absolute inset-0 z-10 bg-linear-to-b from-black/50 via-black/30 to-black/65"></div>
 
-		<!-- Decorative Floating Icons -->
-		<div class="animate-pulse-soft absolute top-16 right-[8%] opacity-30" aria-hidden="true">
-			<TreePine class="size-12 text-white!" />
+		<!-- Decorative concentric stamp rings (right side) -->
+		<div class="pointer-events-none absolute -right-24 top-1/2 z-10 -translate-y-1/2" aria-hidden="true">
+			<div class="absolute size-[480px] -translate-x-1/2 -translate-y-1/2 rounded-full border-2 border-dashed border-white/20 opacity-30"></div>
+			<div class="absolute size-[340px] -translate-x-1/2 -translate-y-1/2 rounded-full border border-white/15 opacity-25"></div>
+			<div class="absolute size-[200px] -translate-x-1/2 -translate-y-1/2 rounded-full border border-white/10 opacity-20"></div>
+		</div>
+
+		<!-- Decorative Floating Icons — right side only, clear of text -->
+		<div class="animate-pulse-soft absolute top-14 right-[4%] z-10 opacity-15" aria-hidden="true">
+			<TreePine class="size-10 text-white!" />
 		</div>
 		<div
-			class="animate-pulse-soft absolute bottom-24 left-[12%] opacity-25"
+			class="animate-pulse-soft absolute top-[45%] right-[16%] z-10 opacity-10"
 			style="animation-delay: 0.5s"
 			aria-hidden="true"
 		>
-			<Compass class="size-10 text-white!" />
+			<Compass class="size-9 text-white!" />
 		</div>
 		<div
-			class="animate-pulse-soft absolute top-1/3 left-[6%] opacity-20"
+			class="animate-pulse-soft absolute bottom-24 right-[7%] z-10 opacity-10"
 			style="animation-delay: 1s"
 			aria-hidden="true"
 		>
-			<Mountain class="size-14 text-white!" />
+			<Mountain class="size-9 text-white!" />
 		</div>
 
 		<Container class="relative z-20 flex min-h-[55vh] flex-col justify-center py-20">
 			<div style="animation: fade-in-up 0.8s ease-out both;">
-				<!-- Park Type Badge -->
+
+				<!-- Warning-style hero badge with pulsing dot -->
+				<div class="mb-5 inline-flex items-center gap-2.5 rounded-full border border-warning/40 bg-warning/15 px-5 py-2.5 text-sm font-semibold text-warning backdrop-blur-md shadow-lg">
+					<span class="animate-pulse-soft size-2 shrink-0 rounded-full bg-warning" aria-hidden="true"></span>
+					<span>Parks &amp; Trails</span>
+				</div>
+
+				<!-- Park Type Badge (warning style) -->
 				{
 					park.parkType && (
-						<div class="mb-6">
-							<Badge
-								variant="primary"
-								class="border-white/30 bg-white/20 text-white backdrop-blur-md"
-							>
+						<div class="mb-5">
+							<span class="inline-block -rotate-1 rounded-xl bg-warning px-4 py-1.5 text-sm font-bold text-warning-foreground shadow-lg">
 								{park.parkType.replace(/-/g, ' ').replace(/\b\w/g, (c) => c.toUpperCase())}
-							</Badge>
+							</span>
 						</div>
 					)
 				}
@@ -175,7 +191,7 @@ function formatAmenity(amenity: string) {
 		<!-- Main Content Section -->
 		<Section class="relative overflow-hidden py-16">
 			<!-- Decorative topo pattern -->
-			<div class="text-success/4 pointer-events-none absolute inset-0">
+			<div class="text-success/4 pointer-events-none absolute inset-0" aria-hidden="true">
 				<svg class="h-full w-full" xmlns="http://www.w3.org/2000/svg">
 					<defs>
 						<pattern
@@ -211,10 +227,11 @@ function formatAmenity(amenity: string) {
 					<rect width="100%" height="100%" fill="url(#topo-park-detail)"></rect>
 				</svg>
 			</div>
+
 			<Container class="relative z-10">
 				<div class="grid gap-12 lg:grid-cols-3">
 					<!-- Main Content (2/3) -->
-					<div class="lg:col-span-2 space-y-8">
+					<div class="space-y-8 lg:col-span-2">
 						<!-- About Section -->
 						{
 							park.content && (
@@ -230,172 +247,203 @@ function formatAmenity(amenity: string) {
 									</div>
 								</Card>
 							)
-							}
+						}
 
-							<!-- Lockbox Info -->
-							{
-								park.lockboxLocation && (
-									<Card class="relative overflow-hidden border border-info/20 bg-info/5 p-8">
-										<!-- Decorative glow -->
-										<div class="absolute -right-10 -top-10 size-32 rounded-full bg-info/10 blur-3xl" aria-hidden="true"></div>
-										
-										<div class="relative">
-											<div class="mb-4 flex items-center gap-3">
-												<div class="flex size-10 items-center justify-center rounded-full bg-info/20">
-													<MapPin class="text-info size-5" />
-												</div>
+						<!-- Lockbox / Passport Stamp Location — KEY ELEMENT -->
+						{
+							park.lockboxLocation && (
+								<div class="relative overflow-hidden rounded-2xl border-2 border-success/20 bg-success/5 p-8 shadow-lg">
+									<!-- Decorative concentric stamp rings (top-right watermark) -->
+									<div class="pointer-events-none absolute -top-10 -right-10 z-0" aria-hidden="true">
+										<div class="absolute size-[220px] -translate-x-1/2 -translate-y-1/2 rounded-full border-2 border-dashed border-success/20"></div>
+										<div class="absolute size-[150px] -translate-x-1/2 -translate-y-1/2 rounded-full border border-success/15"></div>
+										<div class="absolute size-[80px] -translate-x-1/2 -translate-y-1/2 rounded-full border border-success/10"></div>
+									</div>
+
+									<!-- Large stamp icon watermark -->
+									<div class="pointer-events-none absolute right-6 bottom-4 z-0 opacity-[0.06]" aria-hidden="true">
+										<Stamp class="size-32 text-success" />
+									</div>
+
+									<!-- Decorative glow blob -->
+									<div class="absolute -right-10 -top-10 size-40 rounded-full bg-success/10 blur-3xl pointer-events-none" aria-hidden="true"></div>
+
+									<div class="relative z-10">
+										<!-- Header -->
+										<div class="mb-5 flex items-center gap-3">
+											<div class="flex size-11 items-center justify-center rounded-full bg-success/15 ring-4 ring-success/10">
+												<MapPin class="text-success size-5" />
+											</div>
+											<div>
+												<p class="text-xs font-bold uppercase tracking-widest text-success/70">Wellness Passport</p>
 												<h2 class="text-xl font-bold">Passport Stamp Location</h2>
 											</div>
-											<p class="text-muted-foreground leading-relaxed">{park.lockboxLocation}</p>
-											
-											{park.lockboxPhoto && (
-												<div class="mt-6 overflow-hidden rounded-xl border border-info/20">
-													<Image
-														src={urlForImage(park.lockboxPhoto).width(800).height(600).url()}
-														alt={park.lockboxPhoto.alt || 'Lockbox location'}
-														width={800}
-														height={600}
-														class="w-full object-cover"
-													/>
-												</div>
-											)}
 										</div>
-									</Card>
-								)
-							}
 
-							<!-- Amenities -->
-							{
-								park.amenities && park.amenities.length > 0 && (
-									<Card class="bg-card border border-border p-8 shadow-sm">
-										<h2 class="mb-6 text-xl font-bold">Amenities</h2>
-										<div class="flex flex-wrap gap-3">
-											{park.amenities.map((amenity) => (
-												<span class="inline-flex items-center gap-2 rounded-full bg-success/10 px-4 py-2 text-sm font-medium text-success">
-													<span class="size-1.5 rounded-full bg-success"></span>
-													{formatAmenity(amenity)}
-												</span>
-											))}
-										</div>
-									</Card>
-								)
-							}
+										<!-- Divider -->
+										<div class="mb-5 h-px w-full bg-success/15"></div>
 
-							<!-- Gallery -->
-							{
-								park.gallery?.images && park.gallery.images.length > 0 && (
-									<div>
-										<h2 class="mb-6 text-2xl font-bold">Gallery</h2>
-										<div class="grid gap-4 sm:grid-cols-2">
-											{park.gallery.images.map((image, i) => (
-												<div 
-													class="group relative overflow-hidden rounded-xl border border-border"
-													style={`animation: fade-in-up 0.5s ease-out ${0.1 * i}s both;`}
-												>
-													<Image
-														src={urlForImage(image).width(600).height(450).url()}
-														alt={image.alt || park.title}
-														width={600}
-														height={450}
-														class="aspect-[4/3] w-full object-cover transition-transform duration-500 group-hover:scale-110"
-													/>
-													<div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100"></div>
-												</div>
-											))}
+										<p class="text-foreground/80 leading-relaxed">{park.lockboxLocation}</p>
+
+										{park.lockboxPhoto && (
+											<div class="mt-6 overflow-hidden rounded-xl border-2 border-success/20 shadow-md">
+												<Image
+													src={urlForImage(park.lockboxPhoto).width(800).height(600).url()}
+													alt={park.lockboxPhoto.alt || 'Lockbox location'}
+													width={800}
+													height={600}
+													class="w-full object-cover"
+												/>
+											</div>
+										)}
+
+										<!-- Tip banner -->
+										<div class="mt-5 flex items-start gap-3 rounded-xl bg-success/10 px-4 py-3">
+											<span class="mt-0.5 size-2 shrink-0 rounded-full bg-success animate-pulse-soft" aria-hidden="true"></span>
+											<p class="text-sm font-medium text-success/90">Look for the mounted lockbox with the self-inking stamp inside to record your visit.</p>
 										</div>
 									</div>
-								)
-							}
-						</div>
-
-						<!-- Sidebar (1/3) -->
-						<div class="lg:col-span-1">
-							<div class="sticky top-24 space-y-6">
-								<!-- Park Info Card -->
-								<Card class="bg-card border border-border p-6 shadow-lg">
-									<h3 class="mb-6 text-lg font-bold uppercase tracking-wide">Park Information</h3>
-
-									<div class="space-y-5">
-										{/* Address */}									{
-											park.address && (
-												<div>
-													<div class="mb-2 flex items-center gap-2">
-														<MapPin class="text-success size-4" />
-														<span class="text-sm font-semibold">Address</span>
-													</div>
-													<div class="text-muted-foreground ml-6 text-sm leading-relaxed">
-														<PortableText portableText={park.address} />
-													</div>
-												</div>
-											)
-											}
-
-											{/* Hours */}
-											{
-												park.hours && (
-													<div>
-														<div class="mb-2 flex items-center gap-2">
-															<Clock class="text-success size-4" />
-															<span class="text-sm font-semibold">Hours</span>
-														</div>
-														<div class="text-muted-foreground ml-6 text-sm leading-relaxed">
-															<PortableText portableText={park.hours} />
-														</div>
-													</div>
-												)
-											}
-
-											{/* Phone */}
-											{
-												park.phone && (
-													<div>
-														<div class="mb-2 flex items-center gap-2">
-															<Phone class="text-success size-4" />
-															<span class="text-sm font-semibold">Phone</span>
-														</div>
-														<a
-															href={`tel:${park.phone}`}
-															class="text-success hover:text-success/80 ml-6 text-sm font-medium transition-colors hover:underline"
-														>
-															{park.phone}
-														</a>
-													</div>
-												)
-											}
-
-											{/* Website */}
-											{
-												park.websiteUrl && (
-													<div>
-														<div class="mb-2 flex items-center gap-2">
-															<Globe class="text-success size-4" />
-															<span class="text-sm font-semibold">Website</span>
-														</div>
-														<a
-															href={park.websiteUrl}
-															target="_blank"
-															rel="noopener noreferrer"
-															class="text-success hover:text-success/80 ml-6 text-sm font-medium transition-colors hover:underline inline-flex items-center gap-1"
-														>
-															Visit Website
-															<span class="sr-only">(opens in new tab)</span>
-														</a>
-													</div>
-												)
-											}
-										</div>
-
-										<div class="border-border mt-6 border-t pt-6">
-											<Button href="/parks-and-trails" variant="outline" size="sm" class="w-full hover:bg-success hover:text-success-foreground hover:border-success transition-all">
-												<ArrowLeft class="size-4" />
-												Back to All Parks
-											</Button>
-										</div>
-									</Card>
 								</div>
-							</div>
+							)
+						}
+
+						<!-- Amenities -->
+						{
+							park.amenities && park.amenities.length > 0 && (
+								<Card class="bg-card border border-border p-8 shadow-sm">
+									<h2 class="mb-6 text-xl font-bold">Amenities</h2>
+									<div class="flex flex-wrap gap-3">
+										{park.amenities.map((amenity) => (
+											<span class="inline-flex items-center gap-2 rounded-full bg-success/10 px-4 py-2 text-sm font-medium text-success">
+												<span class="size-1.5 rounded-full bg-success" aria-hidden="true"></span>
+												{formatAmenity(amenity)}
+											</span>
+										))}
+									</div>
+								</Card>
+							)
+						}
+
+						<!-- Gallery -->
+						{
+							park.gallery?.images && park.gallery.images.length > 0 && (
+								<div>
+									<h2 class="mb-6 text-2xl font-bold">Gallery</h2>
+									<div class="grid gap-4 sm:grid-cols-2">
+										{park.gallery.images.map((image, i) => (
+											<div
+												class="group relative overflow-hidden rounded-xl border border-border"
+												style={`animation: fade-in-up 0.5s ease-out ${0.1 * i}s both;`}
+											>
+												<Image
+													src={urlForImage(image).width(600).height(450).url()}
+													alt={image.alt || park.title}
+													width={600}
+													height={450}
+													class="aspect-[4/3] w-full object-cover transition-transform duration-500 group-hover:scale-110"
+												/>
+												<div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100"></div>
+											</div>
+										))}
+									</div>
+								</div>
+							)
+						}
+					</div>
+
+					<!-- Sidebar (1/3) -->
+					<div class="lg:col-span-1">
+						<div class="sticky top-24 space-y-6">
+							<!-- Park Info Card with colored top border -->
+							<Card class="bg-card overflow-hidden border border-border border-t-4 border-t-success p-6 shadow-lg">
+								<h3 class="mb-6 text-lg font-bold uppercase tracking-wide">Park Information</h3>
+
+								<div class="space-y-5">
+									{/* Address */}
+									{
+										park.address && (
+											<div>
+												<div class="mb-2 flex items-center gap-2">
+													<MapPin class="text-success size-4" aria-hidden="true" />
+													<span class="text-sm font-semibold">Address</span>
+												</div>
+												<div class="text-muted-foreground ml-6 text-sm leading-relaxed">
+													<PortableText portableText={park.address} />
+												</div>
+											</div>
+										)
+									}
+
+									{/* Hours */}
+									{
+										park.hours && (
+											<div>
+												<div class="mb-2 flex items-center gap-2">
+													<Clock class="text-success size-4" aria-hidden="true" />
+													<span class="text-sm font-semibold">Hours</span>
+												</div>
+												<div class="text-muted-foreground ml-6 text-sm leading-relaxed">
+													<PortableText portableText={park.hours} />
+												</div>
+											</div>
+										)
+									}
+
+									{/* Phone */}
+									{
+										park.phone && (
+											<div>
+												<div class="mb-2 flex items-center gap-2">
+													<Phone class="text-success size-4" aria-hidden="true" />
+													<span class="text-sm font-semibold">Phone</span>
+												</div>
+												<a
+													href={`tel:${park.phone}`}
+													class="text-success hover:text-success/80 ml-6 text-sm font-medium transition-colors hover:underline"
+												>
+													{park.phone}
+												</a>
+											</div>
+										)
+									}
+
+									{/* Website */}
+									{
+										park.websiteUrl && (
+											<div>
+												<div class="mb-2 flex items-center gap-2">
+													<Globe class="text-success size-4" aria-hidden="true" />
+													<span class="text-sm font-semibold">Website</span>
+												</div>
+												<a
+													href={park.websiteUrl}
+													target="_blank"
+													rel="noopener noreferrer"
+													class="text-success hover:text-success/80 ml-6 inline-flex items-center gap-1 text-sm font-medium transition-colors hover:underline"
+												>
+													Visit Website
+													<span class="sr-only">(opens in new tab)</span>
+												</a>
+											</div>
+										)
+									}
+								</div>
+
+								<div class="border-border mt-6 border-t pt-6">
+									<Button
+										href="/parks-and-trails"
+										variant="outline"
+										size="sm"
+										class="hover:bg-success hover:text-success-foreground hover:border-success w-full transition-all"
+									>
+										<ArrowLeft class="size-4" aria-hidden="true" />
+										Back to All Parks
+									</Button>
+								</div>
+							</Card>
 						</div>
 					</div>
+				</div>
 			</Container>
 		</Section>
 	</main>

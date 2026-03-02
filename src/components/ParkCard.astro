@@ -1,6 +1,6 @@
 ---
 import type { ParkTrail } from '@/sanity/schemaTypes/parkTrail'
-import Button from './starwind/button'
+import { Button } from '@/components/starwind/button'
 
 // Reusable Park Card Component
 // Used on homepage and parks-and-trails page
@@ -49,11 +49,31 @@ const s = sizeClasses[size]
 
 <div
 	id={`park-${index}`}
-	class="group border-border bg-card hover:border-success/30 relative flex h-full cursor-pointer flex-col overflow-hidden rounded-xl border transition-all duration-300 hover:shadow-lg"
+	class="group border-border bg-card hover:border-success/30 relative flex h-full cursor-pointer flex-col overflow-hidden rounded-xl border border-t-4 border-t-success transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
 	style={`animation: fade-in-up 0.4s ease-out ${0.05 * index}s both;`}
 >
+	<!-- Dot texture background -->
+	<div class="pointer-events-none absolute inset-0 opacity-[0.025]" aria-hidden="true">
+		<svg class="h-full w-full" xmlns="http://www.w3.org/2000/svg">
+			<defs>
+				<pattern id={`dots-park-${index}`} x="0" y="0" width="16" height="16" patternUnits="userSpaceOnUse">
+					<circle cx="2" cy="2" r="1" fill="currentColor" class="text-success" />
+				</pattern>
+			</defs>
+			<rect width="100%" height="100%" fill={`url(#dots-park-${index})`} />
+		</svg>
+	</div>
+
+	<!-- Watermark index number -->
+	<span
+		class="text-success/[0.05] pointer-events-none absolute -right-1 -bottom-2 select-none text-[5rem] font-black leading-none"
+		aria-hidden="true"
+	>
+		{index + 1}
+	</span>
+
 	<!-- Park Info (Full width) -->
-	<div class={`flex h-full flex-col ${s.padding}`}>
+	<div class={`relative flex h-full flex-col ${s.padding}`}>
 		<div class="mb-2 flex items-start justify-between gap-2">
 			<div class="flex items-center gap-2">
 				<div
@@ -70,8 +90,9 @@ const s = sizeClasses[size]
 		</div>
 
 		<span
-			class="bg-success/10 text-success mb-2 inline-flex w-fit shrink-0 items-center rounded-full px-2 py-0.5 text-xs font-medium capitalize"
+			class="bg-success/10 text-success mb-2 inline-flex w-fit shrink-0 items-center gap-1.5 rounded-full px-2 py-0.5 text-xs font-medium capitalize"
 		>
+			<span class="bg-success size-1.5 rounded-full inline-block" aria-hidden="true"></span>
 			{park.parkType?.replace('-', ' ') || 'Park'}
 		</span>
 
@@ -105,6 +126,7 @@ const s = sizeClasses[size]
 					stroke-width="2"
 					stroke-linecap="round"
 					stroke-linejoin="round"
+					aria-hidden="true"
 				>
 					<path d="M5 12h14"></path>
 					<path d="m12 5 7 7-7 7"></path>

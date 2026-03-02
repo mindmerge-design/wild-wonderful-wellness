@@ -3,28 +3,114 @@
 
 // Components
 import Layout from '@/layouts/Layout.astro'
+import { Button } from '@/components/starwind/button'
+import Container from '@/components/layout/Container.astro'
+
+// Icons
+import { Compass, MapPin, TreePine } from 'lucide-astro'
 ---
 
 <Layout>
-	<main
-		id="main-content"
-		class="grid min-h-full place-items-center bg-white px-6 py-24 sm:py-32 lg:px-8"
-	>
-		<div class="text-center">
-			<p class="text-primary text-base font-semibold">404</p>
-			<h1 class="mt-4 text-3xl font-bold tracking-tight text-gray-900 sm:text-5xl">
-				Page not found
-			</h1>
-			<p class="mt-6 text-base leading-7 text-gray-600">
-				Sorry, we couldn&apos;t find the page you&apos;re looking for.
-			</p>
-			<div class="mt-10 flex items-center justify-center gap-x-6">
-				<a
-					href="/"
-					class="bg-primary hover:bg-primary/80 focus-visible:outline-primary rounded-md px-3.5 py-2.5 text-sm font-semibold text-white! no-underline shadow-xs focus-visible:outline-2 focus-visible:outline-offset-2"
-					>Go back home</a
-				>
+	<main id="main-content" class="relative flex min-h-screen flex-col overflow-hidden">
+		<!-- Hero section: bg-primary with decorative elements -->
+		<section class="bg-primary relative flex flex-1 flex-col items-center justify-center py-32 text-center">
+
+			<!-- Dot texture background -->
+			<div class="pointer-events-none absolute inset-0 opacity-[0.04]" aria-hidden="true">
+				<svg class="h-full w-full" xmlns="http://www.w3.org/2000/svg">
+					<defs>
+						<pattern id="dots-404" x="0" y="0" width="24" height="24" patternUnits="userSpaceOnUse">
+							<circle cx="2" cy="2" r="1.5" fill="currentColor" class="text-primary-foreground" />
+						</pattern>
+					</defs>
+					<rect width="100%" height="100%" fill="url(#dots-404)" />
+				</svg>
 			</div>
+
+			<!-- Big watermark "404" -->
+			<span
+				class="pointer-events-none absolute inset-0 flex select-none items-center justify-center text-[14rem] font-black leading-none text-white/[0.04] sm:text-[18rem]"
+				aria-hidden="true"
+			>
+				404
+			</span>
+
+			<!-- Concentric dashed stamp rings -->
+			<div class="pointer-events-none absolute inset-0 flex select-none items-center justify-center" aria-hidden="true">
+				<div class="border-white/[0.06] absolute size-[340px] rounded-full border-2 border-dashed"></div>
+				<div class="border-white/[0.06] absolute size-[480px] rounded-full border-2 border-dashed"></div>
+				<div class="border-white/[0.05] absolute size-[620px] rounded-full border border-dashed"></div>
+			</div>
+
+			<!-- Floating nature icons -->
+			<div class="pointer-events-none absolute inset-0 select-none" aria-hidden="true">
+				<!-- Top-left Compass -->
+				<div class="absolute left-[8%] top-[15%] rotate-[-20deg] opacity-20">
+					<Compass class="text-warning size-12 sm:size-16" />
+				</div>
+				<!-- Top-right TreePine -->
+				<div class="absolute right-[10%] top-[20%] rotate-[15deg] opacity-15">
+					<TreePine class="text-success size-14 sm:size-20" />
+				</div>
+				<!-- Bottom-left MapPin -->
+				<div class="absolute bottom-[20%] left-[12%] rotate-[10deg] opacity-20">
+					<MapPin class="text-warning size-10 sm:size-14" />
+				</div>
+				<!-- Bottom-right Compass -->
+				<div class="absolute bottom-[15%] right-[8%] rotate-[-12deg] opacity-15">
+					<Compass class="text-success size-10 sm:size-12" />
+				</div>
+				<!-- Center-left TreePine -->
+				<div class="absolute left-[5%] top-[50%] -translate-y-1/2 rotate-[5deg] opacity-10">
+					<TreePine class="size-10" />
+				</div>
+			</div>
+
+			<!-- Content -->
+			<Container class="relative z-10 flex flex-col items-center">
+				<!-- Warning badge -->
+				<div
+					class="bg-warning/15 border-warning/30 text-warning mb-8 inline-flex items-center gap-2 rounded-full border px-4 py-1.5 text-sm font-bold tracking-widest uppercase"
+				>
+					<span class="bg-warning size-1.5 rounded-full" aria-hidden="true"></span>
+					404 — Trail Not Found
+				</div>
+
+				<!-- Main heading -->
+				<h1 class="text-primary-foreground mb-4 text-5xl font-black tracking-tight sm:text-7xl">
+					Lost on the Trail?
+				</h1>
+
+				<!-- Subtext -->
+				<p class="text-primary-foreground/70 mx-auto max-w-md text-lg leading-relaxed sm:text-xl">
+					Looks like this path leads nowhere. Let&apos;s get you back on track.
+				</p>
+			</Container>
+		</section>
+
+		<!-- Wave divider -->
+		<div class="bg-primary pointer-events-none" aria-hidden="true">
+			<svg
+				viewBox="0 0 1440 80"
+				class="text-background block w-full fill-current"
+				preserveAspectRatio="none"
+				style="display: block;"
+			>
+				<path d="M0,40 Q360,80 720,40 T1440,40 L1440,80 L0,80Z" />
+			</svg>
 		</div>
+
+		<!-- White bottom section with CTA -->
+		<section class="bg-background py-16 text-center">
+			<Container class="flex flex-col items-center gap-6">
+				<p class="text-muted-foreground text-base">
+					Use the button below to return to the homepage.
+				</p>
+				<Button href="/" variant="primary" size="lg" class="no-underline">
+					<Compass class="size-5" aria-hidden="true" />
+					Back to the Trailhead
+				</Button>
+			</Container>
+		</section>
 	</main>
 </Layout>
