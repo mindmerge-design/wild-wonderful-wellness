@@ -4,9 +4,9 @@ import '@/styles/global.css'
 import { ClientRouter } from 'astro:transitions'
 
 // Components
+import PreviewBanner from '@/components/elements/interactive/PreviewBanner.astro'
 import Footer from '@/components/layout/Footer.astro'
 import Header from '@/components/layout/Header.astro'
-import PreviewBanner from '@/components/elements/interactive/PreviewBanner.astro'
 
 // Misc
 const { class: className, ...rest } = Astro.props
@@ -42,18 +42,6 @@ if (import.meta.env.DEV) {
 		/>
 
 		<ClientRouter />
-
-		<!-- Prevent flash of unstyled content for dark mode -->
-		<script is:inline>
-			;(function () {
-				const theme =
-					localStorage.getItem('theme') ||
-					(window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light')
-				if (theme === 'dark') {
-					document.documentElement.classList.add('dark')
-				}
-			})()
-		</script>
 
 		<style is:global>
 			/* Font overrides */
