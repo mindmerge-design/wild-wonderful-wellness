@@ -2,20 +2,15 @@
 // Packages
 import { SEO } from 'astro-seo'
 import {
-	ArrowRight,
-	Award,
-	Calendar,
-	Compass,
-	Map as MapIcon,
-	MapPin,
-	Mountain,
-	Sun,
-	TreePine
+ArrowRight,
+Award,
+Map as MapIcon,
+MapPin,
+Mountain
 } from 'lucide-astro'
 
 // Components
 import Badge from '@/components/elements/content/Badge.astro'
-import Card from '@/components/elements/content/Card.astro'
 import PortableText from '@/components/elements/content/PortableText.astro'
 import Container from '@/components/layout/Container.astro'
 import Section from '@/components/layout/Section.astro'
@@ -125,103 +120,73 @@ const eventBarColors = ['bg-warning', 'bg-success', 'bg-info', 'bg-primary']
 	/>
 
 	<!-- ============================================ -->
-	<!-- 1. HERO                                      -->
+	<!-- 1. HERO - Split Design with Diagonal Edge    -->
 	<!-- ============================================ -->
-	<div class="relative min-h-[75vh] overflow-hidden bg-primary">
-
-		<!-- Dot texture overlay -->
-		<div class="absolute inset-0 pointer-events-none" aria-hidden="true" style="background-image: radial-gradient(circle, rgba(255,255,255,0.08) 1px, transparent 1px); background-size: 24px 24px;"></div>
-
-		<!-- Gradient overlays -->
-		<div class="absolute inset-0 bg-linear-to-b from-black/40 via-black/10 to-black/65"></div>
-
-		<!-- Decorative concentric stamp rings (right side) -->
-		<div class="absolute -right-24 top-1/2 -translate-y-1/2 pointer-events-none" aria-hidden="true">
-			<div class="absolute size-[520px] -translate-x-1/2 -translate-y-1/2 rounded-full border-2 border-dashed border-white/20 opacity-30"></div>
-			<div class="absolute size-[380px] -translate-x-1/2 -translate-y-1/2 rounded-full border border-white/15 opacity-25"></div>
-			<div class="absolute size-[240px] -translate-x-1/2 -translate-y-1/2 rounded-full border border-white/10 opacity-20"></div>
-		</div>
-
-		<!-- Floating trail markers — all clustered right, well clear of text -->
-		<div class="absolute top-14 right-[3%] animate-pulse-soft opacity-15" aria-hidden="true">
-			<MapPin class="text-white! size-11" />
-		</div>
-		<div class="absolute top-[42%] right-[14%] animate-pulse-soft opacity-10" style="animation-delay: 0.5s" aria-hidden="true">
-			<TreePine class="text-white! size-9" />
-		</div>
-		<div class="absolute bottom-28 right-[22%] animate-pulse-soft opacity-10" style="animation-delay: 1s" aria-hidden="true">
-			<Compass class="text-white! size-10" />
-		</div>
-		<div class="absolute bottom-1/4 right-[6%] animate-pulse-soft opacity-12" style="animation-delay: 1.5s" aria-hidden="true">
-			<Mountain class="text-white! size-9" />
-		</div>
-		<div class="absolute top-1/4 right-[20%] animate-pulse-soft opacity-10" style="animation-delay: 0.8s" aria-hidden="true">
-			<Sun class="text-white! size-8" />
-		</div>
-
-		<Container class="relative z-10 flex min-h-[75vh] flex-col justify-center py-20">
-			<div class="grid items-center gap-6 lg:grid-cols-6">
-				<!-- Left: Text Content -->
-				<div class="col-span-4" style="animation: fade-in-up 0.8s ease-out both;">
-
-					<!-- Badge with pulsing dot -->
-					<div class="mb-6 inline-flex items-center gap-2.5 rounded-full border border-warning/40 bg-warning/15 px-5 py-2.5 text-sm font-semibold text-warning backdrop-blur-md shadow-lg">
-						<span class="size-2 rounded-full bg-warning animate-pulse-soft shrink-0" aria-hidden="true"></span>
-						<span>Monongalia County Health Department</span>
-					</div>
-
-					<h1 class="mb-0 text-5xl font-extrabold leading-[1.05] tracking-tight text-white! md:text-6xl lg:text-7xl">
-						Wild &amp;
-						<!-- "Wonderful" with squiggly underline -->
-						<span class="relative inline-block pb-2">
+	<div class="relative min-h-auto lg:min-h-[75vh] overflow-hidden bg-primary">
+		<!-- Container for content + image layout -->
+		<div class="relative flex flex-col lg:flex-row lg:min-h-[75vh]">
+			
+			<!-- Left side content -->
+			<div class="relative z-20 flex flex-col justify-center py-12 lg:py-20 w-full lg:w-[50%]">
+				<Container class="relative z-10 pt-16 md:pt-0">
+					<div class="max-w-3xl mx-auto" style="animation:fade-in-up 0.8s ease-out both ">
+						<!-- Title -->
+						<h1 class="mb-2 text-4xl lg:text-6xl xl:text-7xl font-extrabold leading-[1.1] tracking-tight text-white! uppercase">
+							Wild &
 							Wonderful
-							<svg class="absolute -bottom-0.5 left-0 w-full overflow-visible pointer-events-none" viewBox="0 0 260 10" preserveAspectRatio="none" aria-hidden="true">
-								<path d="M0,5 Q32.5,0 65,5 T130,5 T195,5 T260,5" fill="none" stroke-width="3" stroke-linecap="round" style="stroke: hsl(var(--warning))"/>
-							</svg>
-						</span>
-						<br/>
-						<!-- "Wellness Passport" as a tilted highlight badge -->
-						<span class="mt-2 inline-block -rotate-1 rounded-xl bg-warning px-4 py-1.5 text-warning-foreground shadow-lg">
-							Wellness Passport
-						</span>
-					</h1>
+						</h1>
+						
+						<!-- Highlighted subtitle -->
+						<div class="mt-3 lg:mt-4 inline-block -rotate-1 transform">
+							<span class="inline-block rounded-lg bg-warning px-4 lg:px-6 py-1.5 lg:py-2 text-lg lg:text-2xl xl:text-3xl font-extrabold uppercase text-warning-foreground shadow-lg">
+								Wellness Passport
+							</span>
+						</div>
 
-					<p class="mt-8 text-xl font-semibold tracking-wide text-white/90!">
-						Explore. Move. Earn Rewards.
-					</p>
+						<!-- Tagline -->
+						<p class="mt-6 lg:mt-8 text-base lg:text-lg font-semibold tracking-wide text-white/90!">
+							Explore. Move. Earn Rewards.
+						</p>
 
-					<div class="mt-10 flex flex-wrap gap-4">
-						<Button href="#introduction" variant="outline" size="lg" class="no-underline bg-white">
-							Learn More
-							<ArrowRight class="size-5" />
-						</Button>
+						<!-- CTA Button -->
+						<div class="mt-6 lg:mt-8">
+							<Button href="#introduction" variant="outline" size="lg" class="no-underline bg-white text-foreground hover:bg-white/90">
+								Learn More
+								<ArrowRight class="size-5" />
+							</Button>
+						</div>
 					</div>
-				</div>
+				</Container>
+			</div>
 
-				<!-- Right: Hero Image from Sanity -->
-				{home?.hero?.heroImage && (
-					<div class="lg:col-span-2 lg:flex lg:justify-center col-span-6" style="animation: fade-in-left 0.8s ease-out 0.3s both;">
-						<div class="relative aspect-square w-full rounded-xl shadow-2xl overflow-hidden">
-							<div class="absolute -inset-4 bg-accent/20 rounded-full blur-3xl"></div>
-							<img
-								src={urlForImage(home.hero.heroImage).width(600).height(800).url()}
-								alt={home.hero.heroImage.alt || 'Wellness Passport'}
-								width={400}
-								height={533}
-								class="absolute inset-0 w-full h-full object-cover my-0!"
-							/>
+			<!-- Right side image with diagonal edge (desktop only) -->
+			<div class="relative w-full h-[300px] sm:h-[400px] lg:absolute lg:inset-y-0 lg:right-0 lg:w-[55%] lg:h-auto z-10">
+				<!-- Diagonal mask (desktop only) -->
+				<div class="hidden lg:block absolute inset-0 bg-primary z-10 " style="clip-path: polygon(0 0, 25% 0, 0 100%, 0 100%);"></div>
+				
+				{home?.hero?.heroImage ? (
+					<img
+						src={urlForImage(home.hero.heroImage).width(1200).height(900).url()}
+						alt={home.hero.heroImage.alt || 'Wellness Passport'}
+						width={1200}
+						height={900}
+						class="h-full w-full object-cover object-center my-0!"
+					/>
+				) : (
+					<div class="h-full w-full bg-primary/50 flex items-center justify-center">
+						<div class="text-center text-white/60">
+							<Mountain class="size-16 mx-auto mb-4" />
+							<p class="text-lg font-medium">Hero image coming soon</p>
 						</div>
 					</div>
 				)}
 			</div>
-		</Container>
+		</div>
 
-		<!-- Organic nature wave divider -->
-		<div class="absolute -bottom-1 left-0 right-0">
-			<svg viewBox="0 0 1440 200" class="w-full text-background" preserveAspectRatio="none">
-				<path fill="currentColor" d="M0,160 Q180,100 360,140 T720,120 T1080,140 T1440,100 L1440,200 L0,200Z"/>
-				<path fill="currentColor" opacity="0.6" d="M0,180 Q240,120 480,160 T960,140 T1440,160 L1440,200 L0,200Z"/>
-				<path fill="currentColor" opacity="0.3" d="M0,190 Q360,150 720,170 T1440,150 L1440,200 L0,200Z"/>
+		<!-- Bottom wave divider -->
+		<div class="absolute -bottom-1 left-0 right-0 z-30">
+			<svg viewBox="0 0 1440 120" class="w-full text-background" preserveAspectRatio="none">
+				<path fill="currentColor" d="M0,60 C360,120 720,0 1080,60 C1260,90 1380,80 1440,60 L1440,120 L0,120Z"/>
 			</svg>
 		</div>
 	</div>
