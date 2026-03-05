@@ -1,7 +1,7 @@
 ---
 // Packages
 import { SEO } from 'astro-seo'
-import { Award, Building2, Heart, MapPin, Users } from 'lucide-astro'
+import { Award, Heart, MapPin, Users } from 'lucide-astro'
 
 // Components
 import Badge from '@/components/elements/content/Badge.astro'
@@ -219,7 +219,7 @@ const seoDescription = 'Community businesses and organizations supporting the We
 							return (
 								<a
 									href={`/partners/${slug}`}
-									class="group relative rounded-xl border border-border bg-card overflow-hidden transition-all duration-300 hover:shadow-lg hover:border-info/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-info"
+									class="no-underline group relative rounded-xl border border-border bg-card overflow-hidden transition-all duration-300 hover:shadow-lg hover:border-info/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-info"
 									style={`animation: fade-in-up 0.4s ease-out ${0.1 * i}s both;`}
 								>
 									<!-- Colored left accent bar, appears on hover -->
@@ -229,10 +229,7 @@ const seoDescription = 'Community businesses and organizations supporting the We
 										<!-- Header with icon -->
 										<div class="p-4 pb-2 pl-6">
 											<div class="flex items-start gap-3">
-												<div class="flex size-12 shrink-0 items-center justify-center rounded-xl bg-info/10">
-													<Building2 class="text-info size-6" />
-												</div>
-												<div class="flex-1 min-w-0">
+									<div class="flex-1 min-w-0">
 													<h4 class="font-bold text-foreground group-hover:text-info transition-colors">{partner.title}</h4>
 													<span class="inline-flex items-center rounded-full bg-info/10 px-2 py-0.5 text-xs font-medium text-info capitalize mt-1">
 														{partner.partnerType || 'Partner'}
@@ -282,17 +279,14 @@ const seoDescription = 'Community businesses and organizations supporting the We
 							return (
 								<a
 									href={`/partners/${slug}`}
-									class="group relative rounded-xl border border-border bg-card p-4 pl-5 transition-all duration-300 hover:shadow-md hover:border-info/30 overflow-hidden focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-info"
+									class="no-underline group relative rounded-xl border border-border bg-card p-4 pl-5 transition-all duration-300 hover:shadow-md hover:border-info/30 overflow-hidden focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-info"
 									style={`animation: fade-in-up 0.4s ease-out ${0.05 * i}s both;`}
 								>
 									<!-- Subtle colored left border on hover -->
 									<div class="absolute left-0 top-0 bottom-0 w-1 bg-info rounded-l-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" aria-hidden="true"></div>
 
 									<div class="flex items-start gap-3">
-										<div class="flex size-10 shrink-0 items-center justify-center rounded-lg bg-muted group-hover:bg-info/10 transition-colors duration-300">
-											<Building2 class="text-muted-foreground group-hover:text-info size-4 transition-colors duration-300" />
-										</div>
-										<div class="flex-1 min-w-0">
+							<div class="flex-1 min-w-0">
 											<h4 class="font-bold text-foreground text-sm group-hover:text-info transition-colors truncate">{partner.title}</h4>
 											<p class="text-muted-foreground text-xs mt-1 line-clamp-2">{partner.shortDescription || ''}</p>
 											<div class="flex flex-wrap gap-1 mt-2">

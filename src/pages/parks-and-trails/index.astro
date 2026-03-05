@@ -262,8 +262,8 @@ const seoDescription =
 					</div>
 
 					<!-- Carousel Navigation Script -->
-					<script is:inline>
-						document.addEventListener('DOMContentLoaded', () => {
+					<script>
+						document.addEventListener('astro:page-load', () => {
 							const carousel = document.getElementById('parks-carousel')
 							const prevBtn = document.getElementById('carousel-prev')
 							const nextBtn = document.getElementById('carousel-next')
