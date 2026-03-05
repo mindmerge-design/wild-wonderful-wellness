@@ -21,7 +21,7 @@ export default function ParkMap({ parks, mapboxToken }: ParkMapProps) {
 
 		map.current = new mapboxgl.Map({
 			container: mapContainer.current,
-			style: 'mapbox://styles/mapbox/outdoors-v12',
+			style: 'mapbox://styles/giraldomac/cmme247c000io01s1fp708n02',
 			center: [-79.91, 39.63],
 			zoom: 11,
 			attributionControl: false,
@@ -199,7 +199,7 @@ export default function ParkMap({ parks, mapboxToken }: ParkMapProps) {
 
 	return (
 		<div className="relative h-full w-full rounded-2xl overflow-hidden">
-			<div ref={mapContainer} className="h-full w-full" />
+			<div ref={mapContainer} className="h-full w-full"  />
 		</div>
 	)
 }
