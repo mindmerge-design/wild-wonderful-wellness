@@ -21,7 +21,7 @@ export default function ParkMap({ parks, mapboxToken }: ParkMapProps) {
 
 		map.current = new mapboxgl.Map({
 			container: mapContainer.current,
-			style: 'mapbox://styles/mapbox/light-v11',
+			style: 'mapbox://styles/mapbox/outdoors-v12',
 			center: [-79.91, 39.63],
 			zoom: 11,
 			attributionControl: false,
@@ -87,11 +87,11 @@ export default function ParkMap({ parks, mapboxToken }: ParkMapProps) {
 				const markerEl = document.createElement('div')
 				markerEl.className = 'custom-marker'
 				markerEl.innerHTML = `
-					<div class="flex items-center gap-1.5 bg-white rounded-full px-2.5 py-1.5 shadow-lg border border-emerald-200 cursor-pointer hover:shadow-xl transition-all hover:scale-105">
-						<div class="w-5 h-5 rounded-full bg-emerald-500 flex items-center justify-center text-white! text-xs font-bold">
+					<div style="display:flex;align-items:center;gap:6px;background:#FDFCF8;border-radius:9999px;padding:5px 10px 5px 5px;box-shadow:0 4px 12px rgba(93,112,82,0.2);border:1.5px solid #DED8CF;cursor:pointer;transition:all 0.2s;font-family:Nunito,sans-serif;" onmouseenter="this.style.boxShadow='0 6px 20px rgba(93,112,82,0.3)';this.style.transform='scale(1.05)'" onmouseleave="this.style.boxShadow='0 4px 12px rgba(93,112,82,0.2)';this.style.transform='scale(1)'">
+						<div style="width:20px;height:20px;border-radius:50%;background:#5D7052;display:flex;align-items:center;justify-content:center;color:#F3F4F1;font-size:11px;font-weight:700;flex-shrink:0;">
 							${index + 1}
 						</div>
-						<span class="text-xs font-medium text-gray-800 max-w-[80px] truncate">${park.title}</span>
+						<span style="font-size:11px;font-weight:600;color:#2C2C24;max-width:80px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">${park.title}</span>
 					</div>
 				`
 
@@ -101,17 +101,19 @@ export default function ParkMap({ parks, mapboxToken }: ParkMapProps) {
 					closeButton: false,
 					closeOnClick: false
 				}).setHTML(`
-					<div class="p-2">
-						<h3 class="font-bold text-emerald-700 mt-0!">${park.title}</h3>
-						<p class="text-xs text-gray-600 mt-1 line-clamp-2">${park.shortDescription || ''}</p>
-						<a 
-							href="/parks-and-trails/${slug}" 
-							class="inline-flex items-center gap-1 mt-2 text-xs font-semibold text-emerald-600 hover:text-emerald-800 hover:underline"
+					<div style="padding:8px 4px 4px;font-family:Nunito,sans-serif;min-width:140px;">
+						<h3 style="font-weight:700;color:#5D7052;margin:0 0 4px;font-size:13px;line-height:1.3;">${park.title}</h3>
+						<p style="font-size:11px;color:#78786C;margin:0 0 8px;line-height:1.5;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;">${park.shortDescription || ''}</p>
+						<a
+							href="/parks-and-trails/${slug}"
+							style="display:inline-flex;align-items:center;gap:3px;font-size:11px;font-weight:700;color:#C18C5D;text-decoration:none;"
+							onmouseenter="this.style.color='#5D7052'"
+							onmouseleave="this.style.color='#C18C5D'"
 							onclick="event.stopPropagation()"
 						>
 							Learn More
-							<svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+							<svg width="10" height="10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"/>
 							</svg>
 						</a>
 					</div>
@@ -124,17 +126,6 @@ export default function ParkMap({ parks, mapboxToken }: ParkMapProps) {
 
 				// Track currently open popup
 				let currentPopup: mapboxgl.Popup | null = null
-
-				markerEl.addEventListener('mouseenter', () => {
-					setActivePark(park.title || '')
-					// Close previous popup if exists
-					if (currentPopup && currentPopup !== popup) {
-						currentPopup.remove()
-					}
-					marker.setPopup(popup)
-					popup.addTo(map.current!)
-					currentPopup = popup
-				})
 
 				markerEl.addEventListener('click', (e) => {
 					e.stopPropagation()
@@ -158,8 +149,8 @@ export default function ParkMap({ parks, mapboxToken }: ParkMapProps) {
 					const parkCard = document.getElementById(`park-${index}`)
 					if (parkCard) {
 						parkCard.scrollIntoView({ behavior: 'smooth', block: 'center' })
-						parkCard.classList.add('ring-2', 'ring-emerald-400')
-						setTimeout(() => parkCard.classList.remove('ring-2', 'ring-emerald-400'), 2000)
+						parkCard.classList.add('ring-2', 'ring-primary')
+						setTimeout(() => parkCard.classList.remove('ring-2', 'ring-primary'), 2000)
 					}
 				})
 
