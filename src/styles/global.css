@@ -180,43 +180,44 @@
 
 @layer base {
 	:root {
-		--background: 0 0% 100%;
-		--foreground: 0 0% 9%;
+		/* Earth-drawn palette — forest floors, clay, unbleached paper, dried grass, river stones */
+		--background: 48 50% 98%;        /* #FDFCF8 — Rice Paper */
+		--foreground: 60 10% 16%;        /* #2C2C24 — Deep Loam */
 
-		--card: 0 0% 100%;
-		--card-foreground: 0 0% 9%;
+		--card: 60 60% 99%;              /* #FEFEFA — Lighter off-white */
+		--card-foreground: 60 10% 16%;
 
-		--popover: 0 0% 100%;
-		--popover-foreground: 0 0% 9%;
+		--popover: 60 60% 99%;
+		--popover-foreground: 60 10% 16%;
 
-		--primary: 152 35% 25%;
-		--primary-foreground: 60 20% 97%;
+		--primary: 98 15% 38%;           /* #5D7052 — Moss Green */
+		--primary-foreground: 80 12% 95%; /* #F3F4F1 — Pale Mist */
 
-		--secondary: 30 20% 35%;
-		--secondary-foreground: 60 20% 97%;
+		--secondary: 28 45% 56%;         /* #C18C5D — Terracotta / Clay */
+		--secondary-foreground: 0 0% 100%;
 
-		--muted: 100 15% 92%;
-		--muted-foreground: 100 10% 35%;
+		--muted: 33 27% 92%;             /* #F0EBE5 — Stone */
+		--muted-foreground: 60 5% 45%;   /* #78786C — Dried Grass */
 
-		--accent: 65 85% 50%;
-		--accent-foreground: 152 35% 12%;
+		--accent: 36 33% 85%;            /* #E6DCCD — Sand / Beige */
+		--accent-foreground: 60 7% 27%;  /* #4A4A40 — Bark */
 
-		--info: 165 50% 37%;
-		--info-foreground: 60 20% 97%;
+		--info: 200 35% 40%;             /* Muted teal */
+		--info-foreground: 0 0% 100%;
 
-		--success: 142 60% 32%;
-		--success-foreground: 60 20% 97%;
+		--success: 108 20% 38%;          /* Moss-aligned green */
+		--success-foreground: 80 12% 95%;
 
-		--warning: 47 85% 63%;
-		--warning-foreground: 152 35% 8%;
+		--warning: 30 60% 52%;           /* Warm amber, clay-adjacent */
+		--warning-foreground: 60 10% 16%;
 
-		--error: 8 60% 58%;
-		--error-foreground: 60 20% 97%;
+		--error: 8 40% 47%;              /* #A85448 — Burnt Sienna */
+		--error-foreground: 0 0% 100%;
 
-		--border: 100 10% 85%;
-		--input: 100 10% 85%;
-		--outline: 152 35% 40%;
-		--radius: 0.5rem;
+		--border: 36 19% 84%;            /* #DED8CF — Raw Timber */
+		--input: 36 19% 84%;
+		--outline: 98 15% 38%;           /* Moss Green */
+		--radius: 1rem;                  /* 16px base — organic feel */
 	}
 
 	* {
@@ -235,6 +236,19 @@
 	button {
 		@apply cursor-pointer;
 	}
+
+	/* Grain / paper texture overlay — 4% opacity, multiply blend */
+	body::after {
+		content: '';
+		position: fixed;
+		inset: 0;
+		z-index: 9999;
+		pointer-events: none;
+		opacity: 0.04;
+		mix-blend-mode: multiply;
+		background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+		background-size: 200px 200px;
+	}
 }
 
 @layer utilities {
@@ -245,12 +259,12 @@
 
 		h1,
 		.h1 {
-			@apply text-foreground text-4xl font-extrabold uppercase md:text-5xl lg:text-6xl;
+			@apply text-foreground text-4xl font-bold md:text-5xl lg:text-6xl;
 		}
 
 		h2,
 		.h2 {
-			@apply text-foreground text-2xl font-bold uppercase md:text-3xl lg:text-4xl;
+			@apply text-foreground text-2xl font-bold md:text-3xl lg:text-4xl;
 		}
 
 		h3,
@@ -312,5 +326,33 @@
 	/* use with "animate-pause" to pause a CSS animation */
 	.pause {
 		animation-play-state: paused !important;
+	}
+
+	/* Organic soft shadows — moss and clay tinted, never pure black */
+	.shadow-moss {
+		box-shadow: 0 4px 20px -2px rgba(93, 112, 82, 0.15);
+	}
+	.shadow-moss-lg {
+		box-shadow: 0 10px 40px -10px rgba(93, 112, 82, 0.2);
+	}
+	.shadow-clay {
+		box-shadow: 0 4px 20px -2px rgba(193, 140, 93, 0.15);
+	}
+	.shadow-clay-lg {
+		box-shadow: 0 10px 40px -10px rgba(193, 140, 93, 0.2);
+	}
+
+	/* Organic blob shapes — no straight lines in nature */
+	.blob-1 {
+		border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+	}
+	.blob-2 {
+		border-radius: 40% 60% 70% 30% / 40% 70% 30% 60%;
+	}
+	.blob-3 {
+		border-radius: 50% 50% 40% 60% / 30% 60% 40% 70%;
+	}
+	.blob-4 {
+		border-radius: 70% 30% 50% 50% / 50% 40% 60% 50%;
 	}
 }

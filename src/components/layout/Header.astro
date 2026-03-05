@@ -110,13 +110,21 @@ const pathname = Astro.url.pathname
 	</div>
 </header>
 
-<script is:inline>
-	const btn = document.getElementById('mobile-menu-btn')
-	const nav = document.getElementById('mobile-nav')
-	const menuIcon = document.getElementById('menu-icon')
-	const closeIcon = document.getElementById('close-icon')
+<script>
+	function initMobileNav() {
+		const btn = document.getElementById('mobile-menu-btn')
+		const nav = document.getElementById('mobile-nav')
+		const menuIcon = document.getElementById('menu-icon')
+		const closeIcon = document.getElementById('close-icon')
 
-	if (btn && nav) {
+		if (!btn || !nav) return
+
+		// Ensure menu starts closed on every page load
+		nav.classList.add('hidden')
+		btn.setAttribute('aria-expanded', 'false')
+		menuIcon?.classList.remove('hidden')
+		closeIcon?.classList.add('hidden')
+
 		btn.addEventListener('click', () => {
 			const isExpanded = btn.getAttribute('aria-expanded') === 'true'
 			btn.setAttribute('aria-expanded', String(!isExpanded))
@@ -124,5 +132,17 @@ const pathname = Astro.url.pathname
 			menuIcon?.classList.toggle('hidden')
 			closeIcon?.classList.toggle('hidden')
 		})
+
+		// Close menu when a nav link is clicked
+		nav.querySelectorAll('a').forEach((link) => {
+			link.addEventListener('click', () => {
+				nav.classList.add('hidden')
+				btn.setAttribute('aria-expanded', 'false')
+				menuIcon?.classList.remove('hidden')
+				closeIcon?.classList.add('hidden')
+			})
+		})
 	}
+
+	document.addEventListener('astro:page-load', initMobileNav)
 </script>
