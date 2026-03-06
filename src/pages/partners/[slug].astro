@@ -17,9 +17,12 @@ import {
 
 // Components
 import Badge from '@/components/elements/content/Badge.astro'
+import HeroBadge from '@/components/elements/content/HeroBadge.astro'
 import PortableText from '@/components/elements/content/PortableText.astro'
 import Container from '@/components/layout/Container.astro'
 import Section from '@/components/layout/Section.astro'
+import StampRings from '@/components/layout/StampRings.astro'
+import WaveDivider from '@/components/layout/WaveDivider.astro'
 import { Button } from '@/components/starwind/button'
 import Layout from '@/layouts/Layout.astro'
 
@@ -153,14 +156,7 @@ function formatPartnerType(type: string) {
 
 		<div class="absolute inset-0 bg-linear-to-b from-black/30 via-black/10 to-black/50" aria-hidden="true"></div>
 
-		<!-- Concentric stamp rings -->
-		<div class="pointer-events-none absolute -right-24 top-1/2 -translate-y-1/2" aria-hidden="true">
-			<div class="relative flex items-center justify-center size-[520px] rounded-full border border-dashed border-white/20">
-				<div class="relative flex items-center justify-center size-[380px] rounded-full border border-dashed border-white/20">
-					<div class="size-[240px] rounded-full border border-dashed border-white/20"></div>
-				</div>
-			</div>
-		</div>
+		<StampRings />
 
 		<!-- Floating icons — right side only, clear of text -->
 		<div class="animate-pulse-soft absolute top-14 right-[4%] opacity-15" aria-hidden="true">
@@ -213,11 +209,7 @@ function formatPartnerType(type: string) {
 					</div>
 
 					<div>
-						<!-- Warning badge with pulsing dot -->
-						<div class="mb-3 inline-flex items-center gap-2.5 rounded-full border border-warning/40 bg-warning/15 px-5 py-2.5 text-sm font-semibold text-warning backdrop-blur-md shadow-lg">
-							<span class="size-2 rounded-full bg-warning animate-pulse-soft shrink-0" aria-hidden="true"></span>
-							<span>Community Partner</span>
-						</div>
+						<HeroBadge class="mb-3">Community Partner</HeroBadge>
 
 						<h1 class="text-4xl font-extrabold tracking-tight text-white! md:text-5xl lg:text-6xl">
 							{partner.title}
@@ -235,15 +227,7 @@ function formatPartnerType(type: string) {
 			</div>
 		</Container>
 
-		<!-- Wave divider -->
-		<div class="absolute right-0 -bottom-2 left-0 z-20" aria-hidden="true">
-			<svg viewBox="0 0 1440 200" class="text-background w-full" preserveAspectRatio="none">
-				<path
-					fill="currentColor"
-					d="M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,122.7C672,117,768,139,864,154.7C960,171,1056,181,1152,165.3C1248,149,1344,107,1392,85.3L1440,64L1440,200L1392,200C1344,200,1248,200,1152,200C1056,200,960,200,864,200C768,200,672,200,576,200C480,200,384,200,288,200C192,200,96,200,48,200L0,200Z"
-				></path>
-			</svg>
-		</div>
+		<WaveDivider />
 	</div>
 
 	<main id="main-content">
@@ -413,7 +397,7 @@ function formatPartnerType(type: string) {
 								</div>
 
 								<div class="border-t border-border px-6 py-4 bg-muted/30">
-									<Button href="/partners" variant="ghost" size="sm" class="w-full">
+									<Button href="/partners" variant="ghost" size="sm" class="w-full no-underline">
 										<ArrowLeft class="size-4" />
 										Back to Partners
 									</Button>

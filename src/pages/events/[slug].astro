@@ -16,9 +16,12 @@ import {
 
 // Components
 import Badge from '@/components/elements/content/Badge.astro'
+import HeroBadge from '@/components/elements/content/HeroBadge.astro'
 import PortableText from '@/components/elements/content/PortableText.astro'
 import Container from '@/components/layout/Container.astro'
 import Section from '@/components/layout/Section.astro'
+import StampRings from '@/components/layout/StampRings.astro'
+import WaveDivider from '@/components/layout/WaveDivider.astro'
 import { Button } from '@/components/starwind/button'
 import Layout from '@/layouts/Layout.astro'
 
@@ -127,17 +130,7 @@ const isPast = new Date(event.eventDate) < new Date()
 			)
 		}
 
-		<!-- Concentric stamp rings (right side) -->
-		<div class="absolute -right-20 top-1/2 z-[5] -translate-y-1/2 opacity-[0.10]" aria-hidden="true">
-			<svg width="360" height="360" viewBox="0 0 360 360" fill="none" xmlns="http://www.w3.org/2000/svg">
-				<circle cx="180" cy="180" r="175" stroke="white" stroke-width="1.5"/>
-				<circle cx="180" cy="180" r="148" stroke="white" stroke-width="1.5"/>
-				<circle cx="180" cy="180" r="121" stroke="white" stroke-width="1.5"/>
-				<circle cx="180" cy="180" r="94" stroke="white" stroke-width="1.5"/>
-				<circle cx="180" cy="180" r="67" stroke="white" stroke-width="1.5"/>
-				<circle cx="180" cy="180" r="40" stroke="white" stroke-width="1.5"/>
-			</svg>
-		</div>
+		<StampRings class="z-[5]" />
 
 		<!-- Floating decorative icon -->
 		<div class="absolute top-10 left-[12%] z-[5] animate-pulse-soft opacity-20" aria-hidden="true">
@@ -156,11 +149,7 @@ const isPast = new Date(event.eventDate) < new Date()
 					All Events
 				</a>
 
-				<!-- Warning badge with pulsing dot -->
-				<div class="mb-5 inline-flex items-center gap-2.5 rounded-full border border-warning/40 bg-warning/15 px-5 py-2.5 text-sm font-semibold text-warning backdrop-blur-md shadow-lg">
-					<span class="size-2 rounded-full bg-warning animate-pulse-soft shrink-0" aria-hidden="true"></span>
-					{isPast ? 'Past Event' : 'Upcoming Event'}
-				</div>
+				<HeroBadge class="mb-5">{isPast ? 'Past Event' : 'Upcoming Event'}</HeroBadge>
 
 				<h1 class="text-4xl font-extrabold tracking-tight text-white! md:text-5xl">
 					{event.title}
@@ -188,12 +177,7 @@ const isPast = new Date(event.eventDate) < new Date()
 			</div>
 		</Container>
 
-		<!-- Wave divider -->
-		<div class="absolute -bottom-2 left-0 right-0 z-20" aria-hidden="true">
-			<svg viewBox="0 0 1440 100" class="w-full text-background" preserveAspectRatio="none">
-				<path fill="currentColor" d="M0,50L60,55.3C120,61,240,71,360,66C480,61,600,39,720,34C840,29,960,39,1080,50C1200,61,1320,71,1380,76L1440,82L1440,100L1380,100C1320,100,1200,100,1080,100C960,100,840,100,720,100C600,100,480,100,360,100C240,100,120,100,60,100L0,100Z"/>
-			</svg>
-		</div>
+		<WaveDivider class="z-20" />
 	</div>
 
 	<main id="main-content">

@@ -3,24 +3,26 @@
 import { SEO } from 'astro-seo'
 import { Image } from 'astro:assets'
 import {
-	ArrowLeft,
-	Clock,
-	Compass,
-	Globe,
-	Info,
-	MapPin,
-	Mountain,
-	Phone,
-	Stamp,
-	TreePine
+ArrowLeft,
+Clock,
+Compass,
+Globe,
+Info,
+MapPin,
+Mountain,
+Phone,
+Stamp,
+TreePine
 } from 'lucide-astro'
 
 // Components
-import Badge from '@/components/elements/content/Badge.astro'
 import Card from '@/components/elements/content/Card.astro'
+import HeroBadge from '@/components/elements/content/HeroBadge.astro'
 import PortableText from '@/components/elements/content/PortableText.astro'
 import Container from '@/components/layout/Container.astro'
 import Section from '@/components/layout/Section.astro'
+import StampRings from '@/components/layout/StampRings.astro'
+import WaveDivider from '@/components/layout/WaveDivider.astro'
 import { Button } from '@/components/starwind/button'
 import Layout from '@/layouts/Layout.astro'
 
@@ -109,12 +111,7 @@ function formatAmenity(amenity: string) {
 		}
 		<div class="absolute inset-0 z-10 bg-linear-to-b from-black/50 via-black/30 to-black/65"></div>
 
-		<!-- Decorative concentric stamp rings (right side) -->
-		<div class="pointer-events-none absolute -right-24 top-1/2 z-10 -translate-y-1/2" aria-hidden="true">
-			<div class="absolute size-[480px] -translate-x-1/2 -translate-y-1/2 rounded-full border-2 border-dashed border-white/20 opacity-30"></div>
-			<div class="absolute size-[340px] -translate-x-1/2 -translate-y-1/2 rounded-full border border-white/15 opacity-25"></div>
-			<div class="absolute size-[200px] -translate-x-1/2 -translate-y-1/2 rounded-full border border-white/10 opacity-20"></div>
-		</div>
+		<StampRings class="z-10" />
 
 		<!-- Decorative Floating Icons — right side only, clear of text -->
 		<div class="animate-pulse-soft absolute top-14 right-[4%] z-10 opacity-15" aria-hidden="true">
@@ -138,22 +135,7 @@ function formatAmenity(amenity: string) {
 		<Container class="relative z-20 flex min-h-[55vh] flex-col justify-center py-20">
 			<div style="animation: fade-in-up 0.8s ease-out both;">
 
-				<!-- Warning-style hero badge with pulsing dot -->
-				<div class="mb-5 inline-flex items-center gap-2.5 rounded-full border border-warning/40 bg-warning/15 px-5 py-2.5 text-sm font-semibold text-warning backdrop-blur-md shadow-lg">
-					<span class="animate-pulse-soft size-2 shrink-0 rounded-full bg-warning" aria-hidden="true"></span>
-					<span>Parks &amp; Trails</span>
-				</div>
-
-				<!-- Park Type Badge (warning style) -->
-				{
-					park.parkType && (
-						<div class="mb-5">
-							<span class="inline-block -rotate-1 rounded-xl bg-warning px-4 py-1.5 text-sm font-bold text-warning-foreground shadow-lg">
-								{park.parkType.replace(/-/g, ' ').replace(/\b\w/g, (c) => c.toUpperCase())}
-							</span>
-						</div>
-					)
-				}
+				<HeroBadge class="mb-5">Parks &amp; Trails</HeroBadge>
 
 				<h1 class="text-4xl font-extrabold tracking-tight text-white! md:text-5xl lg:text-6xl">
 					{park.title}
@@ -169,22 +151,7 @@ function formatAmenity(amenity: string) {
 			</div>
 		</Container>
 
-		<!-- Organic Wave Divider -->
-		<div class="absolute right-0 -bottom-1 left-0 z-20!">
-			<svg viewBox="0 0 1440 200" class="text-background w-full" preserveAspectRatio="none">
-				<path
-					fill="currentColor"
-					d="M0,160 Q180,100 360,140 T720,120 T1080,140 T1440,100 L1440,200 L0,200Z"></path>
-				<path
-					fill="currentColor"
-					opacity="0.6"
-					d="M0,180 Q240,120 480,160 T960,140 T1440,160 L1440,200 L0,200Z"></path>
-				<path
-					fill="currentColor"
-					opacity="0.3"
-					d="M0,190 Q360,150 720,170 T1440,150 L1440,200 L0,200Z"></path>
-			</svg>
-		</div>
+		<WaveDivider />
 	</div>
 
 	<main id="main-content">
@@ -434,7 +401,7 @@ function formatAmenity(amenity: string) {
 										href="/parks-and-trails"
 										variant="outline"
 										size="sm"
-										class="hover:bg-success hover:text-success-foreground hover:border-success w-full transition-all"
+										class="w-full no-underline"
 									>
 										<ArrowLeft class="size-4" aria-hidden="true" />
 										Back to All Parks

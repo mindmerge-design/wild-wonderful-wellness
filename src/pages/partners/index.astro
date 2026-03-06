@@ -5,8 +5,11 @@ import { Award, Heart, MapPin, Users } from 'lucide-astro'
 
 // Components
 import Badge from '@/components/elements/content/Badge.astro'
+import HeroBadge from '@/components/elements/content/HeroBadge.astro'
 import Container from '@/components/layout/Container.astro'
 import Section from '@/components/layout/Section.astro'
+import StampRings from '@/components/layout/StampRings.astro'
+import WaveDivider from '@/components/layout/WaveDivider.astro'
 import { Button } from '@/components/starwind/button'
 import Layout from '@/layouts/Layout.astro'
 import { loadQuery } from '@/sanity/lib/load-query'
@@ -70,14 +73,7 @@ const seoDescription = 'Community businesses and organizations supporting the We
 
 		<div class="absolute inset-0 bg-linear-to-b from-black/20 via-black/10 to-black/40" aria-hidden="true"></div>
 
-		<!-- Concentric stamp rings -->
-		<div class="pointer-events-none absolute -right-24 top-1/2 -translate-y-1/2" aria-hidden="true">
-			<div class="relative flex items-center justify-center size-[520px] rounded-full border border-dashed border-white/20">
-				<div class="relative flex items-center justify-center size-[380px] rounded-full border border-dashed border-white/20">
-					<div class="size-[240px] rounded-full border border-dashed border-white/20"></div>
-				</div>
-			</div>
-		</div>
+		<StampRings />
 
 		<!-- Floating icons — right side only, clear of text -->
 		<div class="absolute top-12 right-[4%] animate-pulse-soft opacity-15" aria-hidden="true">
@@ -92,11 +88,7 @@ const seoDescription = 'Community businesses and organizations supporting the We
 
 		<Container class="relative z-10 flex min-h-[45vh] flex-col justify-center py-16">
 			<div class="max-w-3xl" style="animation: fade-in-up 0.8s ease-out both;">
-				<!-- Warning badge with pulsing dot -->
-				<div class="mb-5 inline-flex items-center gap-2.5 rounded-full border border-warning/40 bg-warning/15 px-5 py-2.5 text-sm font-semibold text-warning backdrop-blur-md shadow-lg">
-					<span class="size-2 rounded-full bg-warning animate-pulse-soft shrink-0" aria-hidden="true"></span>
-					<span>Our Community</span>
-				</div>
+				<HeroBadge class="mb-5">Our Community</HeroBadge>
 
 				<h1 class="text-4xl font-extrabold tracking-tight text-white! md:text-5xl lg:text-6xl">
 					Community
@@ -113,12 +105,7 @@ const seoDescription = 'Community businesses and organizations supporting the We
 			</div>
 		</Container>
 
-		<!-- Wave divider -->
-		<div class="absolute -bottom-2 left-0 right-0" aria-hidden="true">
-			<svg viewBox="0 0 1440 120" class="w-full text-background" preserveAspectRatio="none">
-				<path fill="currentColor" d="M0,64L60,69.3C120,75,240,85,360,80C480,75,600,53,720,48C840,43,960,53,1080,64C1200,75,1320,85,1380,90L1440,96L1440,120L1380,120C1320,120,1200,120,1080,120C960,120,840,120,720,120C600,120,480,120,360,120C240,120,120,120,60,120L0,120Z"/>
-			</svg>
-		</div>
+		<WaveDivider />
 	</div>
 
 	<main id="main-content">
@@ -327,7 +314,7 @@ const seoDescription = 'Community businesses and organizations supporting the We
 									<p class="text-white/80 mt-1">Join our community of wellness advocates and help make a difference</p>
 								</div>
 							</div>
-							<Button href="/contact" variant="outline" class="bg-white text-info border-white hover:bg-white/90 hover:text-info whitespace-nowrap text-base px-8 py-3 h-auto">
+							<Button href="/contact" variant="outline" class="bg-white text-foreground border-white hover:bg-white/90 whitespace-nowrap text-base px-8 py-3 h-auto no-underline">
 								Get in Touch
 							</Button>
 						</div>

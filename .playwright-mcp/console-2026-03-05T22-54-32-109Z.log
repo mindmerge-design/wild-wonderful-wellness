@@ -1,0 +1,902 @@
+[    3412ms] [WARNING] Manifest: property 'name' ignored, type string expected. @ http://localhost:4321/manifest.webmanifest:0
+[    3412ms] [WARNING] Manifest: property 'short_name' ignored, type string expected. @ http://localhost:4321/manifest.webmanifest:0
+[    3524ms] [ERROR] Error: Source layer "hillshade" does not exist on source "composite" as specified by style layer "hillshade"
+    at Po._validateLayer (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:24390:125)
+    at Po.<anonymous> (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:24028:45)
+    at Po.fire (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:831:39)
+    at dt.fire (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:837:43)
+    at http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19837:119
+    at n2 (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19774:62)
+    at http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19787:39 @ http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:838
+[  180940ms] [WARNING] Manifest: property 'name' ignored, type string expected. @ http://localhost:4321/manifest.webmanifest:0
+[  180940ms] [WARNING] Manifest: property 'short_name' ignored, type string expected. @ http://localhost:4321/manifest.webmanifest:0
+[  181057ms] [ERROR] Error: Source layer "hillshade" does not exist on source "composite" as specified by style layer "hillshade"
+    at Po._validateLayer (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:24390:125)
+    at Po.<anonymous> (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:24028:45)
+    at Po.fire (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:831:39)
+    at dt.fire (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:837:43)
+    at http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19837:119
+    at n2 (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19774:62)
+    at http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19787:39 @ http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:838
+[  188753ms] [WARNING] Manifest: property 'name' ignored, type string expected. @ http://localhost:4321/manifest.webmanifest:0
+[  188753ms] [WARNING] Manifest: property 'short_name' ignored, type string expected. @ http://localhost:4321/manifest.webmanifest:0
+[  188919ms] [ERROR] Error: Source layer "hillshade" does not exist on source "composite" as specified by style layer "hillshade"
+    at Po._validateLayer (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:24390:125)
+    at Po.<anonymous> (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:24028:45)
+    at Po.fire (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:831:39)
+    at dt.fire (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:837:43)
+    at http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19837:119
+    at n2 (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19774:62)
+    at http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19787:39 @ http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:838
+[  196213ms] [WARNING] Manifest: property 'name' ignored, type string expected. @ http://localhost:4321/manifest.webmanifest:0
+[  196213ms] [WARNING] Manifest: property 'short_name' ignored, type string expected. @ http://localhost:4321/manifest.webmanifest:0
+[  196309ms] [ERROR] Error: Source layer "hillshade" does not exist on source "composite" as specified by style layer "hillshade"
+    at Po._validateLayer (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:24390:125)
+    at Po.<anonymous> (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:24028:45)
+    at Po.fire (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:831:39)
+    at dt.fire (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:837:43)
+    at http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19837:119
+    at n2 (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19774:62)
+    at http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19787:39 @ http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:838
+[  382863ms] [WARNING] Manifest: property 'name' ignored, type string expected. @ http://localhost:4321/manifest.webmanifest:0
+[  382863ms] [WARNING] Manifest: property 'short_name' ignored, type string expected. @ http://localhost:4321/manifest.webmanifest:0
+[  382972ms] [ERROR] Error: Source layer "hillshade" does not exist on source "composite" as specified by style layer "hillshade"
+    at Po._validateLayer (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:24390:125)
+    at Po.<anonymous> (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:24028:45)
+    at Po.fire (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:831:39)
+    at dt.fire (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:837:43)
+    at http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19837:119
+    at n2 (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19774:62)
+    at http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19787:39 @ http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:838
+[  408209ms] [WARNING] Manifest: property 'name' ignored, type string expected. @ http://localhost:4321/manifest.webmanifest:0
+[  408209ms] [WARNING] Manifest: property 'short_name' ignored, type string expected. @ http://localhost:4321/manifest.webmanifest:0
+[  408331ms] [ERROR] Error: Source layer "hillshade" does not exist on source "composite" as specified by style layer "hillshade"
+    at Po._validateLayer (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:24390:125)
+    at Po.<anonymous> (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:24028:45)
+    at Po.fire (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:831:39)
+    at dt.fire (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:837:43)
+    at http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19837:119
+    at n2 (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19774:62)
+    at http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19787:39 @ http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:838
+[  442275ms] [WARNING] Manifest: property 'name' ignored, type string expected. @ http://localhost:4321/manifest.webmanifest:0
+[  442275ms] [WARNING] Manifest: property 'short_name' ignored, type string expected. @ http://localhost:4321/manifest.webmanifest:0
+[  442386ms] [ERROR] Error: Source layer "hillshade" does not exist on source "composite" as specified by style layer "hillshade"
+    at Po._validateLayer (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:24390:125)
+    at Po.<anonymous> (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:24028:45)
+    at Po.fire (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:831:39)
+    at dt.fire (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:837:43)
+    at http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19837:119
+    at n2 (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19774:62)
+    at http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19787:39 @ http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:838
+[  452981ms] [WARNING] Manifest: property 'name' ignored, type string expected. @ http://localhost:4321/manifest.webmanifest:0
+[  452981ms] [WARNING] Manifest: property 'short_name' ignored, type string expected. @ http://localhost:4321/manifest.webmanifest:0
+[  453085ms] [ERROR] Error: Source layer "hillshade" does not exist on source "composite" as specified by style layer "hillshade"
+    at Po._validateLayer (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:24390:125)
+    at Po.<anonymous> (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:24028:45)
+    at Po.fire (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:831:39)
+    at dt.fire (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:837:43)
+    at http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19837:119
+    at n2 (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19774:62)
+    at http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19787:39 @ http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:838
+[  606552ms] [WARNING] Manifest: property 'name' ignored, type string expected. @ http://localhost:4321/manifest.webmanifest:0
+[  606552ms] [WARNING] Manifest: property 'short_name' ignored, type string expected. @ http://localhost:4321/manifest.webmanifest:0
+[  606719ms] [ERROR] Error: Source layer "hillshade" does not exist on source "composite" as specified by style layer "hillshade"
+    at Po._validateLayer (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:24390:125)
+    at Po.<anonymous> (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:24028:45)
+    at Po.fire (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:831:39)
+    at dt.fire (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:837:43)
+    at http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19837:119
+    at n2 (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19774:62)
+    at http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19787:39 @ http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:838
+[  668010ms] [ERROR] Error: Source layer "hillshade" does not exist on source "composite" as specified by style layer "hillshade"
+    at Po._validateLayer (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:24390:125)
+    at Po.<anonymous> (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:24028:45)
+    at Po.fire (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:831:39)
+    at dt.fire (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:837:43)
+    at http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19837:119
+    at n2 (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19774:62)
+    at http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19787:39 @ http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:838
+[  677393ms] [ERROR] Error: Source layer "hillshade" does not exist on source "composite" as specified by style layer "hillshade"
+    at Po._validateLayer (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:24390:125)
+    at Po.<anonymous> (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:24028:45)
+    at Po.fire (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:831:39)
+    at dt.fire (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:837:43)
+    at http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19837:119
+    at n2 (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19774:62)
+    at http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19787:39 @ http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:838
+[  686113ms] [ERROR] Error: Source layer "hillshade" does not exist on source "composite" as specified by style layer "hillshade"
+    at Po._validateLayer (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:24390:125)
+    at Po.<anonymous> (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:24028:45)
+    at Po.fire (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:831:39)
+    at dt.fire (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:837:43)
+    at http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19837:119
+    at n2 (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19774:62)
+    at http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19787:39 @ http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:838
+[  694839ms] [ERROR] Error: Source layer "hillshade" does not exist on source "composite" as specified by style layer "hillshade"
+    at Po._validateLayer (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:24390:125)
+    at Po.<anonymous> (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:24028:45)
+    at Po.fire (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:831:39)
+    at dt.fire (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:837:43)
+    at http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19837:119
+    at n2 (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19774:62)
+    at http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19787:39 @ http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:838
+[  708072ms] [WARNING] Manifest: property 'name' ignored, type string expected. @ http://localhost:4321/manifest.webmanifest:0
+[  708072ms] [WARNING] Manifest: property 'short_name' ignored, type string expected. @ http://localhost:4321/manifest.webmanifest:0
+[  708162ms] [ERROR] Error: Source layer "hillshade" does not exist on source "composite" as specified by style layer "hillshade"
+    at Po._validateLayer (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:24390:125)
+    at Po.<anonymous> (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:24028:45)
+    at Po.fire (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:831:39)
+    at dt.fire (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:837:43)
+    at http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19837:119
+    at n2 (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19774:62)
+    at http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19787:39 @ http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:838
+[  713894ms] [WARNING] Manifest: property 'name' ignored, type string expected. @ http://localhost:4321/manifest.webmanifest:0
+[  713894ms] [WARNING] Manifest: property 'short_name' ignored, type string expected. @ http://localhost:4321/manifest.webmanifest:0
+[  713958ms] [ERROR] Error: Source layer "hillshade" does not exist on source "composite" as specified by style layer "hillshade"
+    at Po._validateLayer (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:24390:125)
+    at Po.<anonymous> (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:24028:45)
+    at Po.fire (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:831:39)
+    at dt.fire (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:837:43)
+    at http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19837:119
+    at n2 (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19774:62)
+    at http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19787:39 @ http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:838
+[  744210ms] [WARNING] Manifest: property 'name' ignored, type string expected. @ http://localhost:4321/manifest.webmanifest:0
+[  744210ms] [WARNING] Manifest: property 'short_name' ignored, type string expected. @ http://localhost:4321/manifest.webmanifest:0
+[  744308ms] [ERROR] Error: Source layer "hillshade" does not exist on source "composite" as specified by style layer "hillshade"
+    at Po._validateLayer (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:24390:125)
+    at Po.<anonymous> (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:24028:45)
+    at Po.fire (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:831:39)
+    at dt.fire (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:837:43)
+    at http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19837:119
+    at n2 (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19774:62)
+    at http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19787:39 @ http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:838
+[  758006ms] [WARNING] Manifest: property 'name' ignored, type string expected. @ http://localhost:4321/manifest.webmanifest:0
+[  758006ms] [WARNING] Manifest: property 'short_name' ignored, type string expected. @ http://localhost:4321/manifest.webmanifest:0
+[  758075ms] [ERROR] Error: Source layer "hillshade" does not exist on source "composite" as specified by style layer "hillshade"
+    at Po._validateLayer (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:24390:125)
+    at Po.<anonymous> (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:24028:45)
+    at Po.fire (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:831:39)
+    at dt.fire (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:837:43)
+    at http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19837:119
+    at n2 (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19774:62)
+    at http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19787:39 @ http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:838
+[  767837ms] [WARNING] Manifest: property 'name' ignored, type string expected. @ http://localhost:4321/manifest.webmanifest:0
+[  767837ms] [WARNING] Manifest: property 'short_name' ignored, type string expected. @ http://localhost:4321/manifest.webmanifest:0
+[  767939ms] [ERROR] Error: Source layer "hillshade" does not exist on source "composite" as specified by style layer "hillshade"
+    at Po._validateLayer (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:24390:125)
+    at Po.<anonymous> (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:24028:45)
+    at Po.fire (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:831:39)
+    at dt.fire (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:837:43)
+    at http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19837:119
+    at n2 (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19774:62)
+    at http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19787:39 @ http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:838
+[  794493ms] [WARNING] Manifest: property 'name' ignored, type string expected. @ http://localhost:4321/manifest.webmanifest:0
+[  794493ms] [WARNING] Manifest: property 'short_name' ignored, type string expected. @ http://localhost:4321/manifest.webmanifest:0
+[  794610ms] [ERROR] Error: Source layer "hillshade" does not exist on source "composite" as specified by style layer "hillshade"
+    at Po._validateLayer (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:24390:125)
+    at Po.<anonymous> (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:24028:45)
+    at Po.fire (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:831:39)
+    at dt.fire (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:837:43)
+    at http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19837:119
+    at n2 (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19774:62)
+    at http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19787:39 @ http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:838
+[ 1146942ms] [WARNING] Manifest: property 'name' ignored, type string expected. @ http://localhost:4321/manifest.webmanifest:0
+[ 1146942ms] [WARNING] Manifest: property 'short_name' ignored, type string expected. @ http://localhost:4321/manifest.webmanifest:0
+[ 1147042ms] [ERROR] Error: Source layer "hillshade" does not exist on source "composite" as specified by style layer "hillshade"
+    at Po._validateLayer (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:24390:125)
+    at Po.<anonymous> (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:24028:45)
+    at Po.fire (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:831:39)
+    at dt.fire (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:837:43)
+    at http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19837:119
+    at n2 (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19774:62)
+    at http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19787:39 @ http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:838
+[ 1152796ms] [WARNING] Manifest: property 'name' ignored, type string expected. @ http://localhost:4321/manifest.webmanifest:0
+[ 1152796ms] [WARNING] Manifest: property 'short_name' ignored, type string expected. @ http://localhost:4321/manifest.webmanifest:0
+[ 1152866ms] [ERROR] Error: Source layer "hillshade" does not exist on source "composite" as specified by style layer "hillshade"
+    at Po._validateLayer (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:24390:125)
+    at Po.<anonymous> (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:24028:45)
+    at Po.fire (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:831:39)
+    at dt.fire (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:837:43)
+    at http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19837:119
+    at n2 (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19774:62)
+    at http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19787:39 @ http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:838
+[ 1169085ms] [WARNING] Manifest: property 'name' ignored, type string expected. @ http://localhost:4321/manifest.webmanifest:0
+[ 1169085ms] [WARNING] Manifest: property 'short_name' ignored, type string expected. @ http://localhost:4321/manifest.webmanifest:0
+[ 1169172ms] [ERROR] Error: Source layer "hillshade" does not exist on source "composite" as specified by style layer "hillshade"
+    at Po._validateLayer (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:24390:125)
+    at Po.<anonymous> (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:24028:45)
+    at Po.fire (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:831:39)
+    at dt.fire (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:837:43)
+    at http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19837:119
+    at n2 (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19774:62)
+    at http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19787:39 @ http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:838
+[ 1180480ms] [WARNING] Manifest: property 'name' ignored, type string expected. @ http://localhost:4321/manifest.webmanifest:0
+[ 1180480ms] [WARNING] Manifest: property 'short_name' ignored, type string expected. @ http://localhost:4321/manifest.webmanifest:0
+[ 1180600ms] [ERROR] Error: Source layer "hillshade" does not exist on source "composite" as specified by style layer "hillshade"
+    at Po._validateLayer (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:24390:125)
+    at Po.<anonymous> (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:24028:45)
+    at Po.fire (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:831:39)
+    at dt.fire (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:837:43)
+    at http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19837:119
+    at n2 (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19774:62)
+    at http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19787:39 @ http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:838
+[ 1188054ms] [WARNING] Manifest: property 'name' ignored, type string expected. @ http://localhost:4321/manifest.webmanifest:0
+[ 1188055ms] [WARNING] Manifest: property 'short_name' ignored, type string expected. @ http://localhost:4321/manifest.webmanifest:0
+[ 1188129ms] [ERROR] Error: Source layer "hillshade" does not exist on source "composite" as specified by style layer "hillshade"
+    at Po._validateLayer (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:24390:125)
+    at Po.<anonymous> (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:24028:45)
+    at Po.fire (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:831:39)
+    at dt.fire (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:837:43)
+    at http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19837:119
+    at n2 (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19774:62)
+    at http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19787:39 @ http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:838
+[ 1194773ms] [WARNING] Manifest: property 'name' ignored, type string expected. @ http://localhost:4321/manifest.webmanifest:0
+[ 1194773ms] [WARNING] Manifest: property 'short_name' ignored, type string expected. @ http://localhost:4321/manifest.webmanifest:0
+[ 1194832ms] [ERROR] Error: Source layer "hillshade" does not exist on source "composite" as specified by style layer "hillshade"
+    at Po._validateLayer (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:24390:125)
+    at Po.<anonymous> (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:24028:45)
+    at Po.fire (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:831:39)
+    at dt.fire (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:837:43)
+    at http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19837:119
+    at n2 (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19774:62)
+    at http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19787:39 @ http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:838
+[ 1201953ms] [WARNING] Manifest: property 'name' ignored, type string expected. @ http://localhost:4321/manifest.webmanifest:0
+[ 1201953ms] [WARNING] Manifest: property 'short_name' ignored, type string expected. @ http://localhost:4321/manifest.webmanifest:0
+[ 1202023ms] [ERROR] Error: Source layer "hillshade" does not exist on source "composite" as specified by style layer "hillshade"
+    at Po._validateLayer (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:24390:125)
+    at Po.<anonymous> (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:24028:45)
+    at Po.fire (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:831:39)
+    at dt.fire (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:837:43)
+    at http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19837:119
+    at n2 (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19774:62)
+    at http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19787:39 @ http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:838
+[ 1209932ms] [WARNING] Manifest: property 'name' ignored, type string expected. @ http://localhost:4321/manifest.webmanifest:0
+[ 1209932ms] [WARNING] Manifest: property 'short_name' ignored, type string expected. @ http://localhost:4321/manifest.webmanifest:0
+[ 1210007ms] [ERROR] Error: Source layer "hillshade" does not exist on source "composite" as specified by style layer "hillshade"
+    at Po._validateLayer (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:24390:125)
+    at Po.<anonymous> (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:24028:45)
+    at Po.fire (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:831:39)
+    at dt.fire (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:837:43)
+    at http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19837:119
+    at n2 (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19774:62)
+    at http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19787:39 @ http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:838
+[ 1218868ms] [WARNING] Manifest: property 'name' ignored, type string expected. @ http://localhost:4321/manifest.webmanifest:0
+[ 1218869ms] [WARNING] Manifest: property 'short_name' ignored, type string expected. @ http://localhost:4321/manifest.webmanifest:0
+[ 1218937ms] [ERROR] Error: Source layer "hillshade" does not exist on source "composite" as specified by style layer "hillshade"
+    at Po._validateLayer (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:24390:125)
+    at Po.<anonymous> (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:24028:45)
+    at Po.fire (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:831:39)
+    at dt.fire (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:837:43)
+    at http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19837:119
+    at n2 (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19774:62)
+    at http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19787:39 @ http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:838
+[ 1223018ms] [WARNING] Manifest: property 'name' ignored, type string expected. @ http://localhost:4321/manifest.webmanifest:0
+[ 1223018ms] [WARNING] Manifest: property 'short_name' ignored, type string expected. @ http://localhost:4321/manifest.webmanifest:0
+[ 1223083ms] [ERROR] Error: Source layer "hillshade" does not exist on source "composite" as specified by style layer "hillshade"
+    at Po._validateLayer (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:24390:125)
+    at Po.<anonymous> (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:24028:45)
+    at Po.fire (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:831:39)
+    at dt.fire (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:837:43)
+    at http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19837:119
+    at n2 (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19774:62)
+    at http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19787:39 @ http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:838
+[ 1251781ms] [WARNING] Manifest: property 'name' ignored, type string expected. @ http://localhost:4321/manifest.webmanifest:0
+[ 1251781ms] [WARNING] Manifest: property 'short_name' ignored, type string expected. @ http://localhost:4321/manifest.webmanifest:0
+[ 1251905ms] [ERROR] Error: Source layer "hillshade" does not exist on source "composite" as specified by style layer "hillshade"
+    at Po._validateLayer (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:24390:125)
+    at Po.<anonymous> (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:24028:45)
+    at Po.fire (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:831:39)
+    at dt.fire (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:837:43)
+    at http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19837:119
+    at n2 (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19774:62)
+    at http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19787:39 @ http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:838
+[ 1277677ms] [WARNING] Manifest: property 'name' ignored, type string expected. @ http://localhost:4321/manifest.webmanifest:0
+[ 1277677ms] [WARNING] Manifest: property 'short_name' ignored, type string expected. @ http://localhost:4321/manifest.webmanifest:0
+[ 1277747ms] [ERROR] Error: Source layer "hillshade" does not exist on source "composite" as specified by style layer "hillshade"
+    at Po._validateLayer (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:24390:125)
+    at Po.<anonymous> (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:24028:45)
+    at Po.fire (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:831:39)
+    at dt.fire (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:837:43)
+    at http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19837:119
+    at n2 (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19774:62)
+    at http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19787:39 @ http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:838
+[ 1314865ms] [WARNING] Manifest: property 'name' ignored, type string expected. @ http://localhost:4321/manifest.webmanifest:0
+[ 1314865ms] [WARNING] Manifest: property 'short_name' ignored, type string expected. @ http://localhost:4321/manifest.webmanifest:0
+[ 1314985ms] [ERROR] Error: Source layer "hillshade" does not exist on source "composite" as specified by style layer "hillshade"
+    at Po._validateLayer (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:24390:125)
+    at Po.<anonymous> (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:24028:45)
+    at Po.fire (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:831:39)
+    at dt.fire (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:837:43)
+    at http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19837:119
+    at n2 (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19774:62)
+    at http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19787:39 @ http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:838
+[ 1591323ms] [WARNING] Manifest: property 'name' ignored, type string expected. @ http://localhost:4321/manifest.webmanifest:0
+[ 1591323ms] [WARNING] Manifest: property 'short_name' ignored, type string expected. @ http://localhost:4321/manifest.webmanifest:0
+[ 1591519ms] [ERROR] Error: Source layer "hillshade" does not exist on source "composite" as specified by style layer "hillshade"
+    at Po._validateLayer (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:24390:125)
+    at Po.<anonymous> (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:24028:45)
+    at Po.fire (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:831:39)
+    at dt.fire (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:837:43)
+    at http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19837:119
+    at n2 (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19774:62)
+    at http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19787:39 @ http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:838
+[ 1621566ms] [WARNING] Manifest: property 'name' ignored, type string expected. @ http://localhost:4321/manifest.webmanifest:0
+[ 1621566ms] [WARNING] Manifest: property 'short_name' ignored, type string expected. @ http://localhost:4321/manifest.webmanifest:0
+[ 1621657ms] [ERROR] Error: Source layer "hillshade" does not exist on source "composite" as specified by style layer "hillshade"
+    at Po._validateLayer (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:24390:125)
+    at Po.<anonymous> (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:24028:45)
+    at Po.fire (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:831:39)
+    at dt.fire (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:837:43)
+    at http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19837:119
+    at n2 (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19774:62)
+    at http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19787:39 @ http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:838
+[ 1659866ms] [WARNING] Manifest: property 'name' ignored, type string expected. @ http://localhost:4321/manifest.webmanifest:0
+[ 1659866ms] [WARNING] Manifest: property 'short_name' ignored, type string expected. @ http://localhost:4321/manifest.webmanifest:0
+[ 1659960ms] [ERROR] Error: Source layer "hillshade" does not exist on source "composite" as specified by style layer "hillshade"
+    at Po._validateLayer (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:24390:125)
+    at Po.<anonymous> (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:24028:45)
+    at Po.fire (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:831:39)
+    at dt.fire (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:837:43)
+    at http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19837:119
+    at n2 (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19774:62)
+    at http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19787:39 @ http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:838
+[ 1684331ms] [WARNING] Manifest: property 'name' ignored, type string expected. @ http://localhost:4321/manifest.webmanifest:0
+[ 1684331ms] [WARNING] Manifest: property 'short_name' ignored, type string expected. @ http://localhost:4321/manifest.webmanifest:0
+[ 1684429ms] [ERROR] Error: Source layer "hillshade" does not exist on source "composite" as specified by style layer "hillshade"
+    at Po._validateLayer (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:24390:125)
+    at Po.<anonymous> (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:24028:45)
+    at Po.fire (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:831:39)
+    at dt.fire (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:837:43)
+    at http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19837:119
+    at n2 (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19774:62)
+    at http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19787:39 @ http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:838
+[ 1697904ms] [WARNING] Manifest: property 'name' ignored, type string expected. @ http://localhost:4321/manifest.webmanifest:0
+[ 1697904ms] [WARNING] Manifest: property 'short_name' ignored, type string expected. @ http://localhost:4321/manifest.webmanifest:0
+[ 1698000ms] [ERROR] Error: Source layer "hillshade" does not exist on source "composite" as specified by style layer "hillshade"
+    at Po._validateLayer (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:24390:125)
+    at Po.<anonymous> (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:24028:45)
+    at Po.fire (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:831:39)
+    at dt.fire (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:837:43)
+    at http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19837:119
+    at n2 (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19774:62)
+    at http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19787:39 @ http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:838
+[ 1715814ms] [WARNING] Manifest: property 'name' ignored, type string expected. @ http://localhost:4321/manifest.webmanifest:0
+[ 1715814ms] [WARNING] Manifest: property 'short_name' ignored, type string expected. @ http://localhost:4321/manifest.webmanifest:0
+[ 1715913ms] [ERROR] Error: Source layer "hillshade" does not exist on source "composite" as specified by style layer "hillshade"
+    at Po._validateLayer (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:24390:125)
+    at Po.<anonymous> (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:24028:45)
+    at Po.fire (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:831:39)
+    at dt.fire (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:837:43)
+    at http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19837:119
+    at n2 (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19774:62)
+    at http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19787:39 @ http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:838
+[ 2019137ms] [WARNING] Manifest: property 'name' ignored, type string expected. @ http://localhost:4321/manifest.webmanifest:0
+[ 2019137ms] [WARNING] Manifest: property 'short_name' ignored, type string expected. @ http://localhost:4321/manifest.webmanifest:0
+[ 2019310ms] [ERROR] Error: Source layer "hillshade" does not exist on source "composite" as specified by style layer "hillshade"
+    at Po._validateLayer (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:24390:125)
+    at Po.<anonymous> (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:24028:45)
+    at Po.fire (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:831:39)
+    at dt.fire (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:837:43)
+    at http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19837:119
+    at n2 (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19774:62)
+    at http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19787:39 @ http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:838
+[ 2030714ms] [WARNING] Manifest: property 'name' ignored, type string expected. @ http://localhost:4321/manifest.webmanifest:0
+[ 2030714ms] [WARNING] Manifest: property 'short_name' ignored, type string expected. @ http://localhost:4321/manifest.webmanifest:0
+[ 2030812ms] [ERROR] Error: Source layer "hillshade" does not exist on source "composite" as specified by style layer "hillshade"
+    at Po._validateLayer (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:24390:125)
+    at Po.<anonymous> (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:24028:45)
+    at Po.fire (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:831:39)
+    at dt.fire (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:837:43)
+    at http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19837:119
+    at n2 (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19774:62)
+    at http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19787:39 @ http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:838
+[ 2197236ms] [WARNING] Manifest: property 'name' ignored, type string expected. @ http://localhost:4321/manifest.webmanifest:0
+[ 2197236ms] [WARNING] Manifest: property 'short_name' ignored, type string expected. @ http://localhost:4321/manifest.webmanifest:0
+[ 2197329ms] [ERROR] Error: Source layer "hillshade" does not exist on source "composite" as specified by style layer "hillshade"
+    at Po._validateLayer (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:24390:125)
+    at Po.<anonymous> (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:24028:45)
+    at Po.fire (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:831:39)
+    at dt.fire (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:837:43)
+    at http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19837:119
+    at n2 (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19774:62)
+    at http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19787:39 @ http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:838
+[ 2212104ms] [WARNING] Manifest: property 'name' ignored, type string expected. @ http://localhost:4321/manifest.webmanifest:0
+[ 2212104ms] [WARNING] Manifest: property 'short_name' ignored, type string expected. @ http://localhost:4321/manifest.webmanifest:0
+[ 2212210ms] [ERROR] Error: Source layer "hillshade" does not exist on source "composite" as specified by style layer "hillshade"
+    at Po._validateLayer (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:24390:125)
+    at Po.<anonymous> (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:24028:45)
+    at Po.fire (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:831:39)
+    at dt.fire (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:837:43)
+    at http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19837:119
+    at n2 (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19774:62)
+    at http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19787:39 @ http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:838
+[ 2218492ms] [WARNING] Manifest: property 'name' ignored, type string expected. @ http://localhost:4321/manifest.webmanifest:0
+[ 2218492ms] [WARNING] Manifest: property 'short_name' ignored, type string expected. @ http://localhost:4321/manifest.webmanifest:0
+[ 2218566ms] [ERROR] Error: Source layer "hillshade" does not exist on source "composite" as specified by style layer "hillshade"
+    at Po._validateLayer (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:24390:125)
+    at Po.<anonymous> (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:24028:45)
+    at Po.fire (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:831:39)
+    at dt.fire (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:837:43)
+    at http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19837:119
+    at n2 (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19774:62)
+    at http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19787:39 @ http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:838
+[ 2267838ms] [WARNING] Manifest: property 'name' ignored, type string expected. @ http://localhost:4321/manifest.webmanifest:0
+[ 2267838ms] [WARNING] Manifest: property 'short_name' ignored, type string expected. @ http://localhost:4321/manifest.webmanifest:0
+[ 2267946ms] [ERROR] Error: Source layer "hillshade" does not exist on source "composite" as specified by style layer "hillshade"
+    at Po._validateLayer (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:24390:125)
+    at Po.<anonymous> (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:24028:45)
+    at Po.fire (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:831:39)
+    at dt.fire (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:837:43)
+    at http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19837:119
+    at n2 (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19774:62)
+    at http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19787:39 @ http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:838
+[ 2470445ms] [WARNING] Manifest: property 'name' ignored, type string expected. @ http://localhost:4321/manifest.webmanifest:0
+[ 2470445ms] [WARNING] Manifest: property 'short_name' ignored, type string expected. @ http://localhost:4321/manifest.webmanifest:0
+[ 2470653ms] [ERROR] Error: Source layer "hillshade" does not exist on source "composite" as specified by style layer "hillshade"
+    at Po._validateLayer (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:24390:125)
+    at Po.<anonymous> (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:24028:45)
+    at Po.fire (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:831:39)
+    at dt.fire (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:837:43)
+    at http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19837:119
+    at n2 (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19774:62)
+    at http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19787:39 @ http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:838
+[ 2481487ms] [WARNING] Manifest: property 'name' ignored, type string expected. @ http://localhost:4321/manifest.webmanifest:0
+[ 2481487ms] [WARNING] Manifest: property 'short_name' ignored, type string expected. @ http://localhost:4321/manifest.webmanifest:0
+[ 2482175ms] [ERROR] Error: Source layer "hillshade" does not exist on source "composite" as specified by style layer "hillshade"
+    at Po._validateLayer (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:24390:125)
+    at Po.<anonymous> (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:24028:45)
+    at Po.fire (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:831:39)
+    at dt.fire (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:837:43)
+    at http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19837:119
+    at n2 (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19774:62)
+    at http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19787:39 @ http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:838
+[ 2489426ms] [WARNING] Manifest: property 'name' ignored, type string expected. @ http://localhost:4321/manifest.webmanifest:0
+[ 2489427ms] [WARNING] Manifest: property 'short_name' ignored, type string expected. @ http://localhost:4321/manifest.webmanifest:0
+[ 2489571ms] [ERROR] Error: Source layer "hillshade" does not exist on source "composite" as specified by style layer "hillshade"
+    at Po._validateLayer (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:24390:125)
+    at Po.<anonymous> (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:24028:45)
+    at Po.fire (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:831:39)
+    at dt.fire (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:837:43)
+    at http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19837:119
+    at n2 (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19774:62)
+    at http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19787:39 @ http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:838
+[ 2561864ms] [WARNING] Manifest: property 'name' ignored, type string expected. @ http://localhost:4321/manifest.webmanifest:0
+[ 2561864ms] [WARNING] Manifest: property 'short_name' ignored, type string expected. @ http://localhost:4321/manifest.webmanifest:0
+[ 2561993ms] [ERROR] Error: Source layer "hillshade" does not exist on source "composite" as specified by style layer "hillshade"
+    at Po._validateLayer (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:24390:125)
+    at Po.<anonymous> (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:24028:45)
+    at Po.fire (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:831:39)
+    at dt.fire (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:837:43)
+    at http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19837:119
+    at n2 (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19774:62)
+    at http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19787:39 @ http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:838
+[ 2588463ms] [WARNING] Manifest: property 'name' ignored, type string expected. @ http://localhost:4321/manifest.webmanifest:0
+[ 2588463ms] [WARNING] Manifest: property 'short_name' ignored, type string expected. @ http://localhost:4321/manifest.webmanifest:0
+[ 2588650ms] [ERROR] Error: Source layer "hillshade" does not exist on source "composite" as specified by style layer "hillshade"
+    at Po._validateLayer (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:24390:125)
+    at Po.<anonymous> (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:24028:45)
+    at Po.fire (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:831:39)
+    at dt.fire (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:837:43)
+    at http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19837:119
+    at n2 (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19774:62)
+    at http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19787:39 @ http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:838
+[ 2625183ms] [WARNING] Manifest: property 'name' ignored, type string expected. @ http://localhost:4321/manifest.webmanifest:0
+[ 2625183ms] [WARNING] Manifest: property 'short_name' ignored, type string expected. @ http://localhost:4321/manifest.webmanifest:0
+[ 2625262ms] [ERROR] Error: Source layer "hillshade" does not exist on source "composite" as specified by style layer "hillshade"
+    at Po._validateLayer (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:24390:125)
+    at Po.<anonymous> (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:24028:45)
+    at Po.fire (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:831:39)
+    at dt.fire (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:837:43)
+    at http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19837:119
+    at n2 (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19774:62)
+    at http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19787:39 @ http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:838
+[ 2645365ms] [WARNING] Manifest: property 'name' ignored, type string expected. @ http://localhost:4321/manifest.webmanifest:0
+[ 2645366ms] [WARNING] Manifest: property 'short_name' ignored, type string expected. @ http://localhost:4321/manifest.webmanifest:0
+[ 2645606ms] [ERROR] Error: Source layer "hillshade" does not exist on source "composite" as specified by style layer "hillshade"
+    at Po._validateLayer (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:24390:125)
+    at Po.<anonymous> (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:24028:45)
+    at Po.fire (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:831:39)
+    at dt.fire (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:837:43)
+    at http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19837:119
+    at n2 (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19774:62)
+    at http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19787:39 @ http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:838
+[ 2670460ms] [WARNING] Manifest: property 'name' ignored, type string expected. @ http://localhost:4321/manifest.webmanifest:0
+[ 2670460ms] [WARNING] Manifest: property 'short_name' ignored, type string expected. @ http://localhost:4321/manifest.webmanifest:0
+[ 2670549ms] [ERROR] Error: Source layer "hillshade" does not exist on source "composite" as specified by style layer "hillshade"
+    at Po._validateLayer (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:24390:125)
+    at Po.<anonymous> (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:24028:45)
+    at Po.fire (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:831:39)
+    at dt.fire (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:837:43)
+    at http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19837:119
+    at n2 (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19774:62)
+    at http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19787:39 @ http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:838
+[ 2730982ms] [WARNING] Manifest: property 'name' ignored, type string expected. @ http://localhost:4321/manifest.webmanifest:0
+[ 2730982ms] [WARNING] Manifest: property 'short_name' ignored, type string expected. @ http://localhost:4321/manifest.webmanifest:0
+[ 2731088ms] [ERROR] Error: Source layer "hillshade" does not exist on source "composite" as specified by style layer "hillshade"
+    at Po._validateLayer (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:24390:125)
+    at Po.<anonymous> (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:24028:45)
+    at Po.fire (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:831:39)
+    at dt.fire (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:837:43)
+    at http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19837:119
+    at n2 (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19774:62)
+    at http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19787:39 @ http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:838
+[ 2750667ms] [WARNING] Manifest: property 'name' ignored, type string expected. @ http://localhost:4321/manifest.webmanifest:0
+[ 2750667ms] [WARNING] Manifest: property 'short_name' ignored, type string expected. @ http://localhost:4321/manifest.webmanifest:0
+[ 2750797ms] [ERROR] Error: Source layer "hillshade" does not exist on source "composite" as specified by style layer "hillshade"
+    at Po._validateLayer (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:24390:125)
+    at Po.<anonymous> (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:24028:45)
+    at Po.fire (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:831:39)
+    at dt.fire (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:837:43)
+    at http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19837:119
+    at n2 (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19774:62)
+    at http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19787:39 @ http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:838
+[ 2768646ms] [WARNING] Manifest: property 'name' ignored, type string expected. @ http://localhost:4321/manifest.webmanifest:0
+[ 2768646ms] [WARNING] Manifest: property 'short_name' ignored, type string expected. @ http://localhost:4321/manifest.webmanifest:0
+[ 2768769ms] [ERROR] Error: Source layer "hillshade" does not exist on source "composite" as specified by style layer "hillshade"
+    at Po._validateLayer (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:24390:125)
+    at Po.<anonymous> (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:24028:45)
+    at Po.fire (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:831:39)
+    at dt.fire (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:837:43)
+    at http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19837:119
+    at n2 (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19774:62)
+    at http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19787:39 @ http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:838
+[ 2777714ms] [WARNING] Manifest: property 'name' ignored, type string expected. @ http://localhost:4321/manifest.webmanifest:0
+[ 2777714ms] [WARNING] Manifest: property 'short_name' ignored, type string expected. @ http://localhost:4321/manifest.webmanifest:0
+[ 2777866ms] [ERROR] Error: Source layer "hillshade" does not exist on source "composite" as specified by style layer "hillshade"
+    at Po._validateLayer (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:24390:125)
+    at Po.<anonymous> (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:24028:45)
+    at Po.fire (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:831:39)
+    at dt.fire (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:837:43)
+    at http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19837:119
+    at n2 (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19774:62)
+    at http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19787:39 @ http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:838
+[ 2800520ms] [WARNING] Manifest: property 'name' ignored, type string expected. @ http://localhost:4321/manifest.webmanifest:0
+[ 2800520ms] [WARNING] Manifest: property 'short_name' ignored, type string expected. @ http://localhost:4321/manifest.webmanifest:0
+[ 2800623ms] [ERROR] Error: Source layer "hillshade" does not exist on source "composite" as specified by style layer "hillshade"
+    at Po._validateLayer (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:24390:125)
+    at Po.<anonymous> (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:24028:45)
+    at Po.fire (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:831:39)
+    at dt.fire (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:837:43)
+    at http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19837:119
+    at n2 (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19774:62)
+    at http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19787:39 @ http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:838
+[ 2814489ms] [WARNING] Manifest: property 'name' ignored, type string expected. @ http://localhost:4321/manifest.webmanifest:0
+[ 2814489ms] [WARNING] Manifest: property 'short_name' ignored, type string expected. @ http://localhost:4321/manifest.webmanifest:0
+[ 2814661ms] [ERROR] Error: Source layer "hillshade" does not exist on source "composite" as specified by style layer "hillshade"
+    at Po._validateLayer (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:24390:125)
+    at Po.<anonymous> (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:24028:45)
+    at Po.fire (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:831:39)
+    at dt.fire (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:837:43)
+    at http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19837:119
+    at n2 (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19774:62)
+    at http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19787:39 @ http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:838
+[ 2841442ms] [WARNING] Manifest: property 'name' ignored, type string expected. @ http://localhost:4321/manifest.webmanifest:0
+[ 2841442ms] [WARNING] Manifest: property 'short_name' ignored, type string expected. @ http://localhost:4321/manifest.webmanifest:0
+[ 2841535ms] [ERROR] Error: Source layer "hillshade" does not exist on source "composite" as specified by style layer "hillshade"
+    at Po._validateLayer (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:24390:125)
+    at Po.<anonymous> (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:24028:45)
+    at Po.fire (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:831:39)
+    at dt.fire (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:837:43)
+    at http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19837:119
+    at n2 (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19774:62)
+    at http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19787:39 @ http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:838
+[ 2863248ms] [WARNING] Manifest: property 'name' ignored, type string expected. @ http://localhost:4321/manifest.webmanifest:0
+[ 2863249ms] [WARNING] Manifest: property 'short_name' ignored, type string expected. @ http://localhost:4321/manifest.webmanifest:0
+[ 2863359ms] [ERROR] Error: Source layer "hillshade" does not exist on source "composite" as specified by style layer "hillshade"
+    at Po._validateLayer (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:24390:125)
+    at Po.<anonymous> (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:24028:45)
+    at Po.fire (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:831:39)
+    at dt.fire (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:837:43)
+    at http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19837:119
+    at n2 (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19774:62)
+    at http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19787:39 @ http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:838
+[ 2901820ms] [WARNING] Manifest: property 'name' ignored, type string expected. @ http://localhost:4321/manifest.webmanifest:0
+[ 2901820ms] [WARNING] Manifest: property 'short_name' ignored, type string expected. @ http://localhost:4321/manifest.webmanifest:0
+[ 2901942ms] [ERROR] Error: Source layer "hillshade" does not exist on source "composite" as specified by style layer "hillshade"
+    at Po._validateLayer (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:24390:125)
+    at Po.<anonymous> (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:24028:45)
+    at Po.fire (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:831:39)
+    at dt.fire (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:837:43)
+    at http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19837:119
+    at n2 (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19774:62)
+    at http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19787:39 @ http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:838
+[ 2911687ms] [WARNING] Manifest: property 'name' ignored, type string expected. @ http://localhost:4321/manifest.webmanifest:0
+[ 2911688ms] [WARNING] Manifest: property 'short_name' ignored, type string expected. @ http://localhost:4321/manifest.webmanifest:0
+[ 2911847ms] [ERROR] Error: Source layer "hillshade" does not exist on source "composite" as specified by style layer "hillshade"
+    at Po._validateLayer (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:24390:125)
+    at Po.<anonymous> (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:24028:45)
+    at Po.fire (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:831:39)
+    at dt.fire (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:837:43)
+    at http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19837:119
+    at n2 (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19774:62)
+    at http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19787:39 @ http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:838
+[ 2947289ms] [WARNING] Manifest: property 'name' ignored, type string expected. @ http://localhost:4321/manifest.webmanifest:0
+[ 2947289ms] [WARNING] Manifest: property 'short_name' ignored, type string expected. @ http://localhost:4321/manifest.webmanifest:0
+[ 2947426ms] [ERROR] Error: Source layer "hillshade" does not exist on source "composite" as specified by style layer "hillshade"
+    at Po._validateLayer (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:24390:125)
+    at Po.<anonymous> (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:24028:45)
+    at Po.fire (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:831:39)
+    at dt.fire (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:837:43)
+    at http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19837:119
+    at n2 (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19774:62)
+    at http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19787:39 @ http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:838
+[ 2965843ms] [WARNING] Manifest: property 'name' ignored, type string expected. @ http://localhost:4321/manifest.webmanifest:0
+[ 2965843ms] [WARNING] Manifest: property 'short_name' ignored, type string expected. @ http://localhost:4321/manifest.webmanifest:0
+[ 2965979ms] [ERROR] Error: Source layer "hillshade" does not exist on source "composite" as specified by style layer "hillshade"
+    at Po._validateLayer (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:24390:125)
+    at Po.<anonymous> (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:24028:45)
+    at Po.fire (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:831:39)
+    at dt.fire (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:837:43)
+    at http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19837:119
+    at n2 (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19774:62)
+    at http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19787:39 @ http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:838
+[ 3151623ms] [WARNING] Manifest: property 'name' ignored, type string expected. @ http://localhost:4321/manifest.webmanifest:0
+[ 3151623ms] [WARNING] Manifest: property 'short_name' ignored, type string expected. @ http://localhost:4321/manifest.webmanifest:0
+[ 3151860ms] [ERROR] Error: Source layer "hillshade" does not exist on source "composite" as specified by style layer "hillshade"
+    at Po._validateLayer (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:24390:125)
+    at Po.<anonymous> (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:24028:45)
+    at Po.fire (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:831:39)
+    at dt.fire (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:837:43)
+    at http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19837:119
+    at n2 (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19774:62)
+    at http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19787:39 @ http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:838
+[ 3187320ms] [WARNING] Manifest: property 'name' ignored, type string expected. @ http://localhost:4321/manifest.webmanifest:0
+[ 3187320ms] [WARNING] Manifest: property 'short_name' ignored, type string expected. @ http://localhost:4321/manifest.webmanifest:0
+[ 3187600ms] [ERROR] Error: Source layer "hillshade" does not exist on source "composite" as specified by style layer "hillshade"
+    at Po._validateLayer (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:24390:125)
+    at Po.<anonymous> (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:24028:45)
+    at Po.fire (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:831:39)
+    at dt.fire (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:837:43)
+    at http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19837:119
+    at n2 (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19774:62)
+    at http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:705:44 @ http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:838
+[ 3278858ms] [WARNING] Manifest: property 'name' ignored, type string expected. @ http://localhost:4321/manifest.webmanifest:0
+[ 3278858ms] [WARNING] Manifest: property 'short_name' ignored, type string expected. @ http://localhost:4321/manifest.webmanifest:0
+[ 3279130ms] [ERROR] Error: Source layer "hillshade" does not exist on source "composite" as specified by style layer "hillshade"
+    at Po._validateLayer (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:24390:125)
+    at Po.<anonymous> (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:24028:45)
+    at Po.fire (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:831:39)
+    at dt.fire (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:837:43)
+    at http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19837:119
+    at n2 (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19774:62)
+    at http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:705:44 @ http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:838
+[ 3317427ms] [WARNING] Manifest: property 'name' ignored, type string expected. @ http://localhost:4321/manifest.webmanifest:0
+[ 3317427ms] [WARNING] Manifest: property 'short_name' ignored, type string expected. @ http://localhost:4321/manifest.webmanifest:0
+[ 3317634ms] [ERROR] Error: Source layer "hillshade" does not exist on source "composite" as specified by style layer "hillshade"
+    at Po._validateLayer (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:24390:125)
+    at Po.<anonymous> (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:24028:45)
+    at Po.fire (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:831:39)
+    at dt.fire (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:837:43)
+    at http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19837:119
+    at n2 (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19774:62)
+    at http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:705:44 @ http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:838
+[ 3474390ms] [WARNING] Manifest: property 'name' ignored, type string expected. @ http://localhost:4321/manifest.webmanifest:0
+[ 3474390ms] [WARNING] Manifest: property 'short_name' ignored, type string expected. @ http://localhost:4321/manifest.webmanifest:0
+[ 3474506ms] [ERROR] Error: Source layer "hillshade" does not exist on source "composite" as specified by style layer "hillshade"
+    at Po._validateLayer (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:24390:125)
+    at Po.<anonymous> (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:24028:45)
+    at Po.fire (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:831:39)
+    at dt.fire (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:837:43)
+    at http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19837:119
+    at n2 (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19774:62)
+    at http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:705:44 @ http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:838
+[ 3549517ms] [WARNING] Manifest: property 'name' ignored, type string expected. @ http://localhost:4321/manifest.webmanifest:0
+[ 3549517ms] [WARNING] Manifest: property 'short_name' ignored, type string expected. @ http://localhost:4321/manifest.webmanifest:0
+[ 3549695ms] [ERROR] Error: Source layer "hillshade" does not exist on source "composite" as specified by style layer "hillshade"
+    at Po._validateLayer (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:24390:125)
+    at Po.<anonymous> (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:24028:45)
+    at Po.fire (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:831:39)
+    at dt.fire (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:837:43)
+    at http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19837:119
+    at n2 (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19774:62)
+    at http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:705:44 @ http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:838
+[ 3686740ms] [WARNING] Manifest: property 'name' ignored, type string expected. @ http://localhost:4321/manifest.webmanifest:0
+[ 3686740ms] [WARNING] Manifest: property 'short_name' ignored, type string expected. @ http://localhost:4321/manifest.webmanifest:0
+[ 3686979ms] [ERROR] Error: Source layer "hillshade" does not exist on source "composite" as specified by style layer "hillshade"
+    at Po._validateLayer (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:24390:125)
+    at Po.<anonymous> (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:24028:45)
+    at Po.fire (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:831:39)
+    at dt.fire (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:837:43)
+    at http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19837:119
+    at n2 (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19774:62)
+    at http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:705:44 @ http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:838
+[ 3714908ms] [WARNING] Manifest: property 'name' ignored, type string expected. @ http://localhost:4321/manifest.webmanifest:0
+[ 3714908ms] [WARNING] Manifest: property 'short_name' ignored, type string expected. @ http://localhost:4321/manifest.webmanifest:0
+[ 3715019ms] [ERROR] Error: Source layer "hillshade" does not exist on source "composite" as specified by style layer "hillshade"
+    at Po._validateLayer (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:24390:125)
+    at Po.<anonymous> (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:24028:45)
+    at Po.fire (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:831:39)
+    at dt.fire (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:837:43)
+    at http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19837:119
+    at n2 (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19774:62)
+    at http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:705:44 @ http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:838
+[ 3733960ms] [WARNING] Manifest: property 'name' ignored, type string expected. @ http://localhost:4321/manifest.webmanifest:0
+[ 3733961ms] [WARNING] Manifest: property 'short_name' ignored, type string expected. @ http://localhost:4321/manifest.webmanifest:0
+[ 3734067ms] [ERROR] Error: Source layer "hillshade" does not exist on source "composite" as specified by style layer "hillshade"
+    at Po._validateLayer (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:24390:125)
+    at Po.<anonymous> (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:24028:45)
+    at Po.fire (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:831:39)
+    at dt.fire (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:837:43)
+    at http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19837:119
+    at n2 (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19774:62)
+    at http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:705:44 @ http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:838
+[ 3786172ms] [WARNING] Manifest: property 'name' ignored, type string expected. @ http://localhost:4321/manifest.webmanifest:0
+[ 3786172ms] [WARNING] Manifest: property 'short_name' ignored, type string expected. @ http://localhost:4321/manifest.webmanifest:0
+[ 3786280ms] [ERROR] Error: Source layer "hillshade" does not exist on source "composite" as specified by style layer "hillshade"
+    at Po._validateLayer (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:24390:125)
+    at Po.<anonymous> (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:24028:45)
+    at Po.fire (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:831:39)
+    at dt.fire (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:837:43)
+    at http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19837:119
+    at n2 (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19774:62)
+    at http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:705:44 @ http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:838
+[ 3798640ms] [WARNING] Manifest: property 'name' ignored, type string expected. @ http://localhost:4321/manifest.webmanifest:0
+[ 3798640ms] [WARNING] Manifest: property 'short_name' ignored, type string expected. @ http://localhost:4321/manifest.webmanifest:0
+[ 3798749ms] [ERROR] Error: Source layer "hillshade" does not exist on source "composite" as specified by style layer "hillshade"
+    at Po._validateLayer (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:24390:125)
+    at Po.<anonymous> (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:24028:45)
+    at Po.fire (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:831:39)
+    at dt.fire (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:837:43)
+    at http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19837:119
+    at n2 (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19774:62)
+    at http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:705:44 @ http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:838
+[ 3821312ms] [WARNING] Manifest: property 'name' ignored, type string expected. @ http://localhost:4321/manifest.webmanifest:0
+[ 3821312ms] [WARNING] Manifest: property 'short_name' ignored, type string expected. @ http://localhost:4321/manifest.webmanifest:0
+[ 3821417ms] [ERROR] Error: Source layer "hillshade" does not exist on source "composite" as specified by style layer "hillshade"
+    at Po._validateLayer (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:24390:125)
+    at Po.<anonymous> (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:24028:45)
+    at Po.fire (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:831:39)
+    at dt.fire (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:837:43)
+    at http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19837:119
+    at n2 (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19774:62)
+    at http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:705:44 @ http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:838
+[ 3909667ms] [WARNING] Manifest: property 'name' ignored, type string expected. @ http://localhost:4321/manifest.webmanifest:0
+[ 3909667ms] [WARNING] Manifest: property 'short_name' ignored, type string expected. @ http://localhost:4321/manifest.webmanifest:0
+[ 3909895ms] [ERROR] Error: Source layer "hillshade" does not exist on source "composite" as specified by style layer "hillshade"
+    at Po._validateLayer (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:24390:125)
+    at Po.<anonymous> (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:24028:45)
+    at Po.fire (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:831:39)
+    at dt.fire (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:837:43)
+    at http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19837:119
+    at n2 (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19774:62)
+    at http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:705:44 @ http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:838
+[ 3919216ms] [WARNING] Manifest: property 'name' ignored, type string expected. @ http://localhost:4321/manifest.webmanifest:0
+[ 3919216ms] [WARNING] Manifest: property 'short_name' ignored, type string expected. @ http://localhost:4321/manifest.webmanifest:0
+[ 3919316ms] [ERROR] Error: Source layer "hillshade" does not exist on source "composite" as specified by style layer "hillshade"
+    at Po._validateLayer (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:24390:125)
+    at Po.<anonymous> (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:24028:45)
+    at Po.fire (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:831:39)
+    at dt.fire (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:837:43)
+    at http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19837:119
+    at n2 (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19774:62)
+    at http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:705:44 @ http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:838
+[ 3944654ms] [WARNING] Manifest: property 'name' ignored, type string expected. @ http://localhost:4321/manifest.webmanifest:0
+[ 3944654ms] [WARNING] Manifest: property 'short_name' ignored, type string expected. @ http://localhost:4321/manifest.webmanifest:0
+[ 3944759ms] [ERROR] Error: Source layer "hillshade" does not exist on source "composite" as specified by style layer "hillshade"
+    at Po._validateLayer (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:24390:125)
+    at Po.<anonymous> (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:24028:45)
+    at Po.fire (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:831:39)
+    at dt.fire (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:837:43)
+    at http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19837:119
+    at n2 (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19774:62)
+    at http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:705:44 @ http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:838
+[ 3965569ms] [WARNING] Manifest: property 'name' ignored, type string expected. @ http://localhost:4321/manifest.webmanifest:0
+[ 3965569ms] [WARNING] Manifest: property 'short_name' ignored, type string expected. @ http://localhost:4321/manifest.webmanifest:0
+[ 3965722ms] [ERROR] Error: Source layer "hillshade" does not exist on source "composite" as specified by style layer "hillshade"
+    at Po._validateLayer (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:24390:125)
+    at Po.<anonymous> (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:24028:45)
+    at Po.fire (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:831:39)
+    at dt.fire (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:837:43)
+    at http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19837:119
+    at n2 (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19774:62)
+    at http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:705:44 @ http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:838
+[ 4014593ms] [WARNING] Manifest: property 'name' ignored, type string expected. @ http://localhost:4321/manifest.webmanifest:0
+[ 4014593ms] [WARNING] Manifest: property 'short_name' ignored, type string expected. @ http://localhost:4321/manifest.webmanifest:0
+[ 4014722ms] [ERROR] Error: Source layer "hillshade" does not exist on source "composite" as specified by style layer "hillshade"
+    at Po._validateLayer (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:24390:125)
+    at Po.<anonymous> (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:24028:45)
+    at Po.fire (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:831:39)
+    at dt.fire (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:837:43)
+    at http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19837:119
+    at n2 (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19774:62)
+    at http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:705:44 @ http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:838
+[ 4028782ms] [WARNING] Manifest: property 'name' ignored, type string expected. @ http://localhost:4321/manifest.webmanifest:0
+[ 4028782ms] [WARNING] Manifest: property 'short_name' ignored, type string expected. @ http://localhost:4321/manifest.webmanifest:0
+[ 4028920ms] [ERROR] Error: Source layer "hillshade" does not exist on source "composite" as specified by style layer "hillshade"
+    at Po._validateLayer (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:24390:125)
+    at Po.<anonymous> (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:24028:45)
+    at Po.fire (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:831:39)
+    at dt.fire (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:837:43)
+    at http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19837:119
+    at n2 (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19774:62)
+    at http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:705:44 @ http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:838
+[ 4046037ms] [WARNING] Manifest: property 'name' ignored, type string expected. @ http://localhost:4321/manifest.webmanifest:0
+[ 4046037ms] [WARNING] Manifest: property 'short_name' ignored, type string expected. @ http://localhost:4321/manifest.webmanifest:0
+[ 4046201ms] [ERROR] Error: Source layer "hillshade" does not exist on source "composite" as specified by style layer "hillshade"
+    at Po._validateLayer (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:24390:125)
+    at Po.<anonymous> (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:24028:45)
+    at Po.fire (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:831:39)
+    at dt.fire (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:837:43)
+    at http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19837:119
+    at n2 (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19774:62)
+    at http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:705:44 @ http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:838
+[ 4075964ms] [WARNING] Manifest: property 'name' ignored, type string expected. @ http://localhost:4321/manifest.webmanifest:0
+[ 4075964ms] [WARNING] Manifest: property 'short_name' ignored, type string expected. @ http://localhost:4321/manifest.webmanifest:0
+[ 4076119ms] [ERROR] Error: Source layer "hillshade" does not exist on source "composite" as specified by style layer "hillshade"
+    at Po._validateLayer (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:24390:125)
+    at Po.<anonymous> (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:24028:45)
+    at Po.fire (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:831:39)
+    at dt.fire (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:837:43)
+    at http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19837:119
+    at n2 (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19774:62)
+    at http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:705:44 @ http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:838
+[ 4087600ms] [WARNING] Manifest: property 'name' ignored, type string expected. @ http://localhost:4321/manifest.webmanifest:0
+[ 4087600ms] [WARNING] Manifest: property 'short_name' ignored, type string expected. @ http://localhost:4321/manifest.webmanifest:0
+[ 4087696ms] [ERROR] Error: Source layer "hillshade" does not exist on source "composite" as specified by style layer "hillshade"
+    at Po._validateLayer (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:24390:125)
+    at Po.<anonymous> (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:24028:45)
+    at Po.fire (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:831:39)
+    at dt.fire (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:837:43)
+    at http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19837:119
+    at n2 (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19774:62)
+    at http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19787:39 @ http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:838
+[ 4101069ms] [WARNING] Manifest: property 'name' ignored, type string expected. @ http://localhost:4321/manifest.webmanifest:0
+[ 4101069ms] [WARNING] Manifest: property 'short_name' ignored, type string expected. @ http://localhost:4321/manifest.webmanifest:0
+[ 4101157ms] [ERROR] Error: Source layer "hillshade" does not exist on source "composite" as specified by style layer "hillshade"
+    at Po._validateLayer (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:24390:125)
+    at Po.<anonymous> (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:24028:45)
+    at Po.fire (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:831:39)
+    at dt.fire (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:837:43)
+    at http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19837:119
+    at n2 (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19774:62)
+    at http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19787:39 @ http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:838
+[ 4130634ms] [WARNING] Manifest: property 'name' ignored, type string expected. @ http://localhost:4321/manifest.webmanifest:0
+[ 4130634ms] [WARNING] Manifest: property 'short_name' ignored, type string expected. @ http://localhost:4321/manifest.webmanifest:0
+[ 4130743ms] [ERROR] Error: Source layer "hillshade" does not exist on source "composite" as specified by style layer "hillshade"
+    at Po._validateLayer (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:24390:125)
+    at Po.<anonymous> (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:24028:45)
+    at Po.fire (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:831:39)
+    at dt.fire (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:837:43)
+    at http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19837:119
+    at n2 (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19774:62)
+    at http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19787:39 @ http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:838
+[ 4143635ms] [WARNING] Manifest: property 'name' ignored, type string expected. @ http://localhost:4321/manifest.webmanifest:0
+[ 4143635ms] [WARNING] Manifest: property 'short_name' ignored, type string expected. @ http://localhost:4321/manifest.webmanifest:0
+[ 4143770ms] [ERROR] Error: Source layer "hillshade" does not exist on source "composite" as specified by style layer "hillshade"
+    at Po._validateLayer (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:24390:125)
+    at Po.<anonymous> (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:24028:45)
+    at Po.fire (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:831:39)
+    at dt.fire (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:837:43)
+    at http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19837:119
+    at n2 (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19774:62)
+    at http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19787:39 @ http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:838
+[ 4189653ms] [WARNING] Manifest: property 'name' ignored, type string expected. @ http://localhost:4321/manifest.webmanifest:0
+[ 4189653ms] [WARNING] Manifest: property 'short_name' ignored, type string expected. @ http://localhost:4321/manifest.webmanifest:0
+[ 4189772ms] [ERROR] Error: Source layer "hillshade" does not exist on source "composite" as specified by style layer "hillshade"
+    at Po._validateLayer (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:24390:125)
+    at Po.<anonymous> (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:24028:45)
+    at Po.fire (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:831:39)
+    at dt.fire (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:837:43)
+    at http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19837:119
+    at n2 (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19774:62)
+    at http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19787:39 @ http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:838
+[ 4214609ms] [WARNING] Manifest: property 'name' ignored, type string expected. @ http://localhost:4321/manifest.webmanifest:0
+[ 4214609ms] [WARNING] Manifest: property 'short_name' ignored, type string expected. @ http://localhost:4321/manifest.webmanifest:0
+[ 4214746ms] [ERROR] Error: Source layer "hillshade" does not exist on source "composite" as specified by style layer "hillshade"
+    at Po._validateLayer (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:24390:125)
+    at Po.<anonymous> (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:24028:45)
+    at Po.fire (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:831:39)
+    at dt.fire (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:837:43)
+    at http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19837:119
+    at n2 (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19774:62)
+    at http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19787:39 @ http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:838
+[ 4263480ms] [WARNING] Manifest: property 'name' ignored, type string expected. @ http://localhost:4321/manifest.webmanifest:0
+[ 4263480ms] [WARNING] Manifest: property 'short_name' ignored, type string expected. @ http://localhost:4321/manifest.webmanifest:0
+[ 4263616ms] [ERROR] Error: Source layer "hillshade" does not exist on source "composite" as specified by style layer "hillshade"
+    at Po._validateLayer (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:24390:125)
+    at Po.<anonymous> (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:24028:45)
+    at Po.fire (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:831:39)
+    at dt.fire (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:837:43)
+    at http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19837:119
+    at n2 (http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19774:62)
+    at http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:19787:39 @ http://localhost:4321/node_modules/.vite/deps/mapbox-gl.js?v=258c9702:838

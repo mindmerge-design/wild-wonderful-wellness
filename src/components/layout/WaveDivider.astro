@@ -1,0 +1,30 @@
+---
+/**
+ * Organic wave SVG divider for hero sections.
+ * Renders a 3-layer wave that blends hero bg-primary into page background.
+ */
+interface Props {
+	class?: string
+}
+
+const { class: className } = Astro.props
+---
+
+<div class:list={['absolute right-0 -bottom-1 left-0 z-20', className]} aria-hidden="true">
+	<svg viewBox="0 0 1440 200" class="text-background w-full" preserveAspectRatio="none">
+		<path
+			fill="currentColor"
+			d="M0,160 Q180,100 360,140 T720,120 T1080,140 T1440,100 L1440,200 L0,200Z"
+		></path>
+		<path
+			fill="currentColor"
+			opacity="0.6"
+			d="M0,180 Q240,120 480,160 T960,140 T1440,160 L1440,200 L0,200Z"
+		></path>
+		<path
+			fill="currentColor"
+			opacity="0.3"
+			d="M0,190 Q360,150 720,170 T1440,150 L1440,200 L0,200Z"
+		></path>
+	</svg>
+</div>

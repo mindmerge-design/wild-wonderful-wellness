@@ -1,0 +1,17 @@
+---
+interface Props {
+	class?: string
+}
+
+const { class: className } = Astro.props
+---
+
+<div
+	class:list={[
+		'border-accent/20 bg-accent/15 text-accent inline-flex items-center gap-2.5 rounded-full border px-5 py-2.5 text-sm font-semibold shadow-lg backdrop-blur-md',
+		className
+	]}
+>
+	<span class="bg-accent animate-pulse-soft size-2 shrink-0 rounded-full" aria-hidden="true"></span>
+	<slot />
+</div>

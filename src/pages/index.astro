@@ -5,23 +5,25 @@ import {
 ArrowRight,
 Award,
 Map as MapIcon,
-MapPin,
 Mountain
 } from 'lucide-astro'
 
 // Components
 import Badge from '@/components/elements/content/Badge.astro'
 import PortableText from '@/components/elements/content/PortableText.astro'
+import EventCard from '@/components/EventCard.astro'
 import Container from '@/components/layout/Container.astro'
 import Section from '@/components/layout/Section.astro'
+import WaveDivider from '@/components/layout/WaveDivider.astro'
 import ParkMap from '@/components/ParkMap.tsx'
 import { Button } from '@/components/starwind/button'
 import Layout from '@/layouts/Layout.astro'
 
 // Sanity
 import { loadQuery } from '@/sanity/lib/load-query'
-import { featuredParksQuery, featuredPartnersQuery, homeQuery } from '@/sanity/lib/queries'
+import { featuredParksQuery, featuredPartnersQuery, homeQuery, upcomingEventsQuery } from '@/sanity/lib/queries'
 import { urlForImage } from '@/sanity/lib/urlForImage'
+import type { Event } from '@/sanity/schemaTypes/event'
 import type { Home } from '@/sanity/schemaTypes/home'
 import type { ParkTrail } from '@/sanity/schemaTypes/parkTrail'
 import type { Partner } from '@/sanity/schemaTypes/partner'
@@ -37,47 +39,16 @@ const parks = featuredParks || []
 const { data: featuredPartners } = await loadQuery<Partner[]>({ query: featuredPartnersQuery })
 const partners = featuredPartners || []
 
+// Load upcoming events from Sanity
+const { data: upcomingEventsData } = await loadQuery<Event[]>({ query: upcomingEventsQuery })
+const upcomingEvents = upcomingEventsData || []
+
 const siteName = 'Wild & Wonderful Wellness'
 const pageTitle = 'Wellness Passport'
 const pageDescription =
 	"Explore Monongalia County's parks, trails, and wellness activities. Collect stamps, earn rewards, and build healthier habits — one adventure at a time."
 
 const mapboxToken = import.meta.env.PUBLIC_MAPBOX_TOKEN || ''
-
-const upcomingEvents = [
-	{
-		title: 'Spring Kickoff Hike',
-		date: 'March 22, 2026',
-		month: 'Mar',
-		day: '22',
-		location: 'Coopers Rock State Forest',
-		description: 'Guided 3-mile hike to celebrate the start of the spring passport season. All skill levels welcome.'
-	},
-	{
-		title: 'Yoga in the Park',
-		date: 'April 5, 2026',
-		month: 'Apr',
-		day: '5',
-		location: 'Dorsey Knob Park',
-		description: 'Sunrise yoga session led by certified instructors. Bring a mat and earn a wellness stamp.'
-	},
-	{
-		title: 'Community Health Fair',
-		date: 'April 19, 2026',
-		month: 'Apr',
-		day: '19',
-		location: 'Mountaineer Mall',
-		description: 'Free health screenings, nutrition workshops, and passport stamp stations. Pick up your passport here!'
-	},
-	{
-		title: 'Trail Run 5K',
-		date: 'May 10, 2026',
-		month: 'May',
-		day: '10',
-		location: 'Rail Trail, Morgantown',
-		description: 'Timed 5K along the scenic rail trail. Finishers earn two passport stamps and a commemorative bib.'
-	}
-]
 
 // Per-step color accents for "How It Works" — defined as full static strings for Tailwind scanning
 const stepAccents = [
@@ -94,15 +65,13 @@ const stepAccents = [
 		stepLabel: 'text-secondary bg-secondary/10'
 	},
 	{
-		topBorder: 'border-t-warning',
-		iconBg: 'bg-warning/15',
-		numColor: 'text-warning/[0.08]',
-		stepLabel: 'text-warning bg-warning/10'
+		topBorder: 'border-t-info',
+		iconBg: 'bg-info/10',
+		numColor: 'text-info/[0.07]',
+		stepLabel: 'text-info bg-info/10'
 	}
 ]
 
-// Per-event top accent bars — full static class strings
-const eventBarColors = ['bg-warning', 'bg-success', 'bg-secondary', 'bg-primary']
 ---
 
 <Layout>
@@ -123,19 +92,36 @@ const eventBarColors = ['bg-warning', 'bg-success', 'bg-secondary', 'bg-primary'
 	<!-- 1. HERO - Split Design with Diagonal Edge    -->
 	<!-- ============================================ -->
 	<div class="relative min-h-auto lg:min-h-[75vh] overflow-hidden bg-primary">
-		<!-- Container for content + image layout -->
-		<div class="relative flex flex-col lg:flex-row lg:min-h-[75vh]">
+
+		<!-- Full-bleed hero image (desktop only) -->
+		{home?.hero?.heroImage && (
+			<div
+				class="absolute inset-y-0 right-0 z-0 hidden lg:block md:left-[20%] lg:left-[25%]"
+				style="mask-image: linear-gradient(to right, transparent 0%, black 60%); -webkit-mask-image: linear-gradient(to right, transparent 0%, black 60%);"
+			>
+				<img
+					src={urlForImage(home.hero.heroImage).width(1920).height(1080).url()}
+					alt=""
+					width={1920}
+					height={1080}
+					class="h-full w-full object-cover object-left my-0!"
+					aria-hidden="true"
+				/>
+			</div>
+		)}
+
+		<!-- Content -->
+		<div class="relative z-10 flex flex-col lg:min-h-[75vh] lg:items-start lg:justify-center">
+			<!-- Text content -->
 			
-			<!-- Left side content -->
-			<div class="relative z-20 flex flex-col justify-center py-12 lg:py-20 w-full lg:w-[50%]">
-				<Container class="relative z-10 pt-16 md:pt-0 md:left-36 text-center md:text-left">
-					<div class="max-w-3xl mx-auto" style="animation:fade-in-up 0.8s ease-out both; ">
+				<Container class="pt-16 md:pt-0 text-center md:text-left max-w-2xl mx-auto pl-8 lg:pl-16 my-16">
+					<div style="animation:fade-in-up 0.8s ease-out both;">
 						<!-- Title -->
 						<h1 class="mb-2 text-4xl lg:text-6xl xl:text-7xl font-extrabold leading-[1.1] tracking-tight text-white!">
 							Wild &
 							Wonderful
 						</h1>
-						
+
 						<!-- Highlighted subtitle -->
 						<div class="mt-3 lg:mt-4 inline-block -rotate-1 transform">
 							<span class="inline-block rounded-lg bg-warning px-4 lg:px-6 py-1.5 lg:py-2 text-lg lg:text-2xl xl:text-3xl font-extrabold text-warning-foreground shadow-lg">
@@ -144,7 +130,7 @@ const eventBarColors = ['bg-warning', 'bg-success', 'bg-secondary', 'bg-primary'
 						</div>
 
 						<!-- Tagline -->
-						<p class="mt-6 lg:mt-8 text-base lg:text-lg font-semibold tracking-wide text-white/90!">
+						<p class="mt-6 lg:mt-8 text-xl lg:text-2xl font-semibold tracking-wide text-white/90!">
 							Explore. Move. Earn Rewards.
 						</p>
 
@@ -157,19 +143,16 @@ const eventBarColors = ['bg-warning', 'bg-success', 'bg-secondary', 'bg-primary'
 						</div>
 					</div>
 				</Container>
-			</div>
+			
 
-			<!-- Right side image with diagonal edge (desktop only) -->
-			<div class="relative w-full h-[300px] sm:h-[400px] lg:absolute lg:inset-y-0 lg:right-0 lg:w-[55%] lg:h-auto z-10">
-				<!-- Diagonal mask (desktop only) -->
-				<div class="hidden lg:block absolute inset-0 bg-primary z-10 " style="clip-path: polygon(0 0, 25% 0, 0 100%, 0 100%);"></div>
-				
+			<!-- Mobile-only image (stacks below text) -->
+			<div class="block lg:hidden w-full h-[300px] sm:h-[400px]">
 				{home?.hero?.heroImage ? (
 					<img
-						src={urlForImage(home.hero.heroImage).width(1200).height(900).url()}
+						src={urlForImage(home.hero.heroImage).width(800).height(600).url()}
 						alt={home.hero.heroImage.alt || 'Wellness Passport'}
-						width={1200}
-						height={900}
+						width={800}
+						height={600}
 						class="h-full w-full object-cover object-center my-0!"
 					/>
 				) : (
@@ -183,12 +166,7 @@ const eventBarColors = ['bg-warning', 'bg-success', 'bg-secondary', 'bg-primary'
 			</div>
 		</div>
 
-		<!-- Bottom wave divider -->
-		<div class="absolute -bottom-1 left-0 right-0 z-30">
-			<svg viewBox="0 0 1440 120" class="w-full text-background" preserveAspectRatio="none">
-				<path fill="currentColor" d="M0,60 C360,120 720,0 1080,60 C1260,90 1380,80 1440,60 L1440,120 L0,120Z"/>
-			</svg>
-		</div>
+		<WaveDivider class="z-30" />
 	</div>
 
 	<main id="main-content">
@@ -447,7 +425,7 @@ const eventBarColors = ['bg-warning', 'bg-success', 'bg-secondary', 'bg-primary'
 				</div>
 
 				<div class="mt-10 text-center">
-					<Button href="/parks-and-trails" variant="outline" size="lg" class="hover:bg-success hover:text-success-foreground hover:border-success transition-all no-underline">
+					<Button href="/parks-and-trails" variant="primary" size="lg" class="no-underline">
 						View All Parks &amp; Trails
 						<ArrowRight class="size-4" />
 					</Button>
@@ -505,7 +483,7 @@ const eventBarColors = ['bg-warning', 'bg-success', 'bg-secondary', 'bg-primary'
 
 			<Container class="relative z-10">
 				<div class="mt-12 text-center">
-					<Button href="/partners" variant="outline" size="lg" class="hover:bg-info hover:text-info-foreground hover:border-info transition-all no-underline">
+					<Button href="/partners" variant="primary" size="lg" class="no-underline">
 						View All Partners
 						<ArrowRight class="size-4" />
 					</Button>
@@ -540,42 +518,14 @@ const eventBarColors = ['bg-warning', 'bg-success', 'bg-secondary', 'bg-primary'
 					</p>
 				</div>
 
-				<!-- Ticket-style event cards -->
 				<div class="grid gap-6 sm:grid-cols-2">
 					{upcomingEvents.map((event, i) => (
-						<div
-							class="group relative overflow-hidden rounded-2xl border border-border bg-card shadow-sm transition-all duration-300 hover:shadow-xl hover:-translate-y-1"
-							style={`animation: fade-in-up 0.5s ease-out ${0.1 * i}s both;`}
-						>
-							<!-- Thin color bar at top -->
-							<div class={`h-1.5 w-full ${eventBarColors[i % eventBarColors.length]}/80`}></div>
-
-							<div class="p-6">
-								<!-- Date badge + title row -->
-								<div class="flex items-start gap-4 mb-4">
-									<!-- Calendar-style date badge -->
-									<div class="shrink-0 min-w-[52px] rounded-xl border border-warning/25 bg-warning/10 px-2 py-2.5 text-center" aria-label={event.date}>
-										<span class="block text-[0.6rem] font-bold uppercase tracking-widest text-warning/80 leading-none mb-1">{event.month}</span>
-										<span class="block text-2xl font-black leading-none text-warning">{event.day}</span>
-									</div>
-									<!-- Title & location -->
-									<div class="flex-1 min-w-0">
-										<h3 class="text-lg font-bold group-hover:text-warning transition-colors leading-snug mb-1">{event.title}</h3>
-										<p class="text-muted-foreground flex items-center gap-1.5 text-sm">
-											<MapPin class="size-3.5 shrink-0 text-warning/70" aria-hidden="true" />
-											{event.location}
-										</p>
-									</div>
-								</div>
-
-								<p class="text-muted-foreground text-sm leading-relaxed">{event.description}</p>
-							</div>
-						</div>
+						<EventCard event={event} index={i} variant="upcoming" />
 					))}
 				</div>
 
 				<div class="mt-12 text-center">
-					<Button href="/events" variant="outline" size="lg" class="hover:bg-warning hover:text-warning-foreground hover:border-warning transition-all no-underline">
+					<Button href="/events" variant="primary" size="lg" class="no-underline">
 						View Full Calendar
 						<ArrowRight class="size-4" />
 					</Button>

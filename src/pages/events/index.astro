@@ -1,13 +1,16 @@
 ---
 // Packages
 import { SEO } from 'astro-seo'
-import { Image } from 'astro:assets'
-import { Calendar, MapPin, ArrowRight, Star, Sparkles } from 'lucide-astro'
+import { Calendar, Sparkles, Star } from 'lucide-astro'
 
 // Components
 import Badge from '@/components/elements/content/Badge.astro'
+import EventCard from '@/components/EventCard.astro'
+import HeroBadge from '@/components/elements/content/HeroBadge.astro'
 import Container from '@/components/layout/Container.astro'
 import Section from '@/components/layout/Section.astro'
+import StampRings from '@/components/layout/StampRings.astro'
+import WaveDivider from '@/components/layout/WaveDivider.astro'
 import Layout from '@/layouts/Layout.astro'
 
 // Sanity
@@ -37,30 +40,6 @@ const seoImage = settings?.sharingImage
 	? urlForImage(settings.sharingImage).width(1200).height(630).url()
 	: ''
 
-// Helper to format date
-function formatDate(dateStr: string) {
-	return new Date(dateStr).toLocaleDateString('en-US', {
-		weekday: 'long',
-		month: 'long',
-		day: 'numeric',
-		year: 'numeric'
-	})
-}
-
-function formatShortDate(dateStr: string) {
-	return new Date(dateStr).toLocaleDateString('en-US', {
-		month: 'short',
-		day: 'numeric'
-	})
-}
-
-function getEventMonth(dateStr: string) {
-	return new Date(dateStr).toLocaleDateString('en-US', { month: 'short' })
-}
-
-function getEventDay(dateStr: string) {
-	return new Date(dateStr).getDate().toString()
-}
 ---
 
 <Layout>
@@ -103,17 +82,7 @@ function getEventDay(dateStr: string) {
 		<!-- Gradient overlay -->
 		<div class="absolute inset-0 bg-linear-to-b from-black/20 via-black/10 to-black/60" aria-hidden="true"></div>
 
-		<!-- Concentric stamp rings (right side decoration) -->
-		<div class="absolute -right-16 top-1/2 -translate-y-1/2 opacity-[0.12]" aria-hidden="true">
-			<svg width="320" height="320" viewBox="0 0 320 320" fill="none" xmlns="http://www.w3.org/2000/svg">
-				<circle cx="160" cy="160" r="155" stroke="white" stroke-width="1.5"/>
-				<circle cx="160" cy="160" r="130" stroke="white" stroke-width="1.5"/>
-				<circle cx="160" cy="160" r="105" stroke="white" stroke-width="1.5"/>
-				<circle cx="160" cy="160" r="80" stroke="white" stroke-width="1.5"/>
-				<circle cx="160" cy="160" r="55" stroke="white" stroke-width="1.5"/>
-				<circle cx="160" cy="160" r="30" stroke="white" stroke-width="1.5"/>
-			</svg>
-		</div>
+		<StampRings />
 
 		<!-- Floating icons — right side only, clear of text -->
 		<div class="absolute top-12 right-[4%] animate-pulse-soft opacity-15" aria-hidden="true">
@@ -128,11 +97,7 @@ function getEventDay(dateStr: string) {
 
 		<Container class="relative z-10 flex min-h-[48vh] flex-col justify-center py-20">
 			<div class="max-w-3xl" style="animation: fade-in-up 0.8s ease-out both;">
-				<!-- Warning badge with pulsing dot -->
-				<div class="mb-6 inline-flex items-center gap-2.5 rounded-full border border-warning/40 bg-warning/15 px-5 py-2.5 text-sm font-semibold text-warning backdrop-blur-md shadow-lg">
-					<span class="size-2 rounded-full bg-warning animate-pulse-soft shrink-0" aria-hidden="true"></span>
-					<span>Join the Community</span>
-				</div>
+				<HeroBadge class="mb-6">Join the Community</HeroBadge>
 
 				<h1 class="text-4xl font-extrabold tracking-tight text-white! md:text-5xl lg:text-6xl">
 					Upcoming
@@ -144,12 +109,7 @@ function getEventDay(dateStr: string) {
 			</div>
 		</Container>
 
-		<!-- Wave divider -->
-		<div class="absolute -bottom-2 left-0 right-0" aria-hidden="true">
-			<svg viewBox="0 0 1440 120" class="w-full text-background" preserveAspectRatio="none">
-				<path fill="currentColor" d="M0,64L60,69.3C120,75,240,85,360,80C480,75,600,53,720,48C840,43,960,53,1080,64C1200,75,1320,85,1380,90L1440,96L1440,120L1380,120C1320,120,1200,120,1080,120C960,120,840,120,720,120C600,120,480,120,360,120C240,120,120,120,60,120L0,120Z"/>
-			</svg>
-		</div>
+		<WaveDivider />
 	</div>
 
 	<main id="main-content">
@@ -175,102 +135,7 @@ function getEventDay(dateStr: string) {
 					upcomingEvents.length > 0 ? (
 						<div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
 							{upcomingEvents.map((event, i) => (
-								<a
-									href={`/events/${event.slug?.current}`}
-									class="group relative flex flex-col overflow-hidden rounded-2xl border border-border bg-card no-underline transition-all duration-300 hover:shadow-xl hover:-translate-y-1 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-warning"
-									style={`animation: fade-in-up 0.5s ease-out ${0.08 * i}s both;`}
-									aria-label={`${event.title}, ${formatDate(event.eventDate)}`}
-								>
-									{/* Colored top bar */}
-									<div class="h-1.5 w-full bg-warning/80 shrink-0"></div>
-
-									{/* If there is a main image, show it with date badge overlaid */}
-									{event.mainImage ? (
-										<div class="relative h-44 overflow-hidden shrink-0">
-											<Image
-												src={urlForImage(event.mainImage).width(600).height(352).url()}
-												alt={event.mainImage.alt || event.title}
-												width={600}
-												height={352}
-												class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
-											/>
-											<div class="absolute inset-0 bg-linear-to-t from-black/50 to-transparent"></div>
-											{/* Date badge overlaid on image */}
-											<div class="absolute bottom-3 left-3 shrink-0 min-w-[52px] rounded-xl border border-warning/40 bg-black/70 backdrop-blur-sm px-2 py-2.5 text-center shadow-lg">
-												<p class="text-[9px] font-bold uppercase tracking-widest text-warning leading-none mb-1">
-													{getEventMonth(event.eventDate)}
-												</p>
-												<p class="text-xl font-extrabold leading-none text-white">
-													{getEventDay(event.eventDate)}
-												</p>
-											</div>
-											{/* Free badge on image */}
-											{event.isFree && (
-												<div class="absolute top-3 right-3">
-													<Badge variant="success">Free</Badge>
-												</div>
-											)}
-											{!event.isFree && event.cost && (
-												<div class="absolute top-3 right-3">
-													<Badge variant="warning">{event.cost}</Badge>
-												</div>
-											)}
-										</div>
-									) : null}
-
-									{/* Card body */}
-									<div class="flex flex-1 flex-col p-5">
-										{/* When no image: show date badge inline with title row */}
-										{!event.mainImage ? (
-											<div class="mb-4 flex items-start gap-4">
-												{/* Calendar date badge */}
-												<div class="shrink-0 min-w-[52px] rounded-xl border border-warning/25 bg-warning/10 px-2 py-2.5 text-center">
-													<p class="text-[9px] font-bold uppercase tracking-widest text-warning leading-none mb-1">
-														{getEventMonth(event.eventDate)}
-													</p>
-													<p class="text-xl font-extrabold leading-none text-foreground">
-														{getEventDay(event.eventDate)}
-													</p>
-												</div>
-
-												{/* Title + badges */}
-												<div class="flex-1 min-w-0">
-													<div class="mb-1.5 flex flex-wrap gap-1.5">
-														{event.isFree && <Badge variant="success">Free</Badge>}
-														{!event.isFree && event.cost && (
-															<Badge variant="warning">{event.cost}</Badge>
-														)}
-													</div>
-													<h3 class="text-base font-bold leading-snug group-hover:text-warning transition-colors">
-														{event.title}
-													</h3>
-												</div>
-											</div>
-										) : (
-											<h3 class="mb-2 text-base font-bold leading-snug group-hover:text-warning transition-colors">
-												{event.title}
-											</h3>
-										)}
-
-										{event.location && (
-											<p class="text-muted-foreground mb-3 flex items-center gap-2 text-sm">
-												<MapPin class="size-3.5 shrink-0 text-warning" aria-hidden="true" />
-												<span class="truncate">{event.location}</span>
-											</p>
-										)}
-
-										{event.shortDescription && (
-											<p class="text-muted-foreground mb-4 flex-1 text-sm leading-relaxed line-clamp-2">
-												{event.shortDescription}
-											</p>
-										)}
-
-										<div class="mt-auto flex items-center gap-1 text-sm font-semibold text-warning">
-											<span>Learn More</span>
-											<ArrowRight class="size-3.5 transition-transform group-hover:translate-x-1" aria-hidden="true" />
-										</div>
-									</div>
-								</a>
+								<EventCard event={event} index={i} variant="upcoming" />
 							))}
 						</div>
 					) : (
@@ -310,70 +175,7 @@ function getEventDay(dateStr: string) {
 
 						<div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
 							{pastEvents.map((event, i) => (
-								<a
-									href={`/events/${event.slug?.current}`}
-									class="group relative flex overflow-hidden rounded-2xl border border-border bg-card no-underline opacity-80 transition-all duration-300 hover:opacity-100 hover:shadow-lg hover:-translate-y-0.5 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
-									style={`animation: fade-in-up 0.5s ease-out ${0.07 * i}s both;`}
-									aria-label={`${event.title}, ${formatDate(event.eventDate)}`}
-								>
-									{event.mainImage ? (
-										/* Past event with image */
-										<div class="flex flex-col w-full">
-											<div class="relative h-36 overflow-hidden shrink-0">
-												<Image
-													src={urlForImage(event.mainImage).width(600).height(288).url()}
-													alt={event.mainImage.alt || event.title}
-													width={600}
-													height={288}
-													class="h-full w-full object-cover grayscale transition-all duration-300 group-hover:grayscale-0 group-hover:scale-105"
-												/>
-												<div class="absolute inset-0 bg-linear-to-t from-black/40 to-transparent"></div>
-												<div class="absolute bottom-2 left-2 shrink-0 min-w-[44px] rounded-lg border border-white/20 bg-black/60 backdrop-blur-sm px-1.5 py-2 text-center">
-													<p class="text-[8px] font-bold uppercase tracking-widest text-white/70 leading-none mb-0.5">
-														{getEventMonth(event.eventDate)}
-													</p>
-													<p class="text-base font-extrabold leading-none text-white">
-														{getEventDay(event.eventDate)}
-													</p>
-												</div>
-											</div>
-											<div class="flex flex-col p-4">
-												<h3 class="text-sm font-semibold leading-snug group-hover:text-primary transition-colors">
-													{event.title}
-												</h3>
-												{event.location && (
-													<p class="text-muted-foreground mt-1 flex items-center gap-1 text-xs">
-														<MapPin class="size-3 shrink-0" aria-hidden="true" />
-														<span class="truncate">{event.location}</span>
-													</p>
-												)}
-											</div>
-										</div>
-									) : (
-										/* Past event without image — compact date badge + info */
-										<div class="flex w-full items-start gap-4 p-4">
-											<div class="shrink-0 min-w-[48px] rounded-xl border border-border bg-background px-2 py-2.5 text-center">
-												<p class="text-[9px] font-bold uppercase tracking-widest text-muted-foreground leading-none mb-1">
-													{getEventMonth(event.eventDate)}
-												</p>
-												<p class="text-lg font-extrabold leading-none text-foreground">
-													{getEventDay(event.eventDate)}
-												</p>
-											</div>
-											<div class="flex-1 min-w-0">
-												<h3 class="text-sm font-semibold leading-snug group-hover:text-primary transition-colors">
-													{event.title}
-												</h3>
-												{event.location && (
-													<p class="text-muted-foreground mt-1 flex items-center gap-1 text-xs">
-														<MapPin class="size-3 shrink-0" aria-hidden="true" />
-														<span class="truncate">{event.location}</span>
-													</p>
-												)}
-											</div>
-										</div>
-									)}
-								</a>
+								<EventCard event={event} index={i} variant="past" />
 							))}
 						</div>
 					</Container>

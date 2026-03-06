@@ -5,8 +5,11 @@ import { Compass, Map as MapIcon, TreePine } from 'lucide-astro'
 
 // Components
 import Badge from '@/components/elements/content/Badge.astro'
+import HeroBadge from '@/components/elements/content/HeroBadge.astro'
 import Container from '@/components/layout/Container.astro'
 import Section from '@/components/layout/Section.astro'
+import StampRings from '@/components/layout/StampRings.astro'
+import WaveDivider from '@/components/layout/WaveDivider.astro'
 import ParkCard from '@/components/ParkCard.astro'
 import ParkMap from '@/components/ParkMap.tsx'
 import Layout from '@/layouts/Layout.astro'
@@ -78,12 +81,7 @@ const seoDescription =
 			</svg>
 		</div>
 
-		<!-- Decorative concentric stamp rings (right side) -->
-		<div class="pointer-events-none absolute -right-24 top-1/2 -translate-y-1/2" aria-hidden="true">
-			<div class="absolute size-[480px] -translate-x-1/2 -translate-y-1/2 rounded-full border-2 border-dashed border-white/20 opacity-30"></div>
-			<div class="absolute size-[340px] -translate-x-1/2 -translate-y-1/2 rounded-full border border-white/15 opacity-25"></div>
-			<div class="absolute size-[200px] -translate-x-1/2 -translate-y-1/2 rounded-full border border-white/10 opacity-20"></div>
-		</div>
+		<StampRings />
 
 		<!-- Floating icons — right side only, clear of text -->
 		<div class="animate-pulse-soft absolute top-12 right-[4%] opacity-15" aria-hidden="true">
@@ -107,11 +105,7 @@ const seoDescription =
 		<Container class="relative z-10 flex min-h-[48vh] flex-col justify-center py-16">
 			<div class="max-w-3xl" style="animation: fade-in-up 0.8s ease-out both;">
 
-				<!-- Warning badge with pulsing dot -->
-				<div class="mb-6 inline-flex items-center gap-2.5 rounded-full border border-warning/40 bg-warning/15 px-5 py-2.5 text-sm font-semibold text-warning backdrop-blur-md shadow-lg">
-					<span class="animate-pulse-soft size-2 shrink-0 rounded-full bg-warning" aria-hidden="true"></span>
-					<span>Explore Monongalia County</span>
-				</div>
+				<HeroBadge class="mb-6">Explore Monongalia County</HeroBadge>
 
 				<h1 class="text-4xl font-extrabold tracking-tight text-white! md:text-5xl lg:text-6xl">
 					Parks &amp;{' '}
@@ -143,24 +137,7 @@ const seoDescription =
 		</Container>
 
 		<!-- Organic wave divider -->
-		<div class="absolute right-0 -bottom-1 left-0">
-			<svg viewBox="0 0 1440 200" class="text-background w-full" preserveAspectRatio="none">
-				<path
-					fill="currentColor"
-					d="M0,160 Q180,100 360,140 T720,120 T1080,140 T1440,100 L1440,200 L0,200Z"
-				></path>
-				<path
-					fill="currentColor"
-					opacity="0.6"
-					d="M0,180 Q240,120 480,160 T960,140 T1440,160 L1440,200 L0,200Z"
-				></path>
-				<path
-					fill="currentColor"
-					opacity="0.3"
-					d="M0,190 Q360,150 720,170 T1440,150 L1440,200 L0,200Z"
-				></path>
-			</svg>
-		</div>
+		<WaveDivider />
 	</div>
 
 	<main id="main-content">
