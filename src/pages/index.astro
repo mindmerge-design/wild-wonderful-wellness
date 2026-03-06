@@ -96,8 +96,8 @@ const stepAccents = [
 		<!-- Full-bleed hero image (desktop only) -->
 		{home?.hero?.heroImage && (
 			<div
-				class="absolute inset-y-0 right-0 z-0 hidden lg:block md:left-[20%] lg:left-[25%]"
-				style="mask-image: linear-gradient(to right, transparent 0%, black 60%); -webkit-mask-image: linear-gradient(to right, transparent 0%, black 60%);"
+				class="absolute inset-y-0 right-0 z-0 hidden lg:block "
+				style="mask-image: linear-gradient(to right, transparent 0%, black 70%); -webkit-mask-image: linear-gradient(to right, transparent 0%, black 70%);"
 			>
 				<img
 					src={urlForImage(home.hero.heroImage).width(1920).height(1080).url()}
@@ -117,7 +117,7 @@ const stepAccents = [
 				<Container class="pt-16 md:pt-0 text-center md:text-left max-w-2xl mx-auto pl-8 lg:pl-16 my-16">
 					<div style="animation:fade-in-up 0.8s ease-out both;">
 						<!-- Title -->
-						<h1 class="mb-2 text-4xl lg:text-6xl xl:text-7xl font-extrabold leading-[1.1] tracking-tight text-white!">
+						<h1 class="mb-2 text-5xl lg:text-7xl xl:text-8xl font-extrabold leading-[1.05] tracking-tight text-white!">
 							Wild &
 							Wonderful
 						</h1>
@@ -189,46 +189,33 @@ const stepAccents = [
 			</div>
 
 			<Container class="relative z-10">
-				<div class="grid items-center gap-12 md:grid-cols-3">
-					<div class="prose-lg md:col-span-2">
+				<div class="grid items-center gap-10 md:grid-cols-2">
+					<div class="prose-lg">
 						<PortableText portableText={home?.content} />
 					</div>
 
-					<!-- Stat Card — redesigned with more impact -->
+					<!-- Stat Card — editorial dark treatment -->
 					<div class="flex justify-center">
-						<div class="relative w-full max-w-xs overflow-hidden rounded-3xl bg-gradient-to-br from-primary to-primary/80 p-7 text-center shadow-2xl">
-							<!-- Large decorative ring -->
-							<div class="absolute -top-12 -right-12 size-48 rounded-full border-2 border-dashed border-white/20 pointer-events-none" aria-hidden="true"></div>
-							<div class="absolute -bottom-10 -left-10 size-36 rounded-full border border-white/15 pointer-events-none" aria-hidden="true"></div>
+						<div class="relative w-full overflow-hidden rounded-3xl bg-foreground p-8 text-center shadow-2xl">
+							<!-- Decorative rings -->
+							<div class="absolute -top-10 -right-10 size-44 rounded-full border border-primary-foreground/10 pointer-events-none" aria-hidden="true"></div>
+							<div class="absolute -bottom-8 -left-8 size-36 rounded-full border border-primary-foreground/5 pointer-events-none" aria-hidden="true"></div>
 
-							<!-- Quarter pie visualization -->
-							<div class="mb-5 flex justify-center">
-								<div class="relative size-28">
-									<div class="absolute inset-0 rounded-full bg-white/20"></div>
-									<div
-										class="absolute inset-0 rounded-full"
-										style="background: conic-gradient(hsl(var(--warning)) 0deg 90deg, transparent 90deg 360deg);"
-									></div>
-									<div class="absolute inset-3 flex items-center justify-center rounded-full bg-white/95">
-										<span class="text-primary font-black text-4xl">25%</span>
-									</div>
-								</div>
+							<!-- Massive editorial numbers -->
+							<div class="mb-5 flex items-center justify-center gap-4">
+								<span class="font-black text-warning leading-none" style="font-size: clamp(4.5rem, 10vw, 7rem); font-family: 'Fraunces', Georgia, serif; line-height: 0.9;">1</span>
+								<span class="text-primary-foreground/35 font-light" style="font-size: 2rem;">in</span>
+								<span class="font-black text-primary-foreground leading-none" style="font-size: clamp(4.5rem, 10vw, 7rem); font-family: 'Fraunces', Georgia, serif; line-height: 0.9;">4</span>
 							</div>
 
-							<!-- Stat numbers -->
-							<div class="mb-3 flex items-baseline justify-center gap-2">
-								<span class="text-warning font-black text-6xl drop-shadow-sm leading-none">1</span>
-								<span class="text-white/60 text-3xl font-light">in</span>
-								<span class="text-white! font-black text-6xl leading-none">4</span>
-							</div>
+							<div class="mx-auto mb-5 h-px w-16 bg-primary-foreground/20"></div>
 
-							<p class="text-white! text-xs font-bold uppercase tracking-widest leading-relaxed">
+							<p class="text-primary-foreground/70! text-xs font-bold uppercase tracking-widest leading-relaxed">
 								Mon County Residents<br/>are physically inactive<br/>outside of work
 							</p>
 
-							<!-- Decorative blobs -->
-							<div class="absolute -right-6 -top-6 size-24 rounded-full bg-warning/30 blur-xl pointer-events-none" aria-hidden="true"></div>
-							<div class="absolute -bottom-8 -left-8 size-32 rounded-full bg-white/10 blur-xl pointer-events-none" aria-hidden="true"></div>
+							<!-- Warning glow -->
+							<div class="absolute -left-6 -top-6 size-28 rounded-full bg-warning/15 blur-2xl pointer-events-none" aria-hidden="true"></div>
 						</div>
 					</div>
 				</div>
@@ -261,10 +248,11 @@ const stepAccents = [
 			</div>
 
 			<Container class="relative z-10">
-				<div class="mx-auto mb-16 max-w-2xl text-center">
+				<div class="mb-16 relative">
 					<Badge variant="primary" class="mb-4">Get Started</Badge>
-					<h2 class="text-3xl font-extrabold md:text-4xl">How It Works</h2>
-					<p class="text-muted-foreground mt-3 text-base leading-relaxed">Three easy steps to start your wellness adventure</p>
+					<h2 class="text-4xl font-extrabold md:text-5xl lg:text-6xl mt-6">How It Works</h2>
+					<p class="text-muted-foreground mt-3 text-xl leading-relaxed max-w-lg">Three easy steps to start your wellness adventure</p>
+					
 				</div>
 
 				<!-- Three-step cards with per-step color coding + watermark numbers -->
@@ -379,13 +367,13 @@ const stepAccents = [
 			</div>
 
 			<Container class="relative z-10">
-				<div class="mx-auto mb-8 max-w-3xl text-center">
-					<Badge variant="success" class="mb-4">Explore</Badge>
-					<h2 class="text-3xl font-extrabold md:text-4xl">Parks &amp; Trails</h2>
-				</div>
-				<div class="mx-auto mb-12 max-w-3xl">
-					<p class="text-muted-foreground text-center text-lg leading-relaxed">
-						There are over 30 parks and trails in Monongalia County waiting for you to explore. In each participating location, you will find a mounted lockbox with a custom self-inking stamp inside, which you can use to track your progress and earn credit in your passport.
+				<div class="mb-12">
+					<div>
+						<Badge variant="success" class="mb-4">Explore</Badge>
+						<h2 class="text-4xl font-extrabold md:text-5xl lg:text-6xl mt-6">Parks &amp; Trails</h2>
+					
+					<p class="text-muted-foreground text-lg leading-relaxed max-w-md">
+						Over 30 parks and trails in Monongalia County — each with a custom stamp lockbox for your passport.
 					</p>
 				</div>
 
@@ -438,10 +426,10 @@ const stepAccents = [
 		<!-- ============================================ -->
 		<Section id="partners" class="relative overflow-hidden bg-success/10">
 			<Container class="relative z-10">
-				<div class="mx-auto mb-16 max-w-2xl text-center">
+				<div class="mb-16">
 					<Badge variant="default" class="mb-4">Community</Badge>
-					<h2 class="text-3xl font-extrabold md:text-4xl">Our Partners</h2>
-					<p class="text-muted-foreground mt-4 text-lg">
+					<h2 class="text-4xl font-extrabold md:text-5xl lg:text-6xl mt-6">Our<br/>Partners</h2>
+					<p class="text-muted-foreground mt-4 text-xl max-w-xl">
 						Our community partners make the Wellness Passport possible. Pick up your passport or collect stamps at any of these participating locations.
 					</p>
 				</div>
@@ -510,10 +498,12 @@ const stepAccents = [
 			</div>
 
 			<Container class="relative z-10">
-				<div class="mx-auto mb-16 max-w-2xl text-center">
-					<Badge variant="warning" class="mb-4">Join Us</Badge>
-					<h2 class="text-3xl font-extrabold md:text-4xl">Upcoming Events</h2>
-					<p class="text-muted-foreground mt-4 text-lg">
+				<div class="mb-16 ">
+					<div>
+						<Badge variant="warning" class="mb-4">Join Us</Badge>
+						<h2 class="text-4xl font-extrabold md:text-5xl lg:text-6xl mt-6">Upcoming<br/>Events</h2>
+					</div>
+					<p class="text-muted-foreground text-xl max-w-xl">
 						Monongalia County constantly has exciting, active events happening all around Morgantown and beyond.
 					</p>
 				</div>
