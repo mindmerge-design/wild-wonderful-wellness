@@ -1,4 +1,5 @@
 // Import all schemas from the singletons folder
+import contact from './documents/contact'
 import event from './documents/event'
 import events from './documents/events'
 import generic from './documents/generic'
@@ -33,6 +34,7 @@ import videoEmbed from './objects/videoEmbed'
 
 export const schemaTypes = [
   accordion,
+  contact,
   event,
   events,
   fileDownload,

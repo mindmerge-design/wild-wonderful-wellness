@@ -21,17 +21,11 @@ export const navigationConfig: NavigationItem[] = [
 	{
 		label: 'Partners',
 		href: '/partners'
-	}
-	// Add more navigation items as needed
-	// Example:
-	// {
-	//   label: 'About',
-	//   href: '/about',
-	// },
-	// {
-	//   label: 'Contact',
-	//   href: '/contact',
-	// },
+	},
+	{
+	   label: 'Contact',
+	  href: '/contact',
+	},
 ]
 
 export const footerConfig = {

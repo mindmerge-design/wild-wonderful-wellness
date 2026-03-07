@@ -1,0 +1,484 @@
+---
+// Packages
+import { SEO } from 'astro-seo'
+import { Award, Mail, MapPin, Phone } from 'lucide-astro'
+
+// Components
+import HeroBadge from '@/components/elements/content/HeroBadge.astro'
+import Container from '@/components/layout/Container.astro'
+import Section from '@/components/layout/Section.astro'
+import StampRings from '@/components/layout/StampRings.astro'
+import WaveDivider from '@/components/layout/WaveDivider.astro'
+import {
+	Accordion,
+	AccordionContent,
+	AccordionItem,
+	AccordionTrigger
+} from '@/components/starwind/accordion'
+import { Button } from '@/components/starwind/button'
+import Layout from '@/layouts/Layout.astro'
+
+// Sanity
+import { loadQuery } from '@/sanity/lib/load-query'
+import { settingsQuery } from '@/sanity/lib/queries'
+import type { SiteSettings } from '@/sanity/schemaTypes/siteSettings'
+
+const { data: settings } = await loadQuery<SiteSettings>({ query: settingsQuery })
+
+const siteName = settings?.siteName || 'Wild & Wonderful Wellness'
+const seoTitle = `Contact | ${siteName}`
+const seoDescription =
+	'Get in touch with the Wild & Wonderful Wellness Passport team. Questions about the program, passport pickup locations, or becoming a partner.'
+
+// Contact fields — fall back to hardcoded values if not set in Sanity
+const address =
+	settings?.footerAddress || 'Monongalia County Health Department\nMorgantown, WV 26505'
+const phone = settings?.footerPhone || settings?.sitePhone || '(304) 598-5100'
+const email = settings?.siteEmail || 'wellness@monongaliahealth.org'
+---
+
+<Layout>
+	<SEO
+		title={seoTitle}
+		description={seoDescription}
+		openGraph={{
+			basic: {
+				title: seoTitle,
+				type: 'website',
+				image: ''
+			}
+		}}
+		slot="head"
+	/>
+
+	<!-- ============================================ -->
+	<!-- HERO                                          -->
+	<!-- ============================================ -->
+	<div class="bg-primary relative min-h-[48vh] overflow-hidden">
+		<!-- Dot texture overlay -->
+		<div
+			class="pointer-events-none absolute inset-0"
+			aria-hidden="true"
+			style="background-image: radial-gradient(circle, rgba(255,255,255,0.08) 1px, transparent 1px); background-size: 24px 24px;"
+		>
+		</div>
+
+		<!-- Gradient overlay -->
+		<div
+			class="absolute inset-0 bg-linear-to-b from-black/30 via-black/10 to-black/50"
+			aria-hidden="true"
+		>
+		</div>
+
+		<!-- Decorative topo pattern -->
+		<div class="absolute inset-0 opacity-[0.07]" aria-hidden="true">
+			<svg class="h-full w-full" xmlns="http://www.w3.org/2000/svg">
+				<defs>
+					<pattern
+						id="topo-contact-hero"
+						x="0"
+						y="0"
+						width="200"
+						height="200"
+						patternUnits="userSpaceOnUse"
+					>
+						<path d="M 0 80 Q 50 60 100 80 T 200 80" fill="none" stroke="white" stroke-width="1"
+						></path>
+						<path
+							d="M 0 100 Q 50 75 100 100 T 200 100"
+							fill="none"
+							stroke="white"
+							stroke-width="0.8"></path>
+						<circle cx="160" cy="40" r="20" fill="none" stroke="white" stroke-width="0.5"></circle>
+					</pattern>
+				</defs>
+				<rect width="100%" height="100%" fill="url(#topo-contact-hero)"></rect>
+			</svg>
+		</div>
+
+		<StampRings />
+
+		<!-- Floating icons — right side only -->
+		<div class="animate-pulse-soft absolute top-12 right-[4%] opacity-15" aria-hidden="true">
+			<Mail class="size-9 text-white!" />
+		</div>
+		<div
+			class="animate-pulse-soft absolute top-[45%] right-[18%] opacity-10"
+			style="animation-delay: 0.6s"
+			aria-hidden="true"
+		>
+			<Phone class="size-7 text-white!" />
+		</div>
+		<div
+			class="animate-pulse-soft absolute right-[7%] bottom-24 opacity-10"
+			style="animation-delay: 1.2s"
+			aria-hidden="true"
+		>
+			<MapPin class="size-8 text-white!" />
+		</div>
+
+		<Container class="relative z-10 flex min-h-[48vh] flex-col justify-center py-20">
+			<div class="max-w-3xl" style="animation: fade-in-up 0.8s ease-out both;">
+				<HeroBadge class="mb-6">Reach Out</HeroBadge>
+
+				<h1 class="text-5xl font-extrabold tracking-tight text-white! md:text-6xl lg:text-7xl">
+					Get in
+					<!-- Squiggly underline on "Touch" -->
+					<span class="relative inline-block pb-2">
+						Touch
+						<svg
+							class="pointer-events-none absolute -bottom-0.5 left-0 w-full overflow-visible"
+							viewBox="0 0 140 10"
+							preserveAspectRatio="none"
+							aria-hidden="true"
+						>
+							<path
+								d="M0,5 Q17.5,0 35,5 T70,5 T105,5 T140,5"
+								fill="none"
+								stroke-width="3"
+								stroke-linecap="round"
+								style="stroke: hsl(var(--warning))"></path>
+						</svg>
+					</span>
+				</h1>
+
+				<p class="mt-5 max-w-2xl text-xl text-white/90!">
+					Have a question about the Wellness Passport? We're happy to help — reach out and we'll get
+					back to you.
+				</p>
+			</div>
+		</Container>
+
+		<WaveDivider />
+	</div>
+
+	<main id="main-content">
+		<!-- ============================================ -->
+		<!-- CONTACT INFO + QUESTIONS                     -->
+		<!-- ============================================ -->
+		<Section id="contact-info" class="relative overflow-hidden">
+			<Container class="relative z-10">
+				<!-- Section header — left-aligned, big -->
+				<div class="mb-16">
+					<div
+						class="border-primary/30 bg-primary/10 text-primary mb-4 inline-flex items-center gap-2.5 rounded-full border px-5 py-2.5 text-sm font-semibold shadow-sm"
+					>
+						<span
+							class="bg-primary animate-pulse-soft size-2 shrink-0 rounded-full"
+							aria-hidden="true"></span>
+						Contact Us
+					</div>
+					<h2 class="mt-6! text-4xl font-extrabold md:text-5xl lg:text-6xl">
+						We're Here<br />to Help
+					</h2>
+					<p class="text-muted-foreground mt-4 max-w-xl text-lg">
+						Reach out by phone, email, or visit us in person. We'd love to hear from you.
+					</p>
+				</div>
+
+				<!-- 2-col layout: contact cards (left) + common questions (right) -->
+				<div class="grid gap-12 lg:grid-cols-[3fr_2fr]">
+					<!-- Contact method cards -->
+					<div class="grid gap-5 sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-1">
+						<!-- Address -->
+						<div
+							class="group border-border border-t-primary bg-card relative overflow-hidden rounded-2xl border border-t-4 shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg"
+							style="animation: fade-in-up 0.5s ease-out 0s both;"
+						>
+							<div class="p-6">
+								<div class="mb-4 flex items-center gap-4">
+									<div
+										class="bg-primary/10 flex size-12 shrink-0 items-center justify-center rounded-xl"
+									>
+										<MapPin class="text-primary size-6" aria-hidden="true" />
+									</div>
+									<div>
+										<p
+											class="text-muted-foreground my-0! text-xs font-bold tracking-widest uppercase"
+										>
+											Visit Us
+										</p>
+										<p class="text-foreground my-0! font-bold">In Person</p>
+									</div>
+								</div>
+								<address class="text-foreground leading-relaxed whitespace-pre-line not-italic">
+									{address}
+								</address>
+								<a
+									href="https://maps.google.com/?q=Monongalia+County+Health+Department+Morgantown+WV"
+									target="_blank"
+									rel="noopener noreferrer"
+									class="text-primary mt-4 inline-flex items-center gap-1.5 text-sm font-semibold hover:underline"
+								>
+									Get directions
+									<svg
+										class="size-3.5"
+										fill="none"
+										stroke="currentColor"
+										viewBox="0 0 24 24"
+										aria-hidden="true"
+									>
+										<path
+											stroke-linecap="round"
+											stroke-linejoin="round"
+											stroke-width="2"
+											d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+										></path>
+									</svg>
+								</a>
+							</div>
+						</div>
+
+						<!-- Phone -->
+						<div
+							class="group border-border border-t-warning bg-card relative overflow-hidden rounded-2xl border border-t-4 shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg"
+							style="animation: fade-in-up 0.5s ease-out 0.1s both;"
+						>
+							<div class="p-6">
+								<div class="mb-4 flex items-center gap-4">
+									<div
+										class="bg-warning/15 flex size-12 shrink-0 items-center justify-center rounded-xl"
+									>
+										<Phone class="text-warning size-6" aria-hidden="true" />
+									</div>
+									<div>
+										<p
+											class="text-muted-foreground my-0! text-xs font-bold tracking-widest uppercase"
+										>
+											Call Us
+										</p>
+										<p class="text-foreground my-0! font-bold">By Phone</p>
+									</div>
+								</div>
+								<a
+									href={`tel:${phone.replace(/\D/g, '')}`}
+									class="text-foreground hover:text-warning text-xl font-bold transition-colors"
+								>
+									{phone}
+								</a>
+								<p class="text-muted-foreground mt-2 text-sm">Monday – Friday, 8am – 4:30pm</p>
+							</div>
+						</div>
+
+						<!-- Email -->
+						<div
+							class="group border-border border-t-info bg-card relative overflow-hidden rounded-2xl border border-t-4 shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg"
+							style="animation: fade-in-up 0.5s ease-out 0.2s both;"
+						>
+							<div class="p-6">
+								<div class="mb-4 flex items-center gap-4">
+									<div
+										class="bg-info/10 flex size-12 shrink-0 items-center justify-center rounded-xl"
+									>
+										<Mail class="text-info size-6" aria-hidden="true" />
+									</div>
+									<div>
+										<p
+											class="text-muted-foreground my-0! text-xs font-bold tracking-widest uppercase"
+										>
+											Email Us
+										</p>
+										<p class="text-foreground my-0! font-bold">By Email</p>
+									</div>
+								</div>
+								<a
+									href={`mailto:${email}`}
+									class="text-info font-semibold break-all hover:underline"
+								>
+									{email}
+								</a>
+								<p class="text-muted-foreground mt-2 text-sm">
+									We typically respond within 1–2 business days.
+								</p>
+							</div>
+						</div>
+					</div>
+
+					<!-- Common questions -->
+					<div
+						class="bg-foreground text-primary-foreground relative overflow-hidden rounded-3xl p-8 shadow-xl"
+						style="animation: fade-in-up 0.5s ease-out 0.15s both;"
+					>
+						<!-- Decorative rings -->
+						<div
+							class="border-primary-foreground/10 pointer-events-none absolute -top-10 -right-10 size-44 rounded-full border"
+							aria-hidden="true"
+						>
+						</div>
+						<div
+							class="border-primary-foreground/5 pointer-events-none absolute -bottom-8 -left-8 size-36 rounded-full border"
+							aria-hidden="true"
+						>
+						</div>
+
+						<h3 class="mb-6 text-xl font-bold text-white!">Common Questions</h3>
+
+						<Accordion type="single" class="border-none!">
+							<AccordionItem value="item-0" class="border-primary-foreground/15!">
+								<AccordionTrigger
+									class="text-primary-foreground! hover:text-primary-foreground/70! px-0! font-bold"
+								>
+									How do I get a passport?
+								</AccordionTrigger>
+								<AccordionContent>
+									<p class="px-0! text-white!">
+										Pick one up for free at MCHD or any participating partner location.
+									</p>
+								</AccordionContent>
+							</AccordionItem>
+							<AccordionItem value="item-1" class="border-primary-foreground/15!">
+								<AccordionTrigger
+									class="text-primary-foreground! hover:text-primary-foreground/70! px-0! font-bold"
+								>
+									Where are the stamp stations?
+								</AccordionTrigger>
+								<AccordionContent>
+									<p class="px-0! text-white!">
+										Each park and trail location has a mounted lockbox with a custom self-inking
+										stamp inside.
+									</p>
+								</AccordionContent>
+							</AccordionItem>
+							<AccordionItem value="item-2" class="border-primary-foreground/15!">
+								<AccordionTrigger
+									class="text-primary-foreground! hover:text-primary-foreground/70! px-0! font-bold"
+								>
+									How do I redeem my prizes?
+								</AccordionTrigger>
+								<AccordionContent>
+									<p class="px-0! text-white!">
+										Bring your completed passport to MCHD to receive your rewards.
+									</p>
+								</AccordionContent>
+							</AccordionItem>
+							<AccordionItem value="item-3" class="border-primary-foreground/15!">
+								<AccordionTrigger
+									class="text-primary-foreground! hover:text-primary-foreground/70! px-0! font-bold"
+								>
+									How do I become a partner?
+								</AccordionTrigger>
+								<AccordionContent>
+									<p class="px-0! text-white!">
+										Reach out to us by email or phone and we'll walk you through the process.
+									</p>
+								</AccordionContent>
+							</AccordionItem>
+						</Accordion>
+
+						<!-- Warning glow -->
+						<div
+							class="bg-warning/10 pointer-events-none absolute -top-6 -left-6 size-28 rounded-full blur-2xl"
+							aria-hidden="true"
+						>
+						</div>
+					</div>
+				</div>
+			</Container>
+		</Section>
+
+		<!-- ============================================ -->
+		<!-- PARTNERSHIP CTA                              -->
+		<!-- ============================================ -->
+		<Section id="partnership" class="bg-muted relative overflow-hidden">
+			<!-- Dot texture -->
+			<div
+				class="pointer-events-none absolute inset-0 opacity-[0.03]"
+				style="background-image: radial-gradient(circle, hsl(var(--primary)) 1px, transparent 1px); background-size: 28px 28px;"
+				aria-hidden="true"
+			>
+			</div>
+
+			<Container class="relative z-10">
+				<div class="grid gap-8 md:grid-cols-2 md:items-center">
+					<!-- Left: text -->
+					<div style="animation: fade-in-left 0.6s ease-out both;">
+						<div
+							class="border-warning/40 bg-warning/15 text-warning mb-4 inline-flex items-center gap-2.5 rounded-full border px-5 py-2.5 text-sm font-semibold shadow-sm"
+						>
+							<span
+								class="bg-warning animate-pulse-soft size-2 shrink-0 rounded-full"
+								aria-hidden="true"></span>
+							Partner With Us
+						</div>
+						<h2 class="text-4xl font-extrabold md:text-5xl">Want to Become<br />a Partner?</h2>
+						<p class="text-muted-foreground mt-4 max-w-md text-lg">
+							Join our growing network of wellness advocates. Partner businesses can host stamp
+							stations, offer passport pickup, and connect with an engaged community.
+						</p>
+						<div class="mt-8 flex flex-wrap gap-3">
+							<Button href={`mailto:${email}`} variant="primary" size="lg" class="no-underline">
+								Email Us to Apply
+								<Mail class="size-4" />
+							</Button>
+							<Button href="/partners" variant="outline" size="lg" class="no-underline">
+								View Current Partners
+							</Button>
+						</div>
+					</div>
+
+					<!-- Right: benefits list -->
+					<div
+						class="border-border bg-background relative overflow-hidden rounded-3xl border p-8 shadow-sm"
+						style="animation: fade-in-right 0.6s ease-out both;"
+					>
+						<!-- Thin warning top bar -->
+						<div
+							class="bg-warning/80 absolute top-0 right-0 left-0 h-1.5 rounded-t-3xl"
+							aria-hidden="true"
+						>
+						</div>
+
+						<div class="mt-2">
+							<p class="text-muted-foreground mb-5 text-xs font-bold tracking-widest uppercase">
+								Partnership includes
+							</p>
+							<ul class="space-y-4">
+								{
+									[
+										'Stamp station mounted at your location',
+										'Listed on the Wellness Passport map',
+										'Passport pickup option for participants',
+										'Featured on our partners page',
+										'Community health recognition'
+									].map((benefit) => (
+										<li class="flex items-start gap-3 text-sm">
+											<span class="bg-success/15 mt-0.5 flex size-5 shrink-0 items-center justify-center rounded-full">
+												<svg
+													class="text-success size-3"
+													fill="none"
+													stroke="currentColor"
+													viewBox="0 0 24 24"
+													aria-hidden="true"
+												>
+													<path
+														stroke-linecap="round"
+														stroke-linejoin="round"
+														stroke-width="2.5"
+														d="M5 13l4 4L19 7"
+													/>
+												</svg>
+											</span>
+											<span class="text-foreground">{benefit}</span>
+										</li>
+									))
+								}
+							</ul>
+
+							<div class="mt-6 flex items-center gap-3">
+								<div
+									class="bg-warning/10 flex size-10 shrink-0 items-center justify-center rounded-full"
+								>
+									<Award class="text-warning size-5" aria-hidden="true" />
+								</div>
+								<p class="text-muted-foreground text-sm">
+									<strong class="text-foreground">Free to join.</strong> No fees, just a commitment to
+									community wellness.
+								</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</Container>
+		</Section>
+	</main>
+</Layout>

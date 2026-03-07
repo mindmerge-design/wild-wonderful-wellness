@@ -74,6 +74,9 @@ export const structure = (S: any, context: any) =>
         ),
       S.divider(),
 
+      S.listItem().title('Contact').child(S.document().schemaType('contact').documentId('contactPage')),
+      S.divider(),
+
       S.listItem()
         .title('Generic Page')
         .child(
@@ -86,6 +89,6 @@ export const structure = (S: any, context: any) =>
       // ...Other items
       ...S.documentTypeListItems().filter(
         (listItem: any) =>
-          !['home', 'media.tag', 'generic', 'siteSettings','parksTrails','parkTrail','events','event','partners','partner'].includes(listItem.getId())
+          !['home', 'media.tag', 'generic', 'siteSettings','parksTrails','parkTrail','events','event','partners','partner', 'contact'].includes(listItem.getId())
       ),
     ])

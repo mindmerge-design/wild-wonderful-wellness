@@ -1,0 +1,12 @@
+[    5267ms] [WARNING] Manifest: property 'name' ignored, type string expected. @ http://localhost:4321/manifest.webmanifest:0
+[    5267ms] [WARNING] Manifest: property 'short_name' ignored, type string expected. @ http://localhost:4321/manifest.webmanifest:0
+[   95249ms] [WARNING] Manifest: property 'name' ignored, type string expected. @ http://localhost:4321/manifest.webmanifest:0
+[   95249ms] [WARNING] Manifest: property 'short_name' ignored, type string expected. @ http://localhost:4321/manifest.webmanifest:0
+[  110194ms] [WARNING] Manifest: property 'name' ignored, type string expected. @ http://localhost:4321/manifest.webmanifest:0
+[  110194ms] [WARNING] Manifest: property 'short_name' ignored, type string expected. @ http://localhost:4321/manifest.webmanifest:0
+[  150901ms] [WARNING] Manifest: property 'name' ignored, type string expected. @ http://localhost:4321/manifest.webmanifest:0
+[  150901ms] [WARNING] Manifest: property 'short_name' ignored, type string expected. @ http://localhost:4321/manifest.webmanifest:0
+[  185387ms] [WARNING] Manifest: property 'name' ignored, type string expected. @ http://localhost:4321/manifest.webmanifest:0
+[  185387ms] [WARNING] Manifest: property 'short_name' ignored, type string expected. @ http://localhost:4321/manifest.webmanifest:0
+[  220901ms] [WARNING] Manifest: property 'name' ignored, type string expected. @ http://localhost:4321/manifest.webmanifest:0
+[  220901ms] [WARNING] Manifest: property 'short_name' ignored, type string expected. @ http://localhost:4321/manifest.webmanifest:0
