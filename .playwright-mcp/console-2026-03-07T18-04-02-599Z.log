@@ -10,3 +10,5 @@
 [  185387ms] [WARNING] Manifest: property 'short_name' ignored, type string expected. @ http://localhost:4321/manifest.webmanifest:0
 [  220901ms] [WARNING] Manifest: property 'name' ignored, type string expected. @ http://localhost:4321/manifest.webmanifest:0
 [  220901ms] [WARNING] Manifest: property 'short_name' ignored, type string expected. @ http://localhost:4321/manifest.webmanifest:0
+[  303770ms] [WARNING] Manifest: property 'name' ignored, type string expected. @ http://localhost:4321/manifest.webmanifest:0
+[  303770ms] [WARNING] Manifest: property 'short_name' ignored, type string expected. @ http://localhost:4321/manifest.webmanifest:0
