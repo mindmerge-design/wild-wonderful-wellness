@@ -89,7 +89,7 @@ const stepAccents = [
 	/>
 
 	<!-- ============================================ -->
-	<!-- 1. HERO - Split Design with Diagonal Edge    -->
+	<!-- 0. HERO  -->
 	<!-- ============================================ -->
 	<div class="relative min-h-auto lg:min-h-[75vh] overflow-hidden bg-primary">
 
@@ -171,7 +171,7 @@ const stepAccents = [
 
 	<main id="main-content">
 		<!-- ============================================ -->
-		<!-- 2. INTRODUCTION                              -->
+		<!-- 1. INTRODUCTION                              -->
 		<!-- ============================================ -->
 		<Section id="introduction" class="relative overflow-hidden">
 			<!-- Decorative topo pattern -->
@@ -230,7 +230,7 @@ const stepAccents = [
 		</div>
 
 		<!-- ============================================ -->
-		<!-- 3. HOW IT WORKS                              -->
+		<!-- 2. HOW IT WORKS                              -->
 		<!-- ============================================ -->
 		<Section id="how-it-works" class="bg-muted relative overflow-hidden">
 			<!-- Topo pattern -->
@@ -348,7 +348,7 @@ const stepAccents = [
 		</Section>
 
 		<!-- ============================================ -->
-		<!-- 4. PARKS & TRAILS                            -->
+		<!-- 3. PARKS & TRAILS                            -->
 		<!-- ============================================ -->
 		<Section id="parks-trails" class="relative overflow-hidden py-16">
 			<!-- Topo pattern -->
@@ -421,10 +421,56 @@ const stepAccents = [
 			</Container>
 		</Section>
 
+		
+
+		<!-- ============================================ -->
+		<!-- 4. EVENTS                                    -->
+		<!-- ============================================ -->
+		<Section id="events" class="relative overflow-hidden bg-success/10">
+			<!-- Topo pattern -->
+			<div class="absolute inset-0 text-warning/4 pointer-events-none">
+				<svg class="h-full w-full" xmlns="http://www.w3.org/2000/svg">
+					<defs>
+						<pattern id="topo-events" x="0" y="0" width="220" height="220" patternUnits="userSpaceOnUse">
+							<path d="M 0 110 Q 55 90 110 110 T 220 110" fill="none" stroke="currentColor" stroke-width="0.8" opacity="0.2"/>
+							<path d="M 0 55 Q 110 25 220 55" fill="none" stroke="currentColor" stroke-width="0.6" opacity="0.15"/>
+							<path d="M 0 165 Q 110 195 220 165" fill="none" stroke="currentColor" stroke-width="0.6" opacity="0.15"/>
+						</pattern>
+					</defs>
+					<rect width="100%" height="100%" fill="url(#topo-events)"/>
+				</svg>
+			</div>
+
+			<Container class="relative z-10">
+				<div class="mb-16 ">
+					<div>
+						<Badge variant="warning" class="mb-4">Join Us</Badge>
+						<h2 class="text-4xl font-extrabold md:text-5xl lg:text-6xl mt-6! mt-6">Upcoming<br/>Events</h2>
+					</div>
+					<p class="text-muted-foreground text-xl max-w-xl">
+						Monongalia County constantly has exciting, active events happening all around Morgantown and beyond.
+					</p>
+				</div>
+
+				<div class="grid gap-6 sm:grid-cols-2">
+					{upcomingEvents.map((event, i) => (
+						<EventCard event={event} index={i} variant="upcoming" />
+					))}
+				</div>
+
+				<div class="mt-12 text-center">
+					<Button href="/events" variant="primary" size="lg" class="no-underline">
+						View Full Calendar
+						<ArrowRight class="size-4" />
+					</Button>
+				</div>
+			</Container>
+		</Section>
+
 		<!-- ============================================ -->
 		<!-- 5. PARTNERS                                  -->
 		<!-- ============================================ -->
-		<Section id="partners" class="relative overflow-hidden bg-success/10">
+		<Section id="partners" class="relative overflow-hidden">
 			<Container class="relative z-10">
 				<div class="mb-16">
 					<Badge variant="default" class="mb-4">Community</Badge>
@@ -473,50 +519,6 @@ const stepAccents = [
 				<div class="mt-12 text-center">
 					<Button href="/partners" variant="primary" size="lg" class="no-underline">
 						View All Partners
-						<ArrowRight class="size-4" />
-					</Button>
-				</div>
-			</Container>
-		</Section>
-
-		<!-- ============================================ -->
-		<!-- 6. EVENTS                                    -->
-		<!-- ============================================ -->
-		<Section id="events" class="relative overflow-hidden py-16">
-			<!-- Topo pattern -->
-			<div class="absolute inset-0 text-warning/4 pointer-events-none">
-				<svg class="h-full w-full" xmlns="http://www.w3.org/2000/svg">
-					<defs>
-						<pattern id="topo-events" x="0" y="0" width="220" height="220" patternUnits="userSpaceOnUse">
-							<path d="M 0 110 Q 55 90 110 110 T 220 110" fill="none" stroke="currentColor" stroke-width="0.8" opacity="0.2"/>
-							<path d="M 0 55 Q 110 25 220 55" fill="none" stroke="currentColor" stroke-width="0.6" opacity="0.15"/>
-							<path d="M 0 165 Q 110 195 220 165" fill="none" stroke="currentColor" stroke-width="0.6" opacity="0.15"/>
-						</pattern>
-					</defs>
-					<rect width="100%" height="100%" fill="url(#topo-events)"/>
-				</svg>
-			</div>
-
-			<Container class="relative z-10">
-				<div class="mb-16 ">
-					<div>
-						<Badge variant="warning" class="mb-4">Join Us</Badge>
-						<h2 class="text-4xl font-extrabold md:text-5xl lg:text-6xl mt-6! mt-6">Upcoming<br/>Events</h2>
-					</div>
-					<p class="text-muted-foreground text-xl max-w-xl">
-						Monongalia County constantly has exciting, active events happening all around Morgantown and beyond.
-					</p>
-				</div>
-
-				<div class="grid gap-6 sm:grid-cols-2">
-					{upcomingEvents.map((event, i) => (
-						<EventCard event={event} index={i} variant="upcoming" />
-					))}
-				</div>
-
-				<div class="mt-12 text-center">
-					<Button href="/events" variant="primary" size="lg" class="no-underline">
-						View Full Calendar
 						<ArrowRight class="size-4" />
 					</Button>
 				</div>
