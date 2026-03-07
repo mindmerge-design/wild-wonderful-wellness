@@ -40,7 +40,7 @@ export default defineType({
     }),
     defineField({
       name: 'pricesContent',
-      title: 'Prices',
+      title: 'Prizes',
       type: 'portableText',
     }),
     defineField({

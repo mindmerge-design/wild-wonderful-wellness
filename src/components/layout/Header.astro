@@ -23,9 +23,9 @@ const pathname = Astro.url.pathname
 					<Image
 						src="/images/logo.png"
 						alt="Wellness Passport"
-						width={140}
-						height={140}
-						class="mt-24 h-36 w-auto md:h-44"
+						width={240}
+						height={240}
+						class="mt-16 h-32 w-auto md:h-36"
 					/>
 				</a>
 
@@ -35,15 +35,15 @@ const pathname = Astro.url.pathname
 						navigationConfig.map((item) => (
 							<a
 								href={item.href}
-								class="text-muted-foreground hover:text-foreground hover:bg-muted flex items-center rounded-md px-3 py-2 text-sm font-medium no-underline transition-colors"
+								class="text-muted-foreground hover:text-foreground hover:bg-muted flex items-center rounded-md px-3 py-2 text-base font-bold no-underline transition-colors"
 							>
 								{item.label}
 							</a>
 						))
 					}
 					<a
-						href="#partners"
-						class="bg-warning text-warning-foreground hover:bg-warning/90 ml-2 inline-flex items-center gap-1.5 rounded-full px-4 py-2 text-sm font-semibold no-underline transition-colors"
+						href="/#passport"
+						class="bg-warning hover:bg-warning/90 ml-2 inline-flex items-center gap-1.5 rounded-full px-4 py-2 text-base font-bold text-white! no-underline transition-colors"
 					>
 						Get Passport
 					</a>
@@ -91,15 +91,15 @@ const pathname = Astro.url.pathname
 						navigationConfig.map((item) => (
 							<a
 								href={item.href}
-								class="text-muted-foreground hover:text-foreground hover:bg-muted flex items-center rounded-md px-3 py-2.5 text-sm font-medium no-underline"
+								class="text-muted-foreground hover:text-foreground hover:bg-muted flex items-center rounded-md px-3 py-2.5 text-base font-bold no-underline"
 							>
 								{item.label}
 							</a>
 						))
 					}
 					<a
-						href="#partners"
-						class="bg-warning text-warning-foreground mt-2 flex items-center justify-center gap-1.5 rounded-full px-4 py-2.5 text-sm font-semibold no-underline"
+						href="/#passport"
+						class="bg-warning mt-2 flex items-center justify-center gap-1.5 rounded-full px-4 py-2.5 text-base font-bold text-white no-underline"
 					>
 						<Award class="size-4" />
 						Get Passport

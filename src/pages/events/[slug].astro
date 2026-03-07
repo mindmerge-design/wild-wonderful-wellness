@@ -1,28 +1,26 @@
 ---
 // Packages
-import { Image } from 'astro:assets'
 import { SEO } from 'astro-seo'
+import { Image } from 'astro:assets'
 import {
-	ArrowLeft,
-	Calendar,
-	Clock,
-	DollarSign,
-	ExternalLink,
-	MapPin,
-	User,
-	Building2,
-	Sparkles
+ArrowLeft,
+Building2,
+Calendar,
+Clock,
+DollarSign,
+ExternalLink,
+MapPin,
+Sparkles,
+User
 } from 'lucide-astro'
 
 // Components
 import Badge from '@/components/elements/content/Badge.astro'
-import HeroBadge from '@/components/elements/content/HeroBadge.astro'
 import PortableText from '@/components/elements/content/PortableText.astro'
 import Container from '@/components/layout/Container.astro'
 import Section from '@/components/layout/Section.astro'
 import StampRings from '@/components/layout/StampRings.astro'
 import WaveDivider from '@/components/layout/WaveDivider.astro'
-import { Button } from '@/components/starwind/button'
 import Layout from '@/layouts/Layout.astro'
 
 // Sanity
@@ -31,6 +29,7 @@ import { eventBySlugQuery, settingsQuery } from '@/sanity/lib/queries'
 import { urlForImage } from '@/sanity/lib/urlForImage'
 
 // Types
+import HeroBadge from '@/components/elements/content/HeroBadge.astro'
 import type { Event } from '@/sanity/schemaTypes/event'
 import type { SiteSettings } from '@/sanity/schemaTypes/siteSettings'
 
@@ -139,17 +138,9 @@ const isPast = new Date(event.eventDate) < new Date()
 
 		<Container class="relative z-20 flex min-h-[52vh] flex-col justify-center py-20">
 			<div class="max-w-3xl" style="animation: fade-in-up 0.8s ease-out both;">
-				<!-- Back link -->
-				<a
-					href="/events"
-					class="mb-6 inline-flex items-center gap-2 text-sm font-medium text-white/70 transition-colors hover:text-white no-underline"
-					aria-label="Back to all events"
-				>
-					<ArrowLeft class="size-4" aria-hidden="true" />
-					All Events
-				</a>
+				<HeroBadge class="mb-5">Events</HeroBadge>
 
-				<HeroBadge class="mb-5">{isPast ? 'Past Event' : 'Upcoming Event'}</HeroBadge>
+				
 
 				<h1 class="text-4xl font-extrabold tracking-tight text-white! md:text-5xl">
 					{event.title}
