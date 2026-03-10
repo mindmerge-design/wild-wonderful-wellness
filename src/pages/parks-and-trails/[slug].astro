@@ -5,13 +5,11 @@ import { Image } from 'astro:assets'
 import {
 ArrowLeft,
 Clock,
-Compass,
 Globe,
 MapPin,
 Mountain,
 Phone,
-Stamp,
-TreePine
+Stamp
 } from 'lucide-astro'
 
 // Components
@@ -90,63 +88,64 @@ function formatAmenity(amenity: string) {
 		slot="head"
 	/>
 
-	<!-- Hero Section -->
-	<div class="bg-primary relative min-h-[55vh] overflow-hidden">
+	<!-- Hero Section - Split Layout with Container -->
+	<div class="bg-primary relative min-h-[auto] lg:min-h-[55vh] overflow-hidden">
 
 		<!-- Dot texture overlay -->
 		<div class="pointer-events-none absolute inset-0" aria-hidden="true" style="background-image: radial-gradient(circle, rgba(255,255,255,0.08) 1px, transparent 1px); background-size: 24px 24px;"></div>
 
-		<!-- Background Image with Overlay -->
-		{
-			park.mainImage && (
-				<Image
-					src={urlForImage(park.mainImage).width(1920).height(1080).url()}
-					alt={park.mainImage.alt || park.title}
-					width={1920}
-					height={1080}
-					class="absolute inset-0 z-0 h-full w-full object-cover"
-				/>
-			)
-		}
-		<div class="absolute inset-0 z-10 bg-linear-to-b from-black/50 via-black/30 to-black/65"></div>
-
 		<StampRings class="z-10" />
 
-		<!-- Decorative Floating Icons — right side only, clear of text -->
-		<div class="animate-pulse-soft absolute top-14 right-[4%] z-10 opacity-15" aria-hidden="true">
-			<TreePine class="size-10 text-white!" />
-		</div>
-		<div
-			class="animate-pulse-soft absolute top-[45%] right-[16%] z-10 opacity-10"
-			style="animation-delay: 0.5s"
-			aria-hidden="true"
-		>
-			<Compass class="size-9 text-white!" />
-		</div>
-		<div
-			class="animate-pulse-soft absolute bottom-24 right-[7%] z-10 opacity-10"
-			style="animation-delay: 1s"
-			aria-hidden="true"
-		>
-			<Mountain class="size-9 text-white!" />
-		</div>
+		<Container class="relative z-10">
+			<div class="flex flex-col lg:flex-row lg:min-h-[55vh] lg:-mx-4">
+				<!-- Left side content -->
+				<div class="relative z-20 flex flex-col justify-center py-12 lg:py-20 w-full lg:w-[55%] lg:px-4">
+					<div style="animation: fade-in-up 0.8s ease-out both;">
+						<HeroBadge class="mb-5">Parks &amp; Trails</HeroBadge>
 
-		<Container class="relative z-20 flex min-h-[55vh] flex-col justify-center py-20">
-			<div style="animation: fade-in-up 0.8s ease-out both;">
+						<h1 class="text-4xl font-extrabold tracking-tight text-white! md:text-5xl lg:text-6xl">
+							{park.title}
+						</h1>
 
-				<HeroBadge class="mb-5">Parks &amp; Trails</HeroBadge>
+						{
+							park.shortDescription && (
+								<p class="mt-4 max-w-2xl text-xl leading-relaxed text-white/90!">
+									{park.shortDescription}
+								</p>
+							)
+						}
 
-				<h1 class="text-4xl font-extrabold tracking-tight text-white! md:text-5xl lg:text-6xl">
-					{park.title}
-				</h1>
+						<!-- Park Type Badge -->
+						<div class="mt-6">
+							<span class="inline-flex items-center gap-2 rounded-full bg-white/15 backdrop-blur-sm border border-white/20 px-4 py-2 text-sm font-semibold text-white">
+								<span class="size-2 rounded-full bg-success"></span>
+								{park.parkType?.replace('-', ' ') || 'Park'}
+							</span>
+						</div>
+					</div>
+				</div>
 
-				{
-					park.shortDescription && (
-						<p class="mt-4 max-w-2xl text-xl leading-relaxed text-white/90!">
-							{park.shortDescription}
-						</p>
-					)
-				}
+				<!-- Right side image with 4/3 ratio -->
+				<div class="relative w-full lg:w-[45%] lg:px-4 flex items-center">
+					{park.mainImage ? (
+						<div class="relative w-full aspect-4/3 overflow-hidden rounded-xl shadow-2xl">
+							<img
+								src={urlForImage(park.mainImage).width(800).height(600).url()}
+								alt={park.mainImage.alt || park.title}
+								width={800}
+								height={600}
+								class="h-full w-full object-cover my-0!"
+							/>
+						</div>
+					) : (
+						<div class="w-full aspect-4/3 bg-primary/50 flex items-center justify-center rounded-xl">
+							<div class="text-center text-white/60">
+								<Mountain class="size-16 mx-auto mb-4" />
+								<p class="text-lg font-medium">No image available</p>
+							</div>
+						</div>
+					)}
+				</div>
 			</div>
 		</Container>
 
