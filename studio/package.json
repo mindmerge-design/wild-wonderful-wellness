@@ -17,11 +17,11 @@
   "dependencies": {
     "@sanity/orderable-document-list": "^1.5.1",
     "@sanity/table": "^2.0.1",
-    "@sanity/vision": "^5.13.0",
+    "@sanity/vision": "^5.14.0",
     "react": "^19.2.4",
     "react-dom": "^19.2.4",
     "react-is": "^19.2.4",
-    "sanity": "^5.13.0",
+    "sanity": "^5.14.0",
     "sanity-plugin-media": "^4.1.1",
     "styled-components": "^6.3.11"
   },

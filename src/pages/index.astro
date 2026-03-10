@@ -27,6 +27,7 @@ import type { Event } from '@/sanity/schemaTypes/event'
 import type { Home } from '@/sanity/schemaTypes/home'
 import type { ParkTrail } from '@/sanity/schemaTypes/parkTrail'
 import type { Partner } from '@/sanity/schemaTypes/partner'
+import { Image } from 'astro:assets'
 
 // Load home page data
 const { data: home } = await loadQuery<Home>({ query: homeQuery })
@@ -232,7 +233,7 @@ const stepAccents = [
 		<!-- ============================================ -->
 		<!-- 2. HOW IT WORKS                              -->
 		<!-- ============================================ -->
-		<Section id="how-it-works" class="bg-muted relative overflow-hidden">
+		<Section id="how-it-works" class="bg-muted relative overflow-hidden pb-0!">
 			<!-- Topo pattern -->
 			<div class="absolute inset-0 text-success/3 pointer-events-none">
 				<svg class="h-full w-full" xmlns="http://www.w3.org/2000/svg">
@@ -317,32 +318,20 @@ const stepAccents = [
 					</div>
 				</div>
 
-				<!-- Passport booklet placeholder -->
-				<div class="mt-12 flex justify-center" id="passport">
-					<div class="w-full max-w-md overflow-hidden rounded-xl border-2 border-dashed border-border bg-background shadow-lg">
-						<div class="bg-muted flex aspect-[3/2] items-center justify-center relative overflow-hidden">
-							<div class="absolute inset-0 opacity-20">
-								<svg class="h-full w-full" xmlns="http://www.w3.org/2000/svg">
-									<defs>
-										<pattern id="passport-pattern" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse">
-											<circle cx="20" cy="20" r="2" fill="currentColor"/>
-										</pattern>
-									</defs>
-									<rect width="100%" height="100%" fill="url(#passport-pattern)"/>
-								</svg>
-							</div>
-							<div class="relative z-10 text-center">
-								<div class="mx-auto mb-3 flex size-16 items-center justify-center rounded-full bg-background shadow-md">
-									<Mountain class="text-muted-foreground size-8" />
-								</div>
-								<p class="text-muted-foreground font-medium">Passport booklet photo coming soon</p>
-							</div>
-						</div>
-						<div class="p-5 text-center bg-background">
-							<p class="text-lg font-bold">Your Wellness Passport</p>
-							<p class="text-muted-foreground mt-2 text-sm">Pick one up for free at MCHD or any partner location</p>
-						</div>
+				<!-- Passport booklet -->
+				<div class="relative b-0 flex items-center justify-between flex-wrap mt-16 md:mt-20">
+					<div>
+						<h2>Your Wellness Passport</h2>
+	
+	<p class="text-muted-foreground mt-3 text-xl leading-relaxed max-w-lg"><strong>Pick one up for free at MCHD or any <a href="/partners" class="text-warning hover:underline">partner location</a></strong></p>
 					</div>
+					<Image
+						src="https://cdn.sanity.io/images/v8ngbpl7/production/c6cdacad7a22fe1001082038538b14584fd076b4-1200x1025.png"
+						alt="Wellness Passport"
+						width={600}
+						height={512}
+						class="my-0! relative text-right"
+					/>
 				</div>
 			</Container>
 		</Section>
