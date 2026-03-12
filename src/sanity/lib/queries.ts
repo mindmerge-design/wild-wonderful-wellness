@@ -44,7 +44,7 @@ export const partnerBySlugQuery = `*[_type == "partner" && slug.current == $slug
   ..., logo{..., asset->}, mainImage{..., asset->}, seo{..., sharingImage{..., asset->}}
 }`
 
-export const upcomingEventsQuery = `*[_type == "event" && eventDate >= now()] | order(eventDate asc) [0...4] {
+export const upcomingEventsQuery = `*[_type == "event" && eventDate >= now()] | order(eventDate asc) [0...6] {
   _id, title, slug, shortDescription, mainImage{..., asset->},
   eventDate, endDate, location, isFree, cost, registrationUrl
 }`

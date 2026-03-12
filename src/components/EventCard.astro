@@ -1,9 +1,9 @@
 ---
-import { Image } from 'astro:assets'
-import { ArrowRight, MapPin } from 'lucide-astro'
 import Badge from '@/components/elements/content/Badge.astro'
 import { urlForImage } from '@/sanity/lib/urlForImage'
 import type { Event } from '@/sanity/schemaTypes/event'
+import { Image } from 'astro:assets'
+import { ArrowRight, MapPin } from 'lucide-astro'
 
 interface Props {
 	event: Event
@@ -44,21 +44,21 @@ function formatDate(dateStr: string) {
 		<div class="h-1.5 w-full bg-warning/80 shrink-0"></div>
 
 		{event.mainImage ? (
-			<div class="relative h-44 overflow-hidden shrink-0">
+			<div class="relative w-full aspect-4/3 overflow-hidden shrink-0">
 				<Image
-					src={urlForImage(event.mainImage).width(600).height(352).url()}
+					src={urlForImage(event.mainImage).width(800).height(600).url()}
 					alt={event.mainImage.alt || event.title}
-					width={600}
-					height={352}
+					width={800}
+					height={600}
 					class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
 				/>
 				<div class="absolute inset-0 bg-linear-to-t from-black/50 to-transparent"></div>
 				<!-- Date badge overlaid on image -->
 				<div class="absolute bottom-3 left-3 shrink-0 min-w-[52px] rounded-xl border border-warning/40 bg-black/70 backdrop-blur-sm px-2 py-2.5 text-center shadow-lg">
-					<p class="text-[9px] font-bold uppercase tracking-widest text-warning leading-none mb-1">
+					<p class="text-[9px] font-bold uppercase tracking-widest text-warning leading-none mb-1! mt-0!">
 						{getMonth(event.eventDate)}
 					</p>
-					<p class="text-xl font-extrabold leading-none text-white">
+					<p class="text-xl font-extrabold leading-none text-white my-0!">
 						{getDay(event.eventDate)}
 					</p>
 				</div>
@@ -73,35 +73,53 @@ function formatDate(dateStr: string) {
 					</div>
 				)}
 			</div>
-		) : null}
+		) : (
+			<div class="relative w-full aspect-4/3 bg-warning/10 flex items-center justify-center overflow-hidden shrink-0">
+				<div class="absolute inset-0 opacity-[0.03]" aria-hidden="true">
+					<svg class="h-full w-full" xmlns="http://www.w3.org/2000/svg">
+						<defs>
+							<pattern id={`dots-event-${index}`} x="0" y="0" width="16" height="16" patternUnits="userSpaceOnUse">
+								<circle cx="2" cy="2" r="1" fill="currentColor" class="text-warning" />
+							</pattern>
+						</defs>
+						<rect width="100%" height="100%" fill={`url(#dots-event-${index})`} />
+					</svg>
+				</div>
+				<div class="text-center text-warning/40 relative z-10">
+					<svg class="size-16 mx-auto mb-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+						<rect width="18" height="18" x="3" y="4" rx="2" ry="2"></rect>
+						<line x1="16" x2="16" y1="2" y2="6"></line>
+						<line x1="8" x2="8" y1="2" y2="6"></line>
+						<line x1="3" x2="21" y1="10" y2="10"></line>
+					</svg>
+					<p class="text-sm font-medium">No image available</p>
+				</div>
+				<!-- Date badge overlaid on placeholder -->
+				<div class="absolute bottom-3 left-3 shrink-0 min-w-[52px] rounded-xl border border-warning/40 bg-background/90 backdrop-blur-sm px-2 py-2.5 text-center shadow-lg">
+					<p class="text-[9px] font-bold uppercase tracking-widest text-warning leading-none mb-1">
+						{getMonth(event.eventDate)}
+					</p>
+					<p class="text-xl font-extrabold leading-none text-foreground">
+						{getDay(event.eventDate)}
+					</p>
+				</div>
+				{event.isFree && (
+					<div class="absolute top-3 right-3">
+						<Badge variant="success">Free</Badge>
+					</div>
+				)}
+				{!event.isFree && event.cost && (
+					<div class="absolute top-3 right-3">
+						<Badge variant="warning">{event.cost}</Badge>
+					</div>
+				)}
+			</div>
+		)}
 
 		<div class="flex flex-1 flex-col p-5">
-			{!event.mainImage ? (
-				<div class="mb-4 flex items-start gap-4">
-					<!-- Calendar date badge -->
-					<div class="shrink-0 min-w-[52px] rounded-xl border border-warning/25 bg-warning/10 px-2 py-2.5 text-center">
-						<p class="text-[9px] font-bold uppercase tracking-widest text-warning leading-none mb-1">
-							{getMonth(event.eventDate)}
-						</p>
-						<p class="text-xl font-extrabold leading-none text-foreground">
-							{getDay(event.eventDate)}
-						</p>
-					</div>
-					<div class="flex-1 min-w-0">
-						<div class="mb-1.5 flex flex-wrap gap-1.5">
-							{event.isFree && <Badge variant="success">Free</Badge>}
-							{!event.isFree && event.cost && <Badge variant="warning">{event.cost}</Badge>}
-						</div>
-						<h3 class="text-base font-bold leading-snug group-hover:text-warning transition-colors mt-0!">
-							{event.title}
-						</h3>
-					</div>
-				</div>
-			) : (
-				<h3 class="mb-2 text-base font-bold leading-snug group-hover:text-warning transition-colors mt-0!">
-					{event.title}
-				</h3>
-			)}
+			<h3 class="mb-2 text-base font-bold leading-snug group-hover:text-warning transition-colors mt-0!">
+				{event.title}
+			</h3>
 
 			{event.location && (
 				<p class="text-muted-foreground mb-3 flex items-center gap-2 text-sm">
@@ -132,12 +150,12 @@ function formatDate(dateStr: string) {
 	>
 		{event.mainImage ? (
 			<div class="flex flex-col w-full">
-				<div class="relative h-36 overflow-hidden shrink-0">
+				<div class="relative w-full aspect-4/3 overflow-hidden shrink-0">
 					<Image
-						src={urlForImage(event.mainImage).width(600).height(288).url()}
+						src={urlForImage(event.mainImage).width(800).height(600).url()}
 						alt={event.mainImage.alt || event.title}
-						width={600}
-						height={288}
+						width={800}
+						height={600}
 						class="h-full w-full object-cover grayscale transition-all duration-300 group-hover:grayscale-0 group-hover:scale-105"
 					/>
 					<div class="absolute inset-0 bg-linear-to-t from-black/40 to-transparent"></div>
@@ -163,16 +181,37 @@ function formatDate(dateStr: string) {
 				</div>
 			</div>
 		) : (
-			<div class="flex w-full items-start gap-4 p-4">
-				<div class="shrink-0 min-w-[48px] rounded-xl border border-border bg-background px-2 py-2.5 text-center">
-					<p class="text-[9px] font-bold uppercase tracking-widest text-muted-foreground leading-none mb-1">
-						{getMonth(event.eventDate)}
-					</p>
-					<p class="text-lg font-extrabold leading-none text-foreground">
-						{getDay(event.eventDate)}
-					</p>
+			<div class="flex flex-col w-full">
+				<div class="relative w-full aspect-4/3 bg-muted/50 flex items-center justify-center overflow-hidden shrink-0">
+					<div class="absolute inset-0 opacity-[0.02]" aria-hidden="true">
+						<svg class="h-full w-full" xmlns="http://www.w3.org/2000/svg">
+							<defs>
+								<pattern id={`dots-past-event-${index}`} x="0" y="0" width="16" height="16" patternUnits="userSpaceOnUse">
+									<circle cx="2" cy="2" r="1" fill="currentColor" class="text-foreground" />
+								</pattern>
+							</defs>
+							<rect width="100%" height="100%" fill={`url(#dots-past-event-${index})`} />
+						</svg>
+					</div>
+					<div class="text-center text-muted-foreground/30 relative z-10">
+						<svg class="size-12 mx-auto mb-1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+							<rect width="18" height="18" x="3" y="4" rx="2" ry="2"></rect>
+							<line x1="16" x2="16" y1="2" y2="6"></line>
+							<line x1="8" x2="8" y1="2" y2="6"></line>
+							<line x1="3" x2="21" y1="10" y2="10"></line>
+						</svg>
+						<p class="text-xs font-medium">No image</p>
+					</div>
+					<div class="absolute bottom-2 left-2 shrink-0 min-w-[44px] rounded-lg border border-border bg-background/90 backdrop-blur-sm px-1.5 py-2 text-center">
+						<p class="text-[8px] font-bold uppercase tracking-widest text-muted-foreground leading-none mb-0.5">
+							{getMonth(event.eventDate)}
+						</p>
+						<p class="text-base font-extrabold leading-none text-foreground">
+							{getDay(event.eventDate)}
+						</p>
+					</div>
 				</div>
-				<div class="flex-1 min-w-0">
+				<div class="flex flex-col p-4">
 					<h3 class="text-sm font-semibold leading-snug group-hover:text-primary transition-colors">
 						{event.title}
 					</h3>

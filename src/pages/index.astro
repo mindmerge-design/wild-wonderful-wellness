@@ -452,17 +452,16 @@ const stepAccents = [
 					</p>
 				</div>
 
-				<div class="grid gap-6 sm:grid-cols-2">
-					{upcomingEvents.map((event, i) => (
-						<EventCard event={event} index={i} variant="upcoming" />
-					))}
-				</div>
+				<div class="grid gap-6 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3">
+				{upcomingEvents.map((event, i) => (
+					<EventCard event={event} index={i} variant="upcoming" />
+				))}
+			</div>
 
 				<div class="mt-12 text-center">
 					<Button href="/events" variant="primary" size="lg" class="no-underline">
 						View Full Calendar
 						<ArrowRight class="size-4" />
-					</Button>
 				</div>
 			</Container>
 		</Section>

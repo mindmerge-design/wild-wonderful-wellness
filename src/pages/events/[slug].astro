@@ -100,75 +100,77 @@ const isPast = new Date(event.eventDate) < new Date()
 		slot="head"
 	/>
 
-	<!-- Custom Hero -->
-	<div class="relative min-h-[52vh] overflow-hidden bg-primary">
-		<!-- Background image (if available) -->
-		{
-			event.mainImage && (
-				<Image
-					src={urlForImage(event.mainImage).width(1920).height(1080).url()}
-					alt={event.mainImage.alt || event.title}
-					width={1920}
-					height={1080}
-					class="absolute inset-0 z-0 h-full w-full object-cover"
-				/>
-			)
-		}
+	<!-- Hero Section - Split Layout with Container -->
+	<div class="bg-primary relative min-h-[auto] lg:min-h-[55vh] overflow-hidden">
 
-		<!-- Overlays -->
-		<div class="absolute inset-0 z-10 bg-linear-to-b from-black/60 via-black/40 to-black/75" aria-hidden="true"></div>
+		<!-- Dot texture overlay -->
+		<div class="pointer-events-none absolute inset-0" aria-hidden="true" style="background-image: radial-gradient(circle, rgba(255,255,255,0.08) 1px, transparent 1px); background-size: 24px 24px;"></div>
 
-		<!-- Dot texture (when no image) -->
-		{
-			!event.mainImage && (
-				<div
-					class="absolute inset-0 z-[5] opacity-30"
-					style="background-image: radial-gradient(circle, rgba(255,255,255,0.08) 1px, transparent 1px); background-size: 24px 24px;"
-					aria-hidden="true"
-				></div>
-			)
-		}
-
-		<StampRings class="z-[5]" />
+		<StampRings class="z-10" />
 
 		<!-- Floating decorative icon -->
 		<div class="absolute top-10 left-[12%] z-[5] animate-pulse-soft opacity-20" aria-hidden="true">
 			<Sparkles class="text-white! size-8" />
 		</div>
 
-		<Container class="relative z-20 flex min-h-[52vh] flex-col justify-center py-20">
-			<div class="max-w-3xl" style="animation: fade-in-up 0.8s ease-out both;">
-				<HeroBadge class="mb-5">Events</HeroBadge>
+		<Container class="relative z-10">
+			<div class="flex flex-col lg:flex-row lg:min-h-[55vh] lg:-mx-4">
+				<!-- Left side content -->
+				<div class="relative z-20 flex flex-col justify-center py-12 lg:py-20 w-full lg:w-[55%] lg:px-4">
+					<div style="animation: fade-in-up 0.8s ease-out both;">
+						<HeroBadge class="mb-5">Events</HeroBadge>
 
-				
+						<h1 class="text-4xl font-extrabold tracking-tight text-white! md:text-5xl lg:text-6xl">
+							{event.title}
+						</h1>
 
-				<h1 class="text-4xl font-extrabold tracking-tight text-white! md:text-5xl">
-					{event.title}
-				</h1>
+						{event.shortDescription && (
+							<p class="mt-4 max-w-2xl text-xl leading-relaxed text-white/90!">
+								{event.shortDescription}
+							</p>
+						)}
 
-				{event.shortDescription && (
-					<p class="mt-4 max-w-2xl text-lg text-white/85!">
-						{event.shortDescription}
-					</p>
-				)}
-
-				<!-- Quick date + location pills -->
-				<div class="mt-6 flex flex-wrap gap-3">
-					<div class="inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-2 text-sm font-medium text-white backdrop-blur-sm border border-white/20">
-						<Calendar class="size-4 text-warning" aria-hidden="true" />
-						{formatDate(event.eventDate)}
+						<!-- Quick date + location pills -->
+						<div class="mt-6 flex flex-wrap gap-3">
+							<div class="inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-2 text-sm font-medium text-white backdrop-blur-sm border border-white/20">
+								<Calendar class="size-4 text-warning" aria-hidden="true" />
+								{formatDate(event.eventDate)}
+							</div>
+							{event.location && (
+								<div class="inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-2 text-sm font-medium text-white backdrop-blur-sm border border-white/20">
+									<MapPin class="size-4 text-warning" aria-hidden="true" />
+									{event.location}
+								</div>
+							)}
+						</div>
 					</div>
-					{event.location && (
-						<div class="inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-2 text-sm font-medium text-white backdrop-blur-sm border border-white/20">
-							<MapPin class="size-4 text-warning" aria-hidden="true" />
-							{event.location}
+				</div>
+
+				<!-- Right side image with 4/3 ratio -->
+				<div class="relative w-full lg:w-[45%] lg:px-4 flex items-center">
+					{event.mainImage ? (
+						<div class="relative w-full aspect-4/3 overflow-hidden rounded-xl shadow-2xl">
+							<Image
+								src={urlForImage(event.mainImage).width(800).height(600).url()}
+								alt={event.mainImage.alt || event.title}
+								width={800}
+								height={600}
+								class="h-full w-full object-cover"
+							/>
+						</div>
+					) : (
+						<div class="w-full aspect-4/3 bg-warning/10 flex items-center justify-center rounded-xl border border-warning/20">
+							<div class="text-center text-warning/40">
+								<Calendar class="size-16 mx-auto mb-4" />
+								<p class="text-lg font-medium">No image available</p>
+							</div>
 						</div>
 					)}
 				</div>
 			</div>
 		</Container>
 
-		<WaveDivider class="z-20" />
+		<WaveDivider />
 	</div>
 
 	<main id="main-content">
