@@ -318,11 +318,11 @@ const email = settings?.siteEmail || 'wellness@monongaliahealth.org'
 									pageContent.faqs.length > 0 &&
 									pageContent.faqs.map((faq, index) => (
 										<AccordionItem value={`item-${index}`} class="border-primary-foreground/15!">
-											<AccordionTrigger class="text-primary-foreground! hover:text-primary-foreground/70! px-0! font-bold">
+											<AccordionTrigger class="text-primary-foreground! hover:text-primary-foreground/70! font-bold">
 												{faq.title}
 											</AccordionTrigger>
 											<AccordionContent>
-												<div class="prose prose-invert prose-sm prose-p:text-white! max-w-none px-0!">
+												<div class="prose prose-invert prose-p:text-white! max-w-none px-0!">
 													<PortableText portableText={faq.description} />
 												</div>
 											</AccordionContent>
