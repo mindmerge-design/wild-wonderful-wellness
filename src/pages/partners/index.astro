@@ -6,6 +6,7 @@ import { Award, Heart, MapPin, Users } from 'lucide-astro'
 // Components
 import Badge from '@/components/elements/content/Badge.astro'
 import HeroBadge from '@/components/elements/content/HeroBadge.astro'
+import PortableText from '@/components/elements/content/PortableText.astro'
 import Container from '@/components/layout/Container.astro'
 import Section from '@/components/layout/Section.astro'
 import StampRings from '@/components/layout/StampRings.astro'
@@ -13,12 +14,18 @@ import WaveDivider from '@/components/layout/WaveDivider.astro'
 import { Button } from '@/components/starwind/button'
 import Layout from '@/layouts/Layout.astro'
 import { loadQuery } from '@/sanity/lib/load-query'
-import { allPartnersQuery } from '@/sanity/lib/queries'
+import { allPartnersQuery, partnersPageQuery } from '@/sanity/lib/queries'
 import type { Partner } from '@/sanity/schemaTypes/partner'
+import type { Partners } from '@/sanity/schemaTypes/partners'
 
 // Fetch partners from Sanity
 const { data: partners } = await loadQuery<Partner[]>({
 	query: allPartnersQuery
+})
+
+// Fetch page content from Sanity
+const { data: pageContent } = await loadQuery<Partners>({
+	query: partnersPageQuery
 })
 
 const siteName = 'Wild & Wonderful Wellness'
@@ -99,9 +106,9 @@ const seoDescription = 'Community businesses and organizations supporting the We
 						</svg>
 					</span>
 				</h1>
-				<p class="mt-5 text-xl text-white/90! max-w-2xl">
-					Local businesses and organizations making wellness accessible for everyone. Pick up passports and collect stamps at these locations.
-				</p>
+				<div class="mt-5 max-w-2xl text-lg prose-p:text-white/85!">
+					<PortableText portableText={pageContent.content} />
+				</div>
 			</div>
 		</Container>
 
@@ -116,23 +123,20 @@ const seoDescription = 'Community businesses and organizations supporting the We
 			
 
 			<Container class="relative z-10">
-				<div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-8">
+				<div class="mb-16">
 					<div>
 						<Badge variant="default" class="mb-2">Partners</Badge>
 						<h2 class="text-2xl font-bold text-foreground mt-6!">Our Community Partners</h2>
-						<p class="text-muted-foreground mt-1">Organizations making wellness accessible</p>
+						
+						<!-- Page Content from Sanity -->
+					{pageContent?.content && (
+						<div class="mt-6 prose prose-lg max-w-3xl text-muted-foreground">
+							<PortableText portableText={pageContent.getStamps} />
+						</div>
+					)}
 					</div>
 
-					<!-- Filter Tags -->
-					<div class="flex flex-wrap gap-2">
-						<button class="px-3 py-1.5 rounded-full bg-primary text-primary-foreground text-sm font-medium">All</button>
-						<button class="px-3 py-1.5 rounded-full bg-muted text-muted-foreground text-sm font-medium hover:bg-muted/80 transition-colors">Health</button>
-						<button class="px-3 py-1.5 rounded-full bg-muted text-muted-foreground text-sm font-medium hover:bg-muted/80 transition-colors">Fitness</button>
-						<button class="px-3 py-1.5 rounded-full bg-muted text-muted-foreground text-sm font-medium hover:bg-muted/80 transition-colors">Community</button>
-					</div>
 				</div>
-
-				
 
 				<!-- All Partners -->
 				<div>

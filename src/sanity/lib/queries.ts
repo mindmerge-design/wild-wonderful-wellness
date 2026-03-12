@@ -64,3 +64,36 @@ export const eventsByPartnerQuery = `*[_type == "event" && relatedPartner._ref =
 }`
 
 export const genericQuery = `*[_type == "generic"]`
+
+export const genericBySlugQuery = `*[_type == "generic" && slug.current == $slug][0]{
+  title,
+  slug,
+  pageBuilder[]{...}
+}`
+
+export const parksTrailsPageQuery = `*[_type == "parksTrails"][0]{
+  title,
+  slug,
+  content
+}`
+
+export const eventsPageQuery = `*[_type == "events"][0]{
+  title,
+  slug,
+  getStamps,
+  content
+}`
+
+export const partnersPageQuery = `*[_type == "partners"][0]{
+  title,
+  slug,
+  content,
+  getStamps
+}`
+
+export const contactPageQuery = `*[_type == "contact"][0]{
+  title,
+  slug,
+  content,
+  faqs
+}`

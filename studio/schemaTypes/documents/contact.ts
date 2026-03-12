@@ -28,6 +28,12 @@ export default defineType({
       type: 'portableText',
     }),
     defineField({
+      name: 'faqs',
+      title: 'FAQs',
+      type: 'array',
+      of: [{ type: 'titleAndDescription' }],
+    }),
+    defineField({
       name: 'seo',
       title: 'SEO',
       type: 'seo',

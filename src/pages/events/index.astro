@@ -6,6 +6,7 @@ import { Calendar, Sparkles, Star } from 'lucide-astro'
 // Components
 import Badge from '@/components/elements/content/Badge.astro'
 import HeroBadge from '@/components/elements/content/HeroBadge.astro'
+import PortableText from '@/components/elements/content/PortableText.astro'
 import EventCard from '@/components/EventCard.astro'
 import Container from '@/components/layout/Container.astro'
 import Section from '@/components/layout/Section.astro'
@@ -15,16 +16,18 @@ import Layout from '@/layouts/Layout.astro'
 
 // Sanity
 import { loadQuery } from '@/sanity/lib/load-query'
-import { allEventsQuery, settingsQuery } from '@/sanity/lib/queries'
+import { allEventsQuery, eventsPageQuery, settingsQuery } from '@/sanity/lib/queries'
 import { urlForImage } from '@/sanity/lib/urlForImage'
 
 // Types
 import type { Event } from '@/sanity/schemaTypes/event'
+import type { Events } from '@/sanity/schemaTypes/events'
 import type { SiteSettings } from '@/sanity/schemaTypes/siteSettings'
 
 // Data
 const { data: settings } = await loadQuery<SiteSettings>({ query: settingsQuery })
 const { data: allEvents } = await loadQuery<Event[]>({ query: allEventsQuery })
+const { data: pageContent } = await loadQuery<Events>({ query: eventsPageQuery })
 
 const siteName = settings?.siteName || 'Wild & Wonderful Wellness'
 
@@ -103,9 +106,9 @@ const seoImage = settings?.sharingImage
 					Upcoming
 					<span class="relative inline-block pb-2 text-accent">Events<svg class="absolute -bottom-0.5 left-0 w-full overflow-visible pointer-events-none" viewBox="0 0 200 10" preserveAspectRatio="none" aria-hidden="true"><path d="M0,5 Q25,0 50,5 T100,5 T150,5 T200,5" fill="none" stroke-width="3" stroke-linecap="round" style="stroke: hsl(var(--accent))"/></svg></span>
 				</h1>
-				<p class="mt-5 max-w-2xl text-lg text-white/85!">
-					{settings?.eventsIntroText || 'Join us for wellness events, workshops, and community gatherings across Monongalia County.'}
-				</p>
+				<div class="mt-5 max-w-2xl text-lg prose-p:text-white/85!">
+					<PortableText portableText={pageContent.content} />
+				</div>
 			</div>
 		</Container>
 
@@ -126,9 +129,13 @@ const seoImage = settings?.sharingImage
 				<div class="mb-12">
 					<Badge variant="warning" class="mb-4">Mark Your Calendar</Badge>
 					<h2 class="text-4xl font-extrabold md:text-5xl lg:text-6xl mt-6!">Upcoming<br/>Events</h2>
-					<p class="text-muted-foreground mt-4 text-lg max-w-xl">
-						Discover wellness activities and community gatherings happening near you.
-					</p>
+
+					<!-- Page Content from Sanity -->
+					{pageContent?.content && (
+						<div class="mt-6 prose prose-lg max-w-3xl text-muted-foreground">
+							<PortableText portableText={pageContent.getStamps} />
+						</div>
+					)}
 				</div>
 
 				{

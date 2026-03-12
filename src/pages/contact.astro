@@ -5,6 +5,7 @@ import { Award, Mail, MapPin, Phone } from 'lucide-astro'
 
 // Components
 import HeroBadge from '@/components/elements/content/HeroBadge.astro'
+import PortableText from '@/components/elements/content/PortableText.astro'
 import Container from '@/components/layout/Container.astro'
 import Section from '@/components/layout/Section.astro'
 import StampRings from '@/components/layout/StampRings.astro'
@@ -20,10 +21,12 @@ import Layout from '@/layouts/Layout.astro'
 
 // Sanity
 import { loadQuery } from '@/sanity/lib/load-query'
-import { settingsQuery } from '@/sanity/lib/queries'
+import { contactPageQuery, settingsQuery } from '@/sanity/lib/queries'
+import type { Contact } from '@/sanity/schemaTypes/contact'
 import type { SiteSettings } from '@/sanity/schemaTypes/siteSettings'
 
 const { data: settings } = await loadQuery<SiteSettings>({ query: settingsQuery })
+const { data: pageContent } = await loadQuery<Contact>({ query: contactPageQuery })
 
 const siteName = settings?.siteName || 'Wild & Wonderful Wellness'
 const seoTitle = `Contact | ${siteName}`
@@ -142,10 +145,9 @@ const email = settings?.siteEmail || 'wellness@monongaliahealth.org'
 					</span>
 				</h1>
 
-				<p class="mt-5 max-w-2xl text-xl text-white/90!">
-					Have a question about the Wellness Passport? We're happy to help — reach out and we'll get
-					back to you.
-				</p>
+				<div class="prose-p:text-white/90! mt-5 max-w-2xl text-xl">
+					{pageContent?.content && <PortableText portableText={pageContent.content} />}
+				</div>
 			</div>
 		</Container>
 
@@ -171,9 +173,6 @@ const email = settings?.siteEmail || 'wellness@monongaliahealth.org'
 					<h2 class="mt-6! text-4xl font-extrabold md:text-5xl lg:text-6xl">
 						We're Here<br />to Help
 					</h2>
-					<p class="text-muted-foreground mt-4 max-w-xl text-lg">
-						Reach out by phone, email, or visit us in person. We'd love to hear from you.
-					</p>
 				</div>
 
 				<!-- 2-col layout: contact cards (left) + common questions (right) -->
@@ -314,55 +313,22 @@ const email = settings?.siteEmail || 'wellness@monongaliahealth.org'
 						<h3 class="mb-6 text-xl font-bold text-white!">Common Questions</h3>
 
 						<Accordion type="single" class="border-none!">
-							<AccordionItem value="item-0" class="border-primary-foreground/15!">
-								<AccordionTrigger
-									class="text-primary-foreground! hover:text-primary-foreground/70! px-0! font-bold"
-								>
-									How do I get a passport?
-								</AccordionTrigger>
-								<AccordionContent>
-									<p class="px-0! text-white!">
-										Pick one up for free at MCHD or any participating partner location.
-									</p>
-								</AccordionContent>
-							</AccordionItem>
-							<AccordionItem value="item-1" class="border-primary-foreground/15!">
-								<AccordionTrigger
-									class="text-primary-foreground! hover:text-primary-foreground/70! px-0! font-bold"
-								>
-									Where are the stamp stations?
-								</AccordionTrigger>
-								<AccordionContent>
-									<p class="px-0! text-white!">
-										Each park and trail location has a mounted lockbox with a custom self-inking
-										stamp inside.
-									</p>
-								</AccordionContent>
-							</AccordionItem>
-							<AccordionItem value="item-2" class="border-primary-foreground/15!">
-								<AccordionTrigger
-									class="text-primary-foreground! hover:text-primary-foreground/70! px-0! font-bold"
-								>
-									How do I redeem my prizes?
-								</AccordionTrigger>
-								<AccordionContent>
-									<p class="px-0! text-white!">
-										Bring your completed passport to MCHD to receive your rewards.
-									</p>
-								</AccordionContent>
-							</AccordionItem>
-							<AccordionItem value="item-3" class="border-primary-foreground/15!">
-								<AccordionTrigger
-									class="text-primary-foreground! hover:text-primary-foreground/70! px-0! font-bold"
-								>
-									How do I become a partner?
-								</AccordionTrigger>
-								<AccordionContent>
-									<p class="px-0! text-white!">
-										Reach out to us by email or phone and we'll walk you through the process.
-									</p>
-								</AccordionContent>
-							</AccordionItem>
+							{
+								pageContent?.faqs &&
+									pageContent.faqs.length > 0 &&
+									pageContent.faqs.map((faq, index) => (
+										<AccordionItem value={`item-${index}`} class="border-primary-foreground/15!">
+											<AccordionTrigger class="text-primary-foreground! hover:text-primary-foreground/70! px-0! font-bold">
+												{faq.title}
+											</AccordionTrigger>
+											<AccordionContent>
+												<div class="prose prose-invert prose-sm prose-p:text-white! max-w-none px-0!">
+													<PortableText portableText={faq.description} />
+												</div>
+											</AccordionContent>
+										</AccordionItem>
+									))
+							}
 						</Accordion>
 
 						<!-- Warning glow -->
