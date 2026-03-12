@@ -143,31 +143,6 @@ const stepAccents = [
 								<ArrowRight class="size-5" />
 							</Button>
 						</div>
-
-						<!-- Featured Park Preview -->
-						{parks.length > 0 && parks[0].mainImage && (
-							<div class="mt-8 lg:mt-12 hidden sm:block">
-								<a 
-									href={`/parks-and-trails/${parks[0].slug?.current || parks[0].title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')}`}
-									class="group inline-flex items-center gap-4 rounded-xl bg-white/10 backdrop-blur-sm border border-white/20 p-3 pr-5 transition-all hover:bg-white/20 no-underline"
-								>
-									<div class="relative w-20 h-16 shrink-0 overflow-hidden rounded-lg">
-										<img
-											src={urlForImage(parks[0].mainImage).width(160).height(128).url()}
-											alt={parks[0].mainImage.alt || parks[0].title}
-											width={160}
-											height={128}
-											class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-110"
-										/>
-									</div>
-									<div class="text-left">
-										<p class="text-xs font-semibold uppercase tracking-wider text-white/70">Featured Park</p>
-										<p class="text-sm font-bold text-white">{parks[0].title}</p>
-									</div>
-									<ArrowRight class="size-4 text-white/70 group-hover:text-white transition-colors ml-2" />
-								</a>
-							</div>
-						)}
 					</div>
 				</Container>
 			
