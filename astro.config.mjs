@@ -21,7 +21,7 @@ export default defineConfig({
     projectId: 'v8ngbpl7',
     dataset: 'production',
     apiVersion: '2025-03-23',
-    useCdn: false,
+    useCdn: true,
     studioUrl: '/studio'
   }), sitemap(), icon(), react(), favicons()],
   adapter: netlify()
