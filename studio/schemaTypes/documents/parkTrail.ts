@@ -82,6 +82,11 @@ export default defineType({
       validation: (Rule: any) => Rule.required(),
     }),
     defineField({
+      name: 'coordinates',
+      title: 'Coordinates',
+      type: 'geopoint',
+    }),
+    defineField({
       name: 'hours',
       title: 'Hours',
       type: 'portableText',
@@ -89,32 +94,21 @@ export default defineType({
     defineField({
       name: 'phone',
       title: 'Phone',
-      type: 'string',
-      validation: (Rule: any) => Rule.required(),
+      type: 'string', 
     }),
-    defineField({
-      name: 'lockboxLocation',
-      title: 'Lockbox Location',
-      type: 'text',
-      rows: 3,
-      description: 'Directions to find stamp lockbox',
-    }),
-    defineField({
-      name: 'coordinates',
-      title: 'Coordinates',
-      type: 'geopoint',
-    }),
-    defineField({
+     defineField({
       name: 'websiteUrl',
       title: 'Website URL',
       type: 'url',
     }),
     defineField({
-      name: 'gallery',
-      title: 'Gallery',
-      type: 'imageGallery',
+      name: 'lockboxLocation',
+      title: 'Stamp/Lockbox Location',
+      type: 'text',
+      rows: 3,
+      description: 'Directions to find stamp lockbox',
     }),
-    defineField({
+     defineField({
       name: 'lockboxPhoto',
       title: 'Lockbox Photo',
       type: 'imageAlt',
@@ -124,6 +118,11 @@ export default defineType({
       title: 'Featured',
       type: 'boolean',
       initialValue: false,
+    }),   
+    defineField({
+      name: 'gallery',
+      title: 'Gallery',
+      type: 'imageGallery',
     }),  
     defineField({
       name: 'seo',

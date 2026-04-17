@@ -191,13 +191,53 @@ function formatAmenity(amenity: string) {
 				<div class="grid gap-12 lg:grid-cols-3">
 					<!-- Main Content (2/3) -->
 					<div class="space-y-8 lg:col-span-2">
+
+						<!-- Lockbox / Passport Stamp Location — KEY ELEMENT -->
+						{
+							park.lockboxLocation && (
+								<div class="relative overflow-hidden rounded-2xl border-2 border-success/20 bg-success/5 p-8 shadow-lg">
+									
+
+									<!-- Large stamp icon watermark -->
+									<div class="pointer-events-none absolute right-6 bottom-4 z-0 opacity-[0.06]" aria-hidden="true">
+										<Stamp class="size-32 text-success" />
+									</div>
+
+									
+
+									<div class="relative z-10">
+										<!-- Header -->
+										<div class="mb-5 flex items-center gap-3">
+											
+											<div>
+												<p class="text-xs font-bold uppercase tracking-widest text-success/70">Wellness Passport</p>
+												<h2 class="text-xl font-bold my-0!">Passport Stamp Location</h2>
+											</div>
+										</div>
+
+										
+
+										<p class="text-foreground text-lg font-medium leading-relaxed whitespace-pre-line mt-0!">{park.lockboxLocation}</p>
+
+										
+
+										<!-- Tip banner -->
+										<div class="mt-5 flex items-start gap-3 rounded-xl bg-success/10 px-4 py-3">
+											
+											<p class="text-sm font-medium text-success/90">Look for the mounted lockbox with the self-inking stamp inside to record your visit.</p>
+										</div>
+									</div>
+								</div>
+							)
+						}
+
 						<!-- About Section -->
 						{
 							park.content && (
 								<Card class="bg-card border border-border p-8 shadow-sm">
 									
 										
-										<h2 class="text-2xl font-bold">About</h2>
+										<h2 class="text-2xl font-bold mt-0!">About</h2>
 									
 									<div class="prose max-w-none text-muted-foreground">
 										<PortableText portableText={park.content} />
@@ -206,64 +246,7 @@ function formatAmenity(amenity: string) {
 							)
 						}
 
-						<!-- Lockbox / Passport Stamp Location — KEY ELEMENT -->
-						{
-							park.lockboxLocation && (
-								<div class="relative overflow-hidden rounded-2xl border-2 border-success/20 bg-success/5 p-8 shadow-lg">
-									<!-- Decorative concentric stamp rings (top-right watermark) -->
-									<div class="pointer-events-none absolute -top-10 -right-10 z-0" aria-hidden="true">
-										<div class="absolute size-[220px] -translate-x-1/2 -translate-y-1/2 rounded-full border-2 border-dashed border-success/20"></div>
-										<div class="absolute size-[150px] -translate-x-1/2 -translate-y-1/2 rounded-full border border-success/15"></div>
-										<div class="absolute size-[80px] -translate-x-1/2 -translate-y-1/2 rounded-full border border-success/10"></div>
-									</div>
-
-									<!-- Large stamp icon watermark -->
-									<div class="pointer-events-none absolute right-6 bottom-4 z-0 opacity-[0.06]" aria-hidden="true">
-										<Stamp class="size-32 text-success" />
-									</div>
-
-									<!-- Decorative glow blob -->
-									<div class="absolute -right-10 -top-10 size-40 rounded-full bg-success/10 blur-3xl pointer-events-none" aria-hidden="true"></div>
-
-									<div class="relative z-10">
-										<!-- Header -->
-										<div class="mb-5 flex items-center gap-3">
-											<div class="flex size-11 items-center justify-center rounded-full bg-success/15 ring-4 ring-success/10">
-												<MapPin class="text-success size-5" />
-											</div>
-											<div>
-												<p class="text-xs font-bold uppercase tracking-widest text-success/70">Wellness Passport</p>
-												<h2 class="text-xl font-bold">Passport Stamp Location</h2>
-											</div>
-										</div>
-
-										<!-- Divider -->
-										<div class="mb-5 h-px w-full bg-success/15"></div>
-
-										<p class="text-foreground/80 leading-relaxed">{park.lockboxLocation}</p>
-
-										{park.lockboxPhoto && (
-											<div class="mt-6 overflow-hidden rounded-xl border-2 border-success/20 shadow-md">
-												<Image
-													src={urlForImage(park.lockboxPhoto).width(800).height(600).url()}
-													alt={park.lockboxPhoto.alt || 'Lockbox location'}
-													width={800}
-													height={600}
-													class="w-full object-cover"
-												/>
-											</div>
-										)}
-
-										<!-- Tip banner -->
-										<div class="mt-5 flex items-start gap-3 rounded-xl bg-success/10 px-4 py-3">
-											<span class="mt-0.5 size-2 shrink-0 rounded-full bg-success animate-pulse-soft" aria-hidden="true"></span>
-											<p class="text-sm font-medium text-success/90">Look for the mounted lockbox with the self-inking stamp inside to record your visit.</p>
-										</div>
-									</div>
-								</div>
-							)
-						}
-
+						
 						<!-- Amenities -->
 						{
 							park.amenities && park.amenities.length > 0 && (
@@ -310,10 +293,10 @@ function formatAmenity(amenity: string) {
 
 					<!-- Sidebar (1/3) -->
 					<div class="lg:col-span-1">
-						<div class="sticky top-24 space-y-6">
+						<div class="sticky top-0 space-y-6">
 							<!-- Park Info Card with colored top border -->
 							<Card class="bg-card overflow-hidden border border-border border-t-4 border-t-success p-6 shadow-lg">
-								<h3 class="mb-6 text-lg font-bold">Park Information</h3>
+								<h3 class="mb-6 text-lg font-bold mt-0!">Park Information</h3>
 
 								<div class="space-y-5">
 									{/* Address */}
