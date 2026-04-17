@@ -23,6 +23,18 @@ export default defineType({
       },
     }),
     defineField({
+      name: 'phone',
+      title: 'Phone',
+      type: 'string',
+      description: 'Contact Phone',
+    }),
+    defineField({
+      name: 'email',
+      title: 'Email',
+      type: 'string',
+      description: 'Contact Email',
+    }),
+    defineField({
       name: 'content',
       title: 'Content',
       type: 'portableText',
@@ -32,6 +44,12 @@ export default defineType({
       title: 'FAQs',
       type: 'array',
       of: [{ type: 'titleAndDescription' }],
+    }),
+    defineField({
+      name: 'social',
+      title: 'Social Media Platforms',
+      type: 'array',
+      of: [{ type: 'social' }],
     }),
     defineField({
       name: 'seo',

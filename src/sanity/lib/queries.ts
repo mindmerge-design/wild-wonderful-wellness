@@ -94,6 +94,9 @@ export const partnersPageQuery = `*[_type == "partners"][0]{
 export const contactPageQuery = `*[_type == "contact"][0]{
   title,
   slug,
+  phone,
+  email,
   content,
-  faqs
+  faqs,
+  social
 }`
