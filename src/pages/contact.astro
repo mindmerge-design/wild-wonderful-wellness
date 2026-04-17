@@ -11,10 +11,10 @@ import Section from '@/components/layout/Section.astro'
 import StampRings from '@/components/layout/StampRings.astro'
 import WaveDivider from '@/components/layout/WaveDivider.astro'
 import {
-	Accordion,
-	AccordionContent,
-	AccordionItem,
-	AccordionTrigger
+Accordion,
+AccordionContent,
+AccordionItem,
+AccordionTrigger
 } from '@/components/starwind/accordion'
 import { Button } from '@/components/starwind/button'
 import Layout from '@/layouts/Layout.astro'
@@ -100,25 +100,6 @@ const email = settings?.siteEmail || 'wellness@monongaliahealth.org'
 		</div>
 
 		<StampRings />
-
-		<!-- Floating icons — right side only -->
-		<div class="animate-pulse-soft absolute top-12 right-[4%] opacity-15" aria-hidden="true">
-			<Mail class="size-9 text-white!" />
-		</div>
-		<div
-			class="animate-pulse-soft absolute top-[45%] right-[18%] opacity-10"
-			style="animation-delay: 0.6s"
-			aria-hidden="true"
-		>
-			<Phone class="size-7 text-white!" />
-		</div>
-		<div
-			class="animate-pulse-soft absolute right-[7%] bottom-24 opacity-10"
-			style="animation-delay: 1.2s"
-			aria-hidden="true"
-		>
-			<MapPin class="size-8 text-white!" />
-		</div>
 
 		<Container class="relative z-10 flex min-h-[48vh] flex-col justify-center py-20">
 			<div class="max-w-3xl" style="animation: fade-in-up 0.8s ease-out both;">

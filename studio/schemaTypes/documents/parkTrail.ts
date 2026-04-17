@@ -64,16 +64,8 @@ export default defineType({
       options: {
         list: [
           { title: 'Restrooms', value: 'restrooms' },
-          { title: 'Parking', value: 'parking' },
-          { title: 'Dog Friendly', value: 'dog-friendly' },
-          { title: 'Accessible', value: 'accessible' },
-          { title: 'Picnic Area', value: 'picnic-area' },
           { title: 'Playground', value: 'playground' },
-          { title: 'Camping', value: 'camping' },
           { title: 'Swimming', value: 'swimming' },
-          { title: 'Fishing', value: 'fishing' },
-          { title: 'Biking', value: 'biking' },
-          { title: 'Hiking', value: 'hiking' },
         ],
       },
     }),

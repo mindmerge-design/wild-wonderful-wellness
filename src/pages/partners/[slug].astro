@@ -5,14 +5,11 @@ import { SEO } from 'astro-seo'
 import { Image } from 'astro:assets'
 import {
 ArrowLeft,
-Building2,
 Calendar,
 Clock,
 Globe,
-Heart,
 MapPin,
-Phone,
-Users
+Phone
 } from 'lucide-astro'
 
 // Components
@@ -157,25 +154,6 @@ function formatPartnerType(type: string) {
 		<div class="absolute inset-0 bg-linear-to-b from-black/30 via-black/10 to-black/50" aria-hidden="true"></div>
 
 		<StampRings />
-
-		<!-- Floating icons — right side only, clear of text -->
-		<div class="animate-pulse-soft absolute top-14 right-[4%] opacity-15" aria-hidden="true">
-			<Building2 class="size-10 text-white!" />
-		</div>
-		<div
-			class="animate-pulse-soft absolute top-[45%] right-[18%] opacity-10"
-			style="animation-delay: 0.5s"
-			aria-hidden="true"
-		>
-			<Heart class="size-8 text-white!" />
-		</div>
-		<div
-			class="animate-pulse-soft absolute bottom-20 right-[7%] opacity-10"
-			style="animation-delay: 1s"
-			aria-hidden="true"
-		>
-			<Users class="size-9 text-white!" />
-		</div>
 
 		<Container class="relative z-10 flex min-h-[50vh] flex-col justify-center py-16">
 			<div class="max-w-4xl" style="animation: fade-in-up 0.8s ease-out both;">

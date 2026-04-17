@@ -183,6 +183,12 @@ Cookie-based preview system for Sanity draft content:
 
 ## Scripts
 
+Before starting any dev server, check if one is already running:
+- `lsof -i :4321` — Astro dev server
+- `lsof -i :3333` — Sanity Studio
+
+If a process is listed on the relevant port, skip starting that server.
+
 ```bash
 npm run dev      # Development server (localhost:4321)
 npm run build    # Production build

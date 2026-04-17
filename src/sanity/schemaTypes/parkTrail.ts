@@ -5,7 +5,7 @@ import type { SEO } from './seo'
 type PortableText = unknown[]
 
 export type ParkType = 'park' | 'trail' | 'state-forest' | 'recreation-area'
-export type Amenity = 'restrooms' | 'parking' | 'dog-friendly' | 'accessible' | 'picnic-area' | 'camping' | 'swimming' | 'fishing' | 'biking' | 'hiking'
+export type Amenity = 'restrooms' | 'playground' | 'swimming'
 
 export interface ParkTrail {
 	_type: 'parkTrail'

@@ -1,7 +1,7 @@
 ---
 // Packages
 import { SEO } from 'astro-seo'
-import { Award, Heart, MapPin, Users } from 'lucide-astro'
+import { Award } from 'lucide-astro'
 
 // Components
 import Badge from '@/components/elements/content/Badge.astro'
@@ -81,17 +81,6 @@ const seoDescription = 'Community businesses and organizations supporting the We
 		<div class="absolute inset-0 bg-linear-to-b from-black/20 via-black/10 to-black/40" aria-hidden="true"></div>
 
 		<StampRings />
-
-		<!-- Floating icons — right side only, clear of text -->
-		<div class="absolute top-12 right-[4%] animate-pulse-soft opacity-15" aria-hidden="true">
-			<Users class="text-white! size-9" />
-		</div>
-		<div class="absolute top-[45%] right-[18%] animate-pulse-soft opacity-10" style="animation-delay: 0.5s" aria-hidden="true">
-			<Heart class="text-white! size-7" />
-		</div>
-		<div class="absolute bottom-24 right-[8%] animate-pulse-soft opacity-10" style="animation-delay: 1s" aria-hidden="true">
-			<MapPin class="text-white! size-8" />
-		</div>
 
 		<Container class="relative z-10 flex min-h-[45vh] flex-col justify-center py-16">
 			<div class="max-w-3xl" style="animation: fade-in-up 0.8s ease-out both;">

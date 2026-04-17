@@ -1,7 +1,7 @@
 ---
 // Packages
 import { SEO } from 'astro-seo'
-import { Calendar, Sparkles, Star } from 'lucide-astro'
+import { Calendar } from 'lucide-astro'
 
 // Components
 import Badge from '@/components/elements/content/Badge.astro'
@@ -86,17 +86,6 @@ const seoImage = settings?.sharingImage
 		<div class="absolute inset-0 bg-linear-to-b from-black/20 via-black/10 to-black/60" aria-hidden="true"></div>
 
 		<StampRings />
-
-		<!-- Floating icons — right side only, clear of text -->
-		<div class="absolute top-12 right-[4%] animate-pulse-soft opacity-15" aria-hidden="true">
-			<Calendar class="text-white! size-9" />
-		</div>
-		<div class="absolute top-[45%] right-[18%] animate-pulse-soft opacity-10" style="animation-delay: 0.7s" aria-hidden="true">
-			<Star class="text-white! size-7" />
-		</div>
-		<div class="absolute bottom-24 right-[8%] animate-pulse-soft opacity-10" style="animation-delay: 1.3s" aria-hidden="true">
-			<Sparkles class="text-white! size-7" />
-		</div>
 
 		<Container class="relative z-10 flex min-h-[48vh] flex-col justify-center py-20">
 			<div class="max-w-3xl" style="animation: fade-in-up 0.8s ease-out both;">

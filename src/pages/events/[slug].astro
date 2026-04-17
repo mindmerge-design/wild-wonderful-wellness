@@ -10,7 +10,6 @@ Clock,
 DollarSign,
 ExternalLink,
 MapPin,
-Sparkles,
 User
 } from 'lucide-astro'
 
@@ -107,11 +106,6 @@ const isPast = new Date(event.eventDate) < new Date()
 		<div class="pointer-events-none absolute inset-0" aria-hidden="true" style="background-image: radial-gradient(circle, rgba(255,255,255,0.08) 1px, transparent 1px); background-size: 24px 24px;"></div>
 
 		<StampRings class="z-10" />
-
-		<!-- Floating decorative icon -->
-		<div class="absolute top-10 left-[12%] z-[5] animate-pulse-soft opacity-20" aria-hidden="true">
-			<Sparkles class="text-white! size-8" />
-		</div>
 
 		<Container class="relative z-10">
 			<div class="flex flex-col lg:flex-row lg:min-h-[55vh] lg:-mx-4">

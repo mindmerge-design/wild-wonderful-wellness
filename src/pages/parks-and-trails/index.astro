@@ -1,7 +1,7 @@
 ---
 // Packages
 import { SEO } from 'astro-seo'
-import { Compass, Map as MapIcon, TreePine } from 'lucide-astro'
+import { Map as MapIcon } from 'lucide-astro'
 
 // Components
 import Badge from '@/components/elements/content/Badge.astro'
@@ -94,24 +94,6 @@ const seoDescription =
 
 		<StampRings />
 
-		<!-- Floating icons — right side only, clear of text -->
-		<div class="animate-pulse-soft absolute top-12 right-[4%] opacity-15" aria-hidden="true">
-			<TreePine class="size-10 text-white!" />
-		</div>
-		<div
-			class="animate-pulse-soft absolute top-[45%] right-[16%] opacity-10"
-			style="animation-delay: 0.5s"
-			aria-hidden="true"
-		>
-			<MapIcon class="size-8 text-white!" />
-		</div>
-		<div
-			class="animate-pulse-soft absolute right-[7%] bottom-24 opacity-10"
-			style="animation-delay: 1s"
-			aria-hidden="true"
-		>
-			<Compass class="size-9 text-white!" />
-		</div>
 
 		<Container class="relative z-10 flex min-h-[48vh] flex-col justify-center py-16">
 			<div class="max-w-3xl" style="animation: fade-in-up 0.8s ease-out both;">

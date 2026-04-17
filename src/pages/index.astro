@@ -121,28 +121,17 @@ const stepAccents = [
 						<!-- Title -->
 						<h1 class="mb-2 text-5xl lg:text-7xl xl:text-8xl font-extrabold leading-[1.05] tracking-tight text-white!">
 							Wild &
-							Wonderful
+							Wonderful <br />Wellness Passport
 						</h1>
 
-						<!-- Highlighted subtitle -->
-						<div class="mt-3 lg:mt-4 inline-block -rotate-1 transform">
-							<span class="inline-block rounded-lg bg-warning px-4 lg:px-6 py-1.5 lg:py-2 text-lg lg:text-2xl xl:text-3xl font-extrabold text-warning-foreground shadow-lg">
-								Wellness Passport
-							</span>
-						</div>
+						
 
 						<!-- Tagline -->
 						<p class="mt-6 lg:mt-8 text-xl lg:text-2xl font-semibold tracking-wide text-white/90!">
 							Explore. Move. Earn Rewards.
 						</p>
 
-						<!-- CTA Button -->
-						<div class="mt-6 lg:mt-8">
-							<Button href="#introduction" variant="outline" size="lg" class="no-underline bg-white text-foreground hover:bg-white/90">
-								Learn More
-								<ArrowRight class="size-5" />
-							</Button>
-						</div>
+						
 					</div>
 				</Container>
 			
@@ -234,20 +223,8 @@ const stepAccents = [
 		<!-- ============================================ -->
 		<!-- 2. HOW IT WORKS                              -->
 		<!-- ============================================ -->
-		<Section id="how-it-works" class="bg-muted relative overflow-hidden pb-0!">
-			<!-- Topo pattern -->
-			<div class="absolute inset-0 text-success/3 pointer-events-none">
-				<svg class="h-full w-full" xmlns="http://www.w3.org/2000/svg">
-					<defs>
-						<pattern id="topo-how" x="0" y="0" width="250" height="250" patternUnits="userSpaceOnUse">
-							<path d="M 0 125 Q 62.5 100 125 125 T 250 125" fill="none" stroke="currentColor" stroke-width="0.8" opacity="0.2"/>
-							<path d="M 0 62.5 Q 125 25 250 62.5" fill="none" stroke="currentColor" stroke-width="0.6" opacity="0.15"/>
-							<circle cx="200" cy="200" r="30" fill="none" stroke="currentColor" stroke-width="0.5" opacity="0.1"/>
-						</pattern>
-					</defs>
-					<rect width="100%" height="100%" fill="url(#topo-how)"/>
-				</svg>
-			</div>
+		<Section id="how-it-works" class="bg-muted relative overflow-hidden ">
+			
 
 			<Container class="relative z-10">
 				<div class="mb-16 relative">
@@ -304,36 +281,67 @@ const stepAccents = [
 					})}
 				</div>
 
-				<!-- Prizes teaser -->
-				<div class="mt-10 relative overflow-hidden rounded-2xl border border-border bg-background p-8 text-center shadow-lg">
-					<div class="absolute inset-0 bg-linear-to-br from-warning/5 to-success/5 pointer-events-none"></div>
-					<div class="absolute -right-10 -top-10 size-40 bg-warning/10 rounded-full blur-3xl pointer-events-none"></div>
-					<div class="absolute -left-10 -bottom-10 size-40 bg-success/10 rounded-full blur-3xl pointer-events-none"></div>
-					<div class="relative z-10">
-						<div class="mx-auto mb-4 flex size-14 items-center justify-center rounded-full bg-warning/10">
-							<Award class="text-warning size-7" />
+				<!-- Prizes + Passport — Trophy Showcase merged section -->
+				{home?.pricesContent && (
+					<div class="relative mt-12 overflow-hidden rounded-2xl bg-primary md:mt-16">
+						
+						{/* Large watermark trophy */}
+						<div class="absolute right-4 top-6 pointer-events-none select-none" aria-hidden="true">
+							<Award class="size-56 text-primary-foreground/5" />
 						</div>
-						<div class="text-xl font-semibold text-foreground">
-							<PortableText portableText={home?.pricesContent} />
-						</div>
-					</div>
-				</div>
 
-				<!-- Passport booklet -->
-				<div class="relative b-0 flex items-center justify-between flex-wrap mt-16 md:mt-20">
-					<div>
-						<h2>Your Wellness Passport</h2>
-	
-	<p class="text-muted-foreground mt-3 text-xl leading-relaxed max-w-lg"><strong>Pick one up for free at MCHD or any <a href="/partners" class="text-warning hover:underline">partner location</a></strong></p>
+						{/* Top: Prizes split */}
+						<div class="relative z-10 grid md:grid-cols-[2fr_3fr]">
+							{/* Left: trophy accent */}
+							<div class="flex flex-col items-center justify-center gap-5 border-b border-primary-foreground/10 p-8 text-center md:border-b-0 md:border-r md:p-10">
+								<div class="relative flex items-center justify-center">
+									<div class="absolute size-40 rounded-full border-2 border-dashed border-primary-foreground/10"></div>
+									<div class="absolute size-28 rounded-full border border-primary-foreground/10"></div>
+									<div class="flex size-20 items-center justify-center rounded-full bg-warning shadow-lg shadow-warning/25">
+										<Award class="size-10 text-warning-foreground" />
+									</div>
+								</div>
+								<div>
+									<div class="text-xs font-bold uppercase tracking-widest text-primary-foreground/50 mb-1">Grand Prize</div>
+									<div class="text-2xl font-extrabold text-primary-foreground leading-tight">2-Night Cabin<br/>Stay</div>
+									<div class="mt-2 text-lg text-primary-foreground/60">Mountain Creek Cabins</div>
+								</div>
+							</div>
+
+							{/* Right: prizes prose */}
+							<div class="p-8 md:p-10">
+								
+								<h3 class="mb-2 text-3xl font-extrabold text-primary-foreground! md:text-4xl">Prizes</h3>
+								<div class="prose prose-invert max-w-none text-base leading-relaxed [&_p]:text-primary-foreground/90! [&_strong]:text-primary-foreground! [&_li]:text-primary-foreground/90! [&_ul]:text-primary-foreground/90!">
+									<PortableText portableText={home.pricesContent} />
+								</div>
+							</div>
+						</div>
+
+						{/* Divider */}
+						<div class="relative z-10 border-t border-primary-foreground/10"></div>
+
+						{/* Bottom: Passport booklet */}
+						<div class="relative z-10 flex flex-col items-center gap-4 px-8 pt-6 pb-0 text-center md:flex-row md:items-end md:justify-center md:gap-10 md:px-10 md:text-left">
+							<div class="pb-0 md:pb-10">
+								<h3 class="text-2xl! font-extrabold text-primary-foreground! md:text-3xl!">Your Wellness Passport</h3>
+								<p class="mt-2 text-blg text-primary-foreground/90! leading-relaxed">
+									Pick one up free at MCHD or any{" "}
+									<a href="/partners" class="font-semibold text-primary-foreground! underline-offset-2 hover:underline">partner location</a>
+								</p>
+							</div>
+							<div class="shrink-0">
+								<Image
+									src="https://cdn.sanity.io/images/v8ngbpl7/production/c6cdacad7a22fe1001082038538b14584fd076b4-1200x1025.png"
+									alt="Wellness Passport booklet"
+									width={420}
+									height={359}
+									class="my-0! block w-full max-w-[320px] object-contain md:max-w-[420px]"
+								/>
+							</div>
+						</div>
 					</div>
-					<Image
-						src="https://cdn.sanity.io/images/v8ngbpl7/production/c6cdacad7a22fe1001082038538b14584fd076b4-1200x1025.png"
-						alt="Wellness Passport"
-						width={600}
-						height={512}
-						class="my-0! relative text-right"
-					/>
-				</div>
+				)}
 			</Container>
 		</Section>
 
